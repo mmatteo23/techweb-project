@@ -1,0 +1,216 @@
+:root{
+  --bg: #1b1b1b;
+  --shadow: black;
+}
+
+* {
+	padding: 0;
+	margin:0;
+    box-sizing: border-box;
+}
+
+html, body{
+	font-size: 100%;
+  font-family: 'Poppins', serif;
+	margin: auto;
+	max-width: 1024px;
+  background-color: var(--bg);
+  color: white;
+}
+
+header h1{
+	color: red;
+  background-image: url("../images/Penta_logo_big.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-indent: -999em;
+  font-size: 10em;
+  margin-top: 3rem;
+}
+
+header h2{
+  text-indent: -999em;
+}
+
+body{
+	border: 1px solid #000;
+}
+
+#breadcrumb {
+	background-color: #0E1E38;
+	color: #F3C428;
+	font-size: 1.1em;
+	padding: 0.5em 0em 0.5em 1em;
+}
+
+#breakingNews{
+	float: right;
+	width: 20%;
+	border: 1px dashed #000;
+	margin-top: 1em;
+	margin-left: 3%;
+	margin-right: 2%;
+	padding: 0.5em;
+}
+
+#breakingNews h2{
+	font-size: 1.2em;
+	background-color: #F3C42B;
+	padding: 0.2em;
+}
+
+#breakingNews dt{
+	margin-left: 0.8em;
+	font-weight: bold;
+}
+
+#breakingNews dd{
+	margin-left: 1.5em;
+}
+
+#article-header{
+  display: flex;
+  flex-direction: column;
+}
+
+#article-title{
+  font-size: 3em;
+}
+
+#article-subtitle{
+  font-weight: 300;
+}
+
+
+#article-info{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#article-info > p{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#article-info > p > span{
+  margin-left: 1ch;
+}
+
+
+#article-info p {
+  border-right: 1px solid white;
+  padding: 0 0.7em 0 0.7em;
+}
+
+#article-info p:first-child {
+  padding-left: 0;
+}
+#article-info p:last-child {
+  border: none;
+}
+
+#article-tags{
+  display: flex;
+  margin: 0.5em 0;
+}
+
+#article-tags li:first-child{
+  margin-left: 0em;
+}
+
+#article-tags li{
+  list-style-type: none;
+  margin-left: 1em;
+  padding: 0.3em 0.7em;  
+  border-radius: 2em;
+}
+
+#article-tags li:nth-child(odd){
+  background-color:rgb(115, 0, 255);
+}
+
+#article-tags li:nth-child(even){
+  background-color:rgb(255, 2, 255);
+}
+
+#article-tags li:hover,
+#article-tags li:focus{
+  background-color:rgb(0, 255, 248);
+  color: black;
+}
+
+
+
+#article-cover{
+  width: 100%;
+  border-radius: 3em 3em 0 0;
+}
+
+.cover-linguetta{
+  position: relative;
+  z-index: 10;
+  margin-top: -3em;
+  padding-top: 5em;
+  width: 100%;
+  background-color: var(--bg);
+  border-radius: 3em 3em 0 0;
+  box-shadow: 0em -0.7em 2em 0 var(--shadow);
+}
+
+#content #article-header,
+#content #article-body{
+  padding: 3em 4em;
+}
+
+footer{
+	clear: both;
+	text-align: center;
+	font-size: 0.8em;
+	border-top: 1px solid #000;
+	padding: 0.5em;
+}
+
+footer p{
+	display: inline;
+	font-style: italic;
+}
+
+footer .imgValidCode{
+	vertical-align: middle;
+	margin-left: 1em;
+	margin-right: 1em;
+}
+
+
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+  
+  .navbar a {
+    display: block;
+    width: 100%;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 12px 16px;
+    text-decoration: none;
+  }
+  
+  .navbar a:hover {
+    background: #f1f1f1;
+    color: black;
+  }
+  
+  .navbar a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
