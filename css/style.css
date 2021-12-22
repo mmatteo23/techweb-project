@@ -37,6 +37,7 @@
 .material-icons.md-48 { font-size: 48px; }
 .material-icons.md-60 { font-size: 60px; }
 
+
 html, body{
   font-family: 'Poppins', serif;
 	margin: auto;
@@ -47,6 +48,7 @@ html, body{
 
 body{
 	border: 1px solid #000;
+  box-shadow: 0em -0.7em 2em 0 var(--shadow);
 }
 
 
@@ -54,13 +56,15 @@ body{
 ====== HEADER ======
 */
 
+/*
 header h1{
-  /*background-image: url("../images/Penta_logo_big.png");
+  background-image: url("../images/Penta_logo_big.png");
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;*/
+  background-position: center;
   text-indent: -999em;
 }
+*/
 
 header h2 {
   text-indent: -999em;
@@ -104,13 +108,66 @@ header .logo .rotating-logo{
     transform: rotate(360deg);
   }
 }
+/*
+======== NAVBAR DESKTOP ========
+*/
 
+.navbar span:first-child{
+  display: none;
+}
+
+.navbar{
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.navbar li{
+  list-style-type: none;
+  padding: 0 1em 0 1em;
+  position: relative;
+  z-index: 100;
+}
+
+.navbar span:before,
+.navbar span:after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-color: white;
+  transition: all 0.4s ease-out;
+}
+.navbar span:before{
+  transform: translateX(-100%);
+}
+.navbar span:after{
+  transform: translateX(100%);
+}
+.navbar span:hover:before,
+.navbar span:hover:after{
+  transform: translateX(0);
+}
+
+.navbar span:hover{
+  background-color: white;
+}
+
+.navbar li:last-child{
+  margin-left: auto;
+}
+
+/*
+======== BREADCRUMB ========
+*/
 #breadcrumb {
   padding-top:2em;
 	background-color: var(--bg-accent) ;    /* mettere lo stesso colore degli h2?*/
 	color: #000000;
-	font-size: 1.1rem;
-	padding: 0.5em 0em 0.5em 1em;
+	font-size: 1rem;
+	padding: 0.5em 0em 0.5em 3em;
 }
 #breadcrumb a{
   font-weight: bold;
@@ -133,7 +190,9 @@ a:visited{
 #article-header{
   display: flex;
   flex-direction: column;
-  padding: 2em 3em 2em;
+  padding: 2em 4em 7.5em;
+
+  background-image: linear-gradient(to bottom right, var(--bg), var(--bg), #999)
 }
 
 #article-title{
@@ -150,6 +209,7 @@ a:visited{
 #article-info{
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   margin: 0.5em 0;
 }
@@ -158,28 +218,29 @@ a:visited{
   display: flex;
   flex-direction: row;
   align-items: center;
+  border-right: 1px solid white;
+  padding: 0 0.7em;
 }
 
 #article-info > p > span{
   margin-left: 1ch;
 }
 
-
-#article-info p {
-  border-right: 1px solid white;
-  padding: 0 0.7em 0 0.7em;
-}
-
 #article-info p:first-child {
   padding-left: 0;
+  color: var(--teal-accent);  /*messo l'autore di questo colore perchè sarà un link
+  quindi per mantenere la convenzione interna dei link nei testi di questo colore
+  e in più ci sta un sacco*/
 }
 #article-info p:last-child {
   border: none;
 }
 
 #article-tags{
+  margin: 0.1rem 0 0;
   display: flex;
   justify-content: flex-end;
+  flex-wrap: wrap;
 }
 
 #article-tags li:first-child{
@@ -191,6 +252,7 @@ a:visited{
   margin-left: 1em;
   padding: 0.3em 0.7em;  
   border-radius: 2em;
+  box-shadow: 3px 3px 10px 0px #000000c9;
 }
 
 #article-tags li:nth-child(odd){
@@ -201,10 +263,27 @@ a:visited{
   background-color:var(--fucsia-accent);
 }
 
+/* non essendo link (o saranno link? non ricordo) non ha senso mettergli effetti che
+vanno a "confondere" l'utente, teniamo il css in caso li rendiamo dei link
+
 #article-tags li:hover,
 #article-tags li:focus{
   background-color: var(--teal-accent);
   color: black;
+}
+*/
+
+/*dimensioni font per mobile*/
+@media screen and (min-width: 950px) and (min-height: 1500px){
+  #article-info > p{
+  font-size: 1.8rem;
+  }
+  #article-tags > li{
+    font-size: 1.5rem;
+  }
+  #article-body *{
+    font-size: 1.8rem;
+  }
 }
 
 #article-cover{
@@ -212,6 +291,13 @@ a:visited{
   border-radius: 3em 3em 0 0;
 }
 
+/* si potrebbe rendere .cover-linguetta un ::before di #article-body aumentando il 
+z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'articolo*/
+.cover{
+  position: relative;
+  z-index: 3;
+  margin-top: -6em;
+}
 
 .cover-linguetta{
   position: relative;
@@ -225,14 +311,86 @@ a:visited{
 }
 
 #article-body{
-  padding: 3em 4em;
+  padding: 3em 4em 1.5em;
+}
+
+#article-body > *{
+  margin-bottom: 1.5rem;
 }
 
 #article-body p:first-child::first-letter{
   font-size: 2.5em;
 }
 
+#article-body h2{
+  color: var(--pink-accent);
+  margin-bottom: 0;
+}
 
+#article-body p{
+  line-height: 2em;
+  margin-bottom: 1.5rem;
+}
+
+#article-body a{
+  color: var(--teal-accent);
+  position: relative;
+  transition: all 0.3s ease-out;
+}
+
+#article-body a:hover,
+#article-body a:focus{
+  color: black;
+}
+
+#article-body a:visited{
+  color: var(--pink-accent);
+}
+
+#article-body a:visited:hover,
+#article-body a:visited:focus{
+  color: black;
+}
+
+/*al posto di before si potrebbe semplicemnte aggiungere del padding laterale,
+solo che sposterebbe il testo (still responsive ma non credo vada bene alla prof)*/
+
+#article-body a::before{
+  content: '';
+  width: 110%;
+  height: 110%;
+  position: absolute;
+  top: -5%;
+  left: -5%;
+  z-index: -1;
+  transition: all 0.3s ease-out;
+}
+
+#article-body a:hover::before,
+#article-body a:focus::before{
+  background-color: var(--teal-accent);
+  border-radius: 2em;
+}
+
+#article-body ul{
+  font-size: 1.2rem;
+  margin-left: 3rem;  
+  list-style-type:initial;
+}
+
+#article-body ul li{
+  line-height: 1.75em;
+}
+
+::marker{
+  color: var(--pink-accent);
+}
+
+#article-body ul strong{
+  color: var(--bg-accent);
+  padding: 0em 0.5em;
+  border-radius: 0.5em;
+}
 
 /*
 ===== ABOUT US =====
@@ -269,12 +427,18 @@ a:visited{
   padding-top: 0;
 }
 
+/*
+======== FOOTER ========
+*/
+
 footer{
 	clear: both;
 	text-align: center;
 	font-size: 0.8rem;
 	border-top: 1px solid #000;
-	padding: 0.5em;
+	padding: 1.5em;
+  background-color: #999;
+  box-shadow: inset 0 3px 10px 0px var(--shadow);
 }
 
 footer p{
@@ -290,51 +454,59 @@ footer .imgValidCode{
 
 
 /*
-======== FOOTER ========
+======== NAVBAR MOBILE========
 */
 
+@media screen and (min-width: 950px) and (min-height: 1500px){
+  footer{
+    margin-bottom: 6vh;
+  }
 
-footer{
-  padding: 16px;
-  margin-bottom: 5vh;
-  background-color: #999;
+  .navbar span:first-child{
+    display: inline-block;
+  }
+
+  .navbar {
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+    width: 100%;
+    max-width: var(--content-max_width);
+    height: 6vh;
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+    align-items: center;
+  }
+
+  .navbar li{
+    width: 100%;
+    list-style-type: none;
+  }
+
+  .navbar a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 12px 16px;
+    text-decoration: none;
+  }
+
+  .navbar a:hover {
+    background: #f1f1f1;
+    color: black;
+  }
+
+  .navbar a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+
 }
-
-/*
-======== NAVBAR ========
-*/
-
-.navbar {
-  overflow: hidden;
-  background-color: #333;
-  position: fixed;
-  z-index: 100;
-  bottom: 0;
-  width: 100%;
-  max-width: var(--content-max_width);
-  height: 5vh;
-  display: flex;
-  flex-grow: 1;
-  flex-shrink: 1;
-  align-items: center;
-}
-
-.navbar a {
-  display: block;
-  width: 100%;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 12px 16px;
-  text-decoration: none;
-}
-
-.navbar a:hover {
-  background: #f1f1f1;
-  color: black;
-}
-
-.navbar a.active {
-  background-color: #04AA6D;
-  color: white;
-}
-
