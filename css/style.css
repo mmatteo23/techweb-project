@@ -108,66 +108,17 @@ header .logo .rotating-logo{
     transform: rotate(360deg);
   }
 }
-/*
-======== NAVBAR DESKTOP ========
-*/
 
-.navbar span:first-child{
-  display: none;
-}
 
-.navbar{
-  display: flex;
-  margin-bottom: 2rem;
-}
-
-.navbar li{
-  list-style-type: none;
-  padding: 0 1em 0 1em;
-  position: relative;
-  z-index: 100;
-}
-
-.navbar span:before,
-.navbar span:after{
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  background-color: white;
-  transition: all 0.4s ease-out;
-}
-.navbar span:before{
-  transform: translateX(-100%);
-}
-.navbar span:after{
-  transform: translateX(100%);
-}
-.navbar span:hover:before,
-.navbar span:hover:after{
-  transform: translateX(0);
-}
-
-.navbar span:hover{
-  background-color: white;
-}
-
-.navbar li:last-child{
-  margin-left: auto;
-}
 
 /*
 ======== BREADCRUMB ========
 */
 #breadcrumb {
-  padding-top:2em;
 	background-color: var(--bg-accent) ;    /* mettere lo stesso colore degli h2?*/
 	color: #000000;
 	font-size: 1rem;
-	padding: 0.5em 0em 0.5em 3em;
+	padding: 0.5em 4em;
 }
 #breadcrumb a{
   font-weight: bold;
@@ -261,6 +212,7 @@ a:visited{
 
 #article-tags li:nth-child(even){
   background-color:var(--fucsia-accent);
+  text-shadow: 2px 2px 3px black;
 }
 
 /* non essendo link (o saranno link? non ricordo) non ha senso mettergli effetti che
@@ -439,6 +391,7 @@ footer{
 	padding: 1.5em;
   background-color: #999;
   box-shadow: inset 0 3px 10px 0px var(--shadow);
+  margin-bottom: 6vh;
 }
 
 footer p{
@@ -457,56 +410,174 @@ footer .imgValidCode{
 ======== NAVBAR MOBILE========
 */
 
-@media screen and (min-width: 950px) and (min-height: 1500px){
-  footer{
-    margin-bottom: 6vh;
+.navbar span:first-child{
+  display: inline-block;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  width: 100%;
+  max-width: var(--content-max_width);
+  height: 6vh;
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  align-items: center;
+}
+
+.navbar li{
+  width: 100%;
+  list-style-type: none;
+}
+
+.navbar a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 12px 16px;
+  text-decoration: none;
+}
+
+.navbar a:hover,
+.navbar a:focus {
+  background: #f1f1f1;
+  color: black;
+}
+
+.navbar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+/*
+======== NAVBAR DESKTOP ========
+*/
+
+@media screen and (max-height: 1500px) and (min-width: 550px){
+
+  .navbar span:first-child{ /*rimuove le icone usate per la navigazione da mobile*/
+    display: none;
   }
 
-  .navbar span:first-child{
-    display: inline-block;
-  }
-
-  .navbar {
-    overflow: hidden;
-    background-color: #333;
-    position: fixed;
-    bottom: 0;
-    z-index: 100;
-    width: 100%;
-    max-width: var(--content-max_width);
-    height: 6vh;
+  .navbar{
+    position: sticky;
+    top: 0;
+    height: auto;
     display: flex;
-    flex-grow: 1;
-    flex-shrink: 1;
-    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    padding: 0.85em 1em 0.85em 2.5em;
+    background-color: var(--bg);
+    z-index: 100;
+    /*box-shadow: 0px 3px 5px 6px var(--bg);*/
   }
 
   .navbar li{
-    width: 100%;
     list-style-type: none;
+    margin: 0 .7em 0 1em;
+    position: relative;
+    z-index: 10;
+    width: auto;
   }
 
-  .navbar a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 12px 16px;
+  .navbar li a{
+    color:  var(--teal-accent);
     text-decoration: none;
+    text-transform: uppercase;
+    padding: 0 .5em 0 .5em;
+    transition: all 0.4s ease-out 0.2s;
   }
 
-  .navbar a:hover {
-    background: #f1f1f1;
-    color: black;
+  .navbar li a:visited{
+    color: var(--pink-accent);
   }
 
-  .navbar a.active {
-    background-color: #04AA6D;
+  .navbar li:nth-child(5){
+    margin-left: auto;
+  }
+
+
+  /*Transizioni-animazioni*/
+
+  .navbar a:before,
+  .navbar a:after{
+    content: '';
+    position: absolute;
+    width: .8em;
+    height: .8em;
+    z-index: 0;
+    opacity: 0%;
+    transition: all 0.4s ease-out;
+    border: 3px solid var(--fucsia-accent);
+  }
+  .navbar a:before{
+    bottom: .2em;
+    left: .6em;
+    border-top: none;
+    border-right: none;
+  }
+  .navbar a:after{
+    top: .2em;
+    right: .6em;
+    border-bottom: none;
+    border-left: none;
+  }
+  .navbar a:hover:before,
+  .navbar a:focus:before{
+    opacity: 100%;
+    transform: translate(-1.2em, .6em);
+  }
+
+  .navbar a:hover:after,
+  .navbar a:focus:after{
+    opacity: 100%;
+    transform: translate(1.2em, -.6em);
+  }
+
+  .navbar a:hover,
+  .navbar a:focus{
+    background-color: var(--fucsia-accent);
     color: white;
+    outline: none;
   }
 
+  .navbar a:visited:hover,
+  .navbar a:visited:focus{
+    color: white;
+  } 
+
+  
+footer{
+  margin-bottom: 0vh;
+}
+
+}
+
+
+/*media query per dimensione navbar sotto per desktop*/
+@media screen and (max-height: 1500px) and (max-width: 550px) {
+  .navbar{
+    height: 8vh;
+  }
+
+  .navbar a{
+    height: 100%;
+  }
+
+  .material-icons.md-60{
+    font-size: 40px;
+  }
+
+  .navbar li a span{
+    font-size: .7em;
+  }
 }
