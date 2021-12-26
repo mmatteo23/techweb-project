@@ -1,0 +1,119 @@
+body{
+    min-height: 100vh;
+}
+
+#content h1{
+    
+}
+
+#content .form-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #999;
+    width: 100%;
+    max-width: 1024px;
+    margin: 4em auto; 
+    padding: 4em 0;   
+}
+
+#content form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 80vw;
+    width: 80%;
+}
+
+
+#content form .input-wrapper{
+    margin: 0.5rem 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#content form label{
+    display: block;
+    font-size: 1em;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+#content form input{
+    font-size: 2em;
+    padding: 0.5em 1em;
+    border-radius: 5em;
+    width: 70%;
+    background-color: var(--bg-accent);
+    border-color: var(--bg-accent);
+    margin: 0 auto;
+    transition: all 0.3s ease-out;
+}
+
+#content form input[type="submit"]{
+    background-color: var(--pink-accent);
+    border-color: var(--pink-accent);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: .3em;
+    cursor: pointer;
+}
+#content form input[type="submit"]:hover,
+#content form input[type="submit"]:focus{
+    background-color: var(--fucsia-accent);
+    border: 3px solid rgba(255, 255, 255, 0.699);
+    color: rgba(255, 255, 255, 1);
+}
+
+#content form input:hover,
+#content form input:focus{
+    background-color: var(--teal-accent);
+    border-color: var(--teal-accent);
+    outline: none;
+    width: 100%;
+}
+
+#content .form-wrapper > p{
+    margin-top: 2em;
+}
+
+#content .form-wrapper > p > a{
+    color: var(--teal-accent);
+    position: relative;
+    z-index: 1;
+}
+
+
+#content .form-wrapper > p > a:hover,
+#content .form-wrapper > p > a:focus{
+  color: black;
+}
+
+#content .form-wrapper > p > a:visited{
+  color: var(--pink-accent);
+}
+
+#content .form-wrapper > p > a:visited:hover,
+#content .form-wrapper > p > a:visited:focus{
+  color: black;
+}
+
+#content .form-wrapper > p > a::before{
+  content: '';
+  width: 110%;
+  height: 110%;
+  position: absolute;
+  top: -5%;
+  left: -5%;
+  z-index: -1;
+  transition: all 0.3s ease-out;
+}
+
+#content .form-wrapper > p > a:hover::before,
+#content .form-wrapper > p > a:focus::before{
+  background-color: var(--teal-accent);
+  border-radius: 2em;
+}
