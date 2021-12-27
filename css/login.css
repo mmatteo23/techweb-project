@@ -144,7 +144,7 @@ body{
 }
 
 
-@media screen and ((max-height: 1500px) and (min-width: 550px)){
+@media screen and ((max-height: 1500px) and (min-width: 570px)){
     #content .form-wrapper{
         max-width: 724px;
         animation: popdown ease-out normal forwards 0.75s 1;
