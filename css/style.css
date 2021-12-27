@@ -53,6 +53,9 @@ body{
 }
 
 
+
+
+
 /*
 ====== HEADER ======
 */
@@ -67,8 +70,17 @@ header h1{
 }
 */
 
+header{
+  position: relative;
+  z-index: 100;
+  background-color: var(--bg);
+  padding-top: 0.5rem;
+  margin-top: -0.1em;
+}
+
 header h2 {
   text-indent: -999em;
+  font-size: 0.5em;
 }
 
 header .logo{
@@ -118,9 +130,11 @@ header .logo .rotating-logo{
 #breadcrumb {
 	background-color: var(--bg-accent) ;    /* mettere lo stesso colore degli h2?*/
 	color: #000000;
-	font-size: 1.25em;
+	font-size: 1em;
 	padding: 0.5rem 4rem;
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 #breadcrumb a{
   font-weight: bold;
@@ -369,7 +383,7 @@ solo che sposterebbe il testo (still responsive ma non credo vada bene alla prof
   text-indent: -1em;
 }
 
-#aboutus-body li:before{
+#aboutus-body li::before{
   content: "+";
   padding-right: 5px;
   color: var(--teal-accent);
@@ -410,14 +424,6 @@ footer .imgValidCode{
 ======== NAVBAR MOBILE========
 */
 
-.navbar span:first-child{
-  display: inline-block;
-}
-
-.navbar span:nth-child(2){
-  font-size: 0.5em;
-}
-
 .navbar{
   overflow: hidden;
   background-color: #333;
@@ -432,6 +438,14 @@ footer .imgValidCode{
   flex-grow: 1;
   flex-shrink: 1;
   align-items: center;
+}
+
+.navbar span:first-child{
+  display: inline-block;
+}
+
+.navbar span:nth-child(2){
+  font-size: 0.5em;
 }
 
 .navbar li{
@@ -452,6 +466,7 @@ footer .imgValidCode{
   text-decoration: none;
 }
 
+
 .navbar a:hover,
 .navbar a:focus {
   background: #f1f1f1;
@@ -462,12 +477,23 @@ footer .imgValidCode{
   background-color: #04AA6D;
   color: white;
 }
+.navbar li a{}
+.navbar li a:visited{}
+.navbar li:nth-child(5){}
+
+
+/*per tenere il font su pc di 1em (=16px)*/
+@media screen and (max-width: 569px) {
+  body{
+    font-size: 1em;
+  }
+}
 
 /*
 ======== NAVBAR DESKTOP ========
 */
-/*aggiunto "min-height: 875px" perchè aprendo la tastiera su mobile questo cambia la dimensione della viewport*/
-@media screen and ((max-height: 1500px) and (min-width: 550px)){
+
+@media screen and (max-height: 1500px) and (min-width: 570px){
 
   .navbar span:first-child{ /*rimuove le icone usate per la navigazione da mobile*/
     display: none;
@@ -491,7 +517,6 @@ footer .imgValidCode{
     height: auto;
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 1rem;
     padding: 0.85em 1em 0.85em 2.5em;
     background-color: var(--bg);
     z-index: 100;
@@ -522,13 +547,10 @@ footer .imgValidCode{
     margin-left: auto;
   }
 
-  .navbar li:last-child{
-  }
-
   /*Transizioni-animazioni*/
 
-  .navbar a:before,
-  .navbar a:after{
+  .navbar a::before,
+  .navbar a::after{
     content: '';
     position: absolute;
     width: .8em;
@@ -538,26 +560,26 @@ footer .imgValidCode{
     transition: all 0.4s ease-out;
     border: 3px solid var(--fucsia-accent);
   }
-  .navbar a:before{
+  .navbar a::before{
     bottom: .2em;
     left: .6em;
     border-top: none;
     border-right: none;
   }
-  .navbar a:after{
+  .navbar a::after{
     top: .2em;
     right: .6em;
     border-bottom: none;
     border-left: none;
   }
-  .navbar a:hover:before,
-  .navbar a:focus:before{
+  .navbar a:hover::before,
+  .navbar a:focus::before{
     opacity: 100%;
     transform: translate(-1.2em, .6em);
   }
 
-  .navbar a:hover:after,
-  .navbar a:focus:after{
+  .navbar a:hover::after,
+  .navbar a:focus::after{
     opacity: 100%;
     transform: translate(1.2em, -.6em);
   }
@@ -575,15 +597,15 @@ footer .imgValidCode{
   } 
 
   
-footer{
-  margin-bottom: 0vh;
-}
+  footer{
+    margin-bottom: 0vh;
+  }
 
 }
 
 
 /*media query per dimensione navbar sotto per desktop*/
-@media screen and (max-height: 1500px) and (max-width: 549px) {
+@media screen and (max-height: 1500px) and (max-width: 569px) {
   .navbar{
     height: 70px;
   }
@@ -598,12 +620,5 @@ footer{
 
   .navbar li a span{
     font-size: .7em;
-  }
-}
-
-/*per tenere il font su pc di 1em (=16px)*/
-@media screen and (max-width: 549px) {
-  body{
-    font-size: 1em;
   }
 }

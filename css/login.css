@@ -1,3 +1,7 @@
+:root{
+    --input-shadow: #41414280;
+}
+
 body{
     min-height: 100vh;
 }
@@ -10,12 +14,24 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    background-color: #999;
+    align-items: center;    
     width: 100%;
-    max-width: 1024px;
-    margin: 4em auto; 
-    padding: 4em 0;   
+    margin: 0 auto 4em; 
+    padding: 2em 0 4em;   
+    background-image: linear-gradient(to bottom, var(--bg-accent), var(--fucsia-accent));
+    border-radius: 0 0 2em 2em;
+    box-shadow: 0px 2px 8px 0px #000000af;
+    position: relative;
+}
+
+#content .form-wrapper h1{
+    color: #000000b4;
+    font-size: 3em;
+}
+
+#content .form-wrapper h1::before,
+#content .form-wrapper h1::after{
+    content: '-'
 }
 
 #content form{
@@ -40,32 +56,23 @@ body{
     font-size: 1em;
     text-transform: uppercase;
     text-align: center;
+    color: black;
 }
 
 #content form input{
     font-size: 2em;
     padding: 0.5em 1em;
     border-radius: 5em;
-    width: 70%;
+    width: 80%;
     background-color: var(--bg-accent);
-    border-color: var(--bg-accent);
+    border: 1px solid var(--bg-accent);
     margin: 0 auto;
     transition: all 0.3s ease-out;
+    box-shadow: 2px 2px 4px 0 var(--input-shadow);
 }
 
-#content form input[type="submit"]{
-    background-color: var(--pink-accent);
-    border-color: var(--pink-accent);
-    text-transform: uppercase;
-    font-weight: 600;
-    margin-top: .3em;
-    cursor: pointer;
-}
-#content form input[type="submit"]:hover,
-#content form input[type="submit"]:focus{
-    background-color: var(--fucsia-accent);
-    border: 3px solid rgba(255, 255, 255, 0.699);
-    color: rgba(255, 255, 255, 1);
+#content form input::placeholder{
+    font-style: italic;
 }
 
 #content form input:hover,
@@ -76,44 +83,70 @@ body{
     width: 100%;
 }
 
+#content form input[type="submit"]{
+    border: 1px solid var(--pink-accent);
+    background-color: var(--pink-accent);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: .3em;
+    cursor: pointer;    
+    border: 3px solid transparent;
+    position: relative;
+}
+
+
+#content form input[type="submit"]:hover,
+#content form input[type="submit"]:focus{
+    background-color: var(--fucsia-accent);
+    border: 3px solid rgba(255, 255, 255, 0.699);
+    color: rgba(255, 255, 255, 1);
+    
+}
+
 #content .form-wrapper > p{
     margin-top: 2em;
+    background-color: #85FFFB;
+    padding: 0.3em 1em;
+    border-radius: 0.2em 1em;
+    color: black;
+    box-shadow: 2px 2px 4px 0 var(--input-shadow);    
 }
 
 #content .form-wrapper > p > a{
-    color: var(--teal-accent);
-    position: relative;
-    z-index: 1;
+    display: inline-block;
+    color: black;
+    padding: 0 1em;
+    background-color: #ec80ff94;
+    transition: all 0.3s ease-out;
+    border-radius: 0.5em;
+    box-shadow: 1px 1px 4px 0 black;
 }
 
 
 #content .form-wrapper > p > a:hover,
 #content .form-wrapper > p > a:focus{
-  color: black;
+  background-color: var(--teal-accent);
+  transform: scale(1.1);
 }
 
 #content .form-wrapper > p > a:visited{
-  color: var(--pink-accent);
-}
-
-#content .form-wrapper > p > a:visited:hover,
-#content .form-wrapper > p > a:visited:focus{
   color: black;
 }
 
-#content .form-wrapper > p > a::before{
-  content: '';
-  width: 110%;
-  height: 110%;
-  position: absolute;
-  top: -5%;
-  left: -5%;
-  z-index: -1;
-  transition: all 0.3s ease-out;
+
+@keyframes popdown {
+    0%{
+        transform: translateY(-100%);
+    }
+    100%{
+        transform: translateY(0);
+    }    
 }
 
-#content .form-wrapper > p > a:hover::before,
-#content .form-wrapper > p > a:focus::before{
-  background-color: var(--teal-accent);
-  border-radius: 2em;
+
+@media screen and ((max-height: 1500px) and (min-width: 550px)){
+    #content .form-wrapper{
+        max-width: 724px;
+        animation: popdown ease-out normal forwards 0.75s 1;
+    }
 }
