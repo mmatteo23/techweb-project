@@ -4,10 +4,10 @@ namespace DB;
 
 class DBAccess {
 	private const USER = 'root';
-	private const PASSWD = '';
-	private const HOST = 'localhost';
-	private const DATABASE = 'penta_news';
-	private const PORT = '80';
+	private const PASSWD = 'mariadb';
+	private const HOST = '127.0.0.1';
+	private const DATABASE = 'mariadb';
+	private const PORT = '3306';
 
 	private $connection;
 
