@@ -110,12 +110,15 @@ header .logo .rotating-logo{
 
 @keyframes rotating-logo-animation {
   0%{
-    transform: rotate(90deg);
+    transform: rotate(0deg);
   }
   25%{
-    transform: rotate(180deg);
+    transform: rotate(90deg);
   }
   50%{
+    transform: rotate(180deg);
+  }
+  75%{
     transform: rotate(270deg);
   }
   100%{
@@ -358,6 +361,42 @@ solo che sposterebbe il testo (still responsive ma non credo vada bene alla prof
   color: var(--bg-accent);
   padding: 0em 0.5em;
   border-radius: 0.5em;
+}
+
+/*
+===== PROFILE PAGE =====
+*/
+
+#page-title{
+  font-size: 3rem;
+  text-transform: uppercase;
+  color: var(--fucsia-accent)
+}
+
+#user-info{
+  display: flex;
+  flex-direction: column;
+  padding: 2em 4em 7.5em;
+}
+
+#user-username {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 2em;
+  padding: 1em;
+}
+
+#user-profile-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
+  object-fit: cover;
+  width:25em;
+  height:25em;
+  border: 0.5em solid #00FFF8;
+  border-radius: 100%;
 }
 
 /*
