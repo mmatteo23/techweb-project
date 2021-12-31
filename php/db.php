@@ -4,10 +4,10 @@ namespace DB;
 
 class DBAccess {
 	private const USER = 'root';
-	private const PASSWD = '';
-	private const HOST = 'localhost';
-	private const DATABASE = 'penta_news';
-	private const PORT = '80';
+	private const PASSWD = 'mariadb';
+	private const HOST = '127.0.0.1';
+	private const DATABASE = 'mariadb';
+	private const PORT = '3306';
 
 	private $connection;
 
@@ -27,9 +27,10 @@ class DBAccess {
 		mysqli_close($this->connection);
 	}
 
-	public function getPersons() {
-		$query = "SELECT * FROM Person";
-
+	public function getUserInfo(string $username) {
+		$query = "SELECT * FROM Person
+				WHERE username = '$username'";
+		//echo $query;
 		$queryResults = mysqli_query($this->connection, $query) or die("Zio culo hai rotto tutto, vai a mangiarti lo smegma! " . mysqli_error($this->connection));
 		
 		if(mysqli_num_rows($queryResults) == 0) // usare gli if in modo efficiente, la cpu elabora velocemente i branch positivi, perché in caso di ramo else deve fare il rollback di quello che ha fatto e prendere l'altro ramo => mettere in esito positivo sempre i rami che sono piú probabili!
