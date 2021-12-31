@@ -1,50 +1,108 @@
+abbr{
+    text-decoration: none;
+}
+
+h1{
+    text-align: center;
+    margin-top: 0.66em;
+    color: var(--fucsia-accent);
+    font-weight: 900;
+    font-size: 3em;
+    line-height: 1.1em;
+}
+
 #content{
-    margin: 2em auto;
-    width: 90%;
-    border: 3px solid fuchsia
+    margin: 2em .75em;
 }
 
 .game-list{
     display: flex;
     flex-wrap: wrap;
-    row-gap: 2em;
+    row-gap: 1.5em;
 }
 
 .card{
     flex: 1 0 auto;
     width: 12em;
-    max-width: 50%;
-    aspect-ratio: 1 / 1.5;
+    max-width: min(600px, 50%);
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
+    padding: 0 .5em;
+}
+.card > a{
+    display: block;
+    flex: 0 0 auto;
+    object-fit: contain;
+    background-color: var(--fucsia-accent);
+    transition: all .2s ease-out; /*per transizione con bordi arrotondati*/
 }
 
 .card-img{
     width: 100%;
-    aspect-ratio: 1 / 1.15;
-    background-color: red;
-    flex-grow: 0;
-    flex-shrink: 0;    
+    box-shadow: 0em 0em 0 0 var(--teal-accent);
+    transition: all .2s ease-out;
 }
+/*bordi arrotondati con piccolo scale*/
+.card > a:hover .card-img{
+    border-radius: 2em;
+}
+
+.card > a:hover{
+    transform: scale(104%);
+    border-radius: 3em 3em 1.75em 1.75em;
+    background-color: var(--teal-accent);
+}
+
+/*translate in alto a sinistra*/
+/*
+.card > a:hover .card-img{
+    transform: translate(.5em, -.5em);
+    box-shadow: -5px 5px 0 4px var(--teal-accent);
+}*/
 
 .card-content{
-    background-color: blue;;
-    height: 7em;
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: .5rem .2em 0.75rem;
 }
 
-.card-content h2{
-    font-size: 1em;
+.card-content .card-title{
+    font-size: clamp(0.5em, 5vh + .3em, .95em);
     text-transform: uppercase;
-    margin: 0 1ch;
+    line-height: 1em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-content a{
+    color: white;
+    text-decoration: none;
+}
+
+.card-content .card-title .card-title-link:hover,
+.card-content .card-title .card-title-link:focus{
+    color: var(--pink-accent)
 }
 
 .card-content > ul{
     display: flex;
-    flex-wrap: wrap;
     justify-content: end;
+    flex-wrap: wrap;
+    margin-top: 0.3em;
+    row-gap: .3em;
 }
 
-.card-content > ul li {
+.card-content .tag-list .tag {
     list-style-type: none;
+    font-size: clamp(0.35em, 5vh + .3em, .75em);
+    padding: 0.2em 0.4em;
 }
+
+@media screen and (max-height: 1500px) and (min-width: 570px) {
+    .card{
+        max-width: 16em
+    }
+}
+

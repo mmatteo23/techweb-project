@@ -3,6 +3,7 @@
   --pink-accent: #EC80FF; /*non in palette*/
   --bg: #1B1B1B;
   --teal-accent: #00FFF8;
+  --teal-shadow: #00fff773;
   --blue: #001FFF;
   --purple-accent: #7300FF;
   --fucsia-accent : #DA00FF;
@@ -211,11 +212,12 @@ a:visited{
   flex-wrap: wrap;
 }
 
-#article-tags li:first-child{
+.tag-list li:first-child{
   margin-left: 0rem;
 }
 
-#article-tags li{
+.tag-list li{
+  text-align: center;
   list-style-type: none;
   margin-left: 1em;
   padding: 0.3em 0.7em;  
@@ -223,11 +225,11 @@ a:visited{
   box-shadow: 3px 3px 10px 0px #000000c9;
 }
 
-#article-tags li:nth-child(odd){
+.tag-list li:nth-child(odd){
   background-color: var(--purple-accent);
 }
 
-#article-tags li:nth-child(even){
+.tag-list li:nth-child(even){
   background-color:var(--fucsia-accent);
   text-shadow: 2px 2px 3px black;
 }
