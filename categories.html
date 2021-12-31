@@ -6,6 +6,7 @@
 	<meta name="keywords" content="angry birds, gioco, red, suggerimenti"/>
 	<meta name="description" content="esercizio di tecnologie web"/>
 	<meta name="author" content="Davide Milan, Danilo Stojkovic, Matteo Midena, Matteo Casonato"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/login.css">
@@ -24,13 +25,18 @@
 		<h2>The <abbr title="electronic sports">eSports</abbr> Network</h2>
     </header>
 
-    <ul class="navbar" id="navbar">
-        <li><a id="home-link" href="article.html"><span class="material-icons md-60">home</span><span>Home</span></a></li>        
-        <li><a id="games-link" href="categories.html"><span class="material-icons md-60">games</span><span>Categories</span></a></li>
-        <li><a id="filter" href="#"><span class="material-icons md-60">filter_alt</span><span>Filters</span></a></li>
-        <li><a id="favorites-link" href="#"><span class="material-icons md-60">grade</span><span>Favorites</span></a></li>
-        <li><a id="search" href="#"><span class="material-icons md-60">search</span><span>Search</span></a></li>
-        <li><a id="profile-link" href="login.html"><span class="material-icons md-60">person</span><span>Profile</span></a></li>
+    <ul class="navbar"  id="navbar">
+        <li id="navbar-logo">
+            <a class="logo" href="#">             
+                <img class="text-logo" src="images/Penta_logo_open.png" alt="Penta - the eSports network logo">
+                <img class="rotating-logo" src="images/small_logo.png" alt="rotating part of logo">
+            </a>
+        </li>
+        <li><a id="home-link" href="article.html"><span class="material-icons md-36">home</span><span>Home</span></a></li>        
+        <li><a id="games-link" href="categories.html"><span class="material-icons md-36">games</span><span>Categories</span></a></li>
+        <li><a id="favorites-link" href="#"><span class="material-icons md-36">grade</span><span>Favorites</span></a></li>
+        <li><a id="search" href="#"><span class="material-icons md-36">search</span><span>Search</span></a></li>
+        <li><a id="profile-link" href="login.html"><span class="material-icons md-36">person</span><span>Profile</span></a></li>
     </ul>
     
 	<nav id="breadcrumb">
@@ -40,9 +46,9 @@
     <main id="content">
         <ul class="game-list" id="game-list">
             <li class="card">
-                <a href=""><img src="images/games/league_of_legends.jpg" alt="League of Legends cover" class="card-img"></a>
+                <a href=""><img src="images/games/league_of_legends.jpg" alt="League of Legends cover link" class="card-img"></a>
                 <div class="card-content">
-                    <h2 class="card-title"><a class="card-title-link" href="#">League of Legends</a></h2>
+                    <h2 class="card-title"><a class="card-title-link" tabindex=-1 href="#">League of Legends</a></h2>
                     <ul class="tag-list">
                         <li class="tag">MOBA</li>
                         <li class="tag">Action</li>
@@ -51,9 +57,9 @@
                 </div>
             </li>
             <li class="card">
-                <a href=""><img src="images/games/apex_legends.jpg" alt="apex legends cover" class="card-img"></a>
+                <a href=""><img src="images/games/apex_legends.jpg" alt="apex legends cover link" class="card-img"></a>
                 <div class="card-content">
-                    <h2 class="card-title">Apex legends</h2>
+                    <h2 class="card-title"><a class="card-title-link" tabindex=-1 href="#">Apex legends</a></h2>
                     <ul class="tag-list">
                         <li class="tag">FPS</li>
                         <li class="tag">Shooter</li>

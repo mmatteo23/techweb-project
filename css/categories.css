@@ -23,7 +23,7 @@ h1{
 
 .card{
     flex: 1 0 auto;
-    width: 12em;
+    width: 11em;
     max-width: min(600px, 50%);
     display: flex;
     flex-direction: column;
@@ -43,11 +43,13 @@ h1{
     transition: all .2s ease-out;
 }
 /*bordi arrotondati con piccolo scale*/
-.card > a:hover .card-img{
+.card > a:hover .card-img,
+.card > a:focus .card-img{
     border-radius: 2em;
 }
 
-.card > a:hover{
+.card > a:hover,
+.card > a:focus{
     transform: scale(104%);
     border-radius: 3em 3em 1.75em 1.75em;
     background-color: var(--teal-accent);
@@ -96,13 +98,22 @@ h1{
 
 .card-content .tag-list .tag {
     list-style-type: none;
-    font-size: clamp(0.35em, 5vh + .3em, .75em);
+    font-size: clamp(0.35em, 5vh + .3em, .85em);
     padding: 0.2em 0.4em;
+    margin: 0 .35ch;
 }
 
+
+/*per fare in modo che le ultime cards non diventino troppo grandi su desktop*/
 @media screen and (max-height: 1500px) and (min-width: 570px) {
-    .card{
+    .card{      /*per fare in modo che le ultime cards non diventino troppo grandi su desktop*/
         max-width: 16em
+    }
+    .card-content .tag-list .tag {
+        font-size: clamp(0.35em, 5vh + .3em, .75em);
+    }
+    #content{
+        margin: 2em min(2.5em, 3%);
     }
 }
 
