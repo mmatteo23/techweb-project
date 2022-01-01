@@ -1,6 +1,6 @@
 <?php
 
-require_once('db.php');
+require_once('php/db.php');
 use DB\DBAccess;
 
 // create a connection istance to talk with the db
@@ -20,7 +20,7 @@ if($conn_ok){
         $phpdate = strtotime( $user['subscription_date'] );
         $mysqldate = date( 'Y-m-d', $phpdate );
         //echo "\n" . $mysqldate;
-        $user_output = "<img src='../images/user_profiles/0001.jpg' id='user-profile-img' alt='user profile image'>
+        $user_output = "<img src='images/user_profiles/0001.jpg' id='user-profile-img' alt='user profile image'>
         <span id='user-username'>" . $user['username'] . "</span>
         <ul id='user-specs'>
             <li>Email: " . $user['email'] . "</li>
@@ -33,9 +33,24 @@ if($conn_ok){
 }
 
 // paginate the content
+// page structure
+$htmlPage = file_get_contents("html/profile.html");
 
-$htmlPage = file_get_contents("../profile.html");
+// page Head
+$pageHead = file_get_contents("html/components/meta_head.html");
+$pageTitle = "Profile Page 2 - Penta News";
+$pageHead = str_replace('<pageTitle/>', $pageTitle, $pageHead);
 
+// page header
+$pageHeader = file_get_contents("html/components/header.html");
+
+// page footer
+$pageFooter = file_get_contents("html/components/footer.html");
+
+// replace the placeholders
+$htmlPage = str_replace('<meta_head/>', $pageHead, $htmlPage);
+$htmlPage = str_replace('<pageHeader/>', $pageHeader, $htmlPage);
+$htmlPage = str_replace('<pageFooter/>', $pageFooter, $htmlPage);
 echo str_replace('<userInfo/>', $user_output, $htmlPage);
 
 ?>
