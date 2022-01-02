@@ -12,7 +12,6 @@ $connection = $db->openDBConnection();
 
 $paginaHTML = file_get_contents("home.html");
 
-echo "Ti amo Daniloooo";
 echo $paginaHTML;
 
 ?>
