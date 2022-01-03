@@ -17,15 +17,12 @@ if($conn_ok && $_GET['username']){
     if($user != null){  // the user exists
         //echo print_r($user);
         $user = $user[0];
-        $phpdate = strtotime( $user['subscription_date'] );
-        $mysqldate = date( 'Y-m-d', $phpdate );
-        //echo "\n" . $mysqldate;
-        $user_output = "<img src='images/user_profiles/0001.jpg' id='user-profile-img' alt='user profile image'>
+        $user_output = "<img src='images/user_profiles/" . ($user['profile_img']?$user['profile_img']:'default.png') . "' id='user-profile-img' alt='user profile image'>
         <span id='user-username'>" . $user['username'] . "</span>
         <ul id='user-specs'>
             <li>Email: " . $user['email'] . "</li>
             <li>Level: " . $user['role'] . "</li>
-            <li>Subscription Date: " . $mysqldate . "</li>
+            <li>Subscription Date: " . $user['subscribtion_date'] . "</li>
         </ul>";
     }
 } else {
