@@ -10,7 +10,7 @@ $connection = $db->openDBConnection();
 
 // impaginarlo
 
-$paginaHTML = file_get_contents("home.html");
+$paginaHTML = file_get_contents("html/home.html");
 
 echo $paginaHTML;
 

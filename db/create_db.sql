@@ -26,11 +26,12 @@ CREATE TABLE Role (
 CREATE TABLE Person (
     username      VARCHAR(100),
     firstName       VARCHAR(100) NOT NULL,
-    fastName      VARCHAR(100) NOT NULL,
+    lastName      VARCHAR(100) NOT NULL,
     email         VARCHAR(255) NOT NULL,
     password      VARCHAR(255) NOT NULL,
     role        INT NOT NULL,
-    subscribtion_date   DATETIME,
+    subscribtion_date   DATE NOT NULL,
+    profile_img       varchar(255),
     PRIMARY KEY (username),
     FOREIGN KEY (role) REFERENCES Role(id)
 );
@@ -44,16 +45,15 @@ CREATE TABLE follow (
 );
 
 CREATE TABLE Article (
-    id          INT,
+    id            INT AUTO_INCREMENT PRIMARY KEY,
     title         VARCHAR(255) NOT NULL,
     subtitle      VARCHAR(255),
     text        LONGTEXT NOT NULL,
-    publication_date  DATETIME NOT NULL,
+    publication_date  DATE NOT NULL,
     cover_img       VARCHAR(255),
     read_time       INT,
     is_approved     BOOLEAN DEFAULT FALSE,
     author        VARCHAR(100) NOT NULL,
-    PRIMARY KEY (id),
     FOREIGN KEY (author) REFERENCES Person(username)
 );
 
@@ -78,7 +78,8 @@ CREATE TABLE Game (
   name VARCHAR(100) NOT NULL,
   description VARCHAR(1000),
   release_date DATE,
-  developer VARCHAR(100)
+  developer VARCHAR(100),
+  game_img VARCHAR(255)
 );
 
 CREATE TABLE Genre (
