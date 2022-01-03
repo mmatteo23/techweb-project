@@ -30,7 +30,7 @@ CREATE TABLE Person (
     email         VARCHAR(255) NOT NULL,
     password      VARCHAR(255) NOT NULL,
     role        INT NOT NULL,
-    subscribtion_date   DATE NOT NULL,
+    subscription_date   DATE NOT NULL,
     profile_img       varchar(255),
     PRIMARY KEY (username),
     FOREIGN KEY (role) REFERENCES Role(id)

@@ -22,7 +22,7 @@ if($conn_ok && $_GET['username']){
         <ul id='user-specs'>
             <li>Email: " . $user['email'] . "</li>
             <li>Level: " . $user['role'] . "</li>
-            <li>Subscription Date: " . $user['subscribtion_date'] . "</li>
+            <li>Subscription Date: " . $user['subscription_date'] . "</li>
         </ul>";
     }
 } else {
