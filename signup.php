@@ -48,7 +48,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             }
         }
     } else {
-        $errors = "<p>Our services are down in this moment, please try later or contact us</p>";
+        $errors = "<p>Our services are down at this moment, please try later or contact us</p>";
     }
 }
 

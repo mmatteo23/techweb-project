@@ -40,10 +40,12 @@ if($connection){
 
 // impaginarlo
 
-$paginaHTML = file_get_contents("html/home.html");
+$pageHeader = file_get_contents("html/components/header.html");
+$pageFooter = file_get_contents("html/components/footer.html");
+$htmlPage = file_get_contents("html/home.html");
 
-$paginaHTML = str_replace("<AllArticles/>", $user_output, $paginaHTML);
-
-echo $paginaHTML;
+$htmlPage = str_replace("<AllArticles/>", $user_output, $htmlPage);
+$htmlPage = str_replace('<pageHeader/>', $pageHeader, $htmlPage);
+echo str_replace('<pageFooter/>', $pageFooter, $htmlPage);
 
 ?>

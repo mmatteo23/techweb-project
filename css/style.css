@@ -557,6 +557,13 @@ footer .imgValidCode{
     display: none;
   }
 
+  .navbar #search span:first-child{
+    display: inline;
+  }
+  .navbar #search span:last-child{
+    display: none;
+  }
+
   footer{
     font-size: 0.9em;
   }
@@ -603,6 +610,10 @@ footer .imgValidCode{
 
   .navbar li:nth-child(5){
     margin-left: auto;
+    margin-right: .1em;
+  }
+  .navbar li:last-child{
+    margin-left: .1em;
   }
 
   /*Transizioni-animazioni*/
@@ -714,4 +725,16 @@ footer .imgValidCode{
   top: 0em;
   right: 9%;
   animation: rotating-logo-animation 25s linear forwards normal infinite 0s;
+}
+
+.private_area_content{
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.private_area_content > div .secondary{
+  font-size: .8em;
+  margin-top: 2em;
 }

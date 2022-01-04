@@ -18,17 +18,17 @@ if($conn_ok){
     if($games != null){  // there's at least one game exists
         //echo print_r($games);
         for($i = 0; $i < 11; $i++){
-            $gioco = $games[$i];            
+            $game = $games[$i];            
             $user_output .= '<li class="card">
-            <a href=""><img src="/images/games/' . $gioco['game_img'] . '" alt="' . $gioco['name'] . ' cover" class="card-img"></a>
+            <a href=""><img src="/images/games/' . $game['game_img'] . '" alt="' . $game['name'] . ' cover" class="card-img"></a>
             <div class="card-content">
-                <h2 class="card-title">' . $gioco['name'] . '</h2>
+                <h2 class="card-title">' . $game['name'] . '</h2>
                     <ul class="tag-list">';
                 $x = 0;
                 $game_tag = $game_tags[$x];
                 $found = false;
-                while(($found == false) or ($game_tag['game_id'] == $gioco['id'])){
-                    if($game_tag['game_id'] == $gioco['id']) {
+                while(($found == false) or ($game_tag['game_id'] == $game['id'])){
+                    if($game_tag['game_id'] == $game['id']) {
                         $found = true;
                         $user_output .= '<li class="tag">'. $game_tag['name'] .'</li>';
                     }
@@ -45,7 +45,7 @@ if($conn_ok){
 }
 // paginate the content
 // page structure
-$htmlPage = file_get_contents("html/categories.html");
+$htmlPage = file_get_contents("html/games.html");
 
 // page header
 $pageHeader = file_get_contents("html/components/header.html");
