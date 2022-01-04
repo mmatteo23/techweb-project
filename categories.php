@@ -40,10 +40,9 @@ if($conn_ok){
                         </li>';
         }
     }
-} else {
+} else { 
     $user_output = "<p>Something went wrong while loading the page, try again.</p>";
 }
-
 // paginate the content
 // page structure
 $htmlPage = file_get_contents("html/categories.html");
