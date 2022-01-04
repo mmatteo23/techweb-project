@@ -43,6 +43,30 @@ class DBAccess {
 		return $result;
 	}
 
+	public function executeQuery($query){
+		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
+		if(mysqli_num_rows($queryResults)==0){
+			return null;
+		}
+		$result = array();
+		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
+		$queryResults->free(); // ciao, vola via e vivi la tua vita
+		return $result;
+	}
+
+	public function getTopArticles(){
+		//da Mettere WHERE is_approved e non !is_approved
+		$query = "SELECT id, title, subtitle, publication_date, cover_img FROM Article WHERE !is_approved ORDER BY publication_date DESC LIMIT 15";   
+		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
+		if(mysqli_num_rows($queryResults)==0){
+			return null;
+		}
+		$result = array();
+		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
+		$queryResults->free(); // ciao, vola via e vivi la tua vita
+		return $result;
+	}
+
 	public function getGames(){
 		$query = "SELECT * FROM Game ORDER BY name;";
 		$queryResults = mysqli_query($this->connection, $query) or die("C'è stato un errore! " . mysqli_error($this->connection));
