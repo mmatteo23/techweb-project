@@ -3,6 +3,8 @@ require_once('php/utilityFunctions.php');
 require_once('php/db.php');
 use DB\DBAccess;
 
+session_start();
+
 $htmlPage = file_get_contents("html/signup.html");
 
 // page header
@@ -19,7 +21,6 @@ $errors = '';
 
 // check if the user press the submit button
 if($_SERVER['REQUEST_METHOD'] == "POST"){
-    session_start();
 
     // take the data
     $username       = $_POST['username'];
@@ -56,7 +57,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 $htmlPage = str_replace("<formErrors/>", $errors, $htmlPage);
 
 // se l'utente ha già effettuato il login non deve visualizzare questa pagina
-if($_SESSION['username']) {             
+if(isset($_SESSION['username']) && $_SESSION['username'] != '') {             
     header("location: private_area.php");
 }
 

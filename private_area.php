@@ -1,6 +1,6 @@
 <?php
-session_start();
-
+require_once('php/validSession.php');
+/*
 require_once('php/db.php');
 use DB\DBAccess;
 
@@ -15,7 +15,7 @@ if($conn_ok){
                                                         // se l'utente è verificato
     $connection_manager->closeDBConnection();           // va in errore
 }
-
+*/
 $htmlPage = file_get_contents("html/private_area.html");
 
 $htmlPage = str_replace('<userName/>', $_SESSION['username'], $htmlPage);
