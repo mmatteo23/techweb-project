@@ -132,6 +132,28 @@ body{
 }
 
 
+/*
+======== ERROR STYLE ========
+*/
+
+#content .input-wrapper.success input {
+    border-color: #09c372;
+    background-color: #09c372;
+}
+
+#content .input-wrapper.error input {
+    border-color: #ff3860;
+    background-color: #ff3860;
+}
+
+.input-wrapper .error {
+    color: #ff3860;
+    font-size: 1.1em;
+    height: 1.2em;
+    text-align: center;
+}
+
+
 @keyframes popdown {
     0%{
         transform: translateY(-100%);

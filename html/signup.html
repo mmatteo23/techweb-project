@@ -12,72 +12,57 @@
     
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script defer src="js/index.js"></script>
 </head>
 <body>
-	<header>
-        <div class="logo">
-            <h2>Penta News</h2>
-            <img class="text-logo" src="images/Penta_logo_open.png" alt="Penta - the eSports network logo">
-            <img class="rotating-logo" src="images/small_logo.png" alt="rotating part of logo">
-        </div>
-		<h2>The <abbr title="electronic sports">eSports</abbr> Network</h2>
-    </header>
-
-    <ul class="navbar" id="navbar">
-        <li><a id="home-link" href="article.html"><span class="material-icons md-60">home</span><span>Home</span></a></li>        
-        <li><a id="games-link" href="categories.html"><span class="material-icons md-60">games</span><span>Categories</span></a></li>
-        <li><a id="filter" href="#"><span class="material-icons md-60">filter_alt</span><span>Filters</span></a></li>
-        <li><a id="favorites-link" href="#"><span class="material-icons md-60">grade</span><span>Favorites</span></a></li>
-        <li><a id="search" href="#"><span class="material-icons md-60">search</span><span>Search</span></a></li>
-        <li><a id="profile-link" href="login.html"><span class="material-icons md-60">person</span><span>Profile</span></a></li>
-    </ul>
+	<pageHeader/>
     
 	<nav id="breadcrumb">
-		<p><a href="aboutUs.html">Home</a> &gt; Sign-up</p>
+		<p><a href="index.php">Home</a> &gt; Sign-up</p>
 	</nav>
 
     <main id="content">
+        
         <div class="form-wrapper">
+            <formErrors/>
             <h1>SIGNUP</h1>
-            <form action="POST">
+            <form action="signup.php" method="POST" id="form">
                 <div class="input-wrapper">
                     <label for="username">username</label>
                     <input placeholder="username" type="text" id="username" name="username">
+                    <div class="error"></div>
                 </div>
                 <div class="input-wrapper">
-                    <label for="name">name</label>
-                    <input placeholder="Jack" type="text" id="name" name="name">
+                    <label for="firstname">firstname</label>
+                    <input placeholder="Jack" type="text" id="firstname" name="firstname">
+                    <div class="error"></div>
                 </div>
                 <div class="input-wrapper">
-                    <label for="last'name">last name</label>
-                    <input placeholder="Red" type="text" id="last-name" name="last-name">
+                    <label for="lastname">lastname</label>
+                    <input placeholder="Red" type="text" id="lastname" name="lastname">
+                    <div class="error"></div>
                 </div>                
                 <div class="input-wrapper">
                     <label for="email">email</label>
-                    <input placeholder="email@email.com" type="email" id="email" name="email">
+                    <input placeholder="jackred@email.com" type="text" id="email" name="email">
+                    <div class="error"></div>
                 </div>
                 <div class="input-wrapper">
                     <label for="password">password</label>
                     <input type="password" name="password" id="password">
+                    <div class="error"></div>
                 </div>
                 <div class="input-wrapper">
-                    <label for="repeated-password">repeat password</label>
-                    <input type="password" name="repeated-password" id="repeated-password">
+                    <label for="repeated_password">repeat password</label>
+                    <input type="password" name="repeated_password" id="repeated_password">
+                    <div class="error"></div>
                 </div>
                 <input type="submit" value="Signup">
             </form>          
         </div>
     </main>
 
-
-
-        <!-- <p>
-             Bella a tutti ragazzi io sono CiccioGamer89 e voglio insieme a
-             Danilo gli anime su Fortnite.
-         </p>                -->
-
-
-
+    <pageFooter/>
     
 </body>
 </html>

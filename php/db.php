@@ -27,20 +27,89 @@ class DBAccess {
 		mysqli_close($this->connection);
 	}
 
+	/**************************************************************
+	 * 
+	 * 						USER MANAGEMENT
+	 * 
+	 **************************************************************/
+
+	/**
+	 * @brief getUserInfo()		returns the user data from username
+	 * @return 	array()			if user exists it returns an array with user data
+	 * 			NULL			if user doesn't exist it returns null
+	 */
 	public function getUserInfo(string $username) {
 		$query = "SELECT * FROM Person
-				WHERE username = '$username'";
+				WHERE username = '$username' LIMIT 1";
 		//echo $query;
 		$queryResults = mysqli_query($this->connection, $query) or die("C'è stato un errore! " . mysqli_error($this->connection));
 		
 		if(mysqli_num_rows($queryResults) == 0) // usare gli if in modo efficiente, la cpu elabora velocemente i branch positivi, perché in caso di ramo else deve fare il rollback di quello che ha fatto e prendere l'altro ramo => mettere in esito positivo sempre i rami che sono piú probabili!
 			return null;
 
-		$result = array();
-		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
+		//$result = array();
+		//while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
+		$result = mysqli_fetch_assoc($queryResults);	// abbiamo un solo valore => è sufficiente questa riga
+		$queryResults->free(); // libera le risorse
+		return $result;
+	}
+
+	/**
+	 * @brief authentication(string, string)		check if an user with these credentials exists
+	 * @return 	TRUE			the user exist 
+	 * 			FALSE			the user isn't saved in out server
+	 */
+	public function authentication(string $username, string $password) {
+		$query = "SELECT * FROM Person
+				WHERE username = '$username' AND
+				password = '$password'";
+
+		$queryResults = mysqli_query($this->connection, $query) or die("Zio culo hai rotto tutto, vai a mangiarti lo smegma! " . mysqli_error($this->connection));
+		
+		if(mysqli_num_rows($queryResults) == 0) { // usare gli if in modo efficiente, la cpu elabora velocemente i branch positivi, perché in caso di ramo else deve fare il rollback di quello che ha fatto e prendere l'altro ramo => mettere in esito positivo sempre i rami che sono piú probabili!
+			return false;
+		}
 
 		$queryResults->free(); // ciao, vola via e vivi la tua vita
-		return $result;
+		
+		return true;
+	}
+
+	/**
+	 * @brief checkLogin()		check if the user is authorized (it has passed the login phase)
+	 * @return 	array()			if user has passed the login
+	 * 			redirect		if the user isn't authorized redirect to login page
+	 */
+	public function checkLogin(){
+		if(isset($_SESSION['username'])){
+			$sessionUsername = $_SESSION['username'];
+			$query = "SELECT * FROM Person WHERE username = '$sessionUsername' LIMIT 1";
+
+			$result = mysqli_query($this->connection, $query);
+			if($result && mysqli_num_rows($result) > 0){
+				$user_data = mysqli_fetch_assoc($result);
+				return $user_data;
+			}
+		}
+
+		// redirect to login
+		header("Location: login.php");
+		die;
+	}
+
+	/**
+	 * @brief insertNewUser()		insert new user in Person table
+	 * @return 	
+	 */
+	public function insertNewUser(string $username, string $firstname, string $lastname, string $email, string $password, int $role = 1){
+		$today = date("Y-m-d");
+		// create the query
+		$query = "INSERT INTO Person (username, firstName, lastName, email, password, role, subscribtion_date)
+            VALUES ('$username', '$firstname', '$lastname', '$email', '$password', $role, '$today')";
+
+		// run the query
+        return mysqli_query($this->connection, $query); //or die("An error occours! " . mysqli_error($this->connection));
+        		
 	}
 
 	public function executeQuery($query){
@@ -66,6 +135,12 @@ class DBAccess {
 		$queryResults->free(); // ciao, vola via e vivi la tua vita
 		return $result;
 	}
+
+	/**************************************************************
+	 * 
+	 * 						GAMES MANAGEMENT
+	 * 
+	 **************************************************************/
 
 	public function getGames(){
 		$query = "SELECT * FROM Game ORDER BY name;";
