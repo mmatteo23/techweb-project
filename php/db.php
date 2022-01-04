@@ -31,18 +31,47 @@ class DBAccess {
 		$query = "SELECT * FROM Person
 				WHERE username = '$username'";
 		//echo $query;
-		$queryResults = mysqli_query($this->connection, $query) or die("Zio culo hai rotto tutto, vai a mangiarti lo smegma! " . mysqli_error($this->connection));
+		$queryResults = mysqli_query($this->connection, $query) or die("C'è stato un errore! " . mysqli_error($this->connection));
 		
 		if(mysqli_num_rows($queryResults) == 0) // usare gli if in modo efficiente, la cpu elabora velocemente i branch positivi, perché in caso di ramo else deve fare il rollback di quello che ha fatto e prendere l'altro ramo => mettere in esito positivo sempre i rami che sono piú probabili!
 			return null;
 
 		$result = array();
-
 		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
 
 		$queryResults->free(); // ciao, vola via e vivi la tua vita
 		return $result;
+	}
 
+	public function getGames(){
+		$query = "SELECT * FROM Game ORDER BY name;";
+		$queryResults = mysqli_query($this->connection, $query) or die("C'è stato un errore! " . mysqli_error($this->connection));
+
+		if(mysqli_num_rows($queryResults) == 0) // usare gli if in modo efficiente, la cpu elabora velocemente i branch positivi, perché in caso di ramo else deve fare il rollback di quello che ha fatto e prendere l'altro ramo => mettere in esito positivo sempre i rami che sono piú probabili!
+			return null;
+
+		$result = array();
+		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
+		
+		$queryResults->free(); // ciao, vola via e vivi la tua vita
+		return $result;
+	}
+
+	public function getGamesTags(){
+		$query = "SELECT * FROM game_genre JOIN Genre
+					ON genre_id=id
+					ORDER BY game_id;";
+
+		$queryResults = mysqli_query($this->connection, $query) or die("C'è stato un errore! " . mysqli_error($this->connection));
+
+		if(mysqli_num_rows($queryResults) == 0) // usare gli if in modo efficiente, la cpu elabora velocemente i branch positivi, perché in caso di ramo else deve fare il rollback di quello che ha fatto e prendere l'altro ramo => mettere in esito positivo sempre i rami che sono piú probabili!
+			return null;
+
+		$result = array();
+		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
+		
+		$queryResults->free(); // ciao, vola via e vivi la tua vita
+		return $result;
 	}
 }
 
