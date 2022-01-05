@@ -6,12 +6,6 @@ use DB\DBAccess;
 
 session_start();
 
-// se l'utente ha già effettuato il login non deve visualizzare questa pagina
-if(isset($_SESSION['username']) && $_SESSION['username'] != '') {             
-    header("location: private_area.php");
-}
-
-
 $htmlPage = file_get_contents("html/signup.html");
 
 
@@ -50,10 +44,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     if($conn_ok){
 
         $errors = validateNewUserData($connection_manager, $username, $firstname, $lastname, $email, $password, $rep_password);
-
         if(!$errors){
+            
             // if the username is valid 
             if($connection_manager->insertNewUser($username, $firstname, $lastname, $email, $password)){
+                //echo "creazione utente";
                 $connection_manager->closeDBConnection();
                 
                 $_SESSION['username'] = $username;
@@ -69,7 +64,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 // inserisce la lista degli errori o elimina il tag dalla pagina
 $htmlPage = str_replace("<formErrors/>", $errors, $htmlPage);
 
-
+// se l'utente ha già effettuato il login non deve visualizzare questa pagina
+if(isset($_SESSION['username']) && $_SESSION['username'] != '') {             
+    header("location: private_area.php");
+}
 
 //str_replace finale col conenuto specifico della pagina
 echo $htmlPage;

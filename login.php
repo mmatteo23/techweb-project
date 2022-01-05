@@ -4,10 +4,6 @@ require_once('php/db.php');
 use DB\DBAccess;
 
 session_start();
-// se l'utente ha già effettuato il login non deve visualizzare questa pagina
-if(isset($_SESSION['username']) && $_SESSION['username'] != '') {             
-    header("location: private_area.php");
-}
 
 // paginate the content
 // page structure
@@ -26,14 +22,11 @@ $htmlPage = file_get_contents('html/login.html');
 //header footer and dynamic navbar all at once (^^^ sostituisce il commento qua sopra ^^^)
 require_once('php/full_sec_loader.php');
 
+$errors = "";
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){     // Pulsante submit premuto
-    session_start();
     $username = $_POST['username'];           // prendo i dati inseriti dall'utente
     $password = $_POST['password'];
-
-    // Controlli meglio gestirli lato client => JAVASCRIPT
-    $errors = "";
 
     // create a connection istance to talk with the db
     $connection_manager = new DBAccess();
@@ -59,9 +52,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){     // Pulsante submit premuto
     
 }
 
-if(isset($errors)){
-    $htmlPage = str_replace("<formErrors/>", $errors, $htmlPage);
-} 
+$htmlPage = str_replace("<formErrors/>", $errors, $htmlPage);
+
+// se l'utente ha già effettuato il login non deve visualizzare questa pagina
+if(isset($_SESSION['username']) && $_SESSION['username'] != '') {             
+    header("location: private_area.php");
+}
 
 //str_replace finale col conenuto specifico della pagina
 echo $htmlPage;     // visualizzo la pagina costruita

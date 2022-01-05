@@ -104,7 +104,7 @@ class DBAccess {
 	public function insertNewUser(string $username, string $firstname, string $lastname, string $email, string $password, int $role = 1){
 		$today = date("Y-m-d");
 		// create the query
-		$query = "INSERT INTO Person (username, firstName, lastName, email, password, role, subscribtion_date)
+		$query = "INSERT INTO Person (username, firstName, lastName, email, password, role, subscription_date)
             VALUES ('$username', '$firstname', '$lastname', '$email', '$password', $role, '$today')";
 
 		// run the query
