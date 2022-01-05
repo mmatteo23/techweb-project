@@ -2,31 +2,33 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8"/>
-	<title>Private Area - Penta News</title>
+	<title>Penta News - The eSports Network</title>
 	<meta name="keywords" content="angry birds, gioco, red, suggerimenti"/>
 	<meta name="description" content="esercizio di tecnologie web"/>
 	<meta name="author" content="Davide Milan, Danilo Stojkovic, Matteo Midena, Matteo Casonato"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <pageHeader/>
 
-    <nav id="breadcrumb">
-		<p><a href="index.php">Home</a> &gt; Your Private Area</p>
+    
+	<nav id="breadcrumb">
+		<p>Home</p>
 	</nav>
-    <main id="content" class='private_area_content'>
-        <div class="wrapper">
-            <h1 id="page-title">Welcome <span><userName/></span>!</h1>
-            <p>Start browsing some news! <a href="index.php">Let's go!</a></p>
-            <p class="secondary">You are not <userName/>? <a href="php/logout.php">Logout</a></p>
-        </div>
-        
-    </main>
+
+    <main id="content">
+        <h1>Your favorite articles:</h1>
+        <fav_articles/>
+    </main>    
 
     <pageFooter/>
+
 </body>
 </html>

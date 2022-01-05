@@ -1,6 +1,8 @@
 <?php
 
 require_once('php/db.php');
+
+session_start();
 use DB\DBAccess;
 
 // prendere il risultato dal DB
@@ -11,6 +13,7 @@ $user_output = "";
 
 if($connection){
     $articles = $db->getTopArticles();
+    $db->closeDBConnection();   //ho finito di usare il db quindi chiudo la connessione
     if($articles!=null){
         foreach($articles as $art){
             $user_output .= 
@@ -39,7 +42,7 @@ if($connection){
 }
 
 // impaginarlo
-
+/*
 $pageHeader = file_get_contents("html/components/header.html");
 $pageFooter = file_get_contents("html/components/footer.html");
 $htmlPage = file_get_contents("html/home.html");
@@ -47,5 +50,13 @@ $htmlPage = file_get_contents("html/home.html");
 $htmlPage = str_replace("<AllArticles/>", $user_output, $htmlPage);
 $htmlPage = str_replace('<pageHeader/>', $pageHeader, $htmlPage);
 echo str_replace('<pageFooter/>', $pageFooter, $htmlPage);
+*/
 
+$htmlPage = file_get_contents("html/home.html");
+
+//header footer and dynamic navbar all at once (^^^ sostituisce il commento qua sopra ^^^)
+require_once('php/full_sec_loader.php');
+
+//str_replace finale col conenuto specifico della pagina
+echo str_replace("<AllArticles/>", $user_output, $htmlPage);
 ?>

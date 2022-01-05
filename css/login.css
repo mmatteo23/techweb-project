@@ -2,10 +2,6 @@
     --input-shadow: #41414280;
 }
 
-body{
-    min-height: 100vh;
-}
-
 
 #content .form-wrapper{
     display: flex;

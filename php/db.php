@@ -136,6 +136,18 @@ class DBAccess {
 		return $result;
 	}
 
+	public function getFavArticles($user){		
+		$query = "SELECT id, title, subtitle, publication_date, cover_img FROM Article JOIN saved_articles ON id=article_id WHERE username= '$user' ORDER BY publication_date DESC";   
+		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
+		if(mysqli_num_rows($queryResults)==0){
+			return null;
+		}
+		$result = array();
+		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
+		$queryResults->free(); // ciao, vola via e vivi la tua vita
+		return $result;
+	}
+
 	/**************************************************************
 	 * 
 	 * 						GAMES MANAGEMENT
