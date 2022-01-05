@@ -10,13 +10,14 @@ $db = new DBAccess();
 
 $connection = $db->openDBConnection();
 $user_output = "";
+$slides = array();
 
 if($connection){
     $articles = $db->getTopArticles();
     $db->closeDBConnection();   //ho finito di usare il db quindi chiudo la connessione
     if($articles!=null){
         foreach($articles as $art){
-            $user_output .= 
+            $user_output .= $slides[$art['id']] = 
                 '<article>
                     <div class="article_image">
                         <img src="images/article_covers/'.$art['cover_img'].'"/>
@@ -58,5 +59,13 @@ $htmlPage = file_get_contents("html/home.html");
 require_once('php/full_sec_loader.php');
 
 //str_replace finale col conenuto specifico della pagina
-echo str_replace("<AllArticles/>", $user_output, $htmlPage);
+$htmlPage = str_replace("<AllArticles/>", $user_output, $htmlPage);
+
+//str_replace per il carousel
+for ($i=1; $i<=4; $i++) {
+    $htmlPage = str_replace("<slide".$i."/>", $slides[$i], $htmlPage);
+}
+
+echo $htmlPage;
+
 ?>

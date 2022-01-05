@@ -1,15 +1,3 @@
-/*
-INSERT INTO Article (title, subtitle, text, publication_date, cover_img, read_time, author) 
-VALUES (
-    '', 
-    '', 
-    '', 
-    '', 
-    '', 
-    , 
-    '');
-*/
-
 INSERT INTO Role (title, level) VALUES
 ('Administrator', 99);
 
