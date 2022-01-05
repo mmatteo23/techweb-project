@@ -900,51 +900,102 @@ footer .imgValidCode{
   #breadcrumb{
     padding: 0.5em 4em;
   }
+
+  .navbar li:first-child{
+    margin: 0;
+  }
+  
+  .navbar li > .logo{
+    display:flex;
+    justify-content: center;
+    width: clamp(150px ,15vw, 250px);
+    padding: 0;
+    outline: 2px solid transparent;
+    transition: transform .2s ease-out;
+  }
+  
+  .navbar li > .logo:hover,
+  .navbar li > .logo:focus{
+    background-color: transparent;
+    transform: scale(1.05);
+  }
+  
+  .navbar li > .logo:focus{
+    outline: 2px solid var(--fucsia-accent);
+  }
+  
+  .navbar li > .logo::after,
+  .navbar li > .logo::before{
+    content: none;
+  }
+  
+  
+  .navbar li > .logo .text-logo{
+    top: 0;
+    width: 80%;
+  }
+  
+  .navbar  li > .logo .rotating-logo{
+    position: absolute;
+    width: 20%;
+    top: 0em;
+    right: 9%;
+    animation: rotating-logo-animation 25s linear forwards normal infinite 0s;
+  }
+
+  #src-bar-wrapper{
+    width: 100%;    
+  }
+
+  #src-bar-wrapper form{
+    width: 100%;
+    display: flex;
+    position:relative
+  }
+
+  #src-bar{
+    width: 100%;
+    height: 2em;
+    font-size: 1em;
+    padding: .75em 4em;
+    border-radius: .65em;
+    border: 2px solid transparent;
+    outline: none;
+  }
+  #src-bar:hover,
+  #src-bar:focus{
+    border: 2px solid var(--fucsia-accent);
+  }
+
+  #src-bar::placeholder{
+    font-style: italic;
+  }
+
+  #src-bar-wrapper button{
+    margin-left: -65px;
+    opacity: .7;
+    padding: 0 .5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  #src-bar-wrapper button:hover,
+  #src-bar-wrapper button:focus,
+  #src-bar-wrapper button:hover ~ *,
+  #src-bar-wrapper button:focus ~ *{
+    outline: none;
+    background-color: var(--fucsia-accent);
+  }
 }
 
 
 
-.navbar li:first-child{
-  margin: 0;
-}
-
-.navbar li > .logo{
-  display:flex;
-  justify-content: center;
-  width: clamp(150px ,15vw, 250px);
-  padding: 0;
-  outline: 2px solid transparent;
-  transition: transform .2s ease-out;
-}
-
-.navbar li > .logo:hover,
-.navbar li > .logo:focus{
-  background-color: transparent;
-  transform: scale(1.05);
-}
-
-.navbar li > .logo:focus{
-  outline: 2px solid var(--fucsia-accent);
-}
-
-.navbar li > .logo::after,
-.navbar li > .logo::before{
-  content: none;
-}
 
 
-.navbar li > .logo .text-logo{
-  top: 0;
-  width: 80%;
-}
-
-.navbar  li > .logo .rotating-logo{
-  position: absolute;
-  width: 20%;
-  top: 0em;
-  right: 9%;
-  animation: rotating-logo-animation 25s linear forwards normal infinite 0s;
-}
 
 .private_area_content{
   min-height: 80vh;
