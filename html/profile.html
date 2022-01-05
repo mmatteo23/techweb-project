@@ -11,28 +11,11 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script defer src="js/editProfile.js"></script>
 </head>
 <body>
     <pageHeader/>
-    <!--
-	<header>
-        <div class="logo">
-            <h2>Penta News</h2>
-            <img class="text-logo" src="images/Penta_logo_open.png" alt="Penta - the eSports network logo">
-            <img class="rotating-logo" src="images/small_logo.png" alt="rotating part of logo">
-        </div>
-		<h2>The <abbr title="electronic sports">eSports</abbr> Network</h2>
-    </header>
-
-    <ul class="navbar">
-        <li><a id="home-link" href="index.php"><span class="material-icons md-60">home</span><span>Home</span></a></li>        
-        <li><a id="games-link" href="#"><span class="material-icons md-60">games</span><span>Categories</span></a></li>
-        <li><a id="filter" href="#"><span class="material-icons md-60">filter_alt</span><span>Filters</span></a></li>
-        <li><a id="favorites-link" href="#"><span class="material-icons md-60">grade</span><span>Favorites</span></a></li>
-        <li><a id="search" href="#"><span class="material-icons md-60">search</span><span>Search</span></a></li>
-        <li><a id="profile-link" href="#"><span class="material-icons md-60">person</span><span>Profile</span></a></li>
-    </ul>
-    -->
+    
     <nav id="breadcrumb">
 		<p><a href="index.php">Home</a> &gt; Your Profile</p>
 	</nav>
@@ -40,15 +23,46 @@
         <div id="user-info">
             <h1 id="page-title">Your Profile</h1>
             <userInfo/>
-            <!--
-            <img src="images/user_profiles/0001.jpg" id="user-profile-img" alt="user profile image">
-            <span id="user-username">xSerMettx</span>
-            <ul id="user-specs">
-                <li>master.mensa@caffepaolo.com</li>
-                <li>Level: Reader</li>
-                <li>Subscription Date: 25/06/2020</li>
-            </ul>
-            -->
+            <div class="form-wrapper" id="profileEditForm" style="display: none;">
+                <form action="" method="POST">
+                    <div class="input-wrapper">
+                        <label for="username">username</label>
+                        <input placeholder="username" type="text" id="username" name="username">
+                        <div class="error"></div>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="firstname">firstname</label>
+                        <input placeholder="Jack" type="text" id="firstname" name="firstname">
+                        <div class="error"></div>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="lastname">lastname</label>
+                        <input placeholder="Red" type="text" id="lastname" name="lastname">
+                        <div class="error"></div>
+                    </div>                
+                    <div class="input-wrapper">
+                        <label for="email">email</label>
+                        <input placeholder="jackred@email.com" type="text" id="email" name="email">
+                        <div class="error"></div>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="password">password</label>
+                        <input type="password" name="password" id="password">
+                        <div class="error"></div>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="repeated_password">repeat password</label>
+                        <input type="password" name="repeated_password" id="repeated_password">
+                        <div class="error"></div>
+                    </div>
+                    <input type="submit" value="Signup">
+                </form>
+                <div id="btnBlock">
+                    <button class="btn-std" id="undoBtn">Undo</button>
+                    <button class="btn-std" type="submit" id="saveBtn">Save</button>
+                </div>
+            </div>
+            <button class="btn-std" onclick="loadTextBox()" id="editBtn">Edit profile</button>
         </div>
         
     </main>

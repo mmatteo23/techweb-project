@@ -807,3 +807,29 @@ footer .imgValidCode{
 .private_area_content > .wrapper > h1 > span{
   color: var(--teal-accent)
 }
+
+/**********************************
+ *      STANDARD CLASSES
+ *********************************/
+
+ .btn-std {
+   display: flex;
+   background-color: #7300FF;
+   color: white;
+   border-radius: 3%;
+   padding: 0.8em;
+   margin: 1.8em auto 0.8em auto;
+   font-size: 1em;
+}
+
+#user-specs {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+#user-specs li {
+  text-align: center;
+  margin: 0.3em 0 0.3em 0;
+  font-size: 1.2em;
+}

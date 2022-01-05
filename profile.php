@@ -11,7 +11,6 @@ $conn_ok = $connection_manager->openDBConnection();
 $user = "";
 $user_output = "";  // html code to send to the page
 
-
 if(isset($_SESSION['username'])){
     if($conn_ok && $_SESSION['username']){
         $user = $connection_manager->getUserInfo($_SESSION['username']);
