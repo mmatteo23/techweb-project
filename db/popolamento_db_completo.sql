@@ -312,3 +312,38 @@ VALUES
 (10,11),
 (11,3),
 (11,4);
+
+
+INSERT INTO Tag(name) VALUES 
+('tournament'), 
+('flash'), 
+('scandalous');
+
+INSERT INTO article_tags (tag_id, article_id) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(1, 2),
+(2, 2),
+(1, 3),
+(3, 3),
+(3, 4),
+(3, 5),
+(3, 6),
+(3, 7),
+(3, 8);
+
+INSERT INTO liked_articles VALUES
+('danilostojkovic', 2),
+('matteomidena', 2),
+('davidemilan', 2),
+('matteocasonato', 2),
+('matteomidena', 3),
+('davidemilan', 3),
+('matteocasonato', 3),
+('matteomidena', 6),
+('davidemilan', 6),
+('matteocasonato', 6),
+('matteomidena', 8),
+('davidemilan', 8),
+('matteocasonato', 8);

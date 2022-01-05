@@ -14,10 +14,13 @@ $slides = array();
 
 if($connection){
     $articles = $db->getTopArticles();
+    $tags = $db->getTopArticleTags();
+    $MostLiked = $db->getMostLikedArticles();
+    $CarouselTags = $db->getCarouselTags($MostLiked);
     $db->closeDBConnection();   //ho finito di usare il db quindi chiudo la connessione
     if($articles!=null){
         foreach($articles as $art){
-            $user_output .= $slides[$art['id']] = 
+            $user_output .= 
                 '<article>
                     <div class="article_image">
                         <img src="images/article_covers/'.$art['cover_img'].'"/>
@@ -25,17 +28,48 @@ if($connection){
                     <div class="article_info">
                         <h3>'.$art['title'].'</h3>
                         <h4>'.$art['subtitle'].'</h4>
-                        <p>'.$art['publication_date'].'</p>
+                        <p>'.$art['publication_date'].'</p>';
+            $intro=true;
+            foreach($tags as $tag){
+                if($tag['article_id']==$art['id']){
+                    if($intro){
+                        $user_output .= '<ul id="article-tags-home" class="tag-list">';
+                        $intro=false;
+                    }
+                    $user_output .= '<li>'.$tag['name'].'</li>';
+                }
+            }
+            if(!$intro)
+                $user_output .= '</ul>';
+            $user_output .= '</div>
+            </article>';
+        }
+    }
+    if($MostLiked!=null){
+        foreach($MostLiked as $art){
+            $HTMLSlide="";
+            $HTMLSlide = 
+                '<article>
+                    <div class="article_image">
+                        <img src="images/article_covers/'.$art['cover_img'].'"/>
                     </div>
-                </article>';
-                //
-                //////MANCANO I TAG HEHE 
-                /*  <ul id="article-tags-home" class="tag-list">
-                        <li>Pronto</li>
-                        <li>Il</li>
-                        <li>Liscio</li>
-                    </ul>*/
-                //
+                    <div class="article_info">
+                        <h3>'.$art['title'].'</h3>
+                        <h4>'.$art['subtitle'].'</h4>
+                        <p>'.$art['publication_date'].'</p>';
+            $intro=true;
+            foreach($CarouselTags[$art['id']] as $tag){
+                if($intro){
+                    $HTMLSlide .= '<ul id="article-tags-home" class="tag-list">';
+                    $intro=false;
+                }
+                $HTMLSlide .= '<li>'.$tag['name'].'</li>';
+            }
+            if(!$intro)
+                $HTMLSlide .= '</ul>';
+            $HTMLSlide .= '</div>
+                                </article>';
+            array_push($slides, $HTMLSlide);
         }
     }
 } else {
@@ -62,10 +96,19 @@ require_once('php/full_sec_loader.php');
 $htmlPage = str_replace("<AllArticles/>", $user_output, $htmlPage);
 
 //str_replace per il carousel
-for ($i=1; $i<=4; $i++) {
-    $htmlPage = str_replace("<slide".$i."/>", $slides[$i], $htmlPage);
+if(count($slides)>0){
+    $carousel='<div class="slider">
+                <div class="slides">';
+    $i=1;
+    foreach($slides as $art){
+        if($art!=""){
+            $carousel .= '<div id="slide-'.$i.'">'.$art.'</div>';
+            $i++;
+        }
+    }
+    $carousel .= '</div></div>';
+    $htmlPage = str_replace("<carousel/>", $carousel, $htmlPage);
 }
-
 echo $htmlPage;
 
 ?>

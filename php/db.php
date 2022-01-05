@@ -112,7 +112,7 @@ class DBAccess {
         		
 	}
 
-	public function executeQuery($query){
+	public function executeQuery(string $query){
 		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
 		if(mysqli_num_rows($queryResults)==0){
 			return null;
@@ -132,7 +132,19 @@ class DBAccess {
 		}
 		$result = array();
 		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
-		$queryResults->free(); // ciao, vola via e vivi la tua vita
+		$queryResults->free();
+		return $result;
+	}
+
+	public function getTopArticleTags(){
+		$query = "SELECT article_id, tag_id, name FROM (article_tags JOIN Article ON article_id=Article.id) JOIN Tag ON tag_id=Tag.id WHERE !is_approved ORDER BY publication_date DESC";   
+		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
+		if(mysqli_num_rows($queryResults)==0){
+			return null;
+		}
+		$result = array();
+		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
+		$queryResults->free();
 		return $result;
 	}
 
@@ -146,6 +158,37 @@ class DBAccess {
 		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
 		$queryResults->free(); // ciao, vola via e vivi la tua vita
 		return $result;
+	}
+
+	public function getMostLikedArticles(){
+		$query = "SELECT id, title, subtitle, publication_date, cover_img, COUNT(*) AS numLikes FROM Article JOIN liked_articles ON id=article_id GROUP BY id ORDER BY COUNT(*) DESC LIMIT 4";
+		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
+		if(mysqli_num_rows($queryResults)==0){
+			return null;
+		}
+		$result = array();
+		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
+		$queryResults->free(); // ciao, vola via e vivi la tua vita
+		return $result;
+	}
+
+	public function getCarouselTags($articles){
+		$result = array();
+		foreach($articles as $art){
+			$result[$art['id']]=$this->executeQuery('SELECT name FROM Tag JOIN article_tags ON Tag.id = tag_id WHERE article_id = '.$art['id']);
+		}
+		return $result;
+	}
+
+	public function getArticleData($id){
+		$query="SELECT * FROM Article WHERE id=".$id;
+		$result = $this->executeQuery($query);
+		return $result[0];
+	}
+
+	public function getArticleTags($id){
+		$query = "SELECT name FROM Tag JOIN article_tags ON id=tag_id WHERE article_id=".$id;
+		return $this->executeQuery($query);
 	}
 
 	/**************************************************************
