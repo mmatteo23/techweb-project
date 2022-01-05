@@ -54,6 +54,29 @@ body{
 }
 
 
+.skip-to-content{
+  position: absolute;
+  z-index: 110;
+  left: 0;
+  transform: translateY(-110%);
+  background-color: var(--fucsia-accent);
+  padding: .5em 2em;
+  color: white;
+  transition: transform .2s ease-out 
+}
+
+.skip-to-content:visited{
+  color: white;
+}
+
+.skip-to-content:focus{
+  transform: translateY(0);
+}
+
+#content{
+  scroll-margin-top: 5em;
+}
+
 
 
 

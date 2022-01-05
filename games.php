@@ -19,7 +19,7 @@ if($conn_ok){
         //echo print_r($games);
         for($i = 0; $i < 11; $i++){
             $game = $games[$i];            
-            $user_output .= '<li class="card">
+            $user_output .= '<li class="card" id="'.$game['name'].'">
             <a href=""><img src="/images/games/' . $game['game_img'] . '" alt="' . $game['name'] . ' cover" class="card-img"></a>
             <div class="card-content">
                 <h2 class="card-title">' . $game['name'] . '</h2>
