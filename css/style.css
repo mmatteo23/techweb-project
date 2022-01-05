@@ -226,6 +226,56 @@ article {
   font-size: 0.7em;
 }
 
+.articleLink{
+  color: white;
+  text-decoration: none;
+}
+
+.slider a.articleLink:hover article {
+  transform: none; 
+}
+
+a.articleLink:hover article {
+  box-shadow: 0 16px 12px -12px black;
+  transform: scale(1.01);
+  transition: transform .3s;   
+}
+
+a.articleLink article {
+  transition: transform .3s;   
+}
+
+a.articleLink:hover .article_image img{
+  transform: scale(1.2);
+  transition: transform .6s;   
+}
+
+a.articleLink .article_image img{
+  transition: transform .6s;   
+}
+
+a.articleLink:hover h3{
+  text-decoration: underline;
+}
+
+#likeBtn{
+  margin-right:1em;
+}
+
+article i.material-icons{
+  font-size:3em;
+  padding: 0.2em; 
+}
+
+
+a.articleLink{
+  color: white;
+}
+
+a.articleLink:visited{
+  color: white;
+}
+
 
 #article-tags-home{
   margin: 0.5em 0 0em;

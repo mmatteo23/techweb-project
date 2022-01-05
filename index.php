@@ -21,7 +21,8 @@ if($connection){
     if($articles!=null){
         foreach($articles as $art){
             $user_output .= 
-                '<article>
+                '<a class="articleLink" href="article.php?id='.$art['id'].'">
+                <article>
                     <div class="article_image">
                         <img src="images/article_covers/'.$art['cover_img'].'"/>
                     </div>
@@ -42,14 +43,16 @@ if($connection){
             if(!$intro)
                 $user_output .= '</ul>';
             $user_output .= '</div>
-            </article>';
+            </article>
+            </a>';
         }
     }
     if($MostLiked!=null){
         foreach($MostLiked as $art){
             $HTMLSlide="";
             $HTMLSlide = 
-                '<article>
+                '<a class="articleLink" href="article.php?id='.$art['id'].'">
+                <article>
                     <div class="article_image">
                         <img src="images/article_covers/'.$art['cover_img'].'"/>
                     </div>
@@ -68,7 +71,8 @@ if($connection){
             if(!$intro)
                 $HTMLSlide .= '</ul>';
             $HTMLSlide .= '</div>
-                                </article>';
+                                </article>
+                                </a>';
             array_push($slides, $HTMLSlide);
         }
     }

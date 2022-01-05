@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require_once('php/db.php');
 
 use DB\DBAccess;
@@ -11,11 +12,11 @@ $connection = $db->openDBConnection();
 $user_output="";
 
 if($connection){
-    $idArticle = 8; ///codice per leggere get
+    $idArticle = $_GET['id']; ///codice per leggere get
 
     $articleData = $db->getArticleData($idArticle);
-    $tags=array();
-    //$tags = $db->getArticleTags($idArticle);
+    $tags = $db->getArticleTags($idArticle);
+    $numOfLikes = $db->getNumberOfLikes($idArticle);
     $db->closeDBConnection();
     $user_output = 
         '<article id="content">
@@ -23,9 +24,10 @@ if($connection){
                 <h1 id="article-title">'.$articleData['title'].'</h1>
                 <h2 id="article-subtitle">'.$articleData['subtitle'].'</h2>
                 <div id="article-info">
-                    <p id="article-author"><i class="material-icons" aria-hidden="true">person</i><span>'.$articleData['author'].'</span></p>
+                    <p id="article-author"><i class="material-icons" aria-hidden="true">person_outline</i><span>'.$articleData['author'].'</span></p>
                     <p id="article-date"><i class="material-icons" aria-hidden="true">today</i><span>'.$articleData['publication_date'].'</span></p>
                     <p id="article-read-time"><i class="material-icons" aria-hidden="true">schedule</i><span>'.$articleData['read_time'].' minutes</span></p> 
+                    <p id="article-read-time"><i class="material-icons" aria-hidden="true">favorite_border</i><span>'.$numOfLikes.' likes</span></p> 
                 </div>';
     if(count($tags)>0){
         $user_output .= '<ul id="article-tags" class="tag-list">';
@@ -39,10 +41,14 @@ if($connection){
                 </div>
                 <img class="cover" src="images/article_covers/'.$articleData['cover_img'].'" id="article-cover" alt="article cover picture">
                 <div id="article-body" class="cover-linguetta">
-                <p>'.$articleData['text'].'</p>
-            </div>
+                <p>'.$articleData['text'].'</p>';
+    if(isset($_SESSION['username']) && $_SESSION['username'] != ''){
+        $user_output .= '
+                <span id="likeBtn" onclick=LikeThisArticle()><i class="material-icons" aria-hidden="true">favorite_border</i></span>
+                <span id="saveBtn" onclick=SaveThisArticle()><i class="material-icons" aria-hidden="true">bookmark_border</i></span>';
+    }
+    $user_output .= '   </div>
         </article>';
-
 } else {
     $user_output = "<p>Something went wrong while loading the page, try again or contact us.</p>";
 }

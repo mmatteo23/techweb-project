@@ -191,6 +191,12 @@ class DBAccess {
 		return $this->executeQuery($query);
 	}
 
+	public function getNumberOfLikes($id){
+		$query = "SELECT COUNT(*) AS c FROM liked_articles WHERE article_id=".$id;
+		$result = $this->executeQuery($query);
+		return $result[0]['c'];
+	}
+
 	/**************************************************************
 	 * 
 	 * 						GAMES MANAGEMENT

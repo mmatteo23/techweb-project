@@ -58,7 +58,7 @@ $htmlPage = str_replace('<pageHeader/>', $pageHeader, $htmlPage);
 echo str_replace('<pageFooter/>', $pageFooter, $htmlPage);
 */
 
-$htmlPage = file_get_contents("html/home.html");
+$htmlPage = file_get_contents("html/favorites.html");
 
 //header footer and dynamic navbar all at once (^^^ sostituisce il commento qua sopra ^^^)
 require_once('php/full_sec_loader.php');
