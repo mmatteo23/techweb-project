@@ -19,7 +19,7 @@ if($connection){
     $numOfLikes = $db->getNumberOfLikes($idArticle);
     $db->closeDBConnection();
     $user_output = 
-        '<article id="content">
+        '<article>
             <div id="article-header">
                 <h1 id="article-title">'.$articleData['title'].'</h1>
                 <h2 id="article-subtitle">'.$articleData['subtitle'].'</h2>
