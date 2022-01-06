@@ -531,7 +531,6 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   line-height: 1.75em;
 }
 
-
 ::marker{
   color: var(--pink-accent);
 }
@@ -540,6 +539,10 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   color: var(--bg-accent);
   padding: 0em 0.5em;
   border-radius: 0.5em;
+}
+
+#article-body span[type='button']{
+  cursor: pointer;
 }
 
 /*
