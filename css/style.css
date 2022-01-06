@@ -635,12 +635,108 @@ footer .imgValidCode{
 ======== NAVBAR MOBILE========
 */
 
-.navbar{
-  overflow: hidden;
-  background-color: #333;
+.sticky-nav{
+  display: flex;
+  flex-direction: column-reverse;
   position: fixed;
   bottom: 0;
   z-index: 100;
+  width: 100%;
+  left: 0;
+}
+
+#src-bar-wrapper{
+  width: 100%;
+  display: none;
+}
+
+#src-bar-wrapper form{
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  position: relative;
+  animation-name: searchPopUp;
+  animation-timing-function: ease-out;
+  animation-duration: 0.15s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  z-index: -1;
+}
+
+#src-bar{
+  width: 100%;
+  font-size: 1em;
+  padding: .75em 1.5em;  
+  border: 2px solid transparent;  
+  border-radius: .65em .65em  0 0 ;
+  outline: none;
+  height: 100%;
+}
+
+#src-bar:hover,
+#src-bar:focus{
+  border: 2px solid var(--pink-accent);
+  border-bottom: 0px solid transparent;
+}
+
+#src-bar::placeholder{
+  font-style: italic;
+}
+
+#src-bar-wrapper button{
+  margin-left: -49px;
+  z-index: 2;
+  padding: 0 .5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--pink-accent);
+  border: none;
+  border-radius: 0 .65em 0 0;
+  cursor: pointer;
+}
+
+#src-bar-wrapper button:hover,
+#src-bar-wrapper button:focus{
+  outline: none;
+  background-color: var(--fucsia-accent);
+}
+
+#src-bar-wrapper button span{
+  transition: all 0.25s ease-out;
+}
+
+#src-bar-wrapper button:hover span,
+#src-bar-wrapper button:focus span{
+  transform: scale(1.15)
+              rotate(90deg);
+  color: white;
+}
+
+#src-bar-wrapper button:hover ~ *,
+#src-bar-wrapper button:focus ~ *{
+  border: 2px solid var(--fucsia-accent);
+  border-bottom: 0px solid transparent;
+}
+
+@keyframes searchPopUp {
+  0%{
+    z-index: -1;
+    transform: translateY(100%);
+  }
+  99%{
+    z-index: -1;
+  }
+  100%{
+    z-index: 0;
+    transform: translateY(0);
+  }
+}
+
+.navbar{
+  overflow: hidden;
+  background-color: #333;
   width: 100%;
   max-width: var(--content-max_width);
   min-height: 3.5em;
@@ -736,6 +832,33 @@ footer .imgValidCode{
     font-size: 1.25em;
   }
 
+  .sticky-nav{
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+  }
+
+  #src-bar{
+    height: 2em;
+    padding: .75em 4em;  
+    border-radius: 0 0 .65em .65em;
+  }
+
+  #src-bar:hover,
+  #src-bar:focus{
+    border-top: 0px solid transparent;
+    border-bottom: 2px solid var(--pink-accent);
+  }
+
+  #src-bar-wrapper button:hover ~ *,
+  #src-bar-wrapper button:focus ~ *{
+    border-top: 0px solid transparent;
+    border-bottom: 2px solid var(--fucsia-accent);
+}
+
+#src-bar-wrapper button{
+  border-radius: 0 0 .65em 0;
+}
   .navbar #navbar-logo{
     display: block;
   }
@@ -776,15 +899,13 @@ footer .imgValidCode{
 
 
   .navbar{
-    position: sticky;
-    top: 0;
+    position: initial;
     height: fit-content;
     max-height: none;
     display: flex;
     flex-wrap: wrap;
     padding: 0.45em 1em 0.85em 2.5em;
     background-color: var(--bg);
-    z-index: 100;
     overflow: visible;
     row-gap: .5em;
   }
@@ -943,52 +1064,18 @@ footer .imgValidCode{
     animation: rotating-logo-animation 25s linear forwards normal infinite 0s;
   }
 
-  #src-bar-wrapper{
-    width: 100%;    
-  }
-
-  #src-bar-wrapper form{
-    width: 100%;
-    display: flex;
-    position:relative
-  }
-
-  #src-bar{
-    width: 100%;
-    height: 2em;
-    font-size: 1em;
-    padding: .75em 4em;
-    border-radius: .65em;
-    border: 2px solid transparent;
-    outline: none;
-  }
-  #src-bar:hover,
-  #src-bar:focus{
-    border: 2px solid var(--fucsia-accent);
-  }
-
-  #src-bar::placeholder{
-    font-style: italic;
-  }
-
-  #src-bar-wrapper button{
-    margin-left: -65px;
-    opacity: .7;
-    padding: 0 .5em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
-
-  #src-bar-wrapper button:hover,
-  #src-bar-wrapper button:focus,
-  #src-bar-wrapper button:hover ~ *,
-  #src-bar-wrapper button:focus ~ *{
-    outline: none;
-    background-color: var(--fucsia-accent);
+  @keyframes searchPopUp {
+    0%{
+      z-index: -1;
+      transform: translateY(-100%);
+    }
+    99%{
+      z-index: -1;
+    }
+    100%{
+      z-index: 0;
+      transform: translateY(0);
+    }
   }
 }
 

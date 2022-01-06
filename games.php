@@ -47,17 +47,7 @@ if($conn_ok){
 // page structure
 $htmlPage = file_get_contents("html/games.html");
 
-// // page header
-// $pageHeader = file_get_contents("html/components/header.html");
-
-// // page footer
-// $pageFooter = file_get_contents("html/components/footer.html");
-
-// // replace the placeholders
-// $htmlPage = str_replace('<pageHeader/>', $pageHeader, $htmlPage);
-// $htmlPage = str_replace('<pageFooter/>', $pageFooter, $htmlPage);
-
-//header footer and dynamic navbar all at once (^^^ sostituisce il commento qua sopra ^^^)
+//header footer and dynamic navbar all at once
 require_once('php/full_sec_loader.php');
 
 //str_replace finale col conenuto specifico della pagina

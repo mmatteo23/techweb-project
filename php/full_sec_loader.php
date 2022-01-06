@@ -13,9 +13,9 @@ $conn_ok = $connection_manager->openDBConnection();
 if($conn_ok && isset($_SESSION['username'])){
     $user = $connection_manager->getUserInfo($_SESSION['username']);
     $connection_manager->closeDBConnection();
-    $profile_img = '<li><a id="profile-link" href="profile.php" class="profile-img" ><span class="material-icons md-36">person</span><span><img src="images/user_profiles/'. ($user['profile_img']?$user['profile_img']:'default.png') .'" alt="Profile"></span></a></li>';
+    $profile_img = '<li><a tabindex=7 id="profile-link" href="profile.php" class="profile-img" ><span class="material-icons md-36">person</span><span><img src="images/user_profiles/'. ($user['profile_img']?$user['profile_img']:'default.png') .'" alt="Profile"></span></a></li>';
 }else{
-    $profile_img = '<li><a id="profile-link" href="login.php" ><span class="material-icons md-36">person</span><span>Profile</span></a></li>';
+    $profile_img = '<li><a tabindex=7 id="profile-link" href="login.php" ><span class="material-icons md-36">person</span><span>Profile</span></a></li>';
 }
 
 // page header
