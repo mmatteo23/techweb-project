@@ -70,7 +70,7 @@ class DBAccess {
 			return false;
 		}
 
-		$queryResults->free(); // ciao, vola via e vivi la tua vita
+		$queryResults->free(); 
 		
 		return true;
 	}
@@ -119,7 +119,7 @@ class DBAccess {
 		}
 		$result = array();
 		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
-		$queryResults->free(); // ciao, vola via e vivi la tua vita
+		$queryResults->free(); 
 		return $result;
 	}
 
@@ -156,7 +156,19 @@ class DBAccess {
 		}
 		$result = array();
 		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
-		$queryResults->free(); // ciao, vola via e vivi la tua vita
+		$queryResults->free(); 
+		return $result;
+	}
+	
+	public function getFavArticlesTags($user){
+		$query = "SELECT saved_articles.article_id, tag_id, name FROM (article_tags JOIN Article ON article_id=Article.id) JOIN Tag ON tag_id=Tag.id JOIN saved_articles ON Article.id=saved_articles.article_id WHERE !is_approved AND username='davidemilan' ORDER BY publication_date DESC";   
+		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
+		if(mysqli_num_rows($queryResults)==0){
+			return null;
+		}
+		$result = array();
+		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
+		$queryResults->free(); 
 		return $result;
 	}
 
@@ -168,7 +180,7 @@ class DBAccess {
 		}
 		$result = array();
 		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
-		$queryResults->free(); // ciao, vola via e vivi la tua vita
+		$queryResults->free(); 
 		return $result;
 	}
 
@@ -192,10 +204,47 @@ class DBAccess {
 	}
 
 	public function getNumberOfLikes($id){
-		$query = "SELECT COUNT(*) AS c FROM liked_articles WHERE article_id=".$id;
+		$query = "SELECT COUNT(*) AS likes_number FROM liked_articles WHERE article_id=".$id;
 		$result = $this->executeQuery($query);
-		return $result[0]['c'];
+		return $result[0]['likes_number'];
 	}
+
+	public function getSearchRelatedArticles($src_text){
+		$query = "";   /*DA SCRIVERE
+		------------------------------------------------------------------
+		------------------------------------------------------------------
+		------------------------------------------------------------------
+		------------------------------------------------------------------
+		------------------------------------------------------------------
+		*/
+		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
+		if(mysqli_num_rows($queryResults)==0){
+			return null;
+		}
+		$result = array();
+		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
+		$queryResults->free(); 
+		return $result;
+	}
+
+	public function getSearchedArticlesTags($src_text){
+		$query = "";   /*DA SCRIVERE
+		------------------------------------------------------------------
+		------------------------------------------------------------------
+		------------------------------------------------------------------
+		------------------------------------------------------------------
+		------------------------------------------------------------------
+		*/
+		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
+		if(mysqli_num_rows($queryResults)==0){
+			return null;
+		}
+		$result = array();
+		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
+		$queryResults->free(); 
+		return $result;
+	}
+
 
 	/**************************************************************
 	 * 
@@ -213,7 +262,7 @@ class DBAccess {
 		$result = array();
 		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
 		
-		$queryResults->free(); // ciao, vola via e vivi la tua vita
+		$queryResults->free(); 
 		return $result;
 	}
 
@@ -230,7 +279,7 @@ class DBAccess {
 		$result = array();
 		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
 		
-		$queryResults->free(); // ciao, vola via e vivi la tua vita
+		$queryResults->free(); 
 		return $result;
 	}
 }

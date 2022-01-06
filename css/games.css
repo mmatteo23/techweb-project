@@ -3,12 +3,8 @@ abbr{
 }
 
 h1{
-    text-align: center;
-    margin-top: 0.66em;
-    color: var(--fucsia-accent);
-    font-weight: 900;
-    font-size: 3em;
-    line-height: 1.1em;
+    margin-top: .66em;
+    margin-bottom: .66em;
 }
 
 #content{

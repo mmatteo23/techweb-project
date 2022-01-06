@@ -43,9 +43,10 @@ if($connection){
                 <div id="article-body" class="cover-linguetta">
                 <p>'.$articleData['text'].'</p>';
     if(isset($_SESSION['username']) && $_SESSION['username'] != ''){
-        $user_output .= '
-                <span id="likeBtn" onclick=LikeThisArticle()><i class="material-icons" aria-hidden="true">favorite_border</i></span>
-                <span id="saveBtn" onclick=SaveThisArticle()><i class="material-icons" aria-hidden="true">bookmark_border</i></span>';
+        $user_output .= '<span type="button" id="likeBtn" onclick=LikeThisArticle()><span class="material-icons md-36">favorite_border</span></span>
+        <span type="button" id="saveBtn" onclick=SaveThisArticle()><span class="material-icons md-36">bookmark_border</span></span>';
+                // <span id="likeBtn" onclick=LikeThisArticle()><i class="material-icons">favorite_border</i></span>
+                // <span id="saveBtn" onclick=SaveThisArticle()><i class="material-icons">bookmark_border</i></span>;
     }
     $user_output .= '   </div>
         </article>';

@@ -9,6 +9,7 @@
   --fucsia-accent : #DA00FF;
   --shadow: #000000;
 
+  --lateral-padding: 2em;
   --content-max_width: 1280px;
 }
 
@@ -177,13 +178,17 @@ a:visited{
   color: var(--pink-accent);
 }
 
+
 /*
 ===== HOME =====
 */
 
 .subtitle {
-  padding-top: 1em;
-  padding-left: 0.5em;
+  margin-top: .66em;
+  margin-bottom: .3em;
+}
+.subtitle:first-child(){
+  margin-top: 0;
 }
 
 
@@ -218,6 +223,14 @@ article {
 .article_info h4{
   font-size: 0.9em;
   font-weight: normal;
+
+  /*to make it show only 2 text lines and what overflows becomes "..." */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+          line-clamp: 2; 
+  -webkit-box-orient: vertical;
 }
 
 .article_info p{
@@ -380,10 +393,11 @@ a.articleLink:visited{
   background-image: linear-gradient(to bottom right, var(--bg), var(--bg), #999)
 }
 
-#article-title{
+#content #article-header #article-title{
   font-size: 2.8em;
   line-height: 1.1em;
   text-transform: uppercase;
+  text-align: initial;
   color: var(--fucsia-accent);
   margin-bottom: 0.3em;
 }
@@ -559,7 +573,8 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   margin-top: 1em;
   object-fit: cover;
   width:25em;
-  height:25em;
+  max-height: 100%;
+  max-width: 100%;
   border: 0.5em solid #00FFF8;
   border-radius: 100%;
 }
@@ -819,6 +834,9 @@ footer .imgValidCode{
 
 @media screen and (max-height: 1500px) and (min-width: 570px){
 
+  :root{
+    --lateral-padding: 4em;
+  }
   header .logo{
     display: none;
   }
@@ -839,7 +857,7 @@ footer .imgValidCode{
 
   #src-bar{
     height: 2em;
-    padding: .75em 4em;  
+    padding: .75em var(--lateral-padding);  
     border-radius: 0 0 .65em .65em;
   }
 
@@ -1012,15 +1030,15 @@ footer .imgValidCode{
   }
 
   #article-header{
-    padding: 2em 4em 7.5em;
+    padding: 2em var(--lateral-padding) 7.5em;
   }
 
   #article-body{
-    padding: 3em 4em 1.5em;
+    padding: 3em var(--lateral-padding) 1.5em;
   }
 
   #breadcrumb{
-    padding: 0.5em 4em;
+    padding: 0.5em var(--lateral-padding);
   }
 
   .navbar li:first-child{
@@ -1078,16 +1096,27 @@ footer .imgValidCode{
       transform: translateY(0);
     }
   }
+
+  .favorites-content{
+    padding: 0 var(--lateral-padding);
+  }
 }
 
 
 
 .private_area_content,
-.error-content{
+.error-content,
+.favorites-content{
   min-height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.favorites-content{
+  flex-direction: column;
+  gap: 1.25em;
+  padding: 0 var(--lateral-padding);
 }
 
 .private_area_content > .wrapper,
@@ -1131,4 +1160,17 @@ footer .imgValidCode{
   text-align: center;
   margin: 0.3em 0 0.3em 0;
   font-size: 1.2em;
+}
+
+#content{
+  margin: 2em .75em;
+}
+
+#content h1{
+  color: var(--fucsia-accent);
+  text-transform: uppercase;
+  font-size: 2.7em;
+  font-weight: 900;
+  line-height: 1.1em;
+  text-align: center;
 }
