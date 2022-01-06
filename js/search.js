@@ -8,7 +8,6 @@ src.addEventListener('click', function(){
     } else{
         src_bar_wrapper.style.display = 'none';
     }
-    //src_bar_wrapper.style.display = 'block';
-
+    src_bar.focus();
 }
 );
