@@ -41,28 +41,17 @@ if(isset($_SESSION['username'])){
     } else {
         $user_output = "<p>Something went wrong while loading the page, try again or contact us.</p>";
     }
+    
+    $htmlPage = file_get_contents("html/favorites.html");
+    //header footer and dynamic navbar all at once (^^^ sostituisce il commento qua sopra ^^^)
+    require_once('php/full_sec_loader.php');
+    
+    //str_replace finale col conenuto specifico della pagina
+    echo str_replace("<AllArticles/>", $user_output, $htmlPage);
 }else{
     $errorMessage = "<p>This page is only accessible while being logged in! Click <a href='login.php'>here</a> to log in</p>";
     require_once('error.php');
     $htmlPage = str_replace('<error/>', $errorMessage, $htmlPage);
 }
 
-// impaginarlo
-/*
-$pageHeader = file_get_contents("html/components/header.html");
-$pageFooter = file_get_contents("html/components/footer.html");
-$htmlPage = file_get_contents("html/home.html");
-
-$htmlPage = str_replace("<AllArticles/>", $user_output, $htmlPage);
-$htmlPage = str_replace('<pageHeader/>', $pageHeader, $htmlPage);
-echo str_replace('<pageFooter/>', $pageFooter, $htmlPage);
-*/
-
-$htmlPage = file_get_contents("html/favorites.html");
-
-//header footer and dynamic navbar all at once (^^^ sostituisce il commento qua sopra ^^^)
-require_once('php/full_sec_loader.php');
-
-//str_replace finale col conenuto specifico della pagina
-echo str_replace("<AllArticles/>", $user_output, $htmlPage);
 ?>

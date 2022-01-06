@@ -994,17 +994,16 @@ footer .imgValidCode{
 
 
 
-
-
-
-.private_area_content{
-  min-height: 80vh;
+.private_area_content,
+.error-content{
+  min-height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.private_area_content > .wrapper{
+.private_area_content > .wrapper,
+.error-content > .wrapper{
   display: flex;
   flex-direction: column;
   align-items: center;
