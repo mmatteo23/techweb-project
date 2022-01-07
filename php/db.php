@@ -112,6 +112,15 @@ class DBAccess {
         		
 	}
 
+	public function updateUserInfo($username, $firstname, $lastname, $email, $password, $image){
+		$updateQuery = "UPDATE Person
+		SET	firstName='$firstname', lastName='$lastname', email='$email', password='$password', profile_img='$image'
+		WHERE username='$username'";
+
+		$queryResult = mysqli_query($this->connection, $updateQuery) or die("There is an error with our servers, please try again or contact us.");
+		return $queryResult;
+	}
+
 	public function executeQuery(string $query){
 		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
 		if(mysqli_num_rows($queryResults)==0){
