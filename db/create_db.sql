@@ -2,6 +2,7 @@
 /* --------- BUILD DB --------- */
 /* ---------------------------- */
 
+DROP TABLE IF EXISTS article_games;
 DROP TABLE IF EXISTS saved_articles;
 DROP TABLE IF EXISTS liked_articles;
 DROP TABLE IF EXISTS follow;
@@ -11,7 +12,6 @@ DROP TABLE IF EXISTS article_tags;
 DROP TABLE IF EXISTS Article;
 DROP TABLE IF EXISTS Person;
 DROP TABLE IF EXISTS Role;
-
 DROP TABLE IF EXISTS Game;
 DROP TABLE IF EXISTS Genre;
 DROP TABLE IF EXISTS Tag;
@@ -51,6 +51,7 @@ CREATE TABLE Article (
     text        LONGTEXT NOT NULL,
     publication_date  DATE NOT NULL,
     cover_img       VARCHAR(255),
+    alt_cover_img   VARCHAR(255) DEFAULT 'article cover image',
     read_time       INT,
     is_approved     BOOLEAN DEFAULT FALSE,
     author        VARCHAR(100) NOT NULL,
@@ -80,6 +81,14 @@ CREATE TABLE Game (
   release_date DATE,
   developer VARCHAR(100),
   game_img VARCHAR(255)
+);
+
+CREATE Table article_games(
+  article_id  INT,
+  game_id     INT,
+  FOREIGN KEY (article_id) REFERENCES Article(id),
+  FOREIGN KEY (game_id) REFERENCES Game(id),
+  PRIMARY KEY (article_id, game_id)
 );
 
 CREATE TABLE Genre (

@@ -576,6 +576,9 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   margin-top: 1em;
   object-fit: cover;
   width:25em;
+  aspect-ratio: 1;
+  min-height: 10em;
+  min-width: 10em;
   max-height: 100%;
   max-width: 100%;
   border: 0.5em solid #00FFF8;
