@@ -37,7 +37,7 @@ if($connection){
                         $user_output .= '<ul id="article-tags-home" class="tag-list">';
                         $intro=false;
                     }
-                    $user_output .= '<li>'.$tag['name'].'</li>';
+                    $user_output .= '<li><a href="search.php?src_text="'.$tag['name'].'>'.$tag['name'].'</a></li>';
                 }
             }
             if(!$intro)
@@ -66,7 +66,7 @@ if($connection){
                     $HTMLSlide .= '<ul id="article-tags-home" class="tag-list">';
                     $intro=false;
                 }
-                $HTMLSlide .= '<li>'.$tag['name'].'</li>';
+                $user_output .= '<li><a href="search.php?src_text="'.$tag['name'].'>'.$tag['name'].'</a></li>';
             }
             if(!$intro)
                 $HTMLSlide .= '</ul>';

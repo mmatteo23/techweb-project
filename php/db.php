@@ -161,7 +161,7 @@ class DBAccess {
 	}
 	
 	public function getFavArticlesTags($user){
-		$query = "SELECT saved_articles.article_id, tag_id, name FROM (article_tags JOIN Article ON article_id=Article.id) JOIN Tag ON tag_id=Tag.id JOIN saved_articles ON Article.id=saved_articles.article_id WHERE !is_approved AND username='davidemilan' ORDER BY publication_date DESC";   
+		$query = "SELECT saved_articles.article_id, tag_id, name FROM (article_tags JOIN Article ON article_id=Article.id) JOIN Tag ON tag_id=Tag.id JOIN saved_articles ON Article.id=saved_articles.article_id WHERE !is_approved AND username='$user' ORDER BY publication_date DESC";   
 		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
 		if(mysqli_num_rows($queryResults)==0){
 			return null;
@@ -210,13 +210,13 @@ class DBAccess {
 	}
 
 	public function getSearchRelatedArticles($src_text){
-		$query = "";   /*DA SCRIVERE
-		------------------------------------------------------------------
-		------------------------------------------------------------------
-		------------------------------------------------------------------
-		------------------------------------------------------------------
-		------------------------------------------------------------------
-		*/
+		$query = "SELECT Article.id, title, subtitle, Tag.name, publication_date, cover_img FROM (article_tags JOIN Article ON article_id=Article.id) JOIN Tag ON tag_id=Tag.id
+		WHERE !is_approved AND(
+		title LIKE '%$src_text%' OR
+		subtitle LIKE '%$src_text%' OR
+		text LIKE '%$src_text%' OR
+		Tag.name IN (SELECT Tag.name as Tname FROM (article_tags JOIN Article ON article_id=Article.id) JOIN Tag ON tag_id=Tag.id WHERE Tag.name LIKE '%$src_text%'))
+		ORDER BY publication_date DESC;";
 		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
 		if(mysqli_num_rows($queryResults)==0){
 			return null;
@@ -227,14 +227,11 @@ class DBAccess {
 		return $result;
 	}
 
-	public function getSearchedArticlesTags($src_text){
-		$query = "";   /*DA SCRIVERE
-		------------------------------------------------------------------
-		------------------------------------------------------------------
-		------------------------------------------------------------------
-		------------------------------------------------------------------
-		------------------------------------------------------------------
-		*/
+	public function getSearchedArticlesTags($art_id){
+		$query = "SELECT article_id, tag_id, name FROM (article_tags JOIN Article ON article_id=Article.id) 
+		JOIN Tag ON tag_id=Tag.id 
+		WHERE !is_approved AND article_id = $art_id
+		ORDER BY publication_date DESC;";   
 		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
 		if(mysqli_num_rows($queryResults)==0){
 			return null;

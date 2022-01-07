@@ -13,10 +13,9 @@ $user_output = "";
 $slides = array();
 
 if($connection){
-    $articles = $db->getSearchRelatedArticles($_POST['src_text']);
-    $tags = $db->getSearchedArticlesTags();
+    $articles = $db->getSearchRelatedArticles($_GET['src_text']);    
     $db->closeDBConnection();   //ho finito di usare il db quindi chiudo la connessione
-    if($articles!=null){
+    if($articles!=null){        
         foreach($articles as $art){
             $user_output .= 
                 '<a class="articleLink" href="article.php?id='.$art['id'].'">
@@ -29,16 +28,19 @@ if($connection){
                         <h4>'.$art['subtitle'].'</h4>
                         <p>'.$art['publication_date'].'</p>';
             $intro=true;
+            $connection = $db->openDBConnection();
+            $tags = $db->getSearchedArticlesTags($art['id']);
+            $db->closeDBConnection();
             foreach($tags as $tag){
                 if($tag['article_id']==$art['id']){
                     if($intro){
                         $user_output .= '<ul id="article-tags-home" class="tag-list">';
                         $intro=false;
                     }
-                    $user_output .= '<li>'.$tag['name'].'</li>';
+                    $user_output .= '<li><a href="search.php?src_text="'.$tag['name'].'>'.$tag['name'].'</a></li>';
                 }
             }
-            if(!$intro)
+            if(!$intro)            
                 $user_output .= '</ul>';
             $user_output .= 
                     '</div>
@@ -56,7 +58,7 @@ $htmlPage = file_get_contents("html/search.html");
 require_once('php/full_sec_loader.php');
 
 //str_replace finale col conenuto specifico della pagina
-$htmlPage = str_replace("<articles/>", $user_output, $htmlPage);
+$htmlPage = str_replace("<search_results/>", $user_output, $htmlPage);
 
 
 echo $htmlPage;

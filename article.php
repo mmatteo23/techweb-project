@@ -37,7 +37,7 @@ if($connection){
     if(count($tags)>0){
         $user_output .= '<ul id="article-tags" class="tag-list">';
         foreach($tags as $tag)
-            $user_output .= '<li>'.$tag['name'].'</li>';
+            $user_output .= '<li><a href="search.php?src_text="'.$tag['name'].'>'.$tag['name'].'</a></li>';
         $user_output .= '</ul>';
     }
     $articleData['text']=str_replace("\n", "<br><br>", $articleData['text']);
