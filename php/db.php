@@ -209,13 +209,16 @@ class DBAccess {
 		return $result[0]['likes_number'];
 	}
 
-	public function getSearchRelatedArticles($src_text){
+	public function getSearchRelatedArticles($text){
+		if($text=='')
+			return null;
 		$query = "SELECT Article.id, title, subtitle, Tag.name, publication_date, cover_img FROM (article_tags JOIN Article ON article_id=Article.id) JOIN Tag ON tag_id=Tag.id
 		WHERE !is_approved AND(
-		title LIKE '%$src_text%' OR
-		subtitle LIKE '%$src_text%' OR
-		text LIKE '%$src_text%' OR
-		Tag.name IN (SELECT Tag.name as Tname FROM (article_tags JOIN Article ON article_id=Article.id) JOIN Tag ON tag_id=Tag.id WHERE Tag.name LIKE '%$src_text%'))
+		title LIKE '%$text%' OR
+		subtitle LIKE '%$text%' OR
+		text LIKE '%$text%' OR
+		Tag.name IN (SELECT Tag.name as Tname FROM (article_tags JOIN Article ON article_id=Article.id) JOIN Tag ON tag_id=Tag.id WHERE Tag.name LIKE '%$text%'))
+		GROUP BY Title
 		ORDER BY publication_date DESC;";
 		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
 		if(mysqli_num_rows($queryResults)==0){
