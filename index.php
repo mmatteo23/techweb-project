@@ -16,7 +16,8 @@ if($connection){
     $articles = $db->getTopArticles();
     $tags = $db->getTopArticleTags();
     $MostLiked = $db->getMostLikedArticles();
-    $CarouselTags = $db->getCarouselTags($MostLiked);
+    if($MostLiked)
+        $CarouselTags = $db->getCarouselTags($MostLiked);
     $db->closeDBConnection();   //ho finito di usare il db quindi chiudo la connessione
     if($articles!=null){
         foreach($articles as $art){
@@ -30,18 +31,20 @@ if($connection){
                         <h3>'.$art['title'].'</h3>
                         <h4>'.$art['subtitle'].'</h4>
                         <p>'.$art['publication_date'].'</p>';
-            $intro=true;
-            foreach($tags as $tag){
-                if($tag['article_id']==$art['id']){
-                    if($intro){
-                        $user_output .= '<ul id="article-tags-home" class="tag-list">';
-                        $intro=false;
+            if($tags){
+                $intro=true;
+                foreach($tags as $tag){
+                    if($tag['article_id']==$art['id']){
+                        if($intro){
+                            $user_output .= '<ul id="article-tags-home" class="tag-list">';
+                            $intro=false;
+                        }
+                        $user_output .= '<li><a href="search.php?tag='.$tag['name'].'">'.$tag['name'].'</a></li>';
                     }
-                    $user_output .= '<li><a href="search.php?tag='.$tag['name'].'">'.$tag['name'].'</a></li>';
                 }
-            }
-            if(!$intro)
-                $user_output .= '</ul>';
+                if(!$intro)
+                    $user_output .= '</ul>';
+            }   
             $user_output .= '</div>
             </article>
             </a>';
@@ -96,13 +99,12 @@ $htmlPage = file_get_contents("html/home.html");
 //header footer and dynamic navbar all at once (^^^ sostituisce il commento qua sopra ^^^)
 require_once('php/full_sec_loader.php');
 
-//str_replace finale col conenuto specifico della pagina
-$htmlPage = str_replace("<AllArticles/>", $user_output, $htmlPage);
-
 //str_replace per il carousel
+$carousel="";
 if(count($slides)>0){
-    $carousel='<div class="slider">
-                <div class="slides">';
+    $carousel=' <h1 class="subtitle">Most liked articles</h1>
+                    <div class="slider">
+                        <div class="slides">';
     $i=1;
     foreach($slides as $art){
         if($art!=""){
@@ -111,8 +113,11 @@ if(count($slides)>0){
         }
     }
     $carousel .= '</div></div>';
-    $htmlPage = str_replace("<carousel/>", $carousel, $htmlPage);
 }
+$htmlPage = str_replace("<carousel/>", $carousel, $htmlPage);
+//str_replace finale col conenuto specifico della pagina
+$htmlPage = str_replace("<AllArticles/>", $user_output, $htmlPage);
+
 echo $htmlPage;
 
 ?>
