@@ -13,10 +13,15 @@ $user_output="";
 
 if($connection){
     $idArticle = $_GET['id']; ///codice per leggere get
+    $username = $_SESSION['username'];
 
     $articleData = $db->getArticleData($idArticle);
     $tags = $db->getArticleTags($idArticle);
     $numOfLikes = $db->getNumberOfLikes($idArticle);
+    if(isset($username) && $username != ''){
+        $liked = $db->getUserLikedArticle($username, $idArticle);
+        $saved = $db->getUserSavedArticle($username, $idArticle);
+    }
     $db->closeDBConnection();
     $user_output = 
         '<article>
@@ -42,12 +47,26 @@ if($connection){
                 <img class="cover" src="images/article_covers/'.$articleData['cover_img'].'" id="article-cover" alt="article cover picture">
                 <div id="article-body" class="cover-linguetta">
                 <p>'.$articleData['text'].'</p>';
-    if(isset($_SESSION['username']) && $_SESSION['username'] != ''){
-        $user_output .= '<span type="button" id="likeBtn" onclick=LikeThisArticle()><span class="material-icons md-36">favorite_border</span></span>
-        <span type="button" id="saveBtn" onclick=SaveThisArticle()><span class="material-icons md-36">bookmark_border</span></span>';
-                // <span id="likeBtn" onclick=LikeThisArticle()><i class="material-icons">favorite_border</i></span>
-                // <span id="saveBtn" onclick=SaveThisArticle()><i class="material-icons">bookmark_border</i></span>;
+
+    if(isset($username) && $username != ''){
+        if ($liked) {
+            $user_output .= '
+            <div id="likeContainer">
+                <span type="button" id="likeBtn" onclick=LikeThisArticle("'.$username.'",'.$idArticle.','.$liked.')><span class="material-icons md-36">favorite</span></span>
+            </div>';
+        } else {
+            $user_output .= '
+            <div id="likeContainer">
+                <span type="button" id="likeBtn" onclick=LikeThisArticle("'.$username.'",'.$idArticle.','.$liked.')><span class="material-icons md-36">favorite_border</span></span>
+            </div>';
+        }
+        if ($saved) {
+            $user_output .= '<span type="button" id="saveBtn" onclick=SaveThisArticle("'.$username.'",'.$idArticle.','.$liked.')><span class="material-icons md-36">bookmark</span></span>';
+        } else {
+            $user_output .= '<span type="button" id="saveBtn" onclick=SaveThisArticle("'.$username.'",'.$idArticle.','.$liked.')><span class="material-icons md-36">bookmark_border</span></span>';
+        }       
     }
+
     $user_output .= '   </div>
         </article>';
 } else {

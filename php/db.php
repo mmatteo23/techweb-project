@@ -282,6 +282,18 @@ class DBAccess {
 		$queryResults->free(); 
 		return $result;
 	}
+
+	public function getUserLikedArticle($username, $article_id) {
+		$query = "SELECT username FROM liked_articles WHERE article_id=$article_id AND username=\"$username\"";
+		$result = $this->executeQuery($query);
+		return $username == $result[0]['username'];
+	}
+
+	public function getUserSavedArticle($username, $article_id) {
+		$query = "SELECT username FROM saved_articles WHERE article_id=$article_id AND username=\"$username\"";
+		$result = $this->executeQuery($query);
+		return $username == $result[0]['username'];
+	}
 }
 
 ?>
