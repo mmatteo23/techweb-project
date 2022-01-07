@@ -7,10 +7,6 @@ h1{
     margin-bottom: .66em;
 }
 
-#content{
-    margin: 2em .75em;
-}
-
 .game-list{
     display: flex;
     flex-wrap: wrap;
@@ -50,13 +46,6 @@ h1{
     border-radius: 3em 3em 1.75em 1.75em;
     background-color: var(--teal-accent);
 }
-
-/*translate in alto a sinistra*/
-/*
-.card > a:hover .card-img{
-    transform: translate(.5em, -.5em);
-    box-shadow: -5px 5px 0 4px var(--teal-accent);
-}*/
 
 .card-content{
     flex: 1 0 auto;
@@ -101,16 +90,7 @@ h1{
 }
 
 
-/*per fare in modo che le ultime cards non diventino troppo grandi su desktop*/
 @media screen and (max-height: 1500px) and (min-width: 570px) {
-    .card{      /*per fare in modo che le ultime cards non diventino troppo grandi su desktop*/
-        max-width: 16em
-    }
-    .card-content .tag-list .tag {
-        font-size: clamp(0.35em, 5vh + .3em, .75em);
-    }
-    #content{
-        margin: 2em min(2.5em, 3%);
-    }
+
 }
 

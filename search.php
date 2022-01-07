@@ -43,7 +43,7 @@ if($connection){
                             $user_output .= '<ul id="article-tags-home" class="tag-list">';
                             $intro=false;
                         }
-                        $user_output .= '<li><a href="search.php?tag='.$tag['name'].'">'.$tag['name'].'</a></li>';
+                        $user_output .= '<li class="tag"><a href="search.php?tag='.$tag['name'].'">'.$tag['name'].'</a></li>';
                     }
                 }
                 if(!$intro)            
@@ -54,10 +54,10 @@ if($connection){
                 </a>';
             }
         }else{
-            $user_output .= "<p>You didn't search for anything, write something in the search box to look up for something!</p>";
+            $user_output .= "<p>Your search doesn't correspond to any article in our database, try changing your search request!</p>";
         }
     }else{
-        $user_output .= "<p>You didn't search for anything, write something in the search box to look up for something!</p>";
+        $user_output .= "<p>You didn't search for anything or the URL is incorrect, write something in the search box to look up for something!</p>";
     }
 } else {
     $user_output = "<p>Something went wrong while connecting to the database, try again or contact us.</p>";

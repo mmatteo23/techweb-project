@@ -22,7 +22,7 @@ if($conn_ok){
             $user_output .= '<li class="card" id="'.$game['name'].'">
             <a href=""><img src="/images/games/' . $game['game_img'] . '" alt="' . $game['name'] . ' cover" class="card-img"></a>
             <div class="card-content">
-                <h2 class="card-title">' . $game['name'] . '</h2>
+                <h2 class="card-title"><a href="#" class="card-title-link">' . $game['name'] . '</a></h2>
                     <ul class="tag-list">';
                 $x = 0;
                 $game_tag = $game_tags[$x];
