@@ -35,7 +35,7 @@ if(isset($_SESSION['username'])){
                             $user_output .= '<ul id="article-tags-home" class="tag-list">';
                             $intro=false;
                         }
-                        $user_output .= '<li class="tag"><a href="search.php?tag='.$tag['name'].'">'.$tag['name'].'</a></li>';
+                        $user_output .= '<li class="tag"><a href="search.php?tag='.urlencode($tag['name']).'">'.$tag['name'].'</a></li>';
                     }
                 }
                 if(!$intro)

@@ -20,9 +20,9 @@ if($conn_ok){
         for($i = 0; $i < 11; $i++){
             $game = $games[$i];            
             $user_output .= '<li class="card" id="'.$game['name'].'">
-            <a href=""><img src="/images/games/' . $game['game_img'] . '" alt="' . $game['name'] . ' cover" class="card-img"></a>
+            <a href="search.php?game='.urlencode($game['name']).'"><img src="/images/games/' . $game['game_img'] . '" alt="' . $game['name'] . ' cover" class="card-img"></a>
             <div class="card-content">
-                <h2 class="card-title"><a href="#" class="card-title-link">' . $game['name'] . '</a></h2>
+                <h2 class="card-title"><a href="search.php?game='.urlencode($game['name']).'" class="card-title-link">' . $game['name'] . '</a></h2>
                     <ul class="tag-list">';
                 $x = 0;
                 $game_tag = $game_tags[$x];
@@ -30,7 +30,7 @@ if($conn_ok){
                 while(($found == false) or ($game_tag['game_id'] == $game['id'])){
                     if($game_tag['game_id'] == $game['id']) {
                         $found = true;
-                        $user_output .= '<li class="tag">'. $game_tag['name'] .'</li>';
+                        $user_output .= '<li class="tag"><a href="search.php?tag='.urlencode($game_tag['name']).'">'. $game_tag['name'] .'</a></li>';
                     }
                     $x++;
                     $game_tag = $game_tags[$x];                        

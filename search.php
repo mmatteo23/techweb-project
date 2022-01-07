@@ -13,12 +13,15 @@ $user_output = "";
 $slides = array();
 
 if($connection){
-    if(isset($_GET['tag']) || isset($_GET['src_text'])){
+    if(isset($_GET['tag']) || isset($_GET['src_text']) || isset($_GET['game'])){
         if(isset($_GET['src_text'])){
             $articles = $db->getSearchRelatedArticles($_GET['src_text']);
         }
         else if(isset($_GET['tag'])){
-            $articles = $db->getSearchRelatedArticles($_GET['tag']);
+            $articles = $db->getSelectedTagArticles($_GET['tag']);
+        }
+        else if(isset($_GET['game'])){
+            $articles = $db->getSelectedGameArticles($_GET['game']);
         }
         $db->closeDBConnection();   //ho finito di usare il db quindi chiudo la connessione
         if($articles!=null){        
@@ -43,7 +46,7 @@ if($connection){
                             $user_output .= '<ul id="article-tags-home" class="tag-list">';
                             $intro=false;
                         }
-                        $user_output .= '<li class="tag"><a href="search.php?tag='.$tag['name'].'">'.$tag['name'].'</a></li>';
+                        $user_output .= '<li class="tag"><a href="search.php?tag='.urlencode($tag['name']).'">'.$tag['name'].'</a></li>';
                     }
                 }
                 if(!$intro)            

@@ -218,17 +218,53 @@ class DBAccess {
 		return $result[0]['likes_number'];
 	}
 
-	public function getSearchRelatedArticles($text){
-		if($text=='')
+	public function getSearchRelatedArticles($src_text){
+		if($src_text=='')
 			return null;
+		$src_text = urldecode($src_text);
 		$query = "SELECT Article.id, title, subtitle, Tag.name, publication_date, cover_img FROM (article_tags JOIN Article ON article_id=Article.id) JOIN Tag ON tag_id=Tag.id
 		WHERE !is_approved AND(
-		title LIKE '%$text%' OR
-		subtitle LIKE '%$text%' OR
-		text LIKE '%$text%' OR
-		Tag.name IN (SELECT Tag.name as Tname FROM (article_tags JOIN Article ON article_id=Article.id) JOIN Tag ON tag_id=Tag.id WHERE Tag.name LIKE '%$text%'))
-		GROUP BY Title
+		title LIKE '%$src_text%' OR
+		subtitle LIKE '%$src_text%' OR
+		text LIKE '%$src_text%' OR
+		Tag.name IN (SELECT Tag.name as Tname FROM (article_tags JOIN Article ON article_id=Article.id) JOIN Tag ON tag_id=Tag.id WHERE Tag.name LIKE '%$src_text%'))
+		GROUP BY title
 		ORDER BY publication_date DESC;";
+		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
+		if(mysqli_num_rows($queryResults)==0){
+			return null;
+		}
+		$result = array();
+		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
+		$queryResults->free(); 
+		return $result;
+	}
+	
+	public function getSelectedGameArticles($game){
+		if($game=='')
+			return null;
+		$game = urldecode($game);
+		$query = "SELECT Article.id, title, subtitle, Game.name, publication_date, cover_img FROM (article_games JOIN Article ON article_id=Article.id) JOIN Game ON Game.id=game_id
+		WHERE !is_approved AND Game.name='$game'
+		GROUP BY title
+		ORDER BY publication_date DESC;";
+		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
+		if(mysqli_num_rows($queryResults)==0){
+			return null;
+		}
+		$result = array();
+		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
+		$queryResults->free(); 
+		return $result;
+	}
+	public function getSelectedTagArticles($tag){
+		if($tag=='')
+			return null;
+		$tag = urldecode($tag);
+		$query = "SELECT Article.id, title, subtitle, publication_date, cover_img FROM Article 
+		JOIN article_tags ON id=article_id
+		JOIN Tag on Tag.id = tag_id
+		WHERE Tag.name='$tag' ORDER BY publication_date DESC;";
 		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
 		if(mysqli_num_rows($queryResults)==0){
 			return null;
@@ -253,7 +289,6 @@ class DBAccess {
 		$queryResults->free(); 
 		return $result;
 	}
-
 
 	/**************************************************************
 	 * 
