@@ -51,19 +51,25 @@ if($connection){
     if(isset($username) && $username != ''){
         if ($liked) {
             $user_output .= '
-            <div id="likeContainer">
+            <span id="likeContainer">
                 <span type="button" id="likeBtn" onclick=LikeThisArticle("'.$username.'",'.$idArticle.','.$liked.')><span class="material-icons md-36">favorite</span></span>
-            </div>';
+            </span>';
         } else {
             $user_output .= '
-            <div id="likeContainer">
+            <span id="likeContainer">
                 <span type="button" id="likeBtn" onclick=LikeThisArticle("'.$username.'",'.$idArticle.','.$liked.')><span class="material-icons md-36">favorite_border</span></span>
-            </div>';
+            </span>';
         }
         if ($saved) {
-            $user_output .= '<span type="button" id="saveBtn" onclick=SaveThisArticle("'.$username.'",'.$idArticle.','.$liked.')><span class="material-icons md-36">bookmark</span></span>';
+            $user_output .= '
+            <span id="saveContainer">
+                <span type="button" id="saveBtn" onclick=SaveThisArticle("'.$username.'",'.$idArticle.','.$liked.')><span class="material-icons md-36">bookmark</span></span>
+            </span>';
         } else {
-            $user_output .= '<span type="button" id="saveBtn" onclick=SaveThisArticle("'.$username.'",'.$idArticle.','.$liked.')><span class="material-icons md-36">bookmark_border</span></span>';
+            $user_output .= '
+            <span id="saveContainer">
+                <span type="button" id="saveBtn" onclick=SaveThisArticle("'.$username.'",'.$idArticle.','.$liked.')><span class="material-icons md-36">bookmark_border</span></span>
+            </span>';
         }       
     }
 

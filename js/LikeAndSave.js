@@ -9,6 +9,7 @@ async function postData(username, article, isLiked) {
     };
     var data = {username: username, article_id: article, like: isLiked};
     xhttp.send(JSON.stringify(data));
+    console.log("JSON sent");
 }
 /*
 async function LikeThisArticle(username, article, isLiked) {
@@ -50,6 +51,22 @@ function LikeThisArticle(username, article, isLiked) {
         postData(username, article, isLiked);
     }
     console.log("DOPO: " + isLiked);
+}
+
+function SaveThisArticle(username, article, isSaved) {
+    console.log("PRIMA: " + isSaved);
+    if (isSaved) {
+        //se era liked adesso l'user vuole togliere il like
+        isSaved = 0;
+        document.getElementById("saveContainer").innerHTML='<span type="button" id="likeBtn" onclick=SaveThisArticle("'+username+'",'+article+','+isSaved+')><span class="material-icons md-36">bookmark_border</span></span>';
+        //postData(username, article, isSaved);
+    } else {
+        //se non lo era allora vuole metterlo
+        isSaved = 1;
+        document.getElementById("saveContainer").innerHTML='<span type="button" id="saveBtn" onclick=SaveThisArticle("'+username+'",'+article+','+isSaved+')><span class="material-icons md-36">bookmark</span></span>';
+        //postData(username, article, isSaved);
+    }
+    console.log("DOPO: " + isSaved);
 }
 
 /*
