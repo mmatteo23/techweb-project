@@ -19,57 +19,52 @@ if($connection){
     if($MostLiked)
         $CarouselTags = $db->getCarouselTags($MostLiked);
     $db->closeDBConnection();   //ho finito di usare il db quindi chiudo la connessione
-    if($articles!=null){
+    if($articles){
         foreach($articles as $art){
             $user_output .= 
-                '<a class="articleLink" href="article.php?id='.$art['id'].'">
+                '<a class="card-article-link" href="article.php?id='.$art['id'].'">
                 <article>
-                    <div class="article_image">
+                    <div class="card-article-image">
                         <img src="images/article_covers/'.$art['cover_img'].'"/>
                     </div>
-                    <div class="article_info">
+                    <div class="card-article-info">
                         <h3>'.$art['title'].'</h3>
                         <h4>'.$art['subtitle'].'</h4>
                         <p>'.$art['publication_date'].'</p>';
             if($tags){
-                $intro=true;
+                $user_output .= '<ul id="card-article-tags" class="tag-list">';
                 foreach($tags as $tag){
                     if($tag['article_id']==$art['id']){
-                        if($intro){
-                            $user_output .= '<ul id="article-tags-home" class="tag-list">';
-                            $intro=false;
-                        }
-                        $user_output .= '<li class="tag"><a href="search.php?tag='.urlencode($tag['name']).'">'.$tag['name'].'</a></li>';
+                        $user_output .= '<li class="tag">'.$tag['name'].'</li>';
                     }
                 }
-                if(!$intro)
-                    $user_output .= '</ul>';
+                $user_output .= '</ul>';
             }   
             $user_output .= '</div>
             </article>
             </a>';
         }
     }
-    if($MostLiked!=null){
+    if($MostLiked){
         foreach($MostLiked as $art){
             $HTMLSlide="";
             $HTMLSlide = 
-                '<a class="articleLink" href="article.php?id='.$art['id'].'">
+                '<a class="card-article-link" href="article.php?id='.$art['id'].'">
                 <article>
-                    <div class="article_image">
+                    <div class="card-article-image">
                         <img src="images/article_covers/'.$art['cover_img'].'"/>
                     </div>
-                    <div class="article_info">
+                    <div class="card-article-info">
                         <h3>'.$art['title'].'</h3>
                         <h4>'.$art['subtitle'].'</h4>
                         <p>'.$art['publication_date'].'</p>';
             $intro=true;
             foreach($CarouselTags[$art['id']] as $tag){
                 if($intro){
-                    $HTMLSlide .= '<ul id="article-tags-home" class="tag-list">';
+                    $HTMLSlide .= '<ul id="card-article-tags" class="tag-list">';
                     $intro=false;
                 }
-                $HTMLSlide .= '<li class="tag"><a href="search.php?tag='.urlencode($tag['name']).'">'.$tag['name'].'</a></li>';
+                $HTMLSlide .= '<li class="tag">'.$tag['name'].'</li>';
             }
             if(!$intro)
                 $HTMLSlide .= '</ul>';

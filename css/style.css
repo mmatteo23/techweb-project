@@ -192,35 +192,42 @@ a:visited{
 }
 
 
-.home-article-card {
+/*.home-article-card {
   margin: 1em 0.5em 0.5em 0.5em;
   background-color: var(--bg);
   -webkit-box-shadow: 0 8px 6px -6px black;
   -moz-box-shadow: 0 8px 6px -6px black;
   box-shadow: 0 8px 6px -6px black;
   border-radius: 0 0 1em 1em;
-}
+}*/
 
-.article_image{
+.card-article-image{
   border-radius: 1em 1em 0 0 ;
   height: 8em;
   width: auto;
   overflow: hidden;
 }
 
-.article_image img{
+.card-article-image img{
   max-width: 100%;
   height: auto;
   margin: -2.5em 0 0 0;
 }
 
-.article_info{
+.slides .card-article-info{
+  background-color: #dcdcdc;  
+
+}
+
+.card-article-info{
   padding: 0.5em 1em 0.5em 1em;
   font-size: 0.9em;
   line-height: 1.3em;
+  border-radius: 0 0 1em 1em;
+  background-color: #2A2A2A;
 }
 
-.article_info h4{
+.card-article-info h4{
   font-size: 0.9em;
   font-weight: normal;
 
@@ -233,41 +240,46 @@ a:visited{
   -webkit-box-orient: vertical;
 }
 
-.article_info p{
+.slides .card-article-info p{
+  color: #1b1b1b;
+}
+
+.card-article-info p{
   font-weight: normal;
   color: #818181;
   font-size: 0.7em;
 }
 
-.articleLink{
+.card-article-link{
   color: white;
-  text-decoration: none;
+  text-decoration: none; 
 }
 
-.slider a.articleLink:hover article {
+.slider a.card-article-link:hover article {
   transform: none; 
 }
 
-a.articleLink:hover article {
+a.card-article-link:hover article {
   box-shadow: 0 16px 12px -12px black;
-  transform: scale(1.01);
+  transform: scale(1.00);
   transition: transform .3s;   
 }
 
-a.articleLink article {
-  transition: transform .3s;   
+a.card-article-link article {
+  transition: transform .3s;  
+  margin-bottom: 1em;
 }
 
-a.articleLink:hover .article_image img{
+a.card-article-link:hover .card-article-image img{
   transform: scale(1.2);
   transition: transform .6s;   
 }
 
-a.articleLink .article_image img{
+a.card-article-link .card-article-image img{
   transition: transform .6s;   
 }
 
-a.articleLink:hover h3{
+a.card-article-link:hover h3{
   text-decoration: underline;
 }
 
@@ -276,16 +288,16 @@ a.articleLink:hover h3{
 }
 
 
-a.articleLink{
+a.card-article-link{
   color: white;
 }
 
-a.articleLink:visited{
+a.card-article-link:visited{
   color: white;
 }
 
 
-#article-tags-home{
+#card-article-tags{
   margin: 0.5em 0 0em;
   display: flex;
   justify-content: flex-start;
@@ -339,10 +351,14 @@ a.articleLink:visited{
   justify-content: center;
 }
 
-.slides article {
-  background-color: var(--bg-accent);
+.slides .card-article-link  article {
   border-radius: 2em 2em 1em 1em;
   color: #1B1B1B;
+}
+
+.card-article-link article{
+  background-color: #a5a5a5;
+  border-radius: 2em 2em 1em 1em;
 }
 
 .slides article ul{
