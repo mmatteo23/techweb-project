@@ -16,35 +16,31 @@ if(isset($_SESSION['username'])){
         $articles = $connection_manager->getFavArticles($_SESSION['username']);
         $tags = $connection_manager->getFavArticlesTags($_SESSION['username']);
         $connection_manager->closeDBConnection();   //ho finito di usare il db quindi chiudo la connessione
-        if($articles!=null){
+        if($articles){
             foreach($articles as $art){
                 $user_output .= 
-                '<a class="articleLink" href="article.php?id='.$art['id'].'">
-                <article>
-                    <div class="article_image">
-                        <img src="images/article_covers/'.$art['cover_img'].'"/>
-                    </div>
-                    <div class="article_info">
-                        <h3>'.$art['title'].'</h3>
-                        <h4>'.$art['subtitle'].'</h4>
-                        <p>'.$art['publication_date'].'</p>';
-                $intro=true;
-                foreach($tags as $tag){
-                    if($tag['article_id']==$art['id']){
-                        if($intro){
-                            $user_output .= '<ul id="article-tags-home" class="tag-list">';
-                            $intro=false;
-                        }
-                        $user_output .= '<li class="tag"><a href="search.php?tag='.urlencode($tag['name']).'">'.$tag['name'].'</a></li>';
-                    }
-                }
-                if(!$intro)
-                    $user_output .= '</ul>';
-                $user_output .= '
+                    '<a class="card-article-link" href="article.php?id='.$art['id'].'">
+                    <article>
+                        <div class="card-article-image">
+                            <img src="images/article_covers/'.$art['cover_img'].'"/>
                         </div>
-                    </article>
+                        <div class="card-article-info">
+                            <h3>'.$art['title'].'</h3>
+                            <h4>'.$art['subtitle'].'</h4>
+                            <p>'.$art['publication_date'].'</p>';
+                if($tags){
+                    $user_output .= '<ul id="card-article-tags" class="tag-list">';
+                    foreach($tags as $tag){
+                        if($tag['article_id']==$art['id']){
+                            $user_output .= '<li class="tag">'.$tag['name'].'</li>';
+                        }
+                    }
+                    $user_output .= '</ul>';
+                }   
+                $user_output .= '</div>
+                </article>
                 </a>';
-            }
+            }        
         }else{
             $user_output = "<p>It seems like you don't have any saved article, browse the <a href='index.php'>latest news</a> to find something you might like!</p>";
         }
