@@ -14,6 +14,7 @@ src.addEventListener('click', function(){
             breadcrumb.style.marginTop = '0';
     }
     src_bar.focus();
+    src.blur(); 
 }
 );
 window.onresize = function() {
