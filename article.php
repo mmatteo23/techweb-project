@@ -49,6 +49,7 @@ if($connection){
                 <p>'.$articleData['text'].'</p>';
 
     if(isset($username) && $username != ''){
+        if ($liked != 1) $liked = 0; // se non è 1 è undefined --> lo correggo in 0
         if ($liked) {
             $user_output .= '
             <span id="likeContainer">

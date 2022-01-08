@@ -13,8 +13,8 @@ $connection = $db->openDBConnection();
 $user_output = "";
 $slides = array();
 
-$limitArticles = 3;
-$articlesToLoad = 2;
+$limitArticles = 4;
+$articlesToLoad = 3;
 $lastArticleLoaded = 0;
 
 if($connection){
@@ -93,7 +93,10 @@ if(count($slides)>0){
     $carousel .= '</div></div>';
 }
 
-$loadMoreArticles='<button type="button" onClick=loadMore()>More Articles</button>';
+$loadMoreArticles='
+    <button type="button" onClick=loadMore('.$lastArticleLoaded.','.$articlesToLoad.')>More Articles</button>
+    <loadMoreArticles/>
+';
 
 $htmlPage = str_replace("<carousel/>", $carousel, $htmlPage);
 $htmlPage = str_replace("<AllArticles/>", $user_output, $htmlPage);
