@@ -846,7 +846,7 @@ footer .imgValidCode{
 
   #src-bar{
     height: 2em;
-    padding: .75em var(--lateral-padding);  
+    padding: 0em var(--lateral-padding);  
     border-radius: 0 0 .65em .65em;
   }
 
