@@ -15,7 +15,8 @@
     width: 100%;
     margin: 0 auto 4em; 
     padding: 2em 0 4em;   
-    background-image: linear-gradient(to bottom, var(--bg-accent), var(--fucsia-accent));
+    background-color: var(--bg-accent);
+    /*background-image: linear-gradient(to bottom, var(--bg-accent), var(--fucsia-accent));   old background, much cooler but not good for color contrast with text*/
     border-radius: 0 0 2em 2em;
     box-shadow: 0px 2px 8px 0px #000000af;
     position: relative;
@@ -73,8 +74,8 @@
     border-radius: 5em;
     width: 80%;
     max-width: 550px;
-    background-color: var(--bg-accent);
-    border: 1px solid var(--bg-accent);
+    background-color: #f7f7f7;
+    border: 1px solid transparent;
     margin: 0 auto;
     transition: all 0.3s ease-out;
     box-shadow: 2px 2px 4px 0 var(--input-shadow);
@@ -114,11 +115,11 @@
 
 #content .form-wrapper > p{
     margin-top: 2em;
-    background-color: #85FFFB;
+    /* background-color: #85FFFB; */
     padding: 0.3em 1em;
     border-radius: 0.2em 1em;
     color: black;
-    box-shadow: 2px 2px 4px 0 var(--input-shadow);    
+    /* box-shadow: 2px 2px 4px 0 var(--input-shadow);     */
 }
 
 #content .form-wrapper > p > a{
@@ -135,7 +136,7 @@
 #content .form-wrapper > p > a:hover,
 #content .form-wrapper > p > a:focus{
   background-color: var(--teal-accent);
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 #content .form-wrapper > p > a:visited{
