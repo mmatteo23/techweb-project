@@ -36,6 +36,17 @@
     width: 90%;
 }
 
+/*******************************************
+*               INPUT FILE
+*******************************************/
+
+
+#content form .input-wrapper #profile_img{
+    margin-top: 0.5em;
+    width: 100%;
+    background: transparent;
+    border: none;
+}
 
 #content form .input-wrapper{
     margin: 0.5rem 0;
