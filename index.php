@@ -1,6 +1,7 @@
 <?php
 
 require_once('php/db.php');
+require_once('php/loadArticles.php');
 
 session_start();
 use DB\DBAccess;
@@ -12,6 +13,10 @@ $connection = $db->openDBConnection();
 $user_output = "";
 $slides = array();
 
+$limitArticles = 3;
+$articlesToLoad = 2;
+$lastArticleLoaded = 0;
+
 if($connection){
     $articles = $db->getTopArticles();
     $tags = $db->getTopArticleTags();
@@ -20,30 +25,8 @@ if($connection){
         $CarouselTags = $db->getCarouselTags($MostLiked);
     $db->closeDBConnection();   //ho finito di usare il db quindi chiudo la connessione
     if($articles){
-        foreach($articles as $art){
-            $user_output .= 
-                '<a class="card-article-link" href="article.php?id='.$art['id'].'">
-                <article>
-                    <div class="card-article-image">
-                        <img src="images/article_covers/'.$art['cover_img'].'"/>
-                    </div>
-                    <div class="card-article-info">
-                        <h3>'.$art['title'].'</h3>
-                        <h4>'.$art['subtitle'].'</h4>
-                        <p>'.$art['publication_date'].'</p>';
-            if($tags){
-                $user_output .= '<ul id="card-article-tags" class="tag-list">';
-                foreach($tags as $tag){
-                    if($tag['article_id']==$art['id']){
-                        $user_output .= '<li class="tag">'.$tag['name'].'</li>';
-                    }
-                }
-                $user_output .= '</ul>';
-            }   
-            $user_output .= '</div>
-            </article>
-            </a>';
-        }
+        $user_output = loadArticles($articles, $tags, 0, $limitArticles);
+        $lastArticleLoaded = $limitArticles;
     }
     if($MostLiked){
         foreach($MostLiked as $art){
@@ -109,9 +92,12 @@ if(count($slides)>0){
     }
     $carousel .= '</div></div>';
 }
+
+$loadMoreArticles='<button type="button" onClick=loadMore()>More Articles</button>';
+
 $htmlPage = str_replace("<carousel/>", $carousel, $htmlPage);
-//str_replace finale col conenuto specifico della pagina
 $htmlPage = str_replace("<AllArticles/>", $user_output, $htmlPage);
+$htmlPage = str_replace("<loadMoreArticles/>", $loadMoreArticles, $htmlPage);
 
 echo $htmlPage;
 
