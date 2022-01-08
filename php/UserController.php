@@ -30,17 +30,7 @@ function update(string $username, string $firstname, string $lastname, string $e
 
         $errors = validateUserData($connection_manager, $username, $firstname, $lastname, $email, $password, $rep_password, FALSE);
         if(!$errors){
-            // if the username is valid
-
-            // Image check
-            /*
-            if(!empty($image)){
-                $tmpName = $_FILES['profile_img']['tmp_name'];
-                $uploadPath = "../images/user_profiles/";
-                move_uploaded_file($tmpName, $uploadPath.$image);
-            }
-            */
-            //echo $image;
+            
             $result = $connection_manager->updateUserInfo($username, $firstname, $lastname, $email, $password, $profile_img);
             
             return $result;

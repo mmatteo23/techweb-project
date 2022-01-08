@@ -114,9 +114,11 @@ class DBAccess {
 
 	public function updateUserInfo($username, $firstname, $lastname, $email, $password, $image){
 		$updateQuery = "UPDATE Person
-		SET	firstName='$firstname', lastName='$lastname', email='$email', password='$password', profile_img='$image'
-		WHERE username='$username'";
-
+		SET	firstName='$firstname', lastName='$lastname', email='$email', password='$password'";
+		if($image){
+			$updateQuery .= ", profile_img='$image'";
+		}
+		$updateQuery .= "WHERE username='$username'";
 		$queryResult = mysqli_query($this->connection, $updateQuery) or die("There is an error with our servers, please try again or contact us.");
 		return $queryResult;
 	}
