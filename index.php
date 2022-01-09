@@ -13,20 +13,25 @@ $connection = $db->openDBConnection();
 $user_output = "";
 $slides = array();
 
-$limitArticles = 4;
-$articlesToLoad = 3;
+$limitArticles = 5;
+$articlesToLoad = 5;
 $lastArticleLoaded = 0;
 
 if($connection){
-    $articles = $db->getTopArticles();
-    $tags = $db->getTopArticleTags();
+    $nArticles=5;
+    if(isset($_COOKIE['lastArticleLoaded'])){
+        $nArticles = $_COOKIE['lastArticleLoaded'] + $articlesToLoad;
+    }
+    $articles = $db->getTopArticles($nArticles);
+    $nArticles = count($articles);                       //anche se il LIMIT della query è nArticles potrebbero essercene di meno nel db
+    $tags = $db->getTopArticleTags($nArticles);
     $MostLiked = $db->getMostLikedArticles();
     if($MostLiked)
         $CarouselTags = $db->getCarouselTags($MostLiked);
     $db->closeDBConnection();   //ho finito di usare il db quindi chiudo la connessione
     if($articles){
-        $user_output = loadArticles($articles, $tags, 0, $limitArticles);
-        $lastArticleLoaded = $limitArticles;
+        $user_output = loadArticles($articles, $tags, 0, $nArticles);
+        $lastArticleLoaded = $nArticles;
     }
     if($MostLiked){
         foreach($MostLiked as $art){
@@ -93,10 +98,7 @@ if(count($slides)>0){
     $carousel .= '</div></div>';
 }
 
-$loadMoreArticles='
-    <button type="button" onClick=loadMore('.$lastArticleLoaded.','.$articlesToLoad.')>More Articles</button>
-    <loadMoreArticles/>
-';
+$loadMoreArticles='<button id="more-articles" type="button" onClick=loadMore('.$lastArticleLoaded.')>More Articles</button>';
 
 $htmlPage = str_replace("<carousel/>", $carousel, $htmlPage);
 $htmlPage = str_replace("<AllArticles/>", $user_output, $htmlPage);

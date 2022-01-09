@@ -10,7 +10,7 @@
   --shadow: #000000;
 
   --lateral-padding: 2em;
-  --content-max_width: 1280px;
+  --content-max_width: 1024px;
 }
 
 * {
@@ -497,6 +497,23 @@ a.card-article-link:visited{
   background: #000;
 }
 
+#more-articles{
+  color: var(--bg-accent);
+  background-color: #1b1b1b;
+  border: none;
+  text-decoration: underline;
+  font-size: 1.5em;
+  padding: 0.5em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+
+#more-articles:hover{
+  color:#1b1b1b;
+  background-color: var(--bg-accent);
+}
 
 /*
 ===== ARTICLE =====
