@@ -48,33 +48,12 @@ function redirect($url, $statusCode = 200)
    die();
 }
 
+function buildError(string $msg){
+    return "<li class='error'>" . $msg . "</li>";
+}
+
 function checkImageToUpload(){
     
-    $uploadOk = true;
-    
-    // check file size
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
-        echo "Sorry, your file is too large.";
-        $uploadOk = false;
-    }
-
-    // check file format
-    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
-        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-        $uploadOk = false;
-    }
-
-    // check if an image is a actual image or fake image
-    if(isset($_POST["submit"])) {
-        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-        if($check !== false) {
-            echo "File is an image - " . $check["mime"] . ".";
-            $uploadOk = 1;
-        } else {
-            echo "File is not an image.";
-            $uploadOk = 0;
-        }
-    }
 }
 
 ?>

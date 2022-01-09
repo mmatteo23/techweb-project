@@ -11,7 +11,7 @@ DecoupledEditor
 
 const editor = document.getElementById('editor');
 const form = document.getElementById('articleForm');
-const inputContent = document.getElementById('articleContent');
+const inputContent = document.getElementById('articleText');
 
 form.addEventListener('submit', e => {
     e.preventDefault();

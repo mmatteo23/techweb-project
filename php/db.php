@@ -124,10 +124,17 @@ class DBAccess {
 	}
 
 	public function executeQuery(string $query){
-		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
-		if(mysqli_num_rows($queryResults)==0){
-			return null;
+		$queryResults = mysqli_query($this->connection, $query) or die("Query failed. Error: " . mysqli_error($this->connection));
+		
+		// Different query => different result to return
+		// INSERT
+		if(mysqli_insert_id($this->connection)){
+			return mysqli_insert_id($this->connection);
+		} elseif(mysqli_num_rows($queryResults)==0){	// QUERY FAILED or no results
+			return NULL;
 		}
+
+		// DEFAULT case: multiple records
 		$result = array();
 		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
 		$queryResults->free(); 
