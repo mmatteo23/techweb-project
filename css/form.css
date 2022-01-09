@@ -2,6 +2,10 @@
     --input-shadow: #41414280;
 }
 
+input[type='submit']{
+    cursor: pointer;
+}
+
 
 /**********************************************************************
 *       GENERAL FORM -> used in login, signup and edit profile
@@ -191,6 +195,7 @@
     align-items: center;    
     justify-content: space-around;
     flex-wrap: wrap;
+    gap: 2em;
 }
 
 .form-buttons input#submit-btn.action-button{
@@ -315,13 +320,13 @@ input#submit-btn.action-button:focus{
 }
   
 #undoBtn.action-button{
-    filter: grayscale(0);
+    filter: grayscale(.5);
     flex-grow: 0;
 }
   
 #undoBtn.action-button:hover,
 #undoBtn.action-button:focus{
-    filter: grayscale(.7);
+    filter: grayscale(0);
 }
   
 input#submit-btn.action-button:hover,

@@ -84,6 +84,7 @@ $oldUserData = show($_SESSION['username']);
 
 $content = "
     <div class='form-wrapper' id='profileEditForm'>
+        <h1 id='page-title'>Edit profile</h1>
             <formErrors/>
             <form action='edit_profile.php' method='POST' enctype='multipart/form-data' id='form'>
                 <div class='input-wrapper'>
