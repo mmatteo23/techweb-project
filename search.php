@@ -11,17 +11,21 @@ $db = new DBAccess();
 $connection = $db->openDBConnection();
 $user_output = "";
 $slides = array();
+$dynamicBreadcrumb="";
 
 if($connection){
     if(isset($_GET['tag']) || isset($_GET['src_text']) || isset($_GET['game'])){
         if(isset($_GET['src_text'])){
             $articles = $db->getSearchRelatedArticles($_GET['src_text']);
+            $dynamicBreadcrumb=': articles containing "'.$_GET['src_text'].'"';
         }
         else if(isset($_GET['tag'])){
             $articles = $db->getSelectedTagArticles($_GET['tag']);
+            $dynamicBreadcrumb=': articles with tag "'.$_GET['tag'].'"';
         }
         else if(isset($_GET['game'])){
             $articles = $db->getSelectedGameArticles($_GET['game']);
+            $dynamicBreadcrumb=': articles about "'.$_GET['game'].'"';
         }
         $db->closeDBConnection();   //ho finito di usare il db quindi chiudo la connessione
         if($articles){
@@ -65,6 +69,8 @@ $htmlPage = file_get_contents("html/search.html");
 require_once('php/full_sec_loader.php');
 
 //str_replace finale col conenuto specifico della pagina
+
+$htmlPage = str_replace("<DynamicBreadCrumb/>", $dynamicBreadcrumb, $htmlPage);
 $htmlPage = str_replace("<search_results/>", $user_output, $htmlPage);
 
 

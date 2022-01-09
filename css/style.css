@@ -668,7 +668,7 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
 */
 
 #aboutus-body{
-  padding: 2em 3em 2em 3em;
+  padding: 0em 3em 2em 3em;
 }
 
 #aboutus-body h2{
@@ -678,18 +678,45 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
 
 #aboutus-body h3{
   font-size: 3rem;
-  padding-top: 1em;
+  padding-top: 0.5em;
   color: var(--teal-accent);
+}
+
+#aboutus-body p span{
+  color:var(--bg-accent);
+}
+
+#aboutus-body a{
+  display: inline-block;
+  color: white;
+  padding: 0 0.5em;
+  background-color: #1900ff94;
+  transition: all 0.3s ease-out;
+  border-radius: 0.5em;
+}
+#aboutus-body a:visited{
+  background-color: var(--fucsia-accent);
+}
+
+#aboutus-body a:hover{
+  background-color: var(--bg-accent);
+  color:var(--bg);
+}
+
+#aboutus-body ul{
+  display: flex;
+  flex-wrap: wrap;
 }
 
 #aboutus-body li{
   list-style: none;
   padding-left: 1em;
+  padding-right: 2em;
   text-indent: -1em;
 }
 
 #aboutus-body li::before{
-  content: "+";
+  content: "☀";
   padding-right: 5px;
   color: var(--teal-accent);
 }
