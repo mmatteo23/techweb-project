@@ -16,6 +16,7 @@ if($userData){
             <li>Email: " . $userData['email'] . "</li>
             <li>Level: " . $userData['role'] . "</li>
             <li>Subscription Date: " . $userData['subscription_date'] . "</li>
+            <li><a href='edit_profile.php'>Edit</a></li>
         </ul>";
 }
 

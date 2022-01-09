@@ -51,6 +51,7 @@
     width: 100%;
     background: transparent;
     border: none;
+    color: black;
 }
 
 #content form .input-wrapper{

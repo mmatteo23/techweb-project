@@ -1,0 +1,117 @@
+/*
+===== PROFILE PAGE =====
+*/
+
+#user-info{
+    display: flex;
+    flex-direction: column;
+}
+
+#user-username {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 2em;
+    padding: 1em;
+}
+
+#user-profile-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    object-fit: cover;
+    width:25em;
+    aspect-ratio: 1;
+    min-height: 10em;
+    min-width: 10em;
+    max-height: 100%;
+    max-width: 100%;
+    border: 0.5em solid #00FFF8;
+    border-radius: 100%;
+}  
+
+
+#user-info .logout a:link{
+    color: var(white);
+}
+
+.logout{
+    /* display: inline-block; */
+    text-align: right;
+    margin-top: 3em;
+}
+
+#user-info h3{
+    margin-top:3em;
+    margin-left: 1.5em;
+}
+
+.action-buttons{
+    margin-top: 1em;
+    display:flex;
+    flex-direction: column;    
+    gap: 1em;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-buttons a,
+#user-specs li a{
+    display: block;
+    border-radius: 2em;
+    width: fit-content;
+    color: #2B064D;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 2px 2px 2px 0px var(--teal-accent);
+    padding: .4em 1.2em;
+    background-color: var(--pink-accent);    
+    width: 60%;
+    min-width: 10em;
+    transition: all 0.2s ease-in-out;
+}
+
+
+.action-buttons a:hover,
+#user-specs li a:hover,
+.action-buttons a:focus,
+#user-specs li a:focus{
+    transform: scale(.98) translate(2px, 2px);
+    box-shadow: 0px 0px 0px 0px #ffffff99;
+}
+
+.action-buttons:hover a:not(:hover){
+    filter:grayscale(.7);
+}
+
+#user-specs li a{
+    background-color: var(--purple-accent);
+    box-shadow: 2px 2px 2px 0px var(--pink-accent);
+    color: white;
+    margin: 1em auto 0;
+    padding: .2em 1.2em;
+    width: 5em;
+}
+
+@media screen and (max-height: 1500px) and (min-width: 570px){
+
+    .action-buttons{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .action-buttons a,
+    #user-specs li a{
+        width: auto;
+        flex-grow: 1;
+        max-width: 18em;
+        padding-top: 0.6em;
+        padding-bottom: 0.6em;
+    }
+
+    #user-specs li a{
+        width: 5em;
+        padding-top: 0.4em;
+        padding-bottom: 0.4em;
+    }
+}

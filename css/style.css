@@ -229,7 +229,8 @@ footer .social-links svg {
   transition: all 0.2s ease-in-out;
 }
 
-footer .social-links a:hover svg{
+footer .social-links a:hover svg,
+footer .social-links a:focus svg{
   filter: opacity(1);
   transform: scale(1.25);
 }
@@ -644,45 +645,6 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   cursor: pointer;
 }
 
-/*
-===== PROFILE PAGE =====
-*/
-
-#page-title{
-  font-size: 3rem;
-  text-transform: uppercase;
-  color: var(--fucsia-accent)
-}
-
-#user-info{
-  display: flex;
-  flex-direction: column;
-  padding: 2em 4em 7.5em;
-}
-
-#user-username {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 2em;
-  padding: 1em;
-}
-
-#user-profile-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 1em;
-  object-fit: cover;
-  width:25em;
-  aspect-ratio: 1;
-  min-height: 10em;
-  min-width: 10em;
-  max-height: 100%;
-  max-width: 100%;
-  border: 0.5em solid #00FFF8;
-  border-radius: 100%;
-}
 
 /*
 ===== ABOUT US =====
@@ -730,7 +692,7 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   bottom: 0;
   z-index: 100;
   width: 100%;
-  left: 0;
+  height: 6vh;
 }
 
 #src-bar-wrapper{
@@ -931,6 +893,7 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
     flex-direction: column;
     position: sticky;
     top: 0;
+    height: auto;
   }
 
   #src-bar{

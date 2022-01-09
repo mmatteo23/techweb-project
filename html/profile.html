@@ -9,6 +9,7 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/profile.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script defer src="js/search.js"></script>
@@ -25,12 +26,13 @@
         <div id="user-info">
             <h1 id="page-title">Your Profile</h1>
             <userInfo/>
-            <div class="commandsLine">
-                <a href="edit_profile.php">Edit</a> |
-                <a href="write_article.php">Write article</a> |
-                <a href="php/logout.php">Logout</a>
-
+            <h3>Other actions available for your role:</h3>
+            <div class="action-buttons">
+                <a href="write_article.php">Write article</a>
+                <a href="article_status.php">Check the status of my articles</a>
+                <a href="#.php">Approve articles</a>
             </div>
+            <a class="logout" href="php/logout.php">Logout</a>
             
             <!--<button class="btn-std" onclick="loadTextBox()" id="editBtn">Edit profile</button>-->
         </div> 
