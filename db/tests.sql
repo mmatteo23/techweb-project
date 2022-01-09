@@ -1,3 +1,1 @@
-SELECT Article.id, title, subtitle, publication_date, cover_img FROM Article 
-JOIN article_tags ON id=article_id
-JOIN Tag on Tag.id = tag_id
+SELECT game_id, Genre.name FROM (game_genre JOIN HotGames ON game_id = id) JOIN Genre on genre_id=Genre.id

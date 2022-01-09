@@ -1,6 +1,7 @@
 <?php
 
 namespace DB;
+use \Datetime;
 
 class DBAccess {
 	private const USER = 'root';
@@ -193,7 +194,9 @@ class DBAccess {
 	}
 
 	public function getMostLikedArticles(){
-		$query = "SELECT id, title, subtitle, publication_date, cover_img, COUNT(*) AS numLikes FROM Article JOIN liked_articles ON id=article_id GROUP BY id ORDER BY COUNT(*) DESC LIMIT 4";
+		$today = new DateTime(date("Y-m-d"));
+		$oneMonthAgo = ($today->modify('-1 month'))->format("Y-m-d");
+		$query = "SELECT id, title, subtitle, publication_date, cover_img, COUNT(*) AS numLikes FROM Article JOIN liked_articles ON id=article_id WHERE publication_date>'$oneMonthAgo' GROUP BY id ORDER BY COUNT(*) DESC LIMIT 4";
 		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
 		if(mysqli_num_rows($queryResults)==0){
 			return null;
@@ -348,6 +351,27 @@ class DBAccess {
 		$query = "SELECT username FROM saved_articles WHERE article_id=$article_id AND username=\"$username\"";
 		$result = $this->executeQuery($query);
 		return $username == $result[0]['username'];
+	}
+
+	public function getHotGames() {
+		$today = new DateTime(date("Y-m-d"));
+		$oneMonthAgo = ($today->modify('-1 month'))->format("Y-m-d");
+		$query1 = "CREATE OR REPLACE VIEW HotGames AS (
+			SELECT Game.id as id, Game.name as name, Game.game_img as img, COUNT(*) AS numLikes 
+			FROM ((liked_articles JOIN Article on article_id=id) JOIN article_games ON liked_articles.article_id=article_games.article_id)
+			JOIN Game on game_id = Game.id
+			WHERE publication_date>'$oneMonthAgo' GROUP BY game_id ORDER BY COUNT(*) DESC LIMIT 4
+		);";
+		mysqli_query($this->connection, $query1);
+		$query2 = "SELECT * FROM HotGames";
+		$result = $this->executeQuery($query2);
+		return $result;
+	}
+
+	public function getHotGamesTags() {
+		$query = "SELECT game_id, Genre.name FROM (game_genre JOIN HotGames ON game_id = id) JOIN Genre on genre_id=Genre.id";
+		$result = $this->executeQuery($query);
+		return $result;
 	}
 }
 

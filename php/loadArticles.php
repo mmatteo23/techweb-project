@@ -1,6 +1,9 @@
 <?php
 
 function loadArticles($articles, $tags, int $from, int $to) {
+    $user_output .= '
+        <div id="latest-articles">
+            <h1 class="subtitle">Latest articles</h1>';
     foreach(array_slice($articles, $from, $to) as $art){
         $user_output .= 
             '<a class="card-article-link" href="article.php?id='.$art['id'].'">

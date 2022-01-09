@@ -1262,6 +1262,10 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   text-align: center;
 }
 
+#latest-articles h1 {
+  margin-top: 0.66em;
+}
+
 /**********************************
  *      GAMES CLASSES
  *********************************/
@@ -1271,7 +1275,6 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
 }
 
 h1{
-  margin-top: .66em;
   margin-bottom: .66em;
 }
 
