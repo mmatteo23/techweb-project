@@ -178,20 +178,3 @@
 p.error{
     margin-bottom: 1.3em;
 }
-
-@keyframes popdown {
-    0%{
-        transform: translateY(-100%);
-    }
-    100%{
-        transform: translateY(0);
-    }    
-}
-
-
-@media screen and (min-width: 570px){
-    #content .form-wrapper{
-        max-width: 724px;
-        animation: popdown ease-out normal forwards 0.75s 1;
-    }
-}

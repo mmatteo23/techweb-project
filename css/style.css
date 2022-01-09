@@ -1201,6 +1201,14 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   .favorites-content{
     padding: 0 var(--lateral-padding);
   }
+
+  a.action-button{
+    width: auto;
+    flex-grow: 1;
+    max-width: 18em;
+    padding-top: 0.6em;
+    padding-bottom: 0.6em;
+  }
 }
 
 
@@ -1396,3 +1404,41 @@ h1{
   text-shadow: 2px 2px 3px black;
 }
 
+
+
+
+/**********************************
+ *      BUTTON CLASSES
+ *********************************/
+
+
+.action-buttons{
+  margin-top: 1em;
+  display:flex;
+  flex-direction: column;    
+  gap: 1em;
+  align-items: center;
+  justify-content: center;
+}
+
+a.action-button{
+  display: block;
+  border-radius: 2em;
+  width: fit-content;
+  color: #2B064D;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 2px 2px 2px 0px var(--teal-accent);
+  padding: .4em 1.2em;
+  background-color: var(--pink-accent);    
+  width: 60%;
+  min-width: 10em;
+  transition: all 0.2s ease-in-out;
+}
+
+
+a.action-button:hover,
+a.action-button:focus{
+  transform: scale(.98) translate(2px, 2px);
+  box-shadow: 0px 0px 0px 0px #ffffff99;
+}

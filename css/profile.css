@@ -47,40 +47,6 @@
     margin-left: 1.5em;
 }
 
-.action-buttons{
-    margin-top: 1em;
-    display:flex;
-    flex-direction: column;    
-    gap: 1em;
-    align-items: center;
-    justify-content: center;
-}
-
-.action-buttons a.action-button,
-#user-specs a.action-button{
-    display: block;
-    border-radius: 2em;
-    width: fit-content;
-    color: #2B064D;
-    text-decoration: none;
-    text-align: center;
-    box-shadow: 2px 2px 2px 0px var(--teal-accent);
-    padding: .4em 1.2em;
-    background-color: var(--pink-accent);    
-    width: 60%;
-    min-width: 10em;
-    transition: all 0.2s ease-in-out;
-}
-
-
-.action-buttons a.action-button:hover,
-.action-buttons a.action-button:focus,
-#user-specs a.action-button:hover,
-#user-specs a.action-button:focus{
-    transform: scale(.98) translate(2px, 2px);
-    box-shadow: 0px 0px 0px 0px #ffffff99;
-}
-
 .action-buttons:hover a:not(:hover){
     filter:grayscale(.7);
 }
@@ -99,14 +65,6 @@
     .action-buttons{
         flex-direction: row;
         flex-wrap: wrap;
-    }
-    .action-buttons a.action-button,
-    #user-specs a.action-button{
-        width: auto;
-        flex-grow: 1;
-        max-width: 18em;
-        padding-top: 0.6em;
-        padding-bottom: 0.6em;
     }
 
     #user-specs a.action-button{
