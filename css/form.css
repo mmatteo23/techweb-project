@@ -80,7 +80,7 @@
     border-radius: 5em;
     width: 80%;
     max-width: 550px;
-    background-color: #f7f7f7;
+    background-color: #fafafa;
     border: 1px solid transparent;
     margin: 0 auto;
     transition: all 0.3s ease-out;
@@ -180,12 +180,22 @@
     max-width: 100%;
 }
 
-#content form#articleForm input:hover,
-#content form#articleForm input:focus{
-    background-color: white;
-    border-color: white;
+#content form#articleForm label{
+    color: white;
 }
 
+
+.form-buttons{
+    width: 100%;
+    display: flex;
+    align-items: center;    
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.form-buttons input#submit-btn.action-button{
+    margin: 0;
+}
 
 
   /**********************************
@@ -236,6 +246,9 @@ p.error{
     align-items: center;
     justify-content: center;
 }
+*.action-button{
+    height: 2.3em;
+}
   
 a.action-button,
 input#submit-btn.action-button{
@@ -247,7 +260,7 @@ input#submit-btn.action-button{
     text-align: center;
     padding: .4em 1.2em;
     background-color: var(--pink-accent);    
-    min-width: 10em;
+    min-width: 7em;
     transition: all 0.2s ease-in-out;
     border: none;
     font-size: 1.25em;
@@ -303,6 +316,7 @@ input#submit-btn.action-button:focus{
   
 #undoBtn.action-button{
     filter: grayscale(0);
+    flex-grow: 0;
 }
   
 #undoBtn.action-button:hover,

@@ -1388,3 +1388,10 @@ h1{
   background-color:var(--fucsia-accent);
   text-shadow: 2px 2px 3px black;
 }
+
+
+#editor{
+  background-color: #FAFAFA;
+  color: black;
+  min-height: 15em;
+}
