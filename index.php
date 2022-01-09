@@ -2,6 +2,7 @@
 
 require_once('php/db.php');
 require_once('php/loadArticles.php');
+require_once('php/HomeController.php');
 
 session_start();
 use DB\DBAccess;
@@ -13,12 +14,11 @@ $connection = $db->openDBConnection();
 $user_output = "";
 $slides = array();
 
-$limitArticles = 5;
 $articlesToLoad = 5;
 $lastArticleLoaded = 0;
 
 if($connection){
-    $nArticles=5;
+    $nArticles=10;
     if(isset($_COOKIE['lastArticleLoaded'])){
         $nArticles = $_COOKIE['lastArticleLoaded'] + $articlesToLoad;
     }
@@ -28,8 +28,6 @@ if($connection){
     $tags = $db->getTopArticleTags($nArticles);
     $MostLiked = $db->getMostLikedArticles();
     $HotGames = $db->getHotGames();
-    if ($HotGames) 
-        $HotGamesTags = $db->getHotGamesTags();
     if($MostLiked)
         $CarouselTags = $db->getCarouselTags($MostLiked);
     $db->closeDBConnection();   //ho finito di usare il db quindi chiudo la connessione
@@ -72,21 +70,8 @@ if($connection){
             $HotGamesHTML .= '<li class="card" id="'.$game['name'].'">
             <a href="search.php?game='.urlencode($game['name']).'"><img src="/images/games/' . $game['img'] . '" alt="' . $game['name'] . ' cover" class="card-img"></a>
             <div class="card-content">
-                <h2 class="card-title"><a href="search.php?game='.urlencode($game['name']).'" class="card-title-link">' . $game['name'] . '</a></h2>
-                    <ul class="tag-list">';
-                $x = 0;
-                $game_tag = $HotGamesTags[$x];
-                $found = false;
-                while(($found == false) or ($game_tag['game_id'] == $game['id'])){
-                    if($game_tag['game_id'] == $game['id']) {
-                        $found = true;
-                        $HotGamesHTML .= '<li class="tag"><a href="search.php?tag='.urlencode($game_tag['name']).'">'. $game_tag['name'] .'</a></li>';
-                    }
-                    $x++;
-                    $game_tag = $HotGamesTags[$x];                        
-                }
-                $HotGamesHTML .= '</ul>
-                            </div>
+                <h2 class="card-title"><a href="search.php?game='.urlencode($game['name']).'" class="card-title-link">' . $game['name'] . '</a></h2>';
+                $HotGamesHTML .= '</div>
                         </li>';
         }
     }
@@ -124,14 +109,19 @@ if(count($slides)>0){
             $i++;
         }
     }
-    $carousel .= '</div></div>';
+    $carousel .= '
+        </div>
+        <div id="hot-games">
+            <h1 class="subtitle">Hot Games</h1>
+            <ul class="game-list" id="game-list">'.$HotGamesHTML.'</ul>
+        </div>
+        </div>';
 }
 
 $user_output.='<button id="more-articles" type="button" onClick=loadMore('.$lastArticleLoaded.')>More Articles</button></div>';
 
 $htmlPage = str_replace("<carousel/>", $carousel, $htmlPage);
 $htmlPage = str_replace("<AllArticles/>", $user_output, $htmlPage);
-$htmlPage = str_replace("<content/>", $HotGamesHTML, $htmlPage);
 
 echo $htmlPage;
 

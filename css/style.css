@@ -307,17 +307,26 @@ a:visited{
   height: 8em;
   width: auto;
   overflow: hidden;
+  position: relative;
 }
 
 .card-article-image img{
-  max-width: 100%;
   height: auto;
-  margin: -2.5em 0 0 0;
+  margin: 0 0 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:100%;
+  transform: translateY(-20%);
+  transform-origin: 50% 150%;
 }
 
 .slides .card-article-info{
   background-color: #dcdcdc;  
 
+}
+#hot-games{
+  display: none;
 }
 
 .card-article-info{
@@ -340,7 +349,9 @@ a:visited{
           line-clamp: 2; 
   -webkit-box-orient: vertical;
 }
-
+.slides .card-article-info{
+  min-height: 10em;
+}
 .slides .card-article-info p{
   color: #1b1b1b;
 }
@@ -373,7 +384,7 @@ a.card-article-link article {
 
 a.card-article-link:hover .card-article-image img{
   transform: scale(1.2);
-  transition: transform .6s;   
+  transition: transform .6s; 
 }
 
 a.card-article-link .card-article-image img{
@@ -514,6 +525,7 @@ a.card-article-link:visited{
   color:#1b1b1b;
   background-color: var(--bg-accent);
 }
+
 
 /*
 ===== ARTICLE =====
@@ -915,7 +927,6 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
 .navbar #navbar-logo{
   display: none;
 }
-
 
 .private_area_content,
 .error-content,

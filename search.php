@@ -29,6 +29,7 @@ if($connection){
         }
         $db->closeDBConnection();   //ho finito di usare il db quindi chiudo la connessione
         if($articles){
+            $user_output .= '<div id="search-results">';
             foreach($articles as $art){
                 $user_output .= 
                     '<a class="card-article-link" href="article.php?id='.$art['id'].'">
@@ -52,7 +53,8 @@ if($connection){
                 $user_output .= '</div>
                 </article>
                 </a>';
-            }        
+            }      
+            $user_output .= "</div>";  
         }else{
             $user_output .= "<p>Your search doesn't correspond to any article in our database, try changing your search request!</p>";
         }

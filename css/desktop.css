@@ -1,4 +1,5 @@
 @media only screen and (max-height: 1500px) and (min-width: 570px){
+
     :root{
       --lateral-padding: 4em;
     }
@@ -282,18 +283,7 @@
     .favorites-content{
       padding: 0 var(--lateral-padding);
     }
-
-
-
-/**********************************
-    *       HOME CSS
-    *********************************/
-
-
-
-
-
-    #content {
+    .home-content {
         display: flex;
         flex-direction: row-reverse;
     }
@@ -329,6 +319,7 @@
     }
 
     .slides {
+        margin-bottom: 2em;
         display: block;
     }
 
@@ -349,5 +340,33 @@
         margin-bottom: 0.3em;
     }
 
+    #hot-games{
+        display: block;
+    }
+
+    #hot-games .card-content .card-title a{
+        font-size: 0.7em;
+        white-space: normal;
+    }
+
+    #hot-games .game-list{
+        row-gap: 0;
+    }
+
+    #search-results {
+        display: flex;
+        margin:0 1.5em;   
+        flex-wrap: wrap;
+    }
+    #search-results .card-article-info{
+        min-height: 9em;
+    }
+
+    #search-results a:nth-child(2n){
+        margin-left:5%;
+    }
+
+    #search-results a{
+        width: 47%;  
+    }
 }
-  

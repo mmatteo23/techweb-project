@@ -142,33 +142,6 @@ class DBAccess {
 		return $result;
 	}
 
-	public function getTopArticles(int $nArt){
-		//da Mettere WHERE is_approved e non !is_approved
-		$query = "SELECT id, title, subtitle, publication_date, cover_img FROM Article WHERE !is_approved ORDER BY publication_date DESC LIMIT ".$nArt;   
-		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
-		if(mysqli_num_rows($queryResults)==0){
-			return null;
-		}
-		$result = array();
-		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
-		$queryResults->free();
-		return $result;
-	}
-
-	public function getTopArticleTags(int $nArt){
-		$query1 = "CREATE OR REPLACE VIEW topArticles AS (SELECT id FROM Article WHERE !is_approved ORDER BY publication_date DESC LIMIT ".$nArt.")";
-		$query2 = "SELECT article_id, tag_id, name FROM (article_tags JOIN topArticles ON article_id=topArticles.id) JOIN Tag ON tag_id=Tag.id";   
-		mysqli_query($this->connection, $query1);
-		$queryResults = mysqli_query($this->connection, $query2) or die("Non è stato possibile recuperare  i dati");
-		if(mysqli_num_rows($queryResults)==0){
-			return null;
-		}
-		$result = array();
-		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
-		$queryResults->free();
-		return $result;
-	}
-
 	public function getFavArticles($user){		
 		$query = "SELECT id, title, subtitle, publication_date, cover_img FROM Article JOIN saved_articles ON id=article_id WHERE username= '$user' ORDER BY publication_date DESC";   
 		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
@@ -190,28 +163,6 @@ class DBAccess {
 		$result = array();
 		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
 		$queryResults->free(); 
-		return $result;
-	}
-
-	public function getMostLikedArticles(){
-		$today = new DateTime(date("Y-m-d"));
-		$oneMonthAgo = ($today->modify('-1 month'))->format("Y-m-d");
-		$query = "SELECT id, title, subtitle, publication_date, cover_img, COUNT(*) AS numLikes FROM Article JOIN liked_articles ON id=article_id WHERE publication_date>'$oneMonthAgo' GROUP BY id ORDER BY COUNT(*) DESC LIMIT 4";
-		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
-		if(mysqli_num_rows($queryResults)==0){
-			return null;
-		}
-		$result = array();
-		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
-		$queryResults->free(); 
-		return $result;
-	}
-
-	public function getCarouselTags($articles){
-		$result = array();
-		foreach($articles as $art){
-			$result[$art['id']]=$this->executeQuery('SELECT name FROM Tag JOIN article_tags ON Tag.id = tag_id WHERE article_id = '.$art['id']);
-		}
 		return $result;
 	}
 
@@ -353,24 +304,71 @@ class DBAccess {
 		return $username == $result[0]['username'];
 	}
 
-	public function getHotGames() {
-		$today = new DateTime(date("Y-m-d"));
-		$oneMonthAgo = ($today->modify('-1 month'))->format("Y-m-d");
-		$query1 = "CREATE OR REPLACE VIEW HotGames AS (
-			SELECT Game.id as id, Game.name as name, Game.game_img as img, COUNT(*) AS numLikes 
-			FROM ((liked_articles JOIN Article on article_id=id) JOIN article_games ON liked_articles.article_id=article_games.article_id)
-			JOIN Game on game_id = Game.id
-			WHERE publication_date>'$oneMonthAgo' GROUP BY game_id ORDER BY COUNT(*) DESC LIMIT 4
-		);";
+
+	/**************************************************************
+	 * 
+	 * 						HOME MANAGEMENT
+	 * 
+	 **************************************************************/
+
+
+	public function getTopArticles(int $nArt){
+        //da Mettere WHERE is_approved e non !is_approved
+        $query = "SELECT id, title, subtitle, publication_date, cover_img FROM Article WHERE !is_approved ORDER BY publication_date DESC LIMIT ".$nArt;   
+        $queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
+        if(mysqli_num_rows($queryResults)==0){
+            return null;
+        }
+        $result = array();
+        while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
+        $queryResults->free();
+        return $result;
+    }
+
+	public function getTopArticleTags(int $nArt){
+		$query1 = "CREATE OR REPLACE VIEW topArticles AS (SELECT id FROM Article WHERE !is_approved ORDER BY publication_date DESC LIMIT ".$nArt.")";
+		$query2 = "SELECT article_id, tag_id, name FROM (article_tags JOIN topArticles ON article_id=topArticles.id) JOIN Tag ON tag_id=Tag.id";   
 		mysqli_query($this->connection, $query1);
-		$query2 = "SELECT * FROM HotGames";
-		$result = $this->executeQuery($query2);
+		$queryResults = mysqli_query($this->connection, $query2) or die("Non è stato possibile recuperare  i dati");
+		if(mysqli_num_rows($queryResults)==0){
+			return null;
+		}
+		$result = array();
+		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
+		$queryResults->free();
 		return $result;
 	}
 
-	public function getHotGamesTags() {
-		$query = "SELECT game_id, Genre.name FROM (game_genre JOIN HotGames ON game_id = id) JOIN Genre on genre_id=Genre.id";
-		$result = $this->executeQuery($query);
+	public function getMostLikedArticles(){
+		$today = new DateTime(date("Y-m-d"));
+		$oneMonthAgo = ($today->modify('-1 month'))->format("Y-m-d");
+		$query = "SELECT id, title, subtitle, publication_date, cover_img, COUNT(*) AS numLikes FROM Article JOIN liked_articles ON id=article_id WHERE publication_date>'$oneMonthAgo' GROUP BY id ORDER BY COUNT(*) DESC LIMIT 4";
+		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
+		if(mysqli_num_rows($queryResults)==0){
+			return null;
+		}
+		$result = array();
+		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
+		$queryResults->free(); 
+		return $result;
+	}
+
+	public function getCarouselTags($articles){
+		$result = array();
+		foreach($articles as $art){
+			$result[$art['id']]=$this->executeQuery('SELECT name FROM Tag JOIN article_tags ON Tag.id = tag_id WHERE article_id = '.$art['id']);
+		}
+		return $result;
+	}
+
+	public function getHotGames() {
+		$today = new DateTime(date("Y-m-d"));
+		$oneMonthAgo = ($today->modify('-1 month'))->format("Y-m-d");
+		$query2 = "SELECT Game.id as id, Game.name as name, Game.game_img as img, COUNT(*) AS numLikes 
+		FROM ((liked_articles JOIN Article on article_id=id) JOIN article_games ON liked_articles.article_id=article_games.article_id)
+		JOIN Game on game_id = Game.id
+		WHERE publication_date>'$oneMonthAgo' GROUP BY game_id ORDER BY COUNT(*) DESC LIMIT 4";
+		$result = $this->executeQuery($query2);
 		return $result;
 	}
 }
