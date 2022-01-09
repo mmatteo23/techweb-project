@@ -9,7 +9,7 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/write-article.css">
+    <link rel="stylesheet" type="text/css" href="css/form.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script defer src="js/search.js"></script>
@@ -31,6 +31,7 @@
 
         <form method="POST" action="write_article.php" id="articleForm" enctype='multipart/form-data'>
             <div class='input-wrapper'>
+                <label for="cover">Article Cover</label>
                 <input type="file" name="cover" id="cover">
                 <p class='error'></p>
             </div>
@@ -60,7 +61,10 @@
                 </div>
                 <p class='error'></p>
             </div>
-            <input type="submit" value="Post article">
+            <div class="form-buttons">
+                <a href="../profile.php" id="undoBtn" class="action-button">Discard</a>
+                <input id="submit-btn" class="action-button" type="submit" value="Post article">
+            </div>
         </form>
     </main>
 

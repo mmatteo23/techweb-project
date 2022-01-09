@@ -1,0 +1,406 @@
+:root{
+    --input-shadow: #41414280;
+}
+
+
+/**********************************************************************
+*       GENERAL FORM -> used in login, signup and edit profile
+**********************************************************************/
+
+#content.form-content{
+    margin: 0;
+}
+
+#content .form-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+    width: 100%;
+    margin: 0 auto 4em; 
+    padding: 2em 0 4em;   
+    background-color: var(--bg-accent);
+    /*background-image: linear-gradient(to bottom, var(--bg-accent), var(--fucsia-accent));   old background, much cooler but not good for color contrast with text*/
+    border-radius: 0 0 2em 2em;
+    box-shadow: 0px 2px 8px 0px #000000af;
+    position: relative;
+}
+
+#content .form-wrapper h1{
+    color: #000000b4;
+    font-size: 3em;
+}
+
+#content .form-wrapper h1::before,
+#content .form-wrapper h1::after{
+    content: '-'
+}
+
+#content form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 80vw;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/*******************************************
+*               INPUT FILE
+*******************************************/
+
+
+#content form .input-wrapper #profile_img{
+    margin-top: 0.5em;
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: black;
+}
+
+#content form .input-wrapper{
+    margin: 0.5rem 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#content form label{
+    display: block;
+    font-size: 1em;
+    text-transform: uppercase;
+    text-align: center;
+    color: black;
+}
+
+#content form input{
+    font-size: 1.5em;
+    padding: 0.5em 1em;
+    border-radius: 5em;
+    width: 80%;
+    max-width: 550px;
+    background-color: #f7f7f7;
+    border: 1px solid transparent;
+    margin: 0 auto;
+    transition: all 0.3s ease-out;
+    box-shadow: 2px 2px 4px 0 var(--input-shadow);
+}
+
+#content form input::placeholder{
+    font-style: italic;
+}
+
+#content form input:hover,
+#content form input:focus{
+    background-color: var(--teal-accent);
+    border-color: var(--teal-accent);
+    outline: none;
+    width: 100%;
+}
+
+#content form input[type="submit"].login-signup-btn{
+    border: 1px solid var(--pink-accent);
+    background-color: var(--pink-accent);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: .3em;
+    cursor: pointer;    
+    border: 3px solid transparent;
+    position: relative;
+}
+
+
+#content form input[type="submit"].login-signup-btn:hover,
+#content form input[type="submit"].login-signup-btn:focus{
+    background-color: var(--fucsia-accent);
+    border: 3px solid rgba(255, 255, 255, 0.699);
+    color: rgba(255, 255, 255, 1);
+    
+}
+
+#content .form-wrapper > p{
+    margin-top: 2em;
+    /* background-color: #85FFFB; */
+    padding: 0.3em 1em;
+    border-radius: 0.2em 1em;
+    color: black;
+    /* box-shadow: 2px 2px 4px 0 var(--input-shadow);     */
+}
+
+#content .form-wrapper > p > a{
+    display: inline-block;
+    color: black;
+    padding: 0 1em;
+    background-color: #ec80ff94;
+    transition: all 0.3s ease-out;
+    border-radius: 0.5em;
+    box-shadow: 1px 1px 4px 0 black;
+}
+
+
+#content .form-wrapper > p > a:hover,
+#content .form-wrapper > p > a:focus{
+  background-color: var(--teal-accent);
+  transform: scale(1.05);
+}
+
+#content .form-wrapper > p > a:visited{
+  color: black;
+}
+
+
+@keyframes popdown {
+    0%{
+        transform: translateY(-100%);
+    }
+    100%{
+        transform: translateY(0);
+    }    
+}
+
+
+/*******************************************
+*               WRITE ARTICLE FORM
+*******************************************/
+
+
+#content #articleForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 90%;
+    margin: 0 auto;
+}
+
+#content form#articleForm input:not(input[type='submit']){
+    border-radius: .2em;
+    width: 100%;
+    max-width: 100%;
+}
+
+#content form#articleForm input:hover,
+#content form#articleForm input:focus{
+    background-color: white;
+    border-color: white;
+}
+
+
+
+  /**********************************
+   *            ERROR STYLE
+   *********************************/
+
+#content .input-wrapper.success input {
+    border-color: #09c372;
+    background-color: #09c372;
+}
+  
+#content .input-wrapper.error input {
+    border-color: #ff3860;
+    background-color: #ff3860;
+}
+  
+.error-list{
+    list-style-type: none;
+    max-width: 80%;
+}
+  
+.input-wrapper .error {
+    color: #ff3860;
+    font-size: 1.1em;
+    text-align: center;
+}
+  
+.error{
+    color: #ff3860;
+    font-size: 1.1em;
+    text-align: center;
+}
+p.error{
+    margin-bottom: 1.3em;
+}
+  
+  
+  /**********************************
+   *      BUTTON CLASSES
+   *********************************/
+  
+  
+.action-buttons{
+    margin-top: 1em;
+    display:flex;
+    flex-direction: column;    
+    gap: 1em;
+    align-items: center;
+    justify-content: center;
+}
+  
+a.action-button,
+input#submit-btn.action-button{
+    display: block;
+    border-radius: 2em;
+    width: fit-content;
+    color: #2B064D;
+    text-decoration: none;
+    text-align: center;
+    padding: .4em 1.2em;
+    background-color: var(--pink-accent);    
+    min-width: 10em;
+    transition: all 0.2s ease-in-out;
+    border: none;
+    font-size: 1.25em;
+}
+  
+a.action-button{
+    box-shadow: 2px 2px 2px 0px var(--teal-accent);
+}
+input#submit-btn.action-button{
+    box-shadow: 2px 2px 2px 0px var(--pink-accent);
+}
+  
+input#submit-btn.action-button{
+    margin-top: 1em;
+    background-color: var(--purple-accent);
+    color: white
+}
+  
+  
+  /*per bottoni generali*/
+a.action-button:hover,
+a.action-button:focus,
+#user-info a.action-button:hover,
+#user-info a.action-button:focus{
+    transform: scale(.98) translate(2px, 2px);
+    box-shadow: 0px 0px 0px 0px #ffffff99;
+    border: none;
+    width: fit-content;
+  }
+  
+  /*specifico per form con link per undo e input per submit*/
+#undoBtn.action-button:hover,
+#undoBtn.action-button:focus,
+input#submit-btn.action-button:hover,
+input#submit-btn.action-button:focus{
+    transform: scale(.98) translate(2px, 2px);
+    box-shadow: 0px 0px 0px 0px #ffffff99;
+    border: none;
+    width: fit-content;
+}
+  
+#profileEditForm #undoBtn.action-button,
+#profileEditForm #submit-btn.action-button{
+    box-shadow: 2px 2px 2px 0px black;
+}
+  
+#profileEditForm #undoBtn.action-button:hover,
+#profileEditForm #undoBtn.action-button:focus,
+#profileEditForm #submit-btn.action-button:focus,
+#profileEditForm #submit-btn.action-button:hover{
+    box-shadow: 0px 0px 0px 0px black;
+}
+  
+#undoBtn.action-button{
+    filter: grayscale(0);
+}
+  
+#undoBtn.action-button:hover,
+#undoBtn.action-button:focus{
+    filter: grayscale(.7);
+}
+  
+input#submit-btn.action-button:hover,
+input#submit-btn.action-button:focus{
+    background-color: var(--purple-accent);
+}
+
+/*
+===== PROFILE PAGE =====
+*/
+
+#user-info{
+    display: flex;
+    flex-direction: column;
+}
+
+#user-username {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 2em;
+    padding: 1em;
+}
+
+#user-profile-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    object-fit: cover;
+    width:25em;
+    aspect-ratio: 1;
+    min-height: 10em;
+    min-width: 10em;
+    max-height: 100%;
+    max-width: 100%;
+    border: 0.5em solid #00FFF8;
+    border-radius: 100%;
+}  
+
+
+#user-info .logout a:link{
+    color: var(white);
+}
+
+.logout{
+    /* display: inline-block; */
+    text-align: right;
+    margin-top: 3em;
+}
+
+#user-info h3{
+    margin-top:3em;
+    margin-left: 1.5em;
+}
+
+.action-buttons:hover a:not(:hover){
+    filter:grayscale(.7);
+}
+
+#user-specs a.action-button{
+    background-color: var(--purple-accent);
+    box-shadow: 2px 2px 2px 0px var(--pink-accent);
+    color: white;
+    margin: 1em auto 0;
+    padding: .2em 1.2em;
+    width: 5em;
+}
+
+@media screen and (max-height: 1500px) and (min-width: 570px){
+
+    .action-buttons{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    #user-specs a.action-button{
+        width: 5em;
+        padding-top: 0.4em;
+        padding-bottom: 0.4em;
+    }
+}
+
+@media screen and (min-width: 570px){
+    #content .form-wrapper{
+        max-width: 724px;
+        animation: popdown ease-out normal forwards 0.75s 1;
+    }
+    a.action-button{
+        width: auto;
+        flex-grow: 1;
+        max-width: 18em;
+        padding-top: 0.6em;
+        padding-bottom: 0.6em;
+    }
+}
