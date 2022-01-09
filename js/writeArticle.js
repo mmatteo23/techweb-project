@@ -1,32 +1,16 @@
-DecoupledEditor
-    .create( document.querySelector( '#editor' ) )
-    .then( editor => {
-        const toolbarContainer = document.querySelector( '#toolbar-container' );
-
-        toolbarContainer.appendChild( editor.ui.view.toolbar.element );
-    } )
-    .catch( error => {
-        console.error( error );
-} );
-
-const editor = document.getElementById('editor');
 const form = document.getElementById('articleForm');
-const articleText = document.getElementById('articleText');
 const title = document.getElementById('title');
 const subtitle = document.getElementById('subtitle');
 const minutes = document.getElementById('minutes');
+const articleText = document.getElementById('articleText');
 
 form.addEventListener('submit', e => {
     e.preventDefault();
 
-    var content = editor.innerHTML;
-    articleText.value = content.toString();
-    
     validForm = validateInputs();
     
     if(validForm)
         form.submit()
-    
 });
 
 const setError = (element, message) => {
@@ -62,14 +46,14 @@ function validateInputs () {
         setSuccess(title)
     }
 
-    if(subtitleValue === '') {
+    if(subtitle === '') {
         setError(subtitle, 'Subtitle is required')
         validForm = false
     } else {
         setSuccess(subtitle)
     }
 
-    if(minutesValue === '') {
+    if(minutes === '') {
         setError(minutes, 'A valid minutes number is required')
         validForm = false
     } else if (!(Number.isInteger(minutes))) {
@@ -79,14 +63,14 @@ function validateInputs () {
         setSuccess(minutes)
     }
 
-    if(articleTextValue === '') {
+    if(articleText === '') {
         setError(articleText, 'A text is required')
         validForm = false
-    } else if (articleTextValue.length < 100) {
-        setError(articleText, 'Article text needs to be at least 100 characters long.')
+    } else if (articleText.length < 100) {
+        setError(password, 'Article text needs to be at least 100 characters long.')
         validForm = false
     } else {
-        setSuccess(articleText);
+        setSuccess(password);
     }
 
     return validForm

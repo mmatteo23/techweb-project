@@ -29,7 +29,7 @@
     <main id="content">
         <h1>Write article</h1>
 
-        <form method="POST" action="php/storeArticle.php" id="articleForm" enctype='multipart/form-data'>
+        <form method="POST" action="write_article.php" id="articleForm" enctype='multipart/form-data'>
             <div class='input-wrapper'>
                 <input type="file" name="cover" id="cover">
                 <p class='error'></p>
@@ -46,23 +46,21 @@
             </div>    
             <div class="input-wrapper">
                 <label for="minutes">Reading minutes</label>
-                <input type="number" name="minutes" id="minutes">
+                <input type="text" name="minutes" id="minutes">
                 <p class='error'></p>
             </div>
             <div class="input-wrapper">
                 <label>Content</label>
-                <input type="text" name="articleContent" id="articleContent">
-                <p class='error'></p>
-            </div>            
-                <div class="input-wrapper">
-                    <!-- The toolbar will be rendered in this container. -->
-                    <div id="toolbar-container"></div>
-                    <!-- This container will become the editable. -->
-                    <div id="editor">
-                        <p>This is the initial editor content.</p>
-                    </div>
+                <input type="text" name="articleText" id="articleText" hidden>         
+                <!-- The toolbar will be rendered in this container. -->
+                <div id="toolbar-container"></div>
+                <!-- This container will become the editable. -->
+                <div id="editor">
+                    <p>This is the initial editor content.</p>
                 </div>
-                <input type="submit" value="Post article" form="">
+                <p class='error'></p>
+            </div>
+            <input type="submit" value="Post article">
         </form>
     </main>
 
