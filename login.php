@@ -39,11 +39,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){     // Pulsante submit premuto
         if($isValid){  // utente trovato
             $_SESSION['username'] = $username;
         } else {    // utente non registrato o credenziali errate
-            $errors = "<ul>
-            <li>
+            $errors = "<p class='error'>
                 Your credentials are wrong!
-            </li>
-            </ul>";
+            </p>";
         }
 
     } else {

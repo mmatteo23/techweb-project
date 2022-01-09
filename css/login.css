@@ -159,10 +159,20 @@
     background-color: #ff3860;
 }
 
+.error-list{
+    list-style-type: none;
+    max-width: 80%;
+}
+
 .input-wrapper .error {
     color: #ff3860;
     font-size: 1.1em;
-    height: 1.2em;
+    text-align: center;
+}
+
+.error{
+    color: #ff3860;
+    font-size: 1.1em;
     text-align: center;
 }
 

@@ -89,37 +89,37 @@ $content = "
                 <div class='input-wrapper'>
                     <img src='images/user_profiles/" . ($oldUserData['profile_img']?$oldUserData['profile_img']:'default.png') . "' id='user-profile-img' alt='user profile image'>
                     <input type='file' id='profile_img' class='custom-file-input' name='profile_img'>
-                    <div class='error'></div>
+                    <p class='error'></p>
                 </div>
                 <div class='input-wrapper'>
                     <label for='username'>username</label>
                     <input placeholder='username' type='text' id='username' name='username' value='" . $oldUserData['username'] . "' disabled>
-                    <div class='error'></div>
+                    <p class='error'></p>
                 </div>
                 <div class='input-wrapper'>
                     <label for='firstname'>firstname</label>
                     <input placeholder='Jack' type='text' id='firstname' name='firstname' value='" . $oldUserData["firstName"] . "'>
-                    <div class='error'></div>
+                    <p class='error'></p>
                 </div>
                 <div class='input-wrapper'>
                     <label for='lastname'>lastname</label>
                     <input placeholder='Red' type='text' id='lastname' name='lastname' value='" . $oldUserData["lastName"] . "'>
-                    <div class='error'></div>
+                    <p class='error'></p>
                 </div>                
                 <div class='input-wrapper'>
                     <label for='email'>email</label>
                     <input placeholder='jackred@email.com' type='text' id='email' name='email' value='" . $oldUserData["email"] . "'>
-                    <div class='error'></div>
+                    <p class='error'></p>
                 </div>
                 <div class='input-wrapper'>
                     <label for='password'>password</label>
                     <input type='password' name='password' id='password'>
-                    <div class='error'></div>
+                    <p class='error'></p>
                 </div>
                 <div class='input-wrapper'>
                     <label for='repeated_password'>repeat password</label>
                     <input type='password' name='repeated_password' id='repeated_password'>
-                    <div class='error'></div>
+                    <p class='error'></p>
                 </div>
                 <div id='btnBlock'>
                     <a class='btn-std' href='profile.php' id='undoBtn'>Discard</a>
