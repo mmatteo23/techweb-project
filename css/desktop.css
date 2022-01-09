@@ -328,6 +328,16 @@
         max-width: 120%;
     }
 
+    .slider .game-list{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .slider .card{
+        flex: 0 0 auto;
+        width: 50%;
+    }
+
     #content .slider h3 {
         font-size: 1em;
     }

@@ -2,7 +2,6 @@
 
 require_once('php/db.php');
 require_once('php/loadArticles.php');
-require_once('php/HomeController.php');
 
 session_start();
 use DB\DBAccess;
