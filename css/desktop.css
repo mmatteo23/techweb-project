@@ -369,7 +369,7 @@
         flex-wrap: wrap;
     }
     #search-results .card-article-info{
-        min-height: 9em;
+        min-height: 11em;
     }
 
     #search-results a:nth-child(2n){

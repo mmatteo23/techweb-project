@@ -13,6 +13,7 @@ $user_output = "";
 $slides = array();
 $dynamicBreadcrumb="";
 
+
 if($connection){
     if(isset($_GET['tag']) || isset($_GET['src_text']) || isset($_GET['game'])){
         if(isset($_GET['src_text'])){
