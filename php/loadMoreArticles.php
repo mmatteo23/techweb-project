@@ -42,7 +42,7 @@ if($connection){
             </a>';
         }  
     } 
-    if(count($articles)>5){
+    if(isset($articles) && count($articles)>5){
         $lastArticleLoaded=$lastArticle+count($articles);
         $user_output.='<button class="action-button" id="more-articles" type="button" onClick=loadMore('.$lastArticleLoaded.')>Load more</button></div>';
     }

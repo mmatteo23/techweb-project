@@ -17,10 +17,7 @@ $articlesToLoad = 5;
 $lastArticleLoaded = 0;
 
 if($connection){
-    $nArticles=5;
-    if(isset($_COOKIE['lastArticleLoaded'])){
-        $nArticles = $_COOKIE['lastArticleLoaded'] + $articlesToLoad;
-    }
+    $nArticles=10;
 
     $articles = $db->getTopArticles($nArticles);
     $nArticles = count($articles);                       //anche se il LIMIT della query è nArticles potrebbero essercene di meno nel db
@@ -47,16 +44,18 @@ if($connection){
                         <h3>'.$art['title'].'</h3>
                         <h4>'.$art['subtitle'].'</h4>
                         <p>'.$art['publication_date'].'</p>';
-            $intro=true;
-            foreach($CarouselTags[$art['id']] as $tag){
-                if($intro){
-                    $HTMLSlide .= '<ul id="card-article-tags" class="tag-list">';
-                    $intro=false;
+            if($CarouselTags[$art['id']]){
+                $intro=true;
+                foreach($CarouselTags[$art['id']] as $tag){
+                    if($intro){
+                        $HTMLSlide .= '<ul id="card-article-tags" class="tag-list">';
+                        $intro=false;
+                    }
+                    $HTMLSlide .= '<li class="tag">'.$tag['name'].'</li>';
                 }
-                $HTMLSlide .= '<li class="tag">'.$tag['name'].'</li>';
+                if(!$intro)
+                    $HTMLSlide .= '</ul>';
             }
-            if(!$intro)
-                $HTMLSlide .= '</ul>';
             $HTMLSlide .= '</div>
                                 </article>
                                 </a>';
