@@ -15,9 +15,9 @@ if($conn_ok){
     $games = $connection_manager->getGames();
     $game_tags = $connection_manager->getGamesTags();
     $connection_manager->closeDBConnection();
-    if($games != null){  // there's at least one game exists
-        //echo print_r($games);
-        for($i = 0; $i < 11; $i++){
+    if($games != null){  // there's at least one game exists        
+        $num_of_games = count($games);
+        for($i = 0; $i < $num_of_games; $i++){
             $game = $games[$i];            
             $user_output .= '<li class="card" id="'.$game['name'].'">
             <a href="search.php?game='.urlencode($game['name']).'"><img src="/images/games/' . $game['game_img'] . '" alt="' . $game['name'] . ' cover" class="card-img"></a>

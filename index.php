@@ -64,6 +64,7 @@ if($connection){
         }
     }
     if($HotGames) {
+        echo count($HotGames);
         for($i = 0; $i < count($HotGames); $i++){
             $game = $HotGames[$i];            
             $HotGamesHTML .= '<li class="card" id="'.$game['name'].'">
