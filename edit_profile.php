@@ -17,7 +17,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $profile_img    = NULL;
     // ['name in form']['imported file name']
 
-        $check = getimagesize($_FILES["profile_img"]["tmp_name"]);
     $errorsImage = checkImageToUpload($profile_img);
     
     if(!$errors){
