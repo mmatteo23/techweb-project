@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $description = $_POST['description'];
     $releaseDate = $_POST['releaseDate'];
     $developer = $_POST['developer'];
+    $genres = $_POST['tags'];
     $game_img = NULL;
 
     $errorsImage = checkImageToUpload($game_img, "images/games/", "cover", $name);
@@ -53,7 +54,13 @@ $form = '
         <label for="description">Game description</label>
         <input type="text" name="description" id="description">
         <p class="error"></p>
-    </div>    
+    </div>
+    <div class="input-wrapper">
+        <label for="tags">Game genres</label>
+        <ul class="tag-list tag-container" id="article-tags">
+        </ul>
+        <input type="text" name="tags" id="tags">  
+    </div>
     <div class="input-wrapper">
         <label for="releaseDate">Release date</label>
         <input type="date" name="releaseDate" id="releaseDate">
