@@ -371,6 +371,26 @@ class DBAccess {
 		$result = $this->executeQuery($query2);
 		return $result;
 	}
+
+	public function LikeArticle($username, $id){
+		$query = 'INSERT INTO liked_articles VALUES("'.$username.'",'.$id.');';
+		mysqli_query($this->connection, $query) or die("Non è stato possibile aggiungere il like, ".$username);
+	}
+
+	public function UnlikeArticle($username, $id){
+		$query = 'DELETE FROM liked_articles WHERE username="'.$username.'" AND article_id='.$id;
+		mysqli_query($this->connection, $query) or die("Non è stato possibile togliere il like, ".$username);
+	}
+
+	public function SaveArticle($username, $id){
+		$query = 'INSERT INTO saved_articles VALUES("'.$username.'",'.$id.');';
+		mysqli_query($this->connection, $query) or die("Non è stato possibile aggiungere il preferito, ".$username);
+	}
+
+	public function UnsaveArticle($username, $id){
+		$query = 'DELETE FROM saved_articles WHERE username="'.$username.'" AND article_id='.$id;
+		mysqli_query($this->connection, $query) or die("Non è stato possibile togliere il preferito, ".$username);
+	}
 }
 
 ?>

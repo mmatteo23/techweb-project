@@ -32,7 +32,7 @@ if($connection){
                     <p id="article-author"><i class="material-icons" aria-hidden="true">person_outline</i><span>'.$articleData['author'].'</span></p>
                     <p id="article-date"><i class="material-icons" aria-hidden="true">today</i><span>'.$articleData['publication_date'].'</span></p>
                     <p id="article-read-time"><i class="material-icons" aria-hidden="true">schedule</i><span>'.$articleData['read_time'].' minutes</span></p> 
-                    <p id="article-read-time"><i class="material-icons" aria-hidden="true">favorite_border</i><span>'.$numOfLikes.' likes</span></p> 
+                    <p id="article-likes"><i class="material-icons" aria-hidden="true">favorite_border</i><span>'.$numOfLikes.' likes</span></p> 
                 </div>';
     if(count($tags)>0){
         $user_output .= '<ul id="article-tags" class="tag-list">';
@@ -64,12 +64,12 @@ if($connection){
         if ($saved) {
             $user_output .= '
             <span id="saveContainer">
-                <span type="button" id="saveBtn" onclick=SaveThisArticle("'.$username.'",'.$idArticle.','.$liked.')><span class="material-icons md-36">bookmark</span></span>
+                <span type="button" id="saveBtn" onclick=SaveThisArticle("'.$username.'",'.$idArticle.','.$saved.')><span class="material-icons md-36">bookmark</span></span>
             </span>';
         } else {
             $user_output .= '
             <span id="saveContainer">
-                <span type="button" id="saveBtn" onclick=SaveThisArticle("'.$username.'",'.$idArticle.','.$liked.')><span class="material-icons md-36">bookmark_border</span></span>
+                <span type="button" id="saveBtn" onclick=SaveThisArticle("'.$username.'",'.$idArticle.','.$saved.')><span class="material-icons md-36">bookmark_border</span></span>
             </span>';
         }       
     }

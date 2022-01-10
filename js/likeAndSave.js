@@ -36,7 +36,7 @@ async function SaveThisArticle(username, article, isSaved) {
 */
 
 // ---------------- DEBUG FUNCTION ---------------- //
-
+/*ROBA DI CASONATO
 function LikeThisArticle(username, article, isLiked) {
     console.log("PRIMA: " + isLiked);
     if (isLiked) {
@@ -67,6 +67,59 @@ function SaveThisArticle(username, article, isSaved) {
         //postData(username, article, isSaved);
     }
     console.log("DOPO: " + isSaved);
+}
+FINE ROBA DI CASONATO*/
+
+function LikeThisArticle(username, id, liked){
+    var likes=((document.getElementById("article-likes").innerHTML).split(" likes")[0]).substring(70);
+    if(liked){          //sta togliendo il like
+        liked=0;
+        document.getElementById("likeContainer").innerHTML='<span type="button" id="likeBtn" onclick=LikeThisArticle("'+username+'",'+id+','+liked+')><span class="material-icons md-36">favorite_border</span></span>';
+        likes--;
+    }
+    else{
+        liked=1;
+        document.getElementById("likeContainer").innerHTML='<span type="button" id="likeBtn" onclick=LikeThisArticle("'+username+'",'+id+','+liked+')><span class="material-icons md-36">favorite</span></span>';
+        likes++;
+    }
+    document.getElementById("article-likes").innerHTML='<i class="material-icons" aria-hidden="true">favorite_border</i><span>'+likes+' likes</span>';
+    var data = new FormData();
+    data.append("username", username);
+    data.append("articleId", id);
+    data.append("newState", liked);
+    data.append("table", "like");
+    
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "../php/change_like_or_save_state.php");
+    xhr.onload = function (){
+        console.log(this.response);
+    };
+    xhr.send(data);
+    return false;
+}
+
+function SaveThisArticle(username, id, saved){
+    if(saved){          //sta togliendo il like
+        saved=0;
+        document.getElementById("saveContainer").innerHTML='<span type="button" id="saveBtn" onclick=SaveThisArticle("'+username+'",'+id+','+saved+')><span class="material-icons md-36">bookmark_border</span></span>';
+    }
+    else{
+        saved=1;
+        document.getElementById("saveContainer").innerHTML='<span type="button" id="saveBtn" onclick=SaveThisArticle("'+username+'",'+id+','+saved+')><span class="material-icons md-36">bookmark</span></span>';
+    }
+    var data = new FormData();
+    data.append("username", username);
+    data.append("articleId", id);
+    data.append("newState", saved);
+    data.append("table", "save");
+    
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "../php/change_like_or_save_state.php");
+    xhr.onload = function (){
+        console.log(this.response);
+    };
+    xhr.send(data);
+    return false;
 }
 
 /*
