@@ -1214,3 +1214,34 @@ h1{
   color: black;
   min-height: 15em;
 }
+
+/**************************************
+ERRORs
+**************************************/
+.error-display{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.error-text{
+  width:100%;
+}
+
+.error-text li{
+  margin-left:2em;
+}
+
+.error-text a{
+  color: var(--bg-accent);
+}
+
+.error-text a:visited{
+  color: var(--fucsia-accent);
+}
+
+#imgNoDB{
+  display: none;  
+  width: 30%;
+  height: auto;
+  margin: 0 0 0 20%;  
+}

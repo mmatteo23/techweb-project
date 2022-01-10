@@ -84,7 +84,9 @@ class DBAccess {
 		$query = "SELECT * FROM Person
 				WHERE username = '$username' LIMIT 1";
 		//echo $query;
-		$queryResults = mysqli_query($this->connection, $query) or die("C'è stato un errore! " . mysqli_error($this->connection));
+		$queryResults = mysqli_query($this->connection, $query); 
+		if(!$queryResults)
+			return "ErroreDB";
 		
 		if(mysqli_num_rows($queryResults) == 0) // usare gli if in modo efficiente, la cpu elabora velocemente i branch positivi, perché in caso di ramo else deve fare il rollback di quello che ha fatto e prendere l'altro ramo => mettere in esito positivo sempre i rami che sono piú probabili!
 			return null;
@@ -286,7 +288,9 @@ class DBAccess {
 
 	public function getGames(){
 		$query = "SELECT * FROM Game ORDER BY name;";
-		$queryResults = mysqli_query($this->connection, $query) or die("C'è stato un errore! " . mysqli_error($this->connection));
+		$queryResults = mysqli_query($this->connection, $query);
+		if(!$queryResults)
+			return "ErroreDB";
 
 		if(mysqli_num_rows($queryResults) == 0) // usare gli if in modo efficiente, la cpu elabora velocemente i branch positivi, perché in caso di ramo else deve fare il rollback di quello che ha fatto e prendere l'altro ramo => mettere in esito positivo sempre i rami che sono piú probabili!
 			return null;
@@ -337,7 +341,9 @@ class DBAccess {
 	public function getTopArticles(int $nArt, int $offset = 0){
         //da Mettere WHERE is_approved e non !is_approved
         $query = "SELECT id, title, subtitle, publication_date, cover_img FROM Article WHERE !is_approved ORDER BY publication_date DESC LIMIT ".$nArt." OFFSET ".$offset;   
-        $queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
+        $queryResults = mysqli_query($this->connection, $query);
+		if(!$queryResults) 
+			return "ErroreDB";
         if(mysqli_num_rows($queryResults)==0){
             return null;
         }

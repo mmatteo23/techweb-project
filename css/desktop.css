@@ -380,4 +380,17 @@
       width: max(17em, 45%);
       flex: 1 1 auto;
     }
+
+
+      
+  .error-text{
+    width:70%;
+  }
+
+  #imgNoDB{
+    display: block;  
+    width: 30%;
+    height: auto;
+    margin: 0 0 0 0;  
+  }
 }

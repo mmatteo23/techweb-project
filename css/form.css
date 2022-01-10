@@ -396,6 +396,10 @@ input#submit-btn.action-button:focus{
     border-radius: 100%;
 }  
 
+.logout-wrapper{
+    display: flex;
+    justify-content: flex-end;
+}
 
 .logout{
     display:flex;
