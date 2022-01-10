@@ -1,4 +1,4 @@
-@media only screen and (max-height: 1500px) and (min-width: 570px){
+@media only screen and (max-height: 1500px) and (min-width: 768px){
 
     :root{
       --lateral-padding: 4em;
@@ -365,18 +365,20 @@
 
     #search-results {
         display: flex;
-        margin:0 1.5em;   
         flex-wrap: wrap;
+        gap: .75em;
     }
     #search-results .card-article-info{
         min-height: 11em;
     }
 
-    #search-results a:nth-child(2n){
-        margin-left:5%;
+    #search-results #card-article-tags{
+      position: absolute;
+      bottom:1em;
     }
 
     #search-results a{
-        width: 47%;  
+      width: max(17em, 45%);
+      flex: 1 1 auto;
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 require_once('php/db.php');
+session_start();
 use DB\DBAccess;
 
 // create a connection istance to talk with the db
