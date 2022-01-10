@@ -27,6 +27,11 @@ $htmlPage = file_get_contents("html/profile.html");
 //header footer and dynamic navbar all at once (^^^ sostituisce il commento qua sopra ^^^)
 require_once('php/full_sec_loader.php');
 
+if ($userData['role'] == 1) {
+    $adminButton = '<a href="administration.php" class="action-button">Manage site</a>';
+    $htmlPage = str_replace('<adminArea/>', $adminButton, $htmlPage);
+}
+
 echo str_replace('<userInfo/>', $content, $htmlPage);
 
 ?>

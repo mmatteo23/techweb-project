@@ -1,5 +1,6 @@
 <?php
 require_once('php/validSession.php');
+require_once("php/UserController.php");
 /*
 require_once('php/db.php');
 use DB\DBAccess;
@@ -19,6 +20,17 @@ if($conn_ok){
 $htmlPage = file_get_contents("html/private_area.html");
 
 $htmlPage = str_replace('<userName/>', $_SESSION['username'], $htmlPage);
+
+$userData = show($_SESSION['username']);
+$userRole = $userData['role'];
+
+if ($userRole == 1) {
+    $htmlAdmin = '
+        <p>SITE ADMINISTRATION <a href="administration.php">Edit site</a></p>
+    ';
+    $htmlPage = str_replace('<adminArea/>', $htmlAdmin, $htmlPage);
+}
+
 
 // // page header
 // $pageHeader = file_get_contents("html/components/header.html");
