@@ -55,8 +55,13 @@ class DBAccess {
 		}
 
 		// DEFAULT case: multiple records
+		
 		$result = array();
-		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
+		//while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
+		
+		while($row = mysqli_fetch_array($queryResults, MYSQLI_ASSOC)){
+			array_push($result, $row);
+		}
 		$queryResults->free(); 
 		return $result;
 	}

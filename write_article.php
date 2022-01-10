@@ -2,8 +2,11 @@
 
 require_once("php/validSession.php");
 require_once("php/ArticleController.php");
+require_once("php/GameController.php");
 
 $errors = '';
+
+$games = getGames(true,false,false,false,false);
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     // POST the comment in db
@@ -19,7 +22,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $isApproved         = FALSE;
     $author             = $_SESSION['username'];
 
-    $result = store($title, $subtitle, $article_text, $publication_date, NULL, $read_time, $isApproved, $author);
+    $result = storeArticle($title, $subtitle, $article_text, $publication_date, NULL, $read_time, $isApproved, $author);
     if(is_int($result)){
         header("Location: article.php?id=".$result);
     } else {
@@ -27,10 +30,25 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     }
 }
 
+if(isset($games)){
+    $selectOptions="";
+    foreach($games as $game){
+        $selectOptions .= "<option value='" . $game['id'] . "'>" . $game['name'] . "</option>";
+    }
+
+    $selectbox = "
+        <select name='game' id='game'>" .
+            $selectOptions
+        . "</select>
+    ";
+}
+
+
 // paginate the content
 // page structure
 $htmlPage = file_get_contents("html/write_article.html");
 
+$htmlPage = str_replace('<selectGame/>', $selectbox, $htmlPage);
 $htmlPage = str_replace('<formErrors/>', $errors, $htmlPage);
 
 //header footer and dynamic navbar all at once (^^^ sostituisce il commento qua sopra ^^^)

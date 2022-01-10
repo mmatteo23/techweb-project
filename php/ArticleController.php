@@ -5,7 +5,7 @@ require_once('php/db.php');
 use DB\DBAccess;
 
 
-function validator($title, $subtitle, $article_text, $publication_date, $cover_img, $read_time){
+function articleValidator($title, $subtitle, $article_text, $publication_date, $cover_img, $read_time){
     $errors = "";
 
     if($title == '')
@@ -25,14 +25,7 @@ function validator($title, $subtitle, $article_text, $publication_date, $cover_i
     return $errors;
 }
 
-function putEscapes(DBAccess $conn, string $text){
-
-    //mysqli_real_escape_string();
-    
-    return $text;
-}
-
-function store(string $title, string $subtitle, string $article_text, string $publication_date, $cover_img, string $read_time, $isApproved, string $author){
+function storeArticle(string $title, string $subtitle, string $article_text, string $publication_date, $cover_img, string $read_time, $isApproved, string $author){
     // create a connection istance to talk with the db
     $connection_manager = new DBAccess();
     $conn_ok = $connection_manager->openDBConnection();
@@ -40,7 +33,7 @@ function store(string $title, string $subtitle, string $article_text, string $pu
     if($conn_ok){
         if($connection_manager->getUserInfo($author)){      // this is a valid author
 
-            $validationErrors = validator($title, $subtitle, $article_text, $publication_date, $cover_img, $read_time);
+            $validationErrors = articleValidator($title, $subtitle, $article_text, $publication_date, $cover_img, $read_time);
             
             $title = $connection_manager->escape_string($title);
             $subtitle = $connection_manager->escape_string($subtitle);
