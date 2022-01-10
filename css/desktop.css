@@ -285,7 +285,6 @@
     }
     .home-content {
         display: flex;
-        flex-direction: row-reverse;
     }
 
     #content h1 {

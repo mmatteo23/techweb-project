@@ -117,7 +117,7 @@ if(count($slides)>0){
         </div>';
 }
 
-$user_output.='<button id="more-articles" type="button" onClick=loadMore('.$lastArticleLoaded.')>More Articles</button></div>';
+$user_output.='<button class="action-button" id="more-articles" type="button" onClick=loadMore('.$lastArticleLoaded.')>Load more</button></div>';
 
 $htmlPage = str_replace("<carousel/>", $carousel, $htmlPage);
 $htmlPage = str_replace("<AllArticles/>", $user_output, $htmlPage);
