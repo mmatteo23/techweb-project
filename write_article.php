@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     $article_img = NULL;
     $errorsImage = checkImageToUpload($article_img, "images/article_covers/", "cover", $title);
-    
+
     $author             = $_SESSION['username'];
     $game_id            = $_POST['game'];
     $tags               = $_POST['tags'];

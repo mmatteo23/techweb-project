@@ -67,7 +67,7 @@ function linkArticleTags(int $articleId, array $tags){
 
 }
 
-function storeArticle(string $title, string $subtitle, string $article_text, string $publication_date, $cover_img, string $read_time, string $author, int $game_id, string $tags){
+function storeArticle(string $title, string $subtitle, string $article_text, string $publication_date, string $cover_img, string $read_time, string $author, int $game_id, string $tags){
     // create a connection istance to talk with the db
     $connection_manager = new DBAccess();
     $conn_ok = $connection_manager->openDBConnection();
@@ -85,7 +85,7 @@ function storeArticle(string $title, string $subtitle, string $article_text, str
     
                 $insertQuery = "
                     INSERT INTO Article (title, subtitle, text, publication_date, cover_img, read_time, author)
-                    VALUES ('$title', '$subtitle', '$article_text', '$publication_date', NULL, $read_time, '$author')
+                    VALUES ('$title', '$subtitle', '$article_text', '$publication_date', '$cover_img', $read_time, '$author')
                 ";
                 
                 $articleId = $connection_manager->executeQuery($insertQuery);

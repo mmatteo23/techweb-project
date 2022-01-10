@@ -18,7 +18,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     // ['name in form']['imported file name']
 
     
-    $errorsImage = checkImageToUpload($profile_img, "images/user_profiles/", "profile_img",$_SESSION['username']);
+    $errorsImage = checkImageToUpload($profile_img, "images/user_profiles/", "profile_img", $_SESSION['username']);
     
     if(!$errors){
         $result = update($_SESSION['username'], $firstname, $lastname, $email, $password, $rep_password, $profile_img);
