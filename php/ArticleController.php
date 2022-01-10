@@ -43,7 +43,7 @@ function storeArticle(string $title, string $subtitle, string $article_text, str
     
                 $insertQuery = "
                     INSERT INTO Article (title, subtitle, text, publication_date, cover_img, read_time, is_approved, author)
-                    VALUES ('$title', '$subtitle', '$article_text', '$publication_date', NULL, $read_time, false, '$author')
+                    VALUES ('$title', '$subtitle', '$article_text', '$publication_date', '$cover_img', $read_time, false, '$author')
                 ";
     
                 $articleId = $connection_manager->executeQuery($insertQuery);

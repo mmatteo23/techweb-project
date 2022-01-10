@@ -3,6 +3,7 @@
 require_once("php/validSession.php");
 require_once("php/ArticleController.php");
 require_once("php/GameController.php");
+require_once("php/utilityFunctions.php");
 
 $errors = '';
 
@@ -16,13 +17,16 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $subtitle           = $_POST['subtitle'];
     $read_time          = $_POST['minutes'];
     $article_text       = $_POST['articleText'];
+    $article_img = NULL;
+
+    $errorsImage = checkImageToUpload($article_img);
 
     // system params for storing an article
     $publication_date   = date('Y-m-d');
     $isApproved         = FALSE;
     $author             = $_SESSION['username'];
 
-    $result = storeArticle($title, $subtitle, $article_text, $publication_date, NULL, $read_time, $isApproved, $author);
+    $result = storeArticle($title, $subtitle, $article_text, $publication_date, $article_img, $read_time, $isApproved, $author);
     if(is_int($result)){
         header("Location: article.php?id=".$result);
     } else {

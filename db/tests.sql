@@ -1,1 +1,1 @@
-SELECT game_id, Genre.name FROM (game_genre JOIN HotGames ON game_id = id) JOIN Genre on genre_id=Genre.id
+SELECT * FROM Person where username='matteocasonato' LIMIt 1
