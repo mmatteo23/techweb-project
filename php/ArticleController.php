@@ -16,13 +16,20 @@ function validator($title, $subtitle, $article_text, $publication_date, $cover_i
 
     if($article_text == '')
         $errors .= buildError('Article text is required');
-    elseif(strlen($article_text) < 100)
+    elseif(strlen(strip_tags($article_text)) < 100)
         $errors .= buildError('Article text must be at least 100 characters long');
     
     if($read_time <= 0)
         $errors .= buildError('Read time need to be a positive value');
 
     return $errors;
+}
+
+function putEscapes(DBAccess $conn, string $text){
+
+    //mysqli_real_escape_string();
+    
+    return $text;
 }
 
 function store(string $title, string $subtitle, string $article_text, string $publication_date, $cover_img, string $read_time, $isApproved, string $author){
@@ -34,11 +41,16 @@ function store(string $title, string $subtitle, string $article_text, string $pu
         if($connection_manager->getUserInfo($author)){      // this is a valid author
 
             $validationErrors = validator($title, $subtitle, $article_text, $publication_date, $cover_img, $read_time);
+            
+            $title = $connection_manager->escape_string($title);
+            $subtitle = $connection_manager->escape_string($subtitle);
+            $article_text = $connection_manager->escape_string($article_text);
+
             if(!$validationErrors){
     
                 $insertQuery = "
                     INSERT INTO Article (title, subtitle, text, publication_date, cover_img, read_time, is_approved, author)
-                    VALUES ('$title', '$subtitle', '$article_text', $publication_date, NULL, $read_time, false, '$author')
+                    VALUES ('$title', '$subtitle', '$article_text', '$publication_date', NULL, $read_time, false, '$author')
                 ";
     
                 $articleId = $connection_manager->executeQuery($insertQuery);

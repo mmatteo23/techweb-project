@@ -51,7 +51,7 @@ function validateInputs () {
     const titleValue = title.value;    // trim remove white space
     const subtitleValue = subtitle.value;
     const minutesValue = minutes.value;
-    const articleTextValue = articleText.value;
+    const articleTextValue = editor.innerText;
 
     var validForm = true
 
@@ -72,7 +72,7 @@ function validateInputs () {
     if(minutesValue === '') {
         setError(minutes, 'A valid minutes number is required')
         validForm = false
-    } else if (!(Number.isInteger(minutes))) {
+    } else if (!(Number.isInteger(parseInt(minutes))) && parseInt(minutes) <= 0) {
         setError(minutes, 'Please provide a positive number')
         validForm = false
     } else {
@@ -82,7 +82,7 @@ function validateInputs () {
     if(articleTextValue === '') {
         setError(articleText, 'A text is required')
         validForm = false
-    } else if (articleTextValue.length < 100) {
+    } else if (articleTextValue.length < 5) {
         setError(articleText, 'Article text needs to be at least 100 characters long.')
         validForm = false
     } else {

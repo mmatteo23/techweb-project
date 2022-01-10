@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     $result = store($title, $subtitle, $article_text, $publication_date, NULL, $read_time, $isApproved, $author);
     if(is_int($result)){
-        redirect('article.php?id='.$result, 201);
+        header("Location: article.php?id=".$result);
     } else {
         $errors = "<ul>" . $result . "</ul>";
     }

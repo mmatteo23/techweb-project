@@ -28,6 +28,39 @@ class DBAccess {
 		mysqli_close($this->connection);
 	}
 
+	public function escape_string(string $str) {
+		return mysqli_real_escape_string($this->connection, $str);
+	}
+
+	/*****************************************************************
+	 * 
+	 * 	ATTENZIONE!!! MODIFICARE PRIMA DI METTERE IN PRODUZIONE
+	 * 
+	 ****************************************************************/
+
+	public function executeQuery(string $query){
+		$queryResults = mysqli_query($this->connection, $query) 
+			or 
+			die("
+				<p>Query failed. Error: </p>" . 
+				"<p>" . mysqli_error($this->connection) . "</p>" . 
+				"<p>" . $query . "</p>");
+		
+		// Different query => different result to return
+		// INSERT
+		if(mysqli_insert_id($this->connection)){
+			return mysqli_insert_id($this->connection);
+		} elseif(mysqli_num_rows($queryResults)==0){	// QUERY FAILED or no results
+			return NULL;
+		}
+
+		// DEFAULT case: multiple records
+		$result = array();
+		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
+		$queryResults->free(); 
+		return $result;
+	}
+
 	/**************************************************************
 	 * 
 	 * 						USER MANAGEMENT
@@ -122,24 +155,6 @@ class DBAccess {
 		$updateQuery .= "WHERE username='$username'";
 		$queryResult = mysqli_query($this->connection, $updateQuery) or die("There is an error with our servers, please try again or contact us.");
 		return $queryResult;
-	}
-
-	public function executeQuery(string $query){
-		$queryResults = mysqli_query($this->connection, $query) or die("Query failed. Error: " . mysqli_error($this->connection));
-		
-		// Different query => different result to return
-		// INSERT
-		if(mysqli_insert_id($this->connection)){
-			return mysqli_insert_id($this->connection);
-		} elseif(mysqli_num_rows($queryResults)==0){	// QUERY FAILED or no results
-			return NULL;
-		}
-
-		// DEFAULT case: multiple records
-		$result = array();
-		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
-		$queryResults->free(); 
-		return $result;
 	}
 
 	public function getFavArticles($user){		

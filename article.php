@@ -34,7 +34,7 @@ if($connection){
                     <p id="article-read-time"><i class="material-icons" aria-hidden="true">schedule</i><span>'.$articleData['read_time'].' minutes</span></p> 
                     <p id="article-likes"><i class="material-icons" aria-hidden="true">favorite_border</i><span>'.$numOfLikes.' likes</span></p> 
                 </div>';
-    if(count($tags)>0){
+    if(isset($tags) && count($tags)>0){
         $user_output .= '<ul id="article-tags" class="tag-list">';
         foreach($tags as $tag)
             $user_output .= '<li class><a href="search.php?tag='.urlencode($tag['name']).'">'.$tag['name'].'</a></li>';
