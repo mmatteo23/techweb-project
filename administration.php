@@ -11,7 +11,15 @@ if (isset($username) && $username != '') {
     $userData = show($username);
     $userRole = $userData['role'];
     if ($userRole == 1) {
-        $html = '<h1 id="page-title">Welcome Admin <span>'.$username.'</span>!</h1>';
+        $html = '
+            <h1 id="page-title">Welcome Admin <span>'.$username.'</span>!</h1>
+            <div class="action-buttons">
+                <a href="add_game.php" class="action-button">Add game</a>
+                <a href="edit_game.php" class="action-button">Edit game</a>
+                <a href="edit_article.php" class="action-button">Edit article</a>
+                <a href="edit_user.php" class="action-button">Edit user</a>
+            </div>
+        ';
     } else {
         $html = '<h1 id="page-title">You\'r not admin! Come back <a href="/">Home</a>!</h1>';
     }

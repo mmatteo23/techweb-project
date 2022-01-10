@@ -29,7 +29,7 @@ require_once('php/full_sec_loader.php');
 
 if ($userData['role'] == 1) {
     $adminButton = '<a href="administration.php" class="action-button">Manage site</a>';
-    $htmlPage = str_replace('<adminArea/>', $adminButton, $htmlPage);
+    $htmlPage = str_replace('<adminButton/>', $adminButton, $htmlPage);
 }
 
 echo str_replace('<userInfo/>', $content, $htmlPage);
