@@ -557,6 +557,12 @@ a.card-article-link:visited{
   width: fit-content;
 }
 
+#all-the-articles{
+  text-align: center;
+  color:#999;
+  margin-bottom: 2.5em;
+}
+
 /*
 ===== ARTICLE =====
 */

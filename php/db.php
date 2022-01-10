@@ -312,9 +312,9 @@ class DBAccess {
 	 **************************************************************/
 
 
-	public function getTopArticles(int $nArt){
+	public function getTopArticles(int $nArt, int $offset = 0){
         //da Mettere WHERE is_approved e non !is_approved
-        $query = "SELECT id, title, subtitle, publication_date, cover_img FROM Article WHERE !is_approved ORDER BY publication_date DESC LIMIT ".$nArt;   
+        $query = "SELECT id, title, subtitle, publication_date, cover_img FROM Article WHERE !is_approved ORDER BY publication_date DESC LIMIT ".$nArt." OFFSET ".$offset;   
         $queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
         if(mysqli_num_rows($queryResults)==0){
             return null;
@@ -325,8 +325,8 @@ class DBAccess {
         return $result;
     }
 
-	public function getTopArticleTags(int $nArt){
-		$query1 = "CREATE OR REPLACE VIEW topArticles AS (SELECT id FROM Article WHERE !is_approved ORDER BY publication_date DESC LIMIT ".$nArt.")";
+	public function getTopArticleTags(int $nArt, int $offset = 0){
+		$query1 = "CREATE OR REPLACE VIEW topArticles AS (SELECT id FROM Article WHERE !is_approved ORDER BY publication_date DESC LIMIT ".$nArt." OFFSET ".$offset.")";
 		$query2 = "SELECT article_id, tag_id, name FROM (article_tags JOIN topArticles ON article_id=topArticles.id) JOIN Tag ON tag_id=Tag.id";   
 		mysqli_query($this->connection, $query1);
 		$queryResults = mysqli_query($this->connection, $query2) or die("Non è stato possibile recuperare  i dati");

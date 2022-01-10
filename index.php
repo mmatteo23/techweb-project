@@ -17,7 +17,7 @@ $articlesToLoad = 5;
 $lastArticleLoaded = 0;
 
 if($connection){
-    $nArticles=10;
+    $nArticles=5;
     if(isset($_COOKIE['lastArticleLoaded'])){
         $nArticles = $_COOKIE['lastArticleLoaded'] + $articlesToLoad;
     }
