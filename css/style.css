@@ -54,6 +54,15 @@ body{
   font-size: 1em;
 }
 
+a:link{
+  color: #071688;
+}
+a:hover{
+  color: var(--purple-accent);
+}
+
+
+
 
 .skip-to-content{
   position: absolute;
@@ -66,7 +75,8 @@ body{
   transition: transform .2s ease-out 
 }
 
-.skip-to-content:visited{
+.skip-to-content:visited,
+.skip-to-content:link{
   color: white;
 }
 
@@ -178,6 +188,7 @@ footer h4{
   font-weight: 400;
 }
 
+
 footer p,
 footer h5{
   color: var(--bg);
@@ -201,9 +212,14 @@ footer .footer-header h5{
   margin-top: 1em;
 }
 
-footer .footer-header p a:visited{
-  color: var(--purple-accent);
+footer a:link{
+  color: #61004F;
 }
+
+footer .footer-header p a:visited{
+  color: #461174;
+}
+
 footer .footer-header p a:hover,
 footer .footer-header p a:focus{
   color: var(--purple-accent);
@@ -271,11 +287,11 @@ footer .credits{
   font-weight: bold;
 }
 #breadcrumb a:visited{
-  color: #8F33FF;
+  color: #8F33DD;
 }
 
-a:link{
-  color: #001DF5;
+#breadcrumb a:hover{
+  color: var(--purple-accent);
 }
 
 a:visited{
@@ -356,6 +372,12 @@ a:visited{
   color: #1b1b1b;
 }
 
+.slides .card-article-link:link h4,
+.slides .card-article-link:link li{
+  color: black;
+}
+
+
 .card-article-info p{
   font-weight: normal;
   color: #818181;
@@ -408,8 +430,12 @@ a.card-article-link{
   color: white;
 }
 
-a.card-article-link:visited{
+a.card-article-link:link h3{
   color: white;
+}
+
+a.card-article-link:visited h3{
+  color: var(--pink-accent);
 }
 
 
@@ -491,6 +517,14 @@ a.card-article-link:visited{
   left: 0;
   width: 100%;
   margin: 0;
+}
+
+.slides a.card-article-link:link h3{
+  color: black;
+}
+
+.slides a.card-article-link:visited h3{
+  color: var(--purple-accent);
 }
 
 .slider > a {
@@ -681,9 +715,16 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   transition: all 0.3s ease-out;
 }
 
+#article-body h3,
+#article-body h4,
+#article-body h5,
+#article-body h6{
+  color: var(--purple-accent);
+}
+
 #article-body a:hover,
 #article-body a:focus{
-  color: var(--fucsia-accent);
+  color: var(--pink-accent);
 }
 
 #article-body ul{
@@ -996,6 +1037,11 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   color: var(--teal-accent)
 }
 
+.private_area_content a:link{
+  color: var(--teal-accent);
+}
+
+
 /**********************************
  *      STANDARD CLASSES
  *********************************/
@@ -1011,6 +1057,7 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   margin: 0.3em 0 0.3em 0;
   font-size: 1.2em;
 }
+
 
 #content h1{
   color: var(--fucsia-accent);
@@ -1109,6 +1156,11 @@ h1{
   flex-wrap: wrap;
   margin-top: 0.3em;
   row-gap: .3em;
+}
+
+.card-article-link:link h4,
+.card-article-link:link li{
+  color: white;
 }
 
 .card-content .tag-list .tag {

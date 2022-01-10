@@ -122,7 +122,7 @@ $content = "
                     <input type='password' name='repeated_password' id='repeated_password'>
                     <p class='error'></p>
                 </div>
-                <div id='btnBlock'>
+                <div id='btnBlock' class='form-buttons'>
                     <a class='edit-profile-btn action-button' href='profile.php' id='undoBtn'>Discard</a>
                     <input id='submit-btn' class='edit-profile-btn action-button' type='submit' id='saveBtn' value='Update'>
                 </div>

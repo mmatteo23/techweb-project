@@ -195,7 +195,17 @@ input[type='submit']{
     align-items: center;    
     justify-content: space-around;
     flex-wrap: wrap;
-    gap: 2em;
+    gap: 1em;
+}
+
+.form-buttons .action-button{
+    min-width: 2em;
+    flex: 1 1 auto;
+}
+
+#btnBlock.form-buttons{
+    width: 80%;
+    gap: 1em;
 }
 
 .form-buttons input#submit-btn.action-button{
@@ -321,7 +331,6 @@ input#submit-btn.action-button:focus{
   
 #undoBtn.action-button{
     filter: grayscale(.5);
-    flex-grow: 0;
 }
   
 #undoBtn.action-button:hover,
@@ -368,15 +377,27 @@ input#submit-btn.action-button:focus{
 }  
 
 
-#user-info .logout a:link{
-    color: var(white);
+.logout{
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 3em 1em 0 0;
+    text-decoration: none;
 }
 
-.logout{
-    /* display: inline-block; */
-    text-align: right;
-    margin-top: 3em;
+.logout:link{
+    color: var(--teal-accent);
 }
+
+.logout:hover,
+.logout:focus{
+    color: #FB5B5B;
+}
+
+.logout p{
+    text-decoration: underline;
+}
+  
 
 #user-info h3{
     margin-top:3em;
@@ -395,7 +416,7 @@ input#submit-btn.action-button:focus{
     width: 5em;
 }
 
-@media screen and (max-height: 1500px) and (min-width: 570px){
+@media only screen and (max-height: 1500px) and (min-width: 768px){
 
     .action-buttons{
         flex-direction: row;
@@ -405,9 +426,7 @@ input#submit-btn.action-button:focus{
     #user-specs a.action-button{
         width: 5em;
     }
-}
 
-@media screen and (min-width: 570px){
     #content .form-wrapper{
         max-width: 724px;
         animation: popdown ease-out normal forwards 0.75s 1;

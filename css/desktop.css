@@ -247,7 +247,7 @@
     *********************************/
   
     .card{      /*per fare in modo che le ultime cards non diventino troppo grandi su desktop*/
-      max-width: 16em;
+      max-width: 15em;
     }
     .card-content .tag-list .tag {
         font-size: clamp(0.35em, 5vh + .3em, .75em);
