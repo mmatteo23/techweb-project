@@ -2,6 +2,7 @@
 
 require_once('utilityFunctions.php');
 require_once('php/db.php');
+require_once('php/TagController.php');
 use DB\DBAccess;
 
 
@@ -25,7 +26,48 @@ function articleValidator($title, $subtitle, $article_text, $publication_date, $
     return $errors;
 }
 
-function storeArticle(string $title, string $subtitle, string $article_text, string $publication_date, $cover_img, string $read_time, $isApproved, string $author){
+function linkTags(int $articleId, string $tags){
+    $formTags = explode(';',$tags);
+    
+    manageTags($formTags);
+
+    linkArticleTags($articleId, $formTags);
+}
+
+function linkArticleTags(int $articleId, array $tags){
+    // create a connection istance to talk with the db
+    $connection_manager = new DBAccess();
+    $conn_ok = $connection_manager->openDBConnection();
+    
+    if($conn_ok){
+        $selectQuery = "
+            SELECT id FROM Tag
+            WHERE
+        ";
+
+        foreach($tags as $tag){
+            $selectQuery .= " name = '$tag' OR";
+        }
+
+        $selectQuery = trim($selectQuery, 'OR');
+
+        $tagIds = $connection_manager->executeQuery($selectQuery);
+
+        $insertQuery = "INSERT INTO article_tags VALUES";
+
+        foreach($tagIds as $tag){
+            $insertQuery .= "(" . $tag['id'] . ", $articleId),";
+        }
+
+        $insertQuery = trim($insertQuery, ',');
+
+        $connection_manager->executeQuery($insertQuery);
+        $connection_manager->closeDBConnection();
+    }
+
+}
+
+function storeArticle(string $title, string $subtitle, string $article_text, string $publication_date, $cover_img, string $read_time, string $author, int $game_id, string $tags){
     // create a connection istance to talk with the db
     $connection_manager = new DBAccess();
     $conn_ok = $connection_manager->openDBConnection();
@@ -42,23 +84,34 @@ function storeArticle(string $title, string $subtitle, string $article_text, str
             if(!$validationErrors){
     
                 $insertQuery = "
+<<<<<<< Updated upstream
                     INSERT INTO Article (title, subtitle, text, publication_date, cover_img, read_time, is_approved, author)
                     VALUES ('$title', '$subtitle', '$article_text', '$publication_date', '$cover_img', $read_time, false, '$author')
+=======
+                    INSERT INTO Article (title, subtitle, text, publication_date, cover_img, read_time, author)
+                    VALUES ('$title', '$subtitle', '$article_text', '$publication_date', NULL, $read_time, '$author')
+>>>>>>> Stashed changes
                 ";
-    
+                
                 $articleId = $connection_manager->executeQuery($insertQuery);
-                if($articleId)
+                //$articleId = 15;
+                $connection_manager->closeDBConnection();
+                if($articleId){
+                    if($tags) linkTags($articleId, $tags);
                     return $articleId;
-                else
+                } else
                     return buildError("There was an error during the insert of the article");
             }
 
+            $connection_manager->closeDBConnection();
             return $validationErrors;
 
         } else {
+            $connection_manager->closeDBConnection();
             return buildError("This user can't write articles");
         }
     } else {
+        $connection_manager->closeDBConnection();
         return buildError("Internal server error");
     }
 }

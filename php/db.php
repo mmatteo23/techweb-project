@@ -48,8 +48,11 @@ class DBAccess {
 		
 		// Different query => different result to return
 		// INSERT
+		//echo "<p>" . $query . "</p>";
 		if(mysqli_insert_id($this->connection)){
 			return mysqli_insert_id($this->connection);
+		} elseif($queryResults === TRUE){
+			return true;
 		} elseif(mysqli_num_rows($queryResults)==0){	// QUERY FAILED or no results
 			return NULL;
 		}
@@ -62,7 +65,7 @@ class DBAccess {
 		while($row = mysqli_fetch_array($queryResults, MYSQLI_ASSOC)){
 			array_push($result, $row);
 		}
-		$queryResults->free(); 
+		$queryResults->free();
 		return $result;
 	}
 

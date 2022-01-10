@@ -18,14 +18,18 @@ const minutes = document.getElementById('minutes');
 
 form.addEventListener('submit', e => {
     e.preventDefault();
+    if(document.activeElement.id != 'tags'){
+        
+        validForm = validateInputs();
+        
+        if(validForm){
+            var content = editor.innerHTML;
+            articleText.value = content.toString();
 
-    var content = editor.innerHTML;
-    articleText.value = content.toString();
-    
-    validForm = validateInputs();
-    
-    if(validForm)
-        form.submit()
+            inputTag.value = tags.join(';')
+            form.submit()
+        }
+    }
     
 });
 
@@ -92,8 +96,10 @@ function validateInputs () {
     return validForm
 }
 
-const tagContainer = document.querySelector('.tag-container');
-const inputTag = document.querySelector('.tag-container input');
+//const tagContainer = document.querySelector('.tag-container');
+const tagContainer = document.getElementById('article-tags');
+//const inputTag = document.querySelector('.tag-container input');
+const inputTag = document.getElementById('tags');
 
 let tags = [];
 
@@ -126,22 +132,36 @@ function addTags() {
 
 inputTag.addEventListener('keyup', (e) => {
     if (e.key === 'Enter') {
-      e.target.value.split(',').forEach(tag => {
-        tags.push(tag);  
-      });
+    
+        e.target.value.split(',').forEach(tag => {
+            // check if the user insert a tag two times
+            if(tags.indexOf(tag) == -1){
+                tags.push(tag);
+            }
+        });
       
-      addTags();
-      inputTag.value = '';
+        addTags();
+        tagContainer.style.display = "flex";
+        inputTag.value = '';
     }
 });
+
+window.onload = function(){ 
+    if(tags.length == 0){
+        tagContainer.style.display = "none";
+    }
+}
+
 document.addEventListener('click', (e) => {
   console.log(e.target.tagName);
   if (e.target.tagName === 'I') {
     const tagLabel = e.target.getAttribute('data-item');
     const index = tags.indexOf(tagLabel);
     tags = [...tags.slice(0, index), ...tags.slice(index+1)];
-    addTags();    
+    addTags();
+    if(tags.length == 0) 
+        tagContainer.style.display = "none"; 
   }
 })
 
-inputTag.focus();
+//inputTag.focus();

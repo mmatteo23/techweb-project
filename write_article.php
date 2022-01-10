@@ -17,16 +17,24 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $subtitle           = $_POST['subtitle'];
     $read_time          = $_POST['minutes'];
     $article_text       = $_POST['articleText'];
+<<<<<<< Updated upstream
     $article_img = NULL;
 
     $errorsImage = checkImageToUpload($article_img);
+=======
+    $game_id            = $_POST['game'];
+    $tags               = $_POST['tags'];
+>>>>>>> Stashed changes
 
     // system params for storing an article
     $publication_date   = date('Y-m-d');
-    $isApproved         = FALSE;
     $author             = $_SESSION['username'];
 
+<<<<<<< Updated upstream
     $result = storeArticle($title, $subtitle, $article_text, $publication_date, $article_img, $read_time, $isApproved, $author);
+=======
+    $result = storeArticle($title, $subtitle, $article_text, $publication_date, NULL, $read_time, $author, $game_id, $tags);
+>>>>>>> Stashed changes
     if(is_int($result)){
         header("Location: article.php?id=".$result);
     } else {
