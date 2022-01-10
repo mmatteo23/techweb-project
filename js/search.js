@@ -18,7 +18,6 @@ src.addEventListener('click', function(){
 }
 );
 window.onresize = function() {
-    console.log(window.innerWidth + " " + src_bar_wrapper.style.display);
     if(window.innerWidth >=570 && src_bar_wrapper.style.display == 'block'){
         breadcrumb.style.marginTop = '-40px';
     }
