@@ -17,7 +17,7 @@ if($conn_ok){
     $games = $connection_manager->getGames();
     if($games=="ErroreDB"){ 
         $connection_manager->closeDBConnection();
-        $user_output = createDBErrorHTML();
+        $user_output = createEmptyDBErrorHTML("games");
     }
     else{
         $game_tags = $connection_manager->getGamesTags();
@@ -49,7 +49,7 @@ if($conn_ok){
         }
     }
 } else { 
-    $user_output = createDBErrorHTML();;
+    $user_output = createDBErrorHTML();
 }
 // paginate the content
 // page structure

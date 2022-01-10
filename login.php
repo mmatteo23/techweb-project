@@ -45,7 +45,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){     // Pulsante submit premuto
         }
 
     } else {
-        $errors = "<p>Our services are down for a moment, please try later or contact us</p>";
+        $errors = createDBErrorHTML();
     }
     
 }

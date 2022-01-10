@@ -1,6 +1,7 @@
 <?php
 
 require_once('php/db.php');
+require_once('php/error_management.php');
 
 session_start();
 use DB\DBAccess;
@@ -30,7 +31,7 @@ if($connection){
         }
         $db->closeDBConnection();   //ho finito di usare il db quindi chiudo la connessione
         if($articles){
-            $user_output .= '<div id="search-results">';
+            $user_output .= '<h1>Search results</h1><div id="search-results">';
             foreach($articles as $art){
                 $user_output .= 
                     '<a class="card-article-link" href="article.php?id='.$art['id'].'">
@@ -57,13 +58,15 @@ if($connection){
             }      
             $user_output .= "</div>";  
         }else{
-            $user_output .= "<p>Your search doesn't correspond to any article in our database, try changing your search request!</p>";
+            $user_output .= genericErrorHTML("Zero matches found", "No article includes what you're looing for.", 
+                            array("Change the search input.", "Refresh the page, it might just be that easy.", "Visit our other pages."));
         }
     }else{
-        $user_output .= "<p>You didn't search for anything or the URL is incorrect, write something in the search box to look up for something!</p>";
+        $user_output .= genericErrorHTML("The URL seems to be missing something", "Looks like something went wrong.", 
+                        array("Refresh the page, it might just be that easy.", "Visit our other pages."));
     }
 } else {
-    $user_output = "<p>Something went wrong while connecting to the database, try again or contact us.</p>";
+    $user_output = createDBErrorHTML();
 }
 
 $htmlPage = file_get_contents("html/search.html");

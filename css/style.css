@@ -1227,15 +1227,15 @@ ERRORs
   width:100%;
 }
 
-.error-text li{
+.error-display li{
   margin-left:2em;
 }
 
-.error-text a{
+.error-display a{
   color: var(--bg-accent);
 }
 
-.error-text a:visited{
+.error-display a:visited{
   color: var(--fucsia-accent);
 }
 

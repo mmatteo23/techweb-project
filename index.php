@@ -24,7 +24,7 @@ if($connection){
     $articles = $db->getTopArticles($nArticles);
     if($articles=="ErroreDB"){ 
         $db->closeDBConnection();
-        $user_output = createDBErrorHTML();
+        $user_output = createEmptyDBErrorHTML("articles");
     }
     else{
         $nArticles = count($articles);                       //anche se il LIMIT della query è nArticles potrebbero essercene di meno nel db

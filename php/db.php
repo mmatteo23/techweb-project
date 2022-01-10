@@ -39,13 +39,9 @@ class DBAccess {
 	 ****************************************************************/
 
 	public function executeQuery(string $query){
-		$queryResults = mysqli_query($this->connection, $query) 
-			or 
-			die("
-				<p>Query failed. Error: </p>" . 
-				"<p>" . mysqli_error($this->connection) . "</p>" . 
-				"<p>" . $query . "</p>");
-		
+		$queryResults = mysqli_query($this->connection, $query);
+		if(!$queryResults)
+			return "WrongQuery";
 		// Different query => different result to return
 		// INSERT
 		//echo "<p>" . $query . "</p>";
@@ -108,7 +104,8 @@ class DBAccess {
 				WHERE username = '$username' AND
 				password = '$password'";
 
-		$queryResults = mysqli_query($this->connection, $query) or die("Zio culo hai rotto tutto, vai a mangiarti lo smegma! " . mysqli_error($this->connection));
+		$queryResults = mysqli_query($this->connection, $query); 
+			return false;
 		
 		if(mysqli_num_rows($queryResults) == 0) { // usare gli if in modo efficiente, la cpu elabora velocemente i branch positivi, perché in caso di ramo else deve fare il rollback di quello che ha fatto e prendere l'altro ramo => mettere in esito positivo sempre i rami che sono piú probabili!
 			return false;
@@ -163,13 +160,17 @@ class DBAccess {
 			$updateQuery .= ", profile_img='$image'";
 		}
 		$updateQuery .= "WHERE username='$username'";
-		$queryResult = mysqli_query($this->connection, $updateQuery) or die("There is an error with our servers, please try again or contact us.");
+		$queryResult = mysqli_query($this->connection, $updateQuery);
+		if(!$queryResults)
+			return "UpdateFailed";
 		return $queryResult;
 	}
 
 	public function getFavArticles($user){		
 		$query = "SELECT id, title, subtitle, publication_date, cover_img FROM Article JOIN saved_articles ON id=article_id WHERE username= '$user' ORDER BY publication_date DESC";   
-		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
+		$queryResults = mysqli_query($this->connection, $query);
+		if(!$queryResults)
+			return null;
 		if(mysqli_num_rows($queryResults)==0){
 			return null;
 		}
@@ -181,7 +182,9 @@ class DBAccess {
 	
 	public function getFavArticlesTags($user){
 		$query = "SELECT saved_articles.article_id, tag_id, name FROM (article_tags JOIN Article ON article_id=Article.id) JOIN Tag ON tag_id=Tag.id JOIN saved_articles ON Article.id=saved_articles.article_id WHERE !is_approved AND username='$user' ORDER BY publication_date DESC";   
-		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
+		$queryResults = mysqli_query($this->connection, $query);
+		if(!$queryResults)
+			return null;
 		if(mysqli_num_rows($queryResults)==0){
 			return null;
 		}
@@ -220,7 +223,9 @@ class DBAccess {
 		Tag.name IN (SELECT Tag.name as Tname FROM (article_tags JOIN Article ON article_id=Article.id) JOIN Tag ON tag_id=Tag.id WHERE Tag.name LIKE '%$src_text%'))
 		GROUP BY title
 		ORDER BY publication_date DESC;";
-		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
+		$queryResults = mysqli_query($this->connection, $query);
+		if(!$queryResults)
+			return null;
 		if(mysqli_num_rows($queryResults)==0){
 			return null;
 		}
@@ -238,7 +243,9 @@ class DBAccess {
 		WHERE !is_approved AND Game.name='$game'
 		GROUP BY title
 		ORDER BY publication_date DESC;";
-		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
+		$queryResults = mysqli_query($this->connection, $query);
+		if(!$queryResults)
+			return null;
 		if(mysqli_num_rows($queryResults)==0){
 			return null;
 		}
@@ -255,7 +262,9 @@ class DBAccess {
 		JOIN article_tags ON id=article_id
 		JOIN Tag on Tag.id = tag_id
 		WHERE Tag.name='$tag' ORDER BY publication_date DESC;";
-		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
+		$queryResults = mysqli_query($this->connection, $query);
+		if(!$queryResults)
+			return null;
 		if(mysqli_num_rows($queryResults)==0){
 			return null;
 		}
@@ -270,7 +279,9 @@ class DBAccess {
 		JOIN Tag ON tag_id=Tag.id 
 		WHERE !is_approved AND article_id = $art_id
 		ORDER BY publication_date DESC;";   
-		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
+		$queryResults = mysqli_query($this->connection, $query);
+		if(!$queryResults)
+			return null;
 		if(mysqli_num_rows($queryResults)==0){
 			return null;
 		}
@@ -306,8 +317,9 @@ class DBAccess {
 		$query = "SELECT game_id, Genre.name FROM (game_genre JOIN Genre ON genre_id=id) JOIN Game ON game_id = Game.id
 					ORDER BY Game.name;";
 
-		$queryResults = mysqli_query($this->connection, $query) or die("C'è stato un errore! " . mysqli_error($this->connection));
-
+		$queryResults = mysqli_query($this->connection, $query);
+		if(!$queryResults)
+			return null;
 		if(mysqli_num_rows($queryResults) == 0) // usare gli if in modo efficiente, la cpu elabora velocemente i branch positivi, perché in caso di ramo else deve fare il rollback di quello che ha fatto e prendere l'altro ramo => mettere in esito positivo sempre i rami che sono piú probabili!
 			return null;
 
@@ -357,7 +369,9 @@ class DBAccess {
 		$query1 = "CREATE OR REPLACE VIEW topArticles AS (SELECT id FROM Article WHERE !is_approved ORDER BY publication_date DESC LIMIT ".$nArt." OFFSET ".$offset.")";
 		$query2 = "SELECT article_id, tag_id, name FROM (article_tags JOIN topArticles ON article_id=topArticles.id) JOIN Tag ON tag_id=Tag.id";   
 		mysqli_query($this->connection, $query1);
-		$queryResults = mysqli_query($this->connection, $query2) or die("Non è stato possibile recuperare  i dati");
+		$queryResults = mysqli_query($this->connection, $query2);
+		if(!$queryResults)
+			return null;
 		if(mysqli_num_rows($queryResults)==0){
 			return null;
 		}
@@ -371,7 +385,9 @@ class DBAccess {
 		$today = new DateTime(date("Y-m-d"));
 		$oneMonthAgo = ($today->modify('-1 month'))->format("Y-m-d");
 		$query = "SELECT id, title, subtitle, publication_date, cover_img, COUNT(*) AS numLikes FROM Article JOIN liked_articles ON id=article_id WHERE publication_date>'$oneMonthAgo' GROUP BY id ORDER BY COUNT(*) DESC LIMIT 4";
-		$queryResults = mysqli_query($this->connection, $query) or die("Non è stato possibile recuperare  i dati");
+		$queryResults = mysqli_query($this->connection, $query);
+		if(!$queryResults)
+			return null;
 		if(mysqli_num_rows($queryResults)==0){
 			return null;
 		}
@@ -402,22 +418,30 @@ class DBAccess {
 
 	public function LikeArticle($username, $id){
 		$query = 'INSERT INTO liked_articles VALUES("'.$username.'",'.$id.');';
-		mysqli_query($this->connection, $query) or die("Non è stato possibile aggiungere il like, ".$username);
+		$queryResults = mysqli_query($this->connection, $query);
+		if(!$queryResults) 
+			return "Non è stato possibile aggiungere il like";
 	}
 
 	public function UnlikeArticle($username, $id){
 		$query = 'DELETE FROM liked_articles WHERE username="'.$username.'" AND article_id='.$id;
-		mysqli_query($this->connection, $query) or die("Non è stato possibile togliere il like, ".$username);
+		$queryResults = mysqli_query($this->connection, $query);
+		if(!$queryResults)
+			return "Non è stato possibile togliere il like";
 	}
 
 	public function SaveArticle($username, $id){
 		$query = 'INSERT INTO saved_articles VALUES("'.$username.'",'.$id.');';
-		mysqli_query($this->connection, $query) or die("Non è stato possibile aggiungere il preferito, ".$username);
+		$queryResults = mysqli_query($this->connection, $query);
+		if(!$queryResults)
+			return "Non è stato possibile aggiungere il preferito";
 	}
 
 	public function UnsaveArticle($username, $id){
 		$query = 'DELETE FROM saved_articles WHERE username="'.$username.'" AND article_id='.$id;
-		mysqli_query($this->connection, $query) or die("Non è stato possibile togliere il preferito, ".$username);
+		$queryResults = mysqli_query($this->connection, $query);
+		if(!$queryResults) 
+			return "Non è stato possibile togliere il preferito";
 	}
 }
 
