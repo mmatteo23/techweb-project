@@ -84,13 +84,8 @@ function storeArticle(string $title, string $subtitle, string $article_text, str
             if(!$validationErrors){
     
                 $insertQuery = "
-<<<<<<< Updated upstream
-                    INSERT INTO Article (title, subtitle, text, publication_date, cover_img, read_time, is_approved, author)
-                    VALUES ('$title', '$subtitle', '$article_text', '$publication_date', '$cover_img', $read_time, false, '$author')
-=======
                     INSERT INTO Article (title, subtitle, text, publication_date, cover_img, read_time, author)
                     VALUES ('$title', '$subtitle', '$article_text', '$publication_date', NULL, $read_time, '$author')
->>>>>>> Stashed changes
                 ";
                 
                 $articleId = $connection_manager->executeQuery($insertQuery);
