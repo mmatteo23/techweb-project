@@ -44,9 +44,7 @@ function storeTags(array $newTags){
             $selectQuery .= "('$tag'),";
         }
         $selectQuery = trim($selectQuery, ',');
-
-        echo $selectQuery;
-
+        
         $connection_manager->executeQuery($selectQuery);
         $connection_manager->closeDBConnection();
     }

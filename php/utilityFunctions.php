@@ -52,19 +52,19 @@ function buildError(string $msg){
     return "<li class='error'>" . $msg . "</li>";
 }
 
-function checkImageToUpload(&$profile_img){
-    if($_FILES['profile_img']['name']){
-        $target_dir = "images/user_profiles/";
+// $idInputFrom è l'id nel campo img del form
+function checkImageToUpload(&$img, string $target_dir, string $idInputForm, string $img_name){
+    if($_FILES[$idInputForm]['name']){
         //$profile_img = basename($_FILES["profile_img"]["name"]);
-        $target_file = $target_dir . basename($_FILES["profile_img"]["name"]);
+        $target_file = $target_dir . basename($_FILES[$idInputForm]["name"]);
         //$target_file = $target_dir . $_SESSION['username'] . $imageFileType;
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-        $profile_img = $_SESSION['username'] . "." . $imageFileType;
+        $img = $img_name . "." . $imageFileType;
         $uploadOk = 1;
 
         // Check if image file is a actual image or fake image
         
-        $check = getimagesize($_FILES["profile_img"]["tmp_name"]);
+        $check = getimagesize($_FILES[$idInputForm]["tmp_name"]);
         if($check !== false) {
             //echo "File is an image - " . $check["mime"] . ".";
             $uploadOk = 1;
@@ -82,7 +82,7 @@ function checkImageToUpload(&$profile_img){
         */
 
         // Check file size
-        if ($_FILES["profile_img"]["size"] > 1000000) {
+        if ($_FILES[$idInputForm]["size"] > 1000000) {
             $errors .= "<li>Sorry, your file is too large.</li>";
             $uploadOk = 0;
         }
@@ -99,7 +99,7 @@ function checkImageToUpload(&$profile_img){
             $errors .= "<li>Sorry, your file was not uploaded.</li>";
             // if everything is ok, try to upload file
         } else {
-            if (!move_uploaded_file($_FILES["profile_img"]["tmp_name"], $target_dir . $profile_img)) {
+            if (!move_uploaded_file($_FILES[$idInputForm]["tmp_name"], $target_dir . $img)) {
                 $errors .= "<li>There was an error during profile image uploading.</li>";
             }
         }

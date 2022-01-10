@@ -59,7 +59,7 @@ function storeGame(string $name, string $description, string $release_date, stri
             
             $name = $connection_manager->escape_string($name);
             $description = $connection_manager->escape_string($description);
-            // SERVE VALIDARE DATA? L'INPUT FORZA IL FORMATO CORRETTAMENTE...
+            // SERVE VALIDARE LA DATA? L'INPUT FORZA IL FORMATO CORRETTAMENTE...
             $developer = $connection_manager->escape_string($developer);
 
             if(!$validationErrors){

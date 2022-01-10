@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $developer = $_POST['developer'];
     $game_img = NULL;
 
-    $errorsImage = checkImageToUpload($game_img);
+    $errorsImage = checkImageToUpload($game_img, "images/games/", "cover", $name);
 
     $username = $_SESSION['username'];
     $userData = show($username);
