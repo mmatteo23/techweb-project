@@ -296,9 +296,8 @@ class DBAccess {
 	}
 
 	public function getGamesTags(){
-		$query = "SELECT * FROM game_genre JOIN Genre
-					ON genre_id=id
-					ORDER BY game_id;";
+		$query = "SELECT game_id, Genre.name FROM (game_genre JOIN Genre ON genre_id=id) JOIN Game ON game_id = Game.id
+					ORDER BY Game.name;";
 
 		$queryResults = mysqli_query($this->connection, $query) or die("C'è stato un errore! " . mysqli_error($this->connection));
 
