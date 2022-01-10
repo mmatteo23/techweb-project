@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $name = $_POST['name'];
     $description = $_POST['description'];
     $releaseDate = $_POST['releaseDate'];
-    $articleText = $_POST['articleText'];
+    $developer = $_POST['developer'];
     $game_img = NULL;
 
     $errorsImage = checkImageToUpload($game_img);
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $userRole = $userData['role'];
 
 
-    $result = storeGame($name, $description, $releaseDate, $articleText, $game_img, $userRole);
+    $result = storeGame($name, $description, $releaseDate, $developer, $game_img, $userRole);
     if(is_int($result)){
         header("Location: games.php");
     } else {
@@ -60,8 +60,8 @@ $form = '
         <p class="error"></p>
     </div>
     <div class="input-wrapper">
-        <label for="subtitle">Software House / Developer</label>
-        <input type="text" name="subtitle" id="subtitle">
+        <label for="developer">Software House / Developer</label>
+        <input type="text" name="developer" id="developer">
         <p class="error"></p>
     </div>   
     <div class="form-buttons">

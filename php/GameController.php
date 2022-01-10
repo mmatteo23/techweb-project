@@ -47,7 +47,7 @@ function gameValidator($name, $description, $release_date, $developer){
     return $errors;
 }
 
-function storeGame(string $name, string $description, date $release_date, string $developer, $game_img, int $roleUser){
+function storeGame(string $name, string $description, string $release_date, string $developer, $game_img, int $roleUser){
     // create a connection istance to talk with the db
     $connection_manager = new DBAccess();
     $conn_ok = $connection_manager->openDBConnection();
@@ -57,8 +57,8 @@ function storeGame(string $name, string $description, date $release_date, string
 
             $validationErrors = gameValidator($name, $description, $release_date, $developer);
             
-            $name = $connection_manager->escape_string($title);
-            $description = $connection_manager->escape_string($subtitle);
+            $name = $connection_manager->escape_string($name);
+            $description = $connection_manager->escape_string($description);
             // SERVE VALIDARE DATA? L'INPUT FORZA IL FORMATO CORRETTAMENTE...
             $developer = $connection_manager->escape_string($developer);
 
