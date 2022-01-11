@@ -311,8 +311,9 @@
         width: 35%;
     }
 
-    #content .slider h1.subtitle {
+    #content .slider h2.subtitle {
         font-size: 1.5em;
+        line-height: 1.1em;
         margin-top: 0.8em; /* 1.5 */
         margin-bottom: 1em; /* 1.4 */
     }
@@ -320,6 +321,9 @@
     .slides {
         margin-bottom: 2em;
         display: block;
+    }
+    .slider .card-article-link{
+      min-width: 100%;
     }
 
     .slider .card-article-image img {
@@ -354,9 +358,8 @@
     }
 
     #hot-games .card-content .card-title a{
-        font-size: 0.7em;
+        font-size: 0.9em;
         white-space: normal;
-        color: white;
     }
 
     #hot-games .game-list{
@@ -372,10 +375,10 @@
         min-height: 11em;
     }
 
-    #search-results #card-article-tags{
+    /* #search-results #card-article-tags{
       position: absolute;
       bottom:1em;
-    }
+    } */
 
     #search-results a{
       width: max(17em, 45%);

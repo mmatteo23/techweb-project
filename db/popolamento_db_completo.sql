@@ -1,12 +1,14 @@
 INSERT INTO Role (title, level) VALUES
-('Administrator', 99);
+('Administrator', 99),
+('User', 0);
 
 INSERT INTO Person VALUES
 ('danilostojkovic', 'Danilo', 'Stojkovic', 'danilo.ricky@pentanews.com', 'danilostojkovic', 1, CURDATE(),''),
 ('davidemilan', 'Davide', 'Milan', 'davide.inter@pentanews.com', 'davidemilan', 1, CURDATE(),''),
 ('matteocasonato', 'Matteo', 'Casonato', 'matteo.quasinato@pentanews.com', 'matteocasonato', 1, CURDATE(),''),
 ('matteomidena', 'Matteo', 'Midena', 'matteo.milena@pentanews.com', 'matteomidena', 1, CURDATE(),'0001.jpg'),
-('admin', 'admin', 'admin', 'admin@pentanews.com', 'admin', 1, CURDATE(),'');
+('admin', 'admin', 'admin', 'admin@pentanews.com', 'admin', 1, CURDATE(),''),
+('user', 'user', 'user', 'user@useremail.com', 'user', 2, CURDATE(),'');
 
 INSERT INTO Game (name, description, release_date, developer, game_img)
 VALUES(

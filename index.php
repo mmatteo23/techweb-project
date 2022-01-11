@@ -69,7 +69,7 @@ if($connection){
             $HotGamesHTML = '
             </div>
             <div id="hot-games">
-                <h1 class="subtitle">Hot Games</h1>
+                <h2 class="subtitle">Hot Games</h2>
                 <ul class="game-list" id="game-list">';
             for($i = 0; $i < count($HotGames); $i++){
                 $game = $HotGames[$i];            
@@ -86,7 +86,7 @@ if($connection){
         if(count($slides)>0){
             $carousel=' 
                 <div class="slider">
-                    <h1 class="subtitle">Most liked</h1>
+                    <h2 class="subtitle">Most liked</h2>
                         <div class="slides">';
             $i=1;
             foreach($slides as $art){
