@@ -15,6 +15,27 @@ form.addEventListener('submit', e => {
         form.submit()
 });
 
+function validateImage() {
+    var file = document.getElementById("profile_img").files[0];
+
+    var t = file.type.split('/').pop().toLowerCase();
+    if (t != "jpeg" && t != "jpg" && t != "png" && t != "bmp" && t != "gif") {
+        alert('Please select a valid image file');
+        document.getElementById("profile_img").value = '';
+        return false;
+    }
+    return true;
+}
+
+function showPreview(event){
+    if(event.target.files.length > 0 && validateImage()){
+        var src = URL.createObjectURL(event.target.files[0]);
+        var preview = document.getElementById("user-profile-img");
+        preview.src = src;
+        preview.style.display = "block";
+    }
+}
+
 const setError = (element, message) => {
     const inputWrapper = element.parentElement;
     const errorDisplay = inputWrapper.querySelector('.error');

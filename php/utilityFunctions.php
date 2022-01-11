@@ -15,7 +15,7 @@ function buildError(string $msg){
 // $idInputFrom è l'id nel campo img del form
 function checkImageToUpload(&$img, string $target_dir, string $idInputForm, string $img_name, string $defaultImage){
     $errors = "";
-    if($_FILES[$idInputForm]['name']){
+    if(isset($_FILES[$idInputForm]) && $_FILES[$idInputForm]['name']){
         //$profile_img = basename($_FILES["profile_img"]["name"]);
         $target_file = $target_dir . basename($_FILES[$idInputForm]["name"]);
         //$target_file = $target_dir . $_SESSION['username'] . $imageFileType;
@@ -24,7 +24,6 @@ function checkImageToUpload(&$img, string $target_dir, string $idInputForm, stri
         $uploadOk = 1;
 
         // Check if image file is a actual image or fake image
-        
         $check = getimagesize($_FILES[$idInputForm]["tmp_name"]);
         if($check !== false) {
             //echo "File is an image - " . $check["mime"] . ".";
@@ -43,7 +42,7 @@ function checkImageToUpload(&$img, string $target_dir, string $idInputForm, stri
         */
 
         // Check file size
-        if ($_FILES[$idInputForm]["size"] > 1000000) {
+        if ($_FILES[$idInputForm]["size"] > 3000000) {
             $errors .= "<li>Sorry, your file is too large.</li>";
             $uploadOk = 0;
         }
