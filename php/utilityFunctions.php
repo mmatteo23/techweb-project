@@ -1,7 +1,5 @@
 <?php
 
-
-
 function redirect($url, $statusCode = 200)
 {
    header('location: ' . $url, false, $statusCode);
@@ -74,7 +72,7 @@ function checkImageToUpload(&$img, string $target_dir, string $idInputForm, stri
             'image/png'
         );
 
-        if(($_FILES[$idInputForm]['size'] >= $maxsize) || ($_FILES["uploaded_file"]["size"] == 0)) {
+        if(($_FILES[$idInputForm]['size'] >= $maxsize) || ($_FILES[$idInputForm]["size"] == 0)) {
             $errors .= '<li>File too large. File must be less than 2 MB.</li>';
         }
 

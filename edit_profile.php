@@ -41,6 +41,7 @@ $content = "
             <form action='edit_profile.php' method='POST' enctype='multipart/form-data' id='form'>
                 <div class='input-wrapper'>
                     <img src='images/user_profiles/" . ($oldUserData['profile_img']?$oldUserData['profile_img']:'default.png') . "' id='user-profile-img' alt='user profile image'>
+                    <p>Max file size 2<abbr title='megabyte'>MB</abbr></p>
                     <input type='file' accept='image/png,image/jpeg,image/bmp' id='profile_img' class='custom-file-input' name='profile_img' onchange='showPreview(event);'>
                     <p class='error'></p>
                 </div>
