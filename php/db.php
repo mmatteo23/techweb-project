@@ -105,6 +105,7 @@ class DBAccess {
 				password = '$password'";
 
 		$queryResults = mysqli_query($this->connection, $query); 
+		if(!$queryResults)
 			return false;
 		
 		if(mysqli_num_rows($queryResults) == 0) { // usare gli if in modo efficiente, la cpu elabora velocemente i branch positivi, perché in caso di ramo else deve fare il rollback di quello che ha fatto e prendere l'altro ramo => mettere in esito positivo sempre i rami che sono piú probabili!
@@ -195,7 +196,7 @@ class DBAccess {
 	}
 
 	public function getArticleData($id){
-		$query="SELECT * FROM Article WHERE id=".$id;
+		$query="SELECT Article.id AS id, title, subtitle, text, publication_date, author, read_time, Game.name AS name, cover_img, alt_cover_img FROM Article JOIN Game on game_id = Game.id WHERE Article.id=".$id;
 		$result = $this->executeQuery($query);
 		return $result[0];
 	}
@@ -239,7 +240,7 @@ class DBAccess {
 		if($game=='')
 			return null;
 		$game = urldecode($game);
-		$query = "SELECT Article.id, title, subtitle, Game.name, publication_date, cover_img FROM (article_games JOIN Article ON article_id=Article.id) JOIN Game ON Game.id=game_id
+		$query = "SELECT Article.id, title, subtitle, Game.name, publication_date, cover_img FROM Article JOIN Game ON game_id=Game.id
 		WHERE !is_approved AND Game.name='$game'
 		GROUP BY title
 		ORDER BY publication_date DESC;";
@@ -352,7 +353,7 @@ class DBAccess {
 
 	public function getTopArticles(int $nArt, int $offset = 0){
         //da Mettere WHERE is_approved e non !is_approved
-        $query = "SELECT id, title, subtitle, publication_date, cover_img FROM Article WHERE !is_approved ORDER BY publication_date DESC LIMIT ".$nArt." OFFSET ".$offset;   
+        $query = "SELECT Article.id AS id, title, subtitle, publication_date, cover_img, Game.name AS game FROM Article JOIN Game ON game_id=Game.id WHERE !is_approved ORDER BY publication_date DESC LIMIT ".$nArt." OFFSET ".$offset;   
         $queryResults = mysqli_query($this->connection, $query);
 		if(!$queryResults) 
 			return "ErroreDB";
@@ -409,8 +410,7 @@ class DBAccess {
 		$today = new DateTime(date("Y-m-d"));
 		$oneMonthAgo = ($today->modify('-1 month'))->format("Y-m-d");
 		$query2 = "SELECT Game.id as id, Game.name as name, Game.game_img as img, COUNT(*) AS numLikes 
-		FROM ((liked_articles JOIN Article on article_id=id) JOIN article_games ON liked_articles.article_id=article_games.article_id)
-		JOIN Game on game_id = Game.id
+		FROM (liked_articles JOIN Article on article_id=id) JOIN Game on game_id = Game.id
 		WHERE publication_date>'$oneMonthAgo' GROUP BY game_id ORDER BY COUNT(*) DESC LIMIT 4";
 		$result = $this->executeQuery($query2);
 		return $result;

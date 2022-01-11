@@ -69,7 +69,12 @@ if($connection){
                 array_push($slides, $HTMLSlide);
             }
         }
-        if($HotGames) {
+        if(isset($HotGames) && $HotGames != "WrongQuery") {
+            $HotGamesHTML = '
+            </div>
+            <div id="hot-games">
+                <h1 class="subtitle">Hot Games</h1>
+                <ul class="game-list" id="game-list">';
             for($i = 0; $i < count($HotGames); $i++){
                 $game = $HotGames[$i];            
                 $HotGamesHTML .= '<li class="card" id="'.$game['name'].'">
@@ -79,6 +84,7 @@ if($connection){
                     $HotGamesHTML .= '</div>
                             </li>';
             }
+            $HotGamesHTML .= '</ul></div>';
         }
         //str_replace per il carousel
         if(count($slides)>0){
@@ -93,13 +99,7 @@ if($connection){
                     $i++;
                 }
             }
-            $carousel .= '
-                </div>
-                <div id="hot-games">
-                    <h1 class="subtitle">Hot Games</h1>
-                    <ul class="game-list" id="game-list">'.$HotGamesHTML.'</ul>
-                </div>
-                </div>';
+            $carousel .= $HotGamesHTML . '</div>';
         }
         $user_output.='<button class="action-button" id="more-articles" type="button" onClick=loadMore('.$lastArticleLoaded.')>Load more</button></div>';
     }      

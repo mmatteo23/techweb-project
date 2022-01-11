@@ -356,6 +356,7 @@
     #hot-games .card-content .card-title a{
         font-size: 0.7em;
         white-space: normal;
+        color: white;
     }
 
     #hot-games .game-list{

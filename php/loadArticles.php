@@ -15,15 +15,16 @@ function loadArticles($articles, $tags, int $from, int $to) {
                     <h3>'.$art['title'].'</h3>
                     <h4>'.$art['subtitle'].'</h4>
                     <p>'.$art['publication_date'].'</p>';
+        $user_output .= '<ul id="card-article-tags" class="tag-list">
+                            <li class="tag"><a href="search.php?game='.$art['game'].'">'.$art['game'].'</a></li>';
         if($tags){
-            $user_output .= '<ul id="card-article-tags" class="tag-list">';
             foreach($tags as $tag){
                 if($tag['article_id']==$art['id']){
                     $user_output .= '<li class="tag">'.$tag['name'].'</li>';
                 }
             }
-            $user_output .= '</ul>';
         }   
+        $user_output .= '</ul>';
         $user_output .= '</div>
         </article>
         </a>';

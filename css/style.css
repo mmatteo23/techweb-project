@@ -407,6 +407,10 @@ a.card-article-link:focus article{
   transition: transform .3s;   
 }
 
+.card-article-link:hover .card-article-info{
+  color: white;
+}
+
 a.card-article-link article {
   transition: transform .3s;  
   margin-bottom: 1em;

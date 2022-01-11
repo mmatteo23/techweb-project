@@ -2,6 +2,7 @@
 
 require_once('php/utilityFunctions.php');
 require_once('php/db.php');
+require_once('php/error_management.php');
 use DB\DBAccess;
 
 session_start();
@@ -57,7 +58,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             }
         }
     } else {
-        $errors = "<p>Our services are down at this moment, please try later or contact us</p>";
+        $errors = createDBErrorHTML();
     }
 }
 

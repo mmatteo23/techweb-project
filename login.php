@@ -1,6 +1,7 @@
 <?php
 
 require_once('php/db.php');
+require_once('php/error_management.php');
 use DB\DBAccess;
 
 session_start();

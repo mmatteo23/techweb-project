@@ -2,7 +2,6 @@
 /* --------- BUILD DB --------- */
 /* ---------------------------- */
 
-DROP TABLE IF EXISTS article_games;
 DROP TABLE IF EXISTS saved_articles;
 DROP TABLE IF EXISTS liked_articles;
 DROP TABLE IF EXISTS follow;
@@ -44,6 +43,15 @@ CREATE TABLE follow (
     FOREIGN KEY (follower) REFERENCES Person(username)
 );
 
+CREATE TABLE Game (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  description VARCHAR(1000),
+  release_date DATE,
+  developer VARCHAR(100),
+  game_img VARCHAR(255)
+);
+
 CREATE TABLE Article (
     id            INT AUTO_INCREMENT PRIMARY KEY,
     title         VARCHAR(255) NOT NULL,
@@ -55,7 +63,9 @@ CREATE TABLE Article (
     read_time       INT,
     is_approved     BOOLEAN DEFAULT FALSE,
     author        VARCHAR(100) NOT NULL,
-    FOREIGN KEY (author) REFERENCES Person(username)
+    game_id INT NOT NULL,
+    FOREIGN KEY (author) REFERENCES Person(username),
+    FOREIGN KEY (game_id) REFERENCES Game(id)
 );
 
 CREATE TABLE liked_articles (
@@ -72,23 +82,6 @@ CREATE TABLE saved_articles (
     PRIMARY KEY (username, article_id),
     FOREIGN KEY (username) REFERENCES Person(username),
     FOREIGN KEY (article_id) REFERENCES Article(id)
-);
-
-CREATE TABLE Game (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(100) NOT NULL,
-  description VARCHAR(1000),
-  release_date DATE,
-  developer VARCHAR(100),
-  game_img VARCHAR(255)
-);
-
-CREATE Table article_games(
-  article_id  INT,
-  game_id     INT,
-  FOREIGN KEY (article_id) REFERENCES Article(id),
-  FOREIGN KEY (game_id) REFERENCES Game(id),
-  PRIMARY KEY (article_id, game_id)
 );
 
 CREATE TABLE Genre (
