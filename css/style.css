@@ -793,7 +793,7 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
 }
 
 #aboutus-body h2{
-  font-size: 6rem;
+  font-size: 4rem;
   color: var(--pink-accent);
 }
 
@@ -809,20 +809,24 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
 
 #aboutus-body a{
   display: inline-block;
-  color: white;
+  color: black;
   padding: 0 0.5em;
-  background-color: #1900ff94;
-  transition: all 0.3s ease-out;
   border-radius: 0.5em;
+  transition: all .25s ease-in-out;
 }
+
+#aboutus-body a:link{
+  background-color: var(--bg-accent);
+}
+
 #aboutus-body a:visited{
-  background-color: var(--fucsia-accent);
+  background-color: var(--pink-accent);
 }
 
 #aboutus-body a:hover,
 #aboutus-body a:focus{
-  background-color: var(--bg-accent);
-  color:var(--bg);
+  background-color: var(--teal-accent);
+  transform: scale(1.05);
 }
 
 #aboutus-body ul{
