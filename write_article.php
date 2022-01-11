@@ -23,7 +23,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $game_id            = $_POST['game'];
     $tags               = $_POST['tags'];
     $article_img = NULL;    
-    $errorsImage = checkImageToUpload($article_img, "images/article_covers/", "cover", $title, "default/" . $game_id . "-cover-1080.jpg");
+    $errorsImage = checkImageToUpload($article_img, "images/article_covers/", "cover", $title, "Default/" . $game_id . "-cover-1080.jpg");
 
     // system params for storing an article
     $publication_date   = date('Y-m-d');

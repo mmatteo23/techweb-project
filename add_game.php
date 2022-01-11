@@ -2,7 +2,6 @@
 
 session_start();
 
-require_once("php/validSession.php");
 require_once("php/UserController.php");
 require_once("php/ArticleController.php");
 require_once("php/GameController.php");
@@ -11,6 +10,12 @@ require_once("php/utilityFunctions.php");
 $errors = '';
 $htmlPage = file_get_contents("html/add_game.html");
 $username = $_SESSION['username'];
+$userData = getUser($username);
+$userRole = $userData['role'];
+
+if(!isset($username) || $username == '' || $userRole != 1){    // the user is not authorized
+    header("location: login.php");
+}
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // POST the comment in db
@@ -20,78 +25,53 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $description = $_POST['description'];
     $releaseDate = $_POST['releaseDate'];
     $developer = $_POST['developer'];
-    $genres = $_POST['tags'];
+    $genre_id = $_POST['genre'];
+    $default_article_img = NULL;
     $game_img = NULL;
 
-    $errorsImage = checkImageToUpload($game_img, "images/games/", "cover", $name);
+    $errorsImage = checkImageToUpload($game_img, "images/games/", "cover", $name, "");
 
     $username = $_SESSION['username'];
-    $userData = show($username);
+    $userData = getUser($username);
     $userRole = $userData['role'];
 
+    $game_id = storeGame($name, $description, $releaseDate, $developer, $game_img, $userRole);
 
-    $result = storeGame($name, $description, $releaseDate, $developer, $game_img, $userRole);
-    if(is_int($result)){
-        header("Location: games.php");
+    if(is_int($game_id)){
+        $result = checkImageToUpload($default_article_img, "images/article_covers/Default/", "default-article-img", $game_id."-cover-1080", "");
+        if(is_int($result) || $result == "" || $result == 1 || $result == "1"){
+            $result = storeGameGenre($game_id, $genre_id);
+            if(is_int($result) || $result == "" || $result == 1 || $result == "1"){
+                header("Location: games.php");
+            } else {
+                $errors = "<ul>" . $result . "</ul>";
+            }
+        } else {
+            $errors = "<ul>" . $result . "</ul>";
+        }
     } else {
         $errors = "<ul>" . $result . "</ul>";
     }
+    
 }
 
-$form = '
-    <form method="POST" action="add_game.php" id="articleForm" enctype="multipart/form-data">
-    <div class="input-wrapper">
-        <label for="cover">Game Cover</label>
-        <input type="file" style="color: black;" name="cover" id="cover">
-        <p class="error"></p>
-    </div>
-    <div class="input-wrapper">
-        <label for="name">Game name</label>
-        <input type="text" name="name" id="name">
-        <p class="error"></p>
-    </div>
-    <div class="input-wrapper">
-        <label for="description">Game description</label>
-        <input type="text" name="description" id="description">
-        <p class="error"></p>
-    </div>
-    <div class="input-wrapper">
-        <label for="tags">Game genres</label>
-        <ul class="tag-list tag-container" id="article-tags">
-        </ul>
-        <input type="text" name="tags" id="tags">  
-    </div>
-    <div class="input-wrapper">
-        <label for="releaseDate">Release date</label>
-        <input type="date" name="releaseDate" id="releaseDate">
-        <p class="error"></p>
-    </div>
-    <div class="input-wrapper">
-        <label for="developer">Software House / Developer</label>
-        <input type="text" name="developer" id="developer">
-        <p class="error"></p>
-    </div>   
-    <div class="form-buttons">
-        <a href="../profile.php" id="undoBtn" class="action-button">Discard</a>
-        <input id="submit-btn" class="action-button" type="submit" value="Add game">    
-    </div>
-    </form>
-';
+$genres = getGenres();
 
-$userData = show($username);
-$userRole = $userData['role'];
-if ($userRole == 1) {
-    $html = '
-        <h1>Add a game</h1>
-        <formErrors/>
-    ';
-    $html .= $form;
-} else {
-    // Utente loggato ma non è admin
-    $html = '<h1 id="page-title">You\'r not admin! Come back <a href="/">Home</a>!</h1>';
+if(isset($genres)){
+    $selectOptions="";
+    foreach($genres as $genre){
+        $selectOptions .= "<option value='" . $genre['id'] . "'>" . $genre['name'] . "</option>";
+    }
+
+    $selectbox = "
+        <select name='genre' id='genre'>" .
+            $selectOptions
+        . "</select>
+    ";
 }
 
-$htmlPage = str_replace('<content/>', $html, $htmlPage);
+$htmlPage = str_replace('<selectGenre/>', $selectbox, $htmlPage);
+$htmlPage = str_replace('<formErrors/>', $errors, $htmlPage);
 
 require_once('php/full_sec_loader.php');
 

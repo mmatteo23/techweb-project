@@ -19,7 +19,7 @@
 </head>
 <body>
     <pageHeader/>
-    
+
     <nav id="breadcrumb">
 		<p>
             <a href="index.php">Home</a> &gt; 
@@ -31,7 +31,51 @@
 
 
     <main id="content">
-        <content/>
+        <h1>Add a game</h1>
+
+        <formErrors/>
+
+        <form method="POST" action="add_game.php" id="articleForm" enctype="multipart/form-data">
+            <div class="input-wrapper">
+                <label for="cover">Game Cover</label>
+                <input type="file" style="color: black;" name="cover" id="cover">
+                <p class="error"></p>
+            </div>
+            <div class="input-wrapper">
+                <label for="default-article-img">Default article image</label>
+                <input type="file" style="color: black;" name="default-article-img" id="default-article-img">
+                <p class="error"></p>
+            </div>
+            <div class="input-wrapper">
+                <label for="name">Game name</label>
+                <input type="text" name="name" id="name">
+                <p class="error"></p>
+            </div>
+            <div class="input-wrapper">
+                <label for="description">Game description</label>
+                <input type="text" name="description" id="description">
+                <p class="error"></p>
+            </div>
+            <div class="input-wrapper">
+                <label for="genre">Genre</label>
+                <selectGenre/>
+                <p class="error"></p>
+            </div>
+            <div class="input-wrapper">
+                <label for="releaseDate">Release date</label>
+                <input type="date" name="releaseDate" id="releaseDate">
+                <p class="error"></p>
+            </div>
+            <div class="input-wrapper">
+                <label for="developer">Software House / Developer</label>
+                <input type="text" name="developer" id="developer">
+                <p class="error"></p>
+            </div>   
+            <div class="form-buttons">
+                <a href="../profile.php" id="undoBtn" class="action-button">Discard</a>
+                <input id="submit-btn" class="action-button" type="submit" value="Add game">    
+            </div>
+        </form>
     </main>
 
 

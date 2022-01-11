@@ -15,12 +15,12 @@ function checkImageToUpload(&$img, string $target_dir, string $idInputForm, stri
     $errors = "";
     if(isset($_FILES[$idInputForm]) && $_FILES[$idInputForm]['name']){
 
-
+        $target_file = $target_dir . basename($_FILES[$idInputForm]["name"]);
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         $img = $img_name . "." . $imageFileType;
         /*
         //$profile_img = basename($_FILES["profile_img"]["name"]);
-        $target_file = $target_dir . basename($_FILES[$idInputForm]["name"]);
+       
         //$target_file = $target_dir . $_SESSION['username'] . $imageFileType;
         $uploadOk = 1;
 

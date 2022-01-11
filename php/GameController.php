@@ -29,6 +29,17 @@ function getGames(bool $name = TRUE, bool $description = TRUE, bool $release_dat
     }
 }
 
+function getGenres() {
+    $connection_manager = new DBAccess();
+    $conn_ok = $connection_manager->openDBConnection();
+
+    if($conn_ok) {
+        $query = "SELECT id, name FROM Genre";
+        $queryResults = $connection_manager->executeQuery($query);
+        return $queryResults;
+    }
+}
+
 function gameValidator($name, $description, $release_date, $developer){
     $errors = "";
 
@@ -83,6 +94,17 @@ function storeGame(string $name, string $description, string $release_date, stri
         }
     } else {
         return buildError("Internal server error");
+    }
+}
+
+function storeGameGenre(int $game_id, int $genre_id) {
+    $connection_manager = new DBAccess();
+    $conn_ok = $connection_manager->openDBConnection();
+
+    if($conn_ok) {
+        $query = "INSERT INTO game_genre (game_id, genre_id) VALUES ($game_id,$genre_id)";
+        $queryResults = $connection_manager->executeQuery($query);
+        return $queryResults;
     }
 }
 
