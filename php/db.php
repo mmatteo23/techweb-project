@@ -71,28 +71,6 @@ class DBAccess {
 	 * 
 	 **************************************************************/
 
-	/**
-	 * @brief getUserInfo()		returns the user data from username
-	 * @return 	array()			if user exists it returns an array with user data
-	 * 			NULL			if user doesn't exist it returns null
-	 */
-	public function getUserInfo(string $username) {
-		$query = "SELECT * FROM Person
-				WHERE username = '$username' LIMIT 1";
-		//echo $query;
-		$queryResults = mysqli_query($this->connection, $query); 
-		if(!$queryResults)
-			return "ErroreDB";
-		
-		if(mysqli_num_rows($queryResults) == 0) // usare gli if in modo efficiente, la cpu elabora velocemente i branch positivi, perché in caso di ramo else deve fare il rollback di quello che ha fatto e prendere l'altro ramo => mettere in esito positivo sempre i rami che sono piú probabili!
-			return null;
-
-		//$result = array();
-		//while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
-		$result = mysqli_fetch_assoc($queryResults);	// abbiamo un solo valore => è sufficiente questa riga
-		$queryResults->free(); // libera le risorse
-		return $result;
-	}
 
 	/**
 	 * @brief authentication(string, string)		check if an user with these credentials exists
@@ -152,19 +130,6 @@ class DBAccess {
 		// run the query
         return mysqli_query($this->connection, $query); //or die("An error occours! " . mysqli_error($this->connection));
         		
-	}
-
-	public function updateUserInfo($username, $firstname, $lastname, $email, $password, $image){
-		$updateQuery = "UPDATE Person
-		SET	firstName='$firstname', lastName='$lastname', email='$email', password='$password'";
-		if($image){
-			$updateQuery .= ", profile_img='$image'";
-		}
-		$updateQuery .= "WHERE username='$username'";
-		$queryResult = mysqli_query($this->connection, $updateQuery);
-		if(!$queryResults)
-			return "UpdateFailed";
-		return $queryResult;
 	}
 
 	public function getFavArticles($user){		

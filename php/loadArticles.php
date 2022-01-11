@@ -16,7 +16,7 @@ function loadArticles($articles, $tags, int $from, int $to) {
                     <h4>'.$art['subtitle'].'</h4>
                     <p>'.$art['publication_date'].'</p>';
         $user_output .= '<ul id="card-article-tags" class="tag-list">
-                            <li class="tag">'.$art['game'].'</li>';
+                            <li class="tag" id="game-tag">'.$art['game'].'</li>';
         if($tags){
             foreach($tags as $tag){
                 if($tag['article_id']==$art['id']){

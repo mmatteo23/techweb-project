@@ -52,7 +52,7 @@ if($connection){
                             <h4>'.$art['subtitle'].'</h4>
                             <p>'.$art['publication_date'].'</p>';
                 $HTMLSlide .= '<ul id="card-article-tags" class="tag-list">
-                                    <li class="tag">'.$art['game'].'</li>';
+                                    <li class="tag" id="game-tag">'.$art['game'].'</li>';
                 if($CarouselTags[$art['id']]){
                     foreach($CarouselTags[$art['id']] as $tag){
                         $HTMLSlide .= '<li class="tag">'.$tag['name'].'</li>';

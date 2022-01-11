@@ -1,8 +1,9 @@
 <?php
 
 require_once('utilityFunctions.php');
-require_once('php/db.php');
-require_once('php/TagController.php');
+require_once('db.php');
+require_once('TagController.php');
+require_once('UserController.php');
 use DB\DBAccess;
 
 
@@ -73,7 +74,7 @@ function storeArticle(string $title, string $subtitle, string $article_text, str
     $conn_ok = $connection_manager->openDBConnection();
     
     if($conn_ok){
-        if($connection_manager->getUserInfo($author)){      // this is a valid author
+        if(getUser($author)){      // this is a valid author
 
             $validationErrors = articleValidator($title, $subtitle, $article_text, $publication_date, $cover_img, $read_time);
             

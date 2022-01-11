@@ -38,7 +38,7 @@ if($connection){
                     </div>';
         //sono sicuro che esiste game perché è NOT NULL nel DB
         $user_output .= '<ul id="article-tags" class="tag-list">
-                            <li><a href="search.php?game='.$articleData['name'].'">'.$articleData['name'].'</a></li>';
+                            <li><a href="search.php?game='.$articleData['name'].'" id="game-tag">'.$articleData['name'].'</a></li>';
         if(isset($tags) && count($tags)>0){
             foreach($tags as $tag)
                 $user_output .= '<li><a href="search.php?tag='.urlencode($tag['name']).'">'.$tag['name'].'</a></li>';

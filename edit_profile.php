@@ -17,22 +17,22 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $profile_img    = NULL;
     // ['name in form']['imported file name']
 
-    
-    $errorsImage = checkImageToUpload($profile_img, "images/user_profiles/", "profile_img", $_SESSION['username']);
-    
-    if(!$errors){
-        $result = update($_SESSION['username'], $firstname, $lastname, $email, $password, $rep_password, $profile_img);
+    $errors .= checkImageToUpload($profile_img, "images/user_profiles/", "profile_img", $_SESSION['username'], "");
+
+    if($errors==""){
+        $result = updateUser($_SESSION['username'], $firstname, $lastname, $email, $password, $rep_password, $profile_img);
         if($result === TRUE){
-            redirect('../profile.php', false, 201);
-        } else {
-            $errors = $result;
+            header("Location: profile.php");
+        } 
+        else {
+            $errors .= $result;
         }
     }
 
 }
 
 // TAKE OLD USER INFO
-$oldUserData = show($_SESSION['username']);
+$oldUserData = getUser($_SESSION['username']);
 
 $content = "
     <div class='form-wrapper' id='profileEditForm'>

@@ -628,7 +628,7 @@ a.card-article-link:visited h3{
   display: flex;
   flex-direction: column;
   padding: 2em 2em 7.5rem;
-  background-image: linear-gradient(to bottom right, var(--bg), var(--bg), #999)
+  /*background-image: linear-gradient(to bottom right, var(--bg), var(--bg), #999)SCUSAAAAAAAAAA MILAN */
 }
 
 #content #article-header #article-title{
@@ -690,6 +690,16 @@ a.card-article-link:visited h3{
   text-decoration: none;  
   display: block;
   transition: transform .25s ease-in-out;
+}
+
+#article-tags #game-tag{
+  background-color:var(--bg-accent);
+  color: #1b1b1b;
+}
+
+#card-article-tags #game-tag{
+  background-color:var(--bg-accent);
+  color: #1b1b1b;
 }
 
 

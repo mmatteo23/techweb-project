@@ -6,7 +6,7 @@ require_once("php/UserController.php");
 $content = "";  // html code to send to the page
 
 // SHOW USER INFO
-$userData = show($_SESSION['username']);
+$userData = getUser($_SESSION['username']);
 
 if($userData){
     $role = ($userData['role']==1) ? 'Admin' : 'User';

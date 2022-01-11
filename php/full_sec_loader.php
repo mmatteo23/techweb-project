@@ -1,21 +1,16 @@
 <?php
 //to be placed in every main php file to render header, dynamic navbar and footer
-require_once('php/db.php');
-use DB\DBAccess;
+require_once('php/UserController.php');
 // variables
 
 $profile_class = "";  // html code to send to the page
 
-// create a connection istance to talk with the db
-$connection_manager = new DBAccess();
-$conn_ok = $connection_manager->openDBConnection();
 
 $profile_img = '<li><a tabindex=7 id="profile-link" href="login.php" ><span class="material-icons md-36">person</span><span>Profile</span></a></li>';
 
-if($conn_ok && isset($_SESSION['username'])){
-    $user = $connection_manager->getUserInfo($_SESSION['username']);
-    $connection_manager->closeDBConnection();
-    if($user!="ErroreDB")
+if(isset($_SESSION['username'])){
+    $user = getUser($_SESSION['username']);
+    if($user)
         $profile_img = '<li><a tabindex=7 id="profile-link" href="profile.php" class="profile-img" ><span class="material-icons md-36">person</span><span><img src="images/user_profiles/'. ($user['profile_img']?$user['profile_img']:'default.png') .'" alt="Profile"></span></a></li>';
 }
 
