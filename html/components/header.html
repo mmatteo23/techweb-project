@@ -4,31 +4,31 @@
     <div class="logo">
         <h2>Penta News</h2>
         <img class="text-logo" src="images/Penta_logo_open.png" alt="Penta - the eSports network logo">
-        <img class="rotating-logo" src="images/small_logo.png" alt="rotating part of logo">
+        <img aria-hidden="true" class="rotating-logo" src="images/small_logo.png" alt="rotating part of logo">
     </div>
     <h2>The <abbr title="electronic sports">eSports</abbr> Network</h2>
 </header>
 
-<div class="sticky-nav">
+<nav class="sticky-nav">
     <ul class="navbar"  id="navbar">
         <li id="navbar-logo">
             <a tabindex=2 class="logo" href="/">
                 <img class="text-logo" src="images/Penta_logo_open.png" alt="Penta News - the eSports network logo">
-                <img class="rotating-logo" src="images/small_logo.png" alt="rotating part of logo">
+                <img aria-hidden="true" class="rotating-logo" src="images/small_logo.png" alt="rotating part of logo">
             </a>
         </li>
-        <li><a tabindex=3 id="home-link" href="/"><span class="material-icons md-36">home</span><span>Home</span></a></li>
-        <li><a tabindex=4 id="games-link" href="games.php"><span class="material-icons md-36">games</span><span>All Games</span></a></li>
-        <li><a tabindex=5 id="favorites-link" href="favorites.php"><span class="material-icons md-36">grade</span><span>Favorites</span></a></li>
-        <li><span type="button" tabindex=6 id="search"><span class="material-icons md-36">search</span><span>Search</span></span></li>
+        <li><a tabindex=3 id="home-link" href="/"><span aria-hidden="true" class="material-icons md-36">home</span><span>Home</span></a></li>
+        <li><a tabindex=4 id="games-link" href="games.php"><span aria-hidden="true" class="material-icons md-36">games</span><span>All Games</span></a></li>
+        <li><a tabindex=5 id="favorites-link" href="favorites.php"><span aria-hidden="true" class="material-icons md-36">grade</span><span>Favorites</span></a></li>
+        <li><span type="button" aria-label="Toggle search bar" tabindex=6 id="search"><span aria-hidden="true" class="material-icons md-36">search</span><span aria-hidden="true">Search</span></span></li>
         <profile-image/>
     
         <!-- <li><a id="profile-link" href="profile.php?"  ><span class="material-icons md-36">person</span><span>Profile</span></a></li> -->
     </ul>
     <div id="src-bar-wrapper">
         <form action="/search.php" method="get">
-            <button tabindex=9 type="submit"><span class="material-icons md-36">search</button>
+            <button tabindex=9 type="submit"><span aria-hidden="true" class="material-icons md-36">search</button>
             <input tabindex=8 id="src-bar" name='src_text' type="search" placeholder="Search for an article">
         </form>
     </div>
-</div>
+</nav>
