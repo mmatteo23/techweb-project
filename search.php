@@ -13,6 +13,7 @@ $connection = $db->openDBConnection();
 $user_output = "";
 $slides = array();
 $dynamicBreadcrumb="";
+$tags="";
 
 
 if($connection){
@@ -23,15 +24,19 @@ if($connection){
         }
         else if(isset($_GET['tag'])){
             $articles = $db->getSelectedTagArticles($_GET['tag']);
+            //$tags = $db->getSelectedTagArticles($_GET['tag']);
             $dynamicBreadcrumb=': articles with tag "'.$_GET['tag'].'"';
         }
         else if(isset($_GET['game'])){
             $articles = $db->getSelectedGameArticles($_GET['game']);
+            //$tags = $db->getSelectedGameArticles($_GET['game']);
             $dynamicBreadcrumb=': articles about "'.$_GET['game'].'"';
         }
+        $tags = $db->getSearchRelatedArticlesTags($_GET['src_text']);
         $db->closeDBConnection();   //ho finito di usare il db quindi chiudo la connessione
         if($articles){
             $user_output .= '<h1>Search results</h1><div id="search-results">';
+            $x=0;
             foreach($articles as $art){
                 $user_output .= 
                     '<a class="card-article-link" href="article.php?id='.$art['id'].'">
@@ -43,15 +48,15 @@ if($connection){
                             <h3>'.$art['title'].'</h3>
                             <h4>'.$art['subtitle'].'</h4>
                             <p>'.$art['publication_date'].'</p>';
-                if($tags){
-                    $user_output .= '<ul id="card-article-tags" class="tag-list">';
-                    foreach($tags as $tag){
-                        if($tag['article_id']==$art['id']){
-                            $user_output .= '<li class="tag">'.$tag['name'].'</li>';
-                        }
+                $user_output .= '<ul id="card-article-tags" class="tag-list">
+                                    <li class="tag">'.$art['game'].'</li>';
+                if($tags && $tags != "WrongQuery"){
+                    while($tags[$x]['id']==$art['id']){
+                        $user_output .= '<li class="tag">'.$tags[$x]['tag'].'</li>';
+                        $x++;
                     }
-                    $user_output .= '</ul>';
                 }   
+                $user_output .= '</ul>';
                 $user_output .= '</div>
                 </article>
                 </a>';
