@@ -3,7 +3,13 @@
 <head>
     <meta charset="utf-8">
     <title>CKEditor 5 – Document editor</title>
-    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/decoupled-document/ckeditor.js"></script>
+    <!--
+        <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/decoupled-document/ckeditor.js"></script>
+
+    -->
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
+
 </head>
 <body>
     <h1>Document editor</h1>
@@ -17,13 +23,26 @@
     </div>
 
     <script>
-        DecoupledEditor
-            .create( document.querySelector( '#editor' ) )
-            .then( editor => {
-                const toolbarContainer = document.querySelector( '#toolbar-container' );
-
-                toolbarContainer.appendChild( editor.ui.view.toolbar.element );
-            } )
+        ClassicEditor
+            .create( document.querySelector( '#editor' ), {
+                toolbar: {
+                    items: [
+                    'heading',
+                    '|',
+                    'bold',
+                    'italic',
+                    '|',
+                    'bulletedList',
+                    'numberedList',
+                    '|',
+                    'link',
+                    '|',
+                    'undo',
+                    'redo'
+                    ]
+                },
+                language: 'en'
+                })
             .catch( error => {
                 console.error( error );
             } );

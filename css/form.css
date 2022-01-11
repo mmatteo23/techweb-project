@@ -50,6 +50,10 @@ input[type='submit']{
     margin: 0 auto;
 }
 
+label[for='profile_img'] {
+    cursor: pointer;
+}
+
 /*******************************************
 *               INPUT FILE
 *******************************************/
@@ -72,7 +76,7 @@ input[type='submit']{
 
 #content form label{
     display: block;
-    font-size: 1em;
+    font-size: 1.2em;
     text-transform: uppercase;
     text-align: center;
     color: black;
@@ -80,7 +84,7 @@ input[type='submit']{
 }
 
 #content form label p{
-    font-size: .6em;
+    font-size: .8em;
 }
 
 #content form input{
@@ -156,6 +160,10 @@ input[type='submit']{
 
 #content .form-wrapper > p > a:visited{
   color: black;
+}
+
+.editorBox {
+    color: black;
 }
 
 

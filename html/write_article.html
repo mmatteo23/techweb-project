@@ -18,7 +18,11 @@
 
     <script defer src="js/articleEditor.js"></script>
 
-    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/decoupled-document/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
+    <!--
+        <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/decoupled-document/ckeditor.js"></script>
+
+    -->
 </head>
 <body>
     <pageHeader/>
@@ -66,7 +70,7 @@
                 <input type="text" name="tags" id="tags">  
                 <p class='error'></p>
             </div>
-            <div class="input-wrapper">
+            <div class="input-wrapper editorBox">
                 <label>Article Content</label>
                 <input type="text" name="articleText" id="articleText" hidden>         
                 <!-- The toolbar will be rendered in this container. -->
