@@ -37,6 +37,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     }
 }
 
+if($_GET['id']){
+    echo $_GET['id'];
+}
+
 if(isset($games)){
     $selectOptions="";
     foreach($games as $game){

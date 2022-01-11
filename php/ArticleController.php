@@ -7,6 +7,31 @@ require_once('UserController.php');
 use DB\DBAccess;
 
 
+function getArticles(string $author = NULL){
+    // create a connection istance to talk with the db
+    $connection_manager = new DBAccess();
+    $conn_ok = $connection_manager->openDBConnection();
+    
+    if($conn_ok){
+        $selectQuery = "SELECT * FROM Article";
+        if($author){
+            $selectQuery .= " WHERE author = '$author'";
+        }
+
+        $articles = $connection_manager->executeQuery($selectQuery);
+        $connection_manager->closeDBConnection();
+        
+        if($articles != 'WrongQuery')
+            return $articles;
+    } else {
+        $connection_manager->closeDBConnection();
+        return buildError("Internal server error");
+    }
+
+    return false;
+}
+
+
 function articleValidator($title, $subtitle, $article_text, $publication_date, $cover_img, $read_time){
     $errors = "";
 
