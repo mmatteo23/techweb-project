@@ -8,6 +8,7 @@ require_once("php/GameController.php");
 require_once("php/utilityFunctions.php");
 
 $errors = '';
+
 $htmlPage = file_get_contents("html/add_game.html");
 $username = $_SESSION['username'];
 $userData = getUser($username);
@@ -29,26 +30,31 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $default_article_img = NULL;
     $game_img = NULL;
 
-    $errorsImage = checkImageToUpload($game_img, "images/games/", "cover", $name, "");
+    
 
     $username = $_SESSION['username'];
     $userData = getUser($username);
     $userRole = $userData['role'];
 
-    $game_id = storeGame($name, $description, $releaseDate, $developer, $game_img, $userRole);
+    $errorsImage = checkImageToUpload($game_img, "images/games/", "cover", $name, "");
 
-    if(is_int($game_id)){
-        $result = checkImageToUpload($default_article_img, "images/article_covers/Default/", "default-article-img", $game_id."-cover-1080", "");
-        if(is_int($result) || $result == "" || $result == 1 || $result == "1"){
-            $result = storeGameGenre($game_id, $genre_id);
-            if(is_int($result) || $result == "" || $result == 1 || $result == "1"){
-                header("Location: games.php");
+    if($errorsImage == "") {
+        $game_id = storeGame($name, $description, $releaseDate, $developer, $game_img, $userRole);
+        if(is_int($game_id)) {
+            $result = checkImageToUpload($default_article_img, "images/article_covers/Default/", "default-article-img", $game_id."-cover-1080", "");
+            if($result == "" || $result == 1 || $result == "1") {
+                $result = storeGameGenre($game_id, $genre_id);
+                if(is_int($result) || $result == "" || $result == 1 || $result == "1") {
+                    header("Location: games.php");
+                } else {
+                    $errors = "<ul>" . $result . "</ul>";
+                }
             } else {
                 $errors = "<ul>" . $result . "</ul>";
             }
         } else {
             $errors = "<ul>" . $result . "</ul>";
-        }
+        } 
     } else {
         $errors = "<ul>" . $result . "</ul>";
     }
