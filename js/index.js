@@ -26,6 +26,8 @@ function validateImage() {
         document.getElementById("profile_img").value = '';
         return false;
     }
+
+    setSuccess(fileInput)
     return true;
 }
 
