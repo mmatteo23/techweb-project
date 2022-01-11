@@ -54,12 +54,29 @@ body{
   font-size: 1em;
 }
 
+a{
+  transition: all .25s ease-in-out;
+}
+
 a:link{
-  color: #071688;
+  color: var(--bg-accent);
 }
 
 a:visited{
   color: var(--pink-accent);
+}
+
+a:hover,
+a:focus{
+  color: var(--purple-accent);  
+}
+
+a:focus,
+button:focus,
+input[type="submit"]:focus{
+  outline-color: var(--fucsia-accent);
+  outline: 3px solid var(--fucsia-accent);
+  outline-offset: .3em;
 }
 
 /*
@@ -297,6 +314,11 @@ footer .credits{
 #breadcrumb a{
   font-weight: bold;
 }
+
+#breadcrumb a:link{
+  color: #071688;
+}
+
 #breadcrumb a:visited{
   color: #8F33DD;
 }
@@ -455,10 +477,16 @@ a.card-article-link:link h3{
   color: white;
 }
 
+a.card-article-link:link:hover h3,
+a.card-article-link:link:focus h3,
+a.card-article-link:visited:hover h3,
+a.card-article-link:visited:focus h3{
+  color: var(--purple-accent);
+}
+
 a.card-article-link:visited h3{
   color: var(--pink-accent);
 }
-
 
 #card-article-tags{
   margin: 0.5em 0 0em;
@@ -1085,10 +1113,6 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   color: var(--teal-accent)
 }
 
-.private_area_content a:link{
-  color: var(--teal-accent);
-}
-
 
 /**********************************
  *      STANDARD CLASSES
@@ -1170,6 +1194,7 @@ h1{
   transform: scale(104%);
   border-radius: 3em 3em 1.75em 1.75em;
   background-color: var(--teal-accent);
+  outline: none;
 }
 
 .card-content{
@@ -1201,6 +1226,7 @@ h1{
 .card-content .card-title .card-title-link:hover,
 .card-content .card-title .card-title-link:focus{
   color: var(--pink-accent);
+  outline: none;
 }
 
 .card-content > ul{
@@ -1262,10 +1288,20 @@ h1{
   background-color: var(--purple-accent);
 }
 
+.tag-list li:nth-child(odd) a:hover,
+.tag-list li:nth-child(odd) a:focus{
+  outline-color: var(--fucsia-accent);
+}
+
 .tag-list li:nth-child(even),
 .tag-list li:nth-child(even) a{
   background-color:var(--fucsia-accent);
   text-shadow: 2px 2px 3px black;
+}
+
+.tag-list li:nth-child(even) a:hover,
+.tag-list li:nth-child(even) a:focus{
+  outline-color: var(--purple-accent);
 }
 
 
@@ -1292,12 +1328,13 @@ ERRORs
   margin-left:2em;
 }
 
-.error-display a{
+.error-display a:link{
   color: var(--bg-accent);
 }
 
-.error-display a:visited{
-  color: var(--pink-accent);
+.error-display a:hover,
+.error-display a:focus {
+  color: var(--purple-accent);
 }
 
 #imgNoDB{

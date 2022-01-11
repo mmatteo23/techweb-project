@@ -309,6 +309,7 @@
 
     .slider {
         width: 35%;
+        overflow: initial;
     }
 
     #content .slider h2.subtitle {
@@ -321,6 +322,7 @@
     .slides {
         margin-bottom: 2em;
         display: block;
+        overflow:initial;
     }
     .slider .card-article-link{
       min-width: 100%;
