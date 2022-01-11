@@ -21,7 +21,7 @@ $htmlPage = file_get_contents("html/private_area.html");
 
 $htmlPage = str_replace('<userName/>', $_SESSION['username'], $htmlPage);
 
-$userData = show($_SESSION['username']);
+$userData = getUser($_SESSION['username']);
 $userRole = $userData['role'];
 
 if ($userRole == 1) {
