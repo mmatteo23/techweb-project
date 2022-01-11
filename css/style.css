@@ -57,10 +57,20 @@ body{
 a:link{
   color: #071688;
 }
-a:hover{
+
+a:visited{
+  color: var(--pink-accent);
+}
+
+a:hover,
+#content a:hover,
+#content a:link:hover{
   color: var(--purple-accent);
 }
 
+#content a:link{
+  color: var(--bg-accent);
+}
 
 
 
@@ -290,14 +300,10 @@ footer .credits{
   color: #8F33DD;
 }
 
-#breadcrumb a:hover{
+#breadcrumb a:hover,
+#breadcrumb a:focus{
   color: var(--purple-accent);
 }
-
-a:visited{
-  color: var(--pink-accent);
-}
-
 
 /*
 ===== HOME =====
@@ -737,7 +743,7 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   line-height: 1.75em;
 }
 
-::marker{
+#article-body ::marker{
   color: var(--pink-accent);
 }
 
@@ -787,7 +793,8 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   background-color: var(--fucsia-accent);
 }
 
-#aboutus-body a:hover{
+#aboutus-body a:hover,
+#aboutus-body a:focus{
   background-color: var(--bg-accent);
   color:var(--bg);
 }
@@ -1213,6 +1220,7 @@ h1{
   background-color: #FAFAFA;
   color: black;
   min-height: 15em;
+  padding: .5em 2em;
 }
 
 /**************************************
@@ -1236,7 +1244,7 @@ ERRORs
 }
 
 .error-display a:visited{
-  color: var(--fucsia-accent);
+  color: var(--pink-accent);
 }
 
 #imgNoDB{
