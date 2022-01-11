@@ -35,7 +35,7 @@
 
         <form method="POST" action="write_article.php" id="articleForm" enctype='multipart/form-data'>
             <div class='input-wrapper'>
-                <label for="cover">Article Cover</label>
+                <label for="cover">Article Cover<p>If no image is uploaded a default image for the selected game will be applied. Images with 1920 x 1080 resolution are preferred</p></label>
                 <input type="file" style="color: black;" name="cover" id="cover">
                 <p class='error'></p>
             </div>
@@ -55,14 +55,16 @@
                 <p class='error'></p>
             </div>
             <div class="input-wrapper">
-                <label for="game">Referred game</label>
+                <label for="game">Game</label>
                 <selectGame/>
+                <p class='error'></p>
             </div>
             <div class="input-wrapper">
                 <label for="tags">Tags</label>
                 <ul class="tag-list tag-container" id="article-tags">
                 </ul>
                 <input type="text" name="tags" id="tags">  
+                <p class='error'></p>
             </div>
             <div class="input-wrapper">
                 <label>Article Content</label>

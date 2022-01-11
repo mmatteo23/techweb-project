@@ -79,6 +79,10 @@ input[type='submit']{
     margin-bottom: 0.5em;
 }
 
+#content form label p{
+    font-size: .6em;
+}
+
 #content form input{
     font-size: 1.5em;
     padding: 0.5em 1em;

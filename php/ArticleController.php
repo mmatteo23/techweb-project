@@ -84,14 +84,14 @@ function storeArticle(string $title, string $subtitle, string $article_text, str
             if(!$validationErrors){
     
                 $insertQuery = "
-                    INSERT INTO Article (title, subtitle, text, publication_date, cover_img, read_time, author)
-                    VALUES ('$title', '$subtitle', '$article_text', '$publication_date', '$cover_img', $read_time, '$author')
+                    INSERT INTO Article (title, subtitle, text, publication_date, cover_img, read_time, author, game_id)
+                    VALUES ('$title', '$subtitle', '$article_text', '$publication_date', '$cover_img', $read_time, '$author', $game_id)
                 ";
                 
                 $articleId = $connection_manager->executeQuery($insertQuery);
                 //$articleId = 15;
                 $connection_manager->closeDBConnection();
-                if($articleId){
+                if($articleId != 'WrongQuery'){
                     if($tags) linkTags($articleId, $tags);
                     return $articleId;
                 } else

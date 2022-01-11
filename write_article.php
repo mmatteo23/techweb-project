@@ -17,20 +17,21 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $subtitle           = $_POST['subtitle'];
     $read_time          = $_POST['minutes'];
     $article_text       = $_POST['articleText'];
-
-    $article_img = NULL;
-    $errorsImage = checkImageToUpload($article_img, "images/article_covers/", "cover", $title);
+    
 
     $author             = $_SESSION['username'];
     $game_id            = $_POST['game'];
     $tags               = $_POST['tags'];
+    $article_img = NULL;    
+    $errorsImage = checkImageToUpload($article_img, "images/article_covers/", "cover", $title, $game_id);
 
     // system params for storing an article
     $publication_date   = date('Y-m-d');
-
-    $result = storeArticle($title, $subtitle, $article_text, $publication_date, $article_img, $read_time, $author, $game_id, $tags);
-    if(is_int($result)){
-        header("Location: article.php?id=".$result);
+    if($errorsImage == ""){
+        $result = storeArticle($title, $subtitle, $article_text, $publication_date, $article_img, $read_time, $author, $game_id, $tags);
+        if(is_int($result)){
+            header("Location: article.php?id=".$result);
+        }
     } else {
         $errors = "<ul>" . $result . "</ul>";
     }

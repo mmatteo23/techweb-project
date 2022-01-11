@@ -133,7 +133,7 @@ header h2 {
 }
 
 header .logo{
-  margin-top: 1rem;
+  margin: 1rem 0;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
@@ -1039,15 +1039,16 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
 }
 
 .private_area_content,
-.error-content,
-.favorites-content{
+.error-content{
   min-height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.favorites-content{
+.favorites-content,
+.search-content{
+  min-height: 50vh;
   flex-direction: column;
   gap: 1.25em;
   padding: 0 var(--lateral-padding);

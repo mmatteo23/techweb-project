@@ -53,7 +53,8 @@ function buildError(string $msg){
 }
 
 // $idInputFrom è l'id nel campo img del form
-function checkImageToUpload(&$img, string $target_dir, string $idInputForm, string $img_name){
+function checkImageToUpload(&$img, string $target_dir, string $idInputForm, string $img_name, int $game_id){
+    $errors = "";
     if($_FILES[$idInputForm]['name']){
         //$profile_img = basename($_FILES["profile_img"]["name"]);
         $target_file = $target_dir . basename($_FILES[$idInputForm]["name"]);
@@ -104,6 +105,9 @@ function checkImageToUpload(&$img, string $target_dir, string $idInputForm, stri
             }
         }
     }
+    else{
+        $img = "default/" . $game_id . "-cover-1080.jpg";
+    }    
     return $errors;
 }
 
