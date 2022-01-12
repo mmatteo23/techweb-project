@@ -9,6 +9,33 @@ $errors = '';
 
 $games = getGames(true,false,false,false,false);
 
+
+$title='';
+$subtitle='';
+$read_time='1';
+$gameName = 'Apex Legends';
+$text = '<p>This is the initial editor content.</p>';
+$destination = "write_article.php";
+$tagString = '';
+
+if($_GET['id']){
+    $art_id = $_GET['id'];
+    $tags = array();
+    $art_data = getArticleData($art_id, $_SESSION['username'], $tags);
+    if($art_data){
+        $title = $art_data['title'];
+        $subtitle = $art_data['subtitle'];
+        $read_time = $art_data['read_time'];
+        $gameName = $art_data['game'];
+        $text = $art_data['text'];
+        $destination = "write_article.php?id=".$art_id;
+        foreach($tags as $tag){
+            $tagString .= $tag['tag'].',';
+        }
+        $tagString = trim($tagString, ',')."\n";
+    }
+}
+
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     // POST the comment in db
 
@@ -28,7 +55,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     // system params for storing an article
     $publication_date   = date('Y-m-d');
     if($errorsImage == ""){
-        $result = storeArticle($title, $subtitle, $article_text, $publication_date, $article_img, $read_time, $author, $game_id, $tags);
+        if(isset($_GET['id'])){
+            if($article_img=="Default/" . $game_id . "-cover-1080.jpg" && isset($art_data['cover_img']))
+                $article_img = $art_data['cover_img'];
+            deleteArticleById($_GET['id']);
+            $result = storeArticle($title, $subtitle, $article_text, $publication_date, $article_img, $read_time, $author, $game_id, $tags, $_GET['id']);
+        }
+        else
+            $result = storeArticle($title, $subtitle, $article_text, $publication_date, $article_img, $read_time, $author, $game_id, $tags);
         if(is_int($result)){
             header("Location: article.php?id=".$result);
         }
@@ -37,16 +71,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     }
 }
 
-if($_GET['id']){
-    echo $_GET['id'];
-}
-
 if(isset($games)){
     $selectOptions="";
     foreach($games as $game){
-        $selectOptions .= "<option value='" . $game['id'] . "'>" . $game['name'] . "</option>";
+        if($game['name']==$gameName)
+            $selectOptions .= "<option value='" . $game['id'] . "' selected>" . $game['name'] . "</option>";
+        else
+            $selectOptions .= "<option value='" . $game['id'] . "'>" . $game['name'] . "</option>";
     }
-
     $selectbox = "
         <select name='game' id='game'>" .
             $selectOptions
@@ -55,12 +87,27 @@ if(isset($games)){
 }
 
 
+
+////////////////CAMBIA LINK DEL POST
+
 // paginate the content
 // page structure
 $htmlPage = file_get_contents("html/write_article.html");
 
 $htmlPage = str_replace('<selectGame/>', $selectbox, $htmlPage);
 $htmlPage = str_replace('<formErrors/>', $errors, $htmlPage);
+
+
+//if he's coming from edit_article
+$htmlPage = str_replace('#TitleValue#', $title, $htmlPage);
+$htmlPage = str_replace('#SubitleValue#', $subtitle, $htmlPage);
+$htmlPage = str_replace('#ReadTimeValue#', $read_time, $htmlPage);
+$htmlPage = str_replace('#TagValues#', $tagString, $htmlPage);
+$htmlPage = str_replace('<p>This is the initial editor content.</p>', $text, $htmlPage);
+$htmlPage = str_replace("write_article.php", $destination, $htmlPage);
+
+
+
 
 //header footer and dynamic navbar all at once (^^^ sostituisce il commento qua sopra ^^^)
 require_once('php/full_sec_loader.php');

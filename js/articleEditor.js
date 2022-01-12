@@ -113,9 +113,9 @@ function validateInputs () {
     if(articleTextValue === '') {
         setError(articleText, 'A text is required')
         validForm = false
-    } else if (articleTextValue.length < 100) {
+    /*} else if (articleTextValue.length < 100) {
         setError(articleText, 'Article text needs to be at least 100 characters long.')
-        validForm = false
+        validForm = false*/
     } else {
         setSuccess(articleText);
     }
@@ -157,19 +157,24 @@ function addTags() {
   });
 }
 
-inputTag.addEventListener('keyup', (e) => {
-    if (e.key === 'Enter') {
-    
-        e.target.value.split(',').forEach(tag => {
+function AddAllTheTags(){
+    if(document.getElementById("tags").value!=""){
+        document.getElementById("tags").value.split(',').forEach(tag => {
             // check if the user insert a tag two times
             if(tags.indexOf(tag) == -1){
                 tags.push(tag);
             }
         });
-      
+    
         addTags();
         tagContainer.style.display = "flex";
         inputTag.value = '';
+    }
+}
+
+inputTag.addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') {
+        AddAllTheTags();
     }
 });
 
@@ -177,6 +182,7 @@ window.onload = function(){
     if(tags.length == 0){
         tagContainer.style.display = "none";
     }
+    AddAllTheTags();
 }
 
 document.addEventListener('click', (e) => {
