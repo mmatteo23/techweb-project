@@ -1,11 +1,10 @@
 <?php
 
-session_start();
-
 require_once("php/UserController.php");
 require_once("php/ArticleController.php");
 require_once("php/GameController.php");
 require_once("php/utilityFunctions.php");
+require_once('php/validSession.php');
 
 $errors = '';
 

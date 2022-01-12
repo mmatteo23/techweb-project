@@ -2,7 +2,8 @@
 
 require_once('php/db.php');
 require_once('php/error_management.php');
-session_start();
+require_once('php/validSession.php');
+
 use DB\DBAccess;
 
 // create a connection istance to talk with the db
