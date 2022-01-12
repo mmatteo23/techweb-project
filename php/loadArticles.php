@@ -2,7 +2,7 @@
 
 function loadArticles($articles, $tags, int $from, int $to) {
     $user_output .= '
-        <div id="latest-articles">
+        <section id="latest-articles">
             <h1 class="subtitle">Latest articles</h1>';
     foreach(array_slice($articles, $from, $to) as $art){
         $user_output .= 

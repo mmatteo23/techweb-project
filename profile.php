@@ -29,7 +29,8 @@ $htmlPage = file_get_contents("html/profile.html");
 require_once('php/full_sec_loader.php');
 
 if ($userData['role'] == 1) {
-    $adminButton = '<a href="administration.php" class="action-button">Manage site</a>';
+    $adminButton = '<h3 class="admin-link-info">Click the link below to get to the administration page:</h3>    
+    <a href="administration.php" class="center action-button">Manage site</a>';
     $htmlPage = str_replace('<adminButton/>', $adminButton, $htmlPage);
 }
 

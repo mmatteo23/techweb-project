@@ -42,12 +42,12 @@ function LikeThisArticle(username, article, isLiked) {
     if (isLiked) {
         //se era liked adesso l'user vuole togliere il like
         isLiked = 0;
-        document.getElementById("likeContainer").innerHTML='<span type="button" id="likeBtn" onclick=LikeThisArticle("'+username+'",'+article+','+isLiked+')><span class="material-icons md-36">favorite_border</span></span>';
+        document.getElementById("likeContainer").innerHTML='<button id="likeBtn" onclick=LikeThisArticle("'+username+'",'+article+','+isLiked+')><span class="material-icons md-36">favorite_border</span></button>';
         postData(username, article, isLiked);
     } else {
         //se non lo era allora vuole metterlo
         isLiked = 1;
-        document.getElementById("likeContainer").innerHTML='<span type="button" id="likeBtn" onclick=LikeThisArticle("'+username+'",'+article+','+isLiked+')><span class="material-icons md-36">favorite</span></span>';
+        document.getElementById("likeContainer").innerHTML='<button id="likeBtn" onclick=LikeThisArticle("'+username+'",'+article+','+isLiked+')><span class="material-icons md-36">favorite</span></button>';
         postData(username, article, isLiked);
     }
     console.log("DOPO: " + isLiked);
@@ -58,12 +58,12 @@ function SaveThisArticle(username, article, isSaved) {
     if (isSaved) {
         //se era liked adesso l'user vuole togliere il like
         isSaved = 0;
-        document.getElementById("saveContainer").innerHTML='<span type="button" id="likeBtn" onclick=SaveThisArticle("'+username+'",'+article+','+isSaved+')><span class="material-icons md-36">bookmark_border</span></span>';
+        document.getElementById("saveContainer").innerHTML='<button id="likeBtn" onclick=SaveThisArticle("'+username+'",'+article+','+isSaved+')><span class="material-icons md-36">bookmark_border</span></button>';
         //postData(username, article, isSaved);
     } else {
         //se non lo era allora vuole metterlo
         isSaved = 1;
-        document.getElementById("saveContainer").innerHTML='<span type="button" id="saveBtn" onclick=SaveThisArticle("'+username+'",'+article+','+isSaved+')><span class="material-icons md-36">bookmark</span></span>';
+        document.getElementById("saveContainer").innerHTML='<button id="saveBtn" onclick=SaveThisArticle("'+username+'",'+article+','+isSaved+')><span class="material-icons md-36">bookmark</span></button>';
         //postData(username, article, isSaved);
     }
     console.log("DOPO: " + isSaved);
@@ -74,12 +74,12 @@ function LikeThisArticle(username, id, liked){
     var likes=((document.getElementById("article-likes").innerHTML).split(" likes")[0]).substring(70);
     if(liked){          //sta togliendo il like
         liked=0;
-        document.getElementById("likeContainer").innerHTML='<span type="button" id="likeBtn" onclick=LikeThisArticle("'+username+'",'+id+','+liked+')><span class="material-icons md-36">favorite_border</span></span>';
+        document.getElementById("likeContainer").innerHTML='<button id="likeBtn" onclick=LikeThisArticle("'+username+'",'+id+','+liked+')><span class="material-icons md-36">favorite_border</span></button>';
         likes--;
     }
     else{
         liked=1;
-        document.getElementById("likeContainer").innerHTML='<span type="button" id="likeBtn" onclick=LikeThisArticle("'+username+'",'+id+','+liked+')><span class="material-icons md-36">favorite</span></span>';
+        document.getElementById("likeContainer").innerHTML='<button id="likeBtn" onclick=LikeThisArticle("'+username+'",'+id+','+liked+')><span class="material-icons md-36">favorite</span></button>';
         likes++;
     }
     document.getElementById("article-likes").innerHTML='<i class="material-icons" aria-hidden="true">favorite_border</i><span>'+likes+' likes</span>';
@@ -101,11 +101,11 @@ function LikeThisArticle(username, id, liked){
 function SaveThisArticle(username, id, saved){
     if(saved){          //sta togliendo il like
         saved=0;
-        document.getElementById("saveContainer").innerHTML='<span type="button" id="saveBtn" onclick=SaveThisArticle("'+username+'",'+id+','+saved+')><span class="material-icons md-36">bookmark_border</span></span>';
+        document.getElementById("saveContainer").innerHTML='<button id="saveBtn" onclick=SaveThisArticle("'+username+'",'+id+','+saved+')><span class="material-icons md-36">bookmark_border</span></button>';
     }
     else{
         saved=1;
-        document.getElementById("saveContainer").innerHTML='<span type="button" id="saveBtn" onclick=SaveThisArticle("'+username+'",'+id+','+saved+')><span class="material-icons md-36">bookmark</span></span>';
+        document.getElementById("saveContainer").innerHTML='<button id="saveBtn" onclick=SaveThisArticle("'+username+'",'+id+','+saved+')><span class="material-icons md-36">bookmark</span></button>';
     }
     var data = new FormData();
     data.append("username", username);

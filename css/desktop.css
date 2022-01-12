@@ -324,6 +324,12 @@
         display: block;
         overflow:initial;
     }
+
+    .slides > article{
+      margin-bottom: 1em;
+    }
+    
+
     .slider .card-article-link{
       min-width: 100%;
     }

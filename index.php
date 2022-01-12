@@ -43,7 +43,6 @@ if($connection){
                 $HTMLSlide="";
                 $HTMLSlide = 
                     '<a class="card-article-link" href="article.php?id='.$art['id'].'">
-                    <article>
                         <div class="card-article-image">
                             <img src="images/article_covers/'.$art['cover_img'].'"/>
                         </div>
@@ -60,15 +59,13 @@ if($connection){
                 }
                 $HTMLSlide .= '</ul>';
                 $HTMLSlide .= '</div>
-                                    </article>
                                     </a>';
                 array_push($slides, $HTMLSlide);
             }
         }
         if(isset($HotGames) && $HotGames != "WrongQuery") {
             $HotGamesHTML = '
-            </div>
-            <div id="hot-games">
+            <section id="hot-games">
                 <h2 class="subtitle">Hot Games</h2>
                 <ul class="game-list" id="game-list">';
             for($i = 0; $i < count($HotGames); $i++){
@@ -80,24 +77,24 @@ if($connection){
                     $HotGamesHTML .= '</div>
                             </li>';
             }
-            $HotGamesHTML .= '</ul></div>';
+            $HotGamesHTML .= '</ul></section>';
         }
         //str_replace per il carousel
         if(count($slides)>0){
             $carousel=' 
-                <div class="slider">
+                <aside class="slider">
                     <h2 class="subtitle">Most liked</h2>
-                        <div class="slides">';
+                        <section class="slides">';
             $i=1;
             foreach($slides as $art){
                 if($art!=""){
-                    $carousel .= '<div id="slide-'.$i.'">'.$art.'</div>';
+                    $carousel .= '<article id="slide-'.$i.'">'.$art.'</article>';
                     $i++;
                 }
             }
-            $carousel .= $HotGamesHTML . '</div>';
+            $carousel .= '</section>' . $HotGamesHTML . '</aside>';
         }
-        $user_output.='<button class="action-button" id="more-articles" type="button" onClick=loadMore('.$lastArticleLoaded.')>Load more</button></div>';
+        $user_output.='<button class="action-button" id="more-articles" type="button" onClick=loadMore('.$lastArticleLoaded.')>Load more</button></section>';
     }      
 } else {
     $user_output = createDBErrorHTML();

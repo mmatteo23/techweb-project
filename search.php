@@ -35,7 +35,7 @@ if($connection){
         $tags = $db->getSearchRelatedArticlesTags($_GET['src_text']);
         $db->closeDBConnection();   //ho finito di usare il db quindi chiudo la connessione
         if($articles){
-            $user_output .= '<h1>Search results</h1><div id="search-results">';
+            $user_output .= '<h1>Search results</h1><section id="search-results">';
             $x=0;
             foreach($articles as $art){
                 $user_output .= 
@@ -61,9 +61,9 @@ if($connection){
                 </article>
                 </a>';
             }      
-            $user_output .= "</div>";  
+            $user_output .= "</section>";  
         }else{
-            $user_output .= genericErrorHTML("Zero matches found", "No article includes what you're looing for.", 
+            $user_output .= genericErrorHTML("Zero matches found", "No article includes what you're looking for.", 
                             array("Change the search input.", "Refresh the page, it might just be that easy.", "Visit our other pages."));
         }
     }else{

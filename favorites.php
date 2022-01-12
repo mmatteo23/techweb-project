@@ -18,7 +18,7 @@ if(isset($_SESSION['username'])){
         $tags = $connection_manager->getFavArticlesTags($_SESSION['username']);
         $connection_manager->closeDBConnection();   //ho finito di usare il db quindi chiudo la connessione
         if($articles){
-            $user_output .= '<h1>Your favorite articles</h1><div id="search-results">';
+            $user_output .= '<h1>Your favorite articles</h1><section id="search-results">';
             foreach($articles as $art){
                 $user_output .= 
                     '<a class="card-article-link" href="article.php?id='.$art['id'].'">
@@ -44,7 +44,7 @@ if(isset($_SESSION['username'])){
                 </article>
                 </a>';
             }        
-            $user_output .= "</div>";
+            $user_output .= "</section>";
         }else{
             $user_output = genericErrorHTML("No saved articles found on this account", "Browse <a href='index.php'>our home</a> and find some worth saving.");
         }

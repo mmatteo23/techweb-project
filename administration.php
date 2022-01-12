@@ -15,9 +15,10 @@ if ($userRole == 1) {
     $html = '
         <h1 id="page-title">Welcome Admin <span>'.$username.'</span>!</h1>
         <div class="action-buttons">
-            <a href="add_game.php" class="action-button">Add game</a>
-            <a href="edit_game.php" class="action-button">Edit game</a>
+            <a href="write_article.php" class="action-button">Write article</a>
             <a href="edit_article.php" class="action-button">Edit article</a>
+            <a href="add_game.php" class="action-button">Add game</a>
+            <a href="edit_game.php" class="action-button">Edit game</a>            
             <a href="edit_user.php" class="action-button">Edit user</a>
         </div>
     ';
