@@ -1305,6 +1305,29 @@ h1{
   box-shadow: 3px 3px 10px 0px #000000c9;
 }
 
+.tag-list li.tag.typed-tag{
+  list-style-type: none;
+  margin-left: 1em;
+  border-radius: 2em;
+  box-shadow: 3px 3px 10px 0px #000000c9;
+  display: flex;
+  align-items: center;
+}
+
+.tag-list li.typed-tag button{
+  cursor:pointer;
+  margin-left: .5em;
+  background: none;
+  border: none;
+  color: white;
+}
+
+.tag-list li.typed-tag button:focus{
+  outline-offset: .15em;
+  outline-color: white;  
+}
+
+
 .tag-list li:first-child{
   margin-left: 0rem;
 }

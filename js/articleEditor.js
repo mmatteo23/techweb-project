@@ -133,9 +133,10 @@ let tags = [];
 function createTag(label) {
   const tagItem = document.createElement('li');
   tagItem.setAttribute('class', 'tag');
+  tagItem.classList.add("typed-tag");
   const span = document.createElement('span');
   span.innerHTML = label;
-  const closeIcon = document.createElement('i');
+  const closeIcon = document.createElement('button');
   closeIcon.innerHTML = 'close';
   closeIcon.setAttribute('class', 'material-icons');
   closeIcon.setAttribute('data-item', label);
