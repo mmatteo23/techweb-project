@@ -1,0 +1,195 @@
+@media print {
+    header{
+        display: none;
+    }
+
+    a:link{
+        color: var(--bg-accent);
+    }
+    a:visited{
+        color: var(--pink-accent);
+    }
+    
+    /*
+======== NAVBAR ========
+*/
+
+.sticky-nav{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 100%;
+    z-index: 100;
+    width: 100%;
+    height: 6vh;
+  }
+  
+  #src-bar-wrapper{
+    width: 100%;
+    display: block;    
+  }
+  
+  #src-bar-wrapper form{
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    position: relative;
+    animation-name: searchPopUp;
+    animation-timing-function: ease-out;
+    animation-duration: 0.15s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    z-index: -1;
+  }
+  
+  #src-bar{
+    width: 100%;
+    font-size: 1em;
+    padding: .75em 1.5em;  
+    border-radius: 0 0 .65em .65em;
+    outline: none;
+    height: 100%;
+    border: 2px solid var(--pink-accent);
+  }
+  
+  #src-bar::placeholder{
+    font-style: italic;
+  }
+  
+  #src-bar-wrapper button{
+    margin-left: -49px;
+    z-index: 2;
+    padding: 0 .5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--pink-accent);
+    border: none;
+    border-radius: 0 0 .65em 0;
+  }
+  
+  #src-bar-wrapper button span{
+    transition: all 0.25s ease-out;
+  }
+  
+
+    .navbar #navbar-logo{
+        display: block;
+      }
+      
+      .navbar li > * span:first-child{ /*rimuove le icone usate per la navigazione da mobile*/
+        display: none;
+      }
+    
+      .navbar #search span:first-child{
+        display: inline;
+      }
+      .navbar #search span:last-child{
+        display: none;
+      }
+    
+      .navbar li:last-child span:first-child{
+        display: inline;
+      }
+      .navbar li:last-child span:last-child{
+        display: none;
+      }
+    
+      .navbar li:last-child .profile-img span:first-child{
+        display: none;
+      }
+      .navbar li:last-child .profile-img span:last-child{
+        outline: 3.5px solid var(--teal-accent);
+        height: 2.5em;
+        width: 2.5em;
+      }
+      
+      .navbar li > * span:nth-child(2){
+        font-size: 1em;
+      }
+    
+    
+      .navbar{
+        position: initial;
+        height: fit-content;
+        max-height: none;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0.45em 1em 0.85em 2.5em;
+        background-color: var(--bg);
+        overflow: visible;
+        row-gap: .5em;
+      }
+    
+      .navbar li{
+        list-style-type: none;
+        margin: 0 .7em 0 1em;
+        position: relative;
+        z-index: 10;
+        width: auto;
+        height: 100%;
+      }
+    
+      .navbar li > *{
+        color:  var(--teal-accent);
+        text-decoration: none;
+        text-transform: uppercase;
+        padding: 0 .5em 0 .5em;
+        transition: all 0.4s ease-out 0.2s;
+      }
+    
+      .navbar li > *:visited{
+        color: var(--pink-accent);
+      }
+    
+      .navbar li:nth-child(5){
+        margin-left: auto;
+        margin-right: .1em;
+      }
+      .navbar li:last-child{
+        margin-left: .1em;
+      }
+    
+
+    
+      .navbar li:first-child{
+        margin: 0;
+      }
+      
+      .navbar li > .logo{
+        display:flex;
+        justify-content: center;
+        width: clamp(150px ,15vw, 250px);
+        padding: 0;
+        background-color: #333;
+      }      
+      
+      .navbar li > .logo .text-logo{
+        top: 0;
+        width: 80%;        
+        background-color: var(--pink-accent);
+      }
+      
+      .navbar  li > .logo .rotating-logo{
+        position: absolute;
+        width: 20%;
+        top: 0em;
+        right: 9%;
+      }
+
+            
+      #breadcrumb{
+          margin-top: 6em;
+        padding: 0.5em var(--lateral-padding);
+      }
+
+      #article-header{
+        padding: 2em var(--lateral-padding) 7.5em;
+      }
+    
+      #article-body{
+        padding: 3em var(--lateral-padding) 1.5em;
+      }
+}

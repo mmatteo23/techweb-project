@@ -1,4 +1,4 @@
-@media only screen and (max-height: 1500px) and (min-width: 768px){
+@media only screen and (min-width: 769px){ /*and (max-height: 1500px) */
 
     :root{
       --lateral-padding: 4em;
@@ -52,6 +52,8 @@
       display: none;
     }
   
+
+
     .navbar #search span:first-child{
       display: inline;
     }
@@ -159,7 +161,9 @@
     }
   
     .navbar li > *:hover,
-    .navbar li > *:focus{
+    .navbar li > *:focus,
+    .navbar #search:hover,
+    .navbar #search:focus{
       background-color: var(--fucsia-accent);
       color: white;
       outline: none;
@@ -177,13 +181,13 @@
     }
   
     .navbar li:last-child .profile-img:hover::before,
-    .navbar li:last-child .profile-img:hover::before{
+    .navbar li:last-child .profile-img:focus::before{
       opacity: 100%;
       transform: translate(-.5em, .5em);
     } 
   
     .navbar li:last-child .profile-img:hover::after,
-    .navbar li:last-child .profile-img:hover::after{
+    .navbar li:last-child .profile-img:focus::after{
       opacity: 100%;
       transform: translate(.5em, -.5em);
     }

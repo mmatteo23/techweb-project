@@ -1034,6 +1034,11 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
 .navbar li > * span:nth-child(2){
   font-size: 0.5em;
 }
+.navbar #search{
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
 
 .navbar li{
   width: 100%;
@@ -1104,19 +1109,15 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
 
 .private_area_content,
 .error-content,
-.favorites-content{
-  min-height: 70vh;
+.favorites-content,
+.search-content{
+  min-height: 60vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.favorites-content,
-.search-content{
-  min-height: 50vh;
-  flex-direction: column;
-}
 
 .favorites-content p{
   text-align: center;
