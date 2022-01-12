@@ -35,23 +35,22 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $userRole = $userData['role'];
 
     $errorsImage = checkImageToUpload($game_img, "images/games/", "cover", $name, "");
-    #if ($name == "")
-    #    $errorsImage = "";
     $game_id = storeGame($name, $description, $releaseDate, $developer, $game_img, $userRole);
-    $errorsImage .= checkImageToUpload($default_article_img, "images/article_covers/Default/", "default-article-img", $game_id."-cover-1080", "");
-    #echo("IMAGE 2: ".$errorsImage);
+    if(is_int($game_id)) {
+        $errorsImage .= checkImageToUpload($default_article_img, "images/article_covers/Default/", "default-article-img", $game_id."-cover-1080", "");
+    } 
     $result = storeGameGenre($game_id, $genre_id);
 
-    if(is_int($game_id) && $errorsImage == "" && is_int($result)) {
+    if(is_int($game_id) && ($errorsImage == "") && is_int(intval($result))) {
         header("Location: games.php");
     } else {
-        if (is_int($game_id))
+        if (is_int($game_id)) {
             $errors = "<ul>" . $errorsImage . "</ul>";
-        else 
+        }
+        else {
             $errors = "<ul>" . $errorsImage . $game_id . "</ul>";
+        }
     }
-
-    
 }
 
 $genres = getGenres();
