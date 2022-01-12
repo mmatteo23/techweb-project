@@ -96,9 +96,12 @@ function checkImageToUpload(&$img, string $target_dir, string $idInputForm, stri
         }
         */
     } else {
-        $img = $defaultImage;
+        if ($defaultImage != "")
+            $img = $defaultImage;
+        else 
+            $errors = "Image is required";
     }
-
+    
     return $errors;
     
 }

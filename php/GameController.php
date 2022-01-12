@@ -40,7 +40,7 @@ function getGenres() {
     }
 }
 
-function gameValidator($name, $description, $release_date, $developer){
+function gameValidator($name, $description, $release_date, $developer, $game_img){
     $errors = "";
 
     if($name == '')
@@ -66,7 +66,7 @@ function storeGame(string $name, string $description, string $release_date, stri
     if($conn_ok){
         if($roleUser == 1) {
 
-            $validationErrors = gameValidator($name, $description, $release_date, $developer);
+            $validationErrors = gameValidator($name, $description, $release_date, $developer, $game_img);
             
             $name = $connection_manager->escape_string($name);
             $description = $connection_manager->escape_string($description);
@@ -97,9 +97,12 @@ function storeGame(string $name, string $description, string $release_date, stri
     }
 }
 
-function storeGameGenre(int $game_id, int $genre_id) {
+function storeGameGenre($game_id, $genre_id) {
     $connection_manager = new DBAccess();
     $conn_ok = $connection_manager->openDBConnection();
+
+    if (!is_int($game_id)) 
+        return buildError("Failed adding record: no game associated to genre_id.");
 
     if($conn_ok) {
         $query = "INSERT INTO game_genre (game_id, genre_id) VALUES ($game_id,$genre_id)";

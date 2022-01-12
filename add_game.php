@@ -30,34 +30,27 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $default_article_img = NULL;
     $game_img = NULL;
 
-    
-
     $username = $_SESSION['username'];
     $userData = getUser($username);
     $userRole = $userData['role'];
 
     $errorsImage = checkImageToUpload($game_img, "images/games/", "cover", $name, "");
+    #if ($name == "")
+    #    $errorsImage = "";
+    $game_id = storeGame($name, $description, $releaseDate, $developer, $game_img, $userRole);
+    $errorsImage .= checkImageToUpload($default_article_img, "images/article_covers/Default/", "default-article-img", $game_id."-cover-1080", "");
+    #echo("IMAGE 2: ".$errorsImage);
+    $result = storeGameGenre($game_id, $genre_id);
 
-    if($errorsImage == "") {
-        $game_id = storeGame($name, $description, $releaseDate, $developer, $game_img, $userRole);
-        if(is_int($game_id)) {
-            $result = checkImageToUpload($default_article_img, "images/article_covers/Default/", "default-article-img", $game_id."-cover-1080", "");
-            if($result == "" || $result == 1 || $result == "1") {
-                $result = storeGameGenre($game_id, $genre_id);
-                if(is_int($result) || $result == "" || $result == 1 || $result == "1") {
-                    header("Location: games.php");
-                } else {
-                    $errors = "<ul>" . $result . "</ul>";
-                }
-            } else {
-                $errors = "<ul>" . $result . "</ul>";
-            }
-        } else {
-            $errors = "<ul>" . $result . "</ul>";
-        } 
+    if(is_int($game_id) && $errorsImage == "" && is_int($result)) {
+        header("Location: games.php");
     } else {
-        $errors = "<ul>" . $result . "</ul>";
+        if (is_int($game_id))
+            $errors = "<ul>" . $errorsImage . "</ul>";
+        else 
+            $errors = "<ul>" . $errorsImage . $game_id . "</ul>";
     }
+
     
 }
 
