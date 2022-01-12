@@ -1,4 +1,4 @@
-/*
+
 DecoupledEditor
     .create( document.querySelector( '#editor' ), {
         removePlugins: ['CKFinderUploadAdapter', 'CKFinder', 'EasyImage', 'Image', 'ImageCaption', 'ImageStyle', 'ImageToolbar', 'ImageUpload', 'MediaEmbed', 'mediaEmbed']
@@ -11,7 +11,7 @@ DecoupledEditor
     .catch( error => {
         console.error( error );
 });
-*/
+/*
 ClassicEditor
     .create( document.querySelector( '#editor' ), {
         toolbar: {
@@ -34,9 +34,9 @@ ClassicEditor
         })
     .catch( error => {
         console.error( error );
-    } );
+    } );*/
 
-const editor = document.getElementById('editor');
+const editor = document.getElementById("editor");
 const form = document.getElementById('articleForm');
 const articleText = document.getElementById('articleText');
 const title = document.getElementById('title');
@@ -52,7 +52,7 @@ form.addEventListener('submit', e => {
         if(validForm){
             var content = editor.innerHTML;
             articleText.value = content.toString();
-
+            console.log(content.toString());
             inputTag.value = tags.join(';')
             form.submit()
         }
