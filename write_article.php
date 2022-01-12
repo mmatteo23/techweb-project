@@ -17,6 +17,8 @@ $gameName = 'Apex Legends';
 $text = '<p>This is the initial editor content.</p>';
 $destination = "write_article.php";
 $tagString = '';
+$header = "<h1>Write an article</h1>";
+$breadcrumb = "<a href='administration.php'>Administration</a> &gt; Write article</p>";
 
 if($_GET['id']){
     $art_id = $_GET['id'];
@@ -33,6 +35,8 @@ if($_GET['id']){
             $tagString .= $tag['tag'].',';
         }
         $tagString = trim($tagString, ',')."\n";
+        $header = "<h1>Edit article</h1>";
+        $breadcrumb = "<a href='administration.php'>Administration</a> &gt; Edit article</p>";
     }
 }
 
@@ -105,6 +109,8 @@ $htmlPage = str_replace('#ReadTimeValue#', $read_time, $htmlPage);
 $htmlPage = str_replace('#TagValues#', $tagString, $htmlPage);
 $htmlPage = str_replace('<p>This is the initial editor content.</p>', $text, $htmlPage);
 $htmlPage = str_replace("write_article.php", $destination, $htmlPage);
+$htmlPage = str_replace("<h1>Write an article</h1>", $header, $htmlPage);
+$htmlPage = str_replace("<a href='administration.php'>Administration</a> &gt; Write article</p>", $breadcrumb, $htmlPage);
 
 
 

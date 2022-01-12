@@ -24,8 +24,7 @@
 		<p>
             <a href="index.php">Home</a> &gt; 
             <a href="private_area.php">Your Private Area</a> &gt; 
-            <a href="administration.php">Administration</a> &gt;
-            Add game
+            <a href='administration.php'>Administration</a> &gt; Add game</p>
         </p>
 	</nav>
 
@@ -38,22 +37,22 @@
         <form method="POST" action="add_game.php" id="articleForm" enctype="multipart/form-data">
             <div class="input-wrapper">
                 <label for="cover">Game Cover<p>1920 x 1080 image file</p></label>
-                <input type="file" style="color: black;" name="cover" id="cover">
+                <input type="file" style="color: black;" name="cover" id="cover" value="#Cover#">
                 <p class="error"></p>
             </div>
             <div class="input-wrapper">
                 <label for="default-article-img">Default article image<p>285 x 380 image file</p></label>
-                <input type="file" style="color: black;" name="default-article-img" id="default-article-img">
+                <input type="file" style="color: black;" name="default-article-img" id="default-article-img" value="#defaultArticleImg#">
                 <p class="error"></p>
             </div>
             <div class="input-wrapper">
                 <label for="name">Game name</label>
-                <input type="text" name="name" id="name">
+                <input type="text" name="name" id="name" value="#Name#">
                 <p class="error"></p>
             </div>
             <div class="input-wrapper">
                 <label for="description">Game description</label>
-                <input type="text" name="description" id="description">
+                <input type="text" name="description" id="description" value="#Description#">
                 <p class="error"></p>
             </div>
             <div class="input-wrapper">
@@ -63,12 +62,12 @@
             </div>
             <div class="input-wrapper">
                 <label for="releaseDate">Release date</label>
-                <input type="date" name="releaseDate" id="releaseDate">
+                <input type="date" name="releaseDate" id="releaseDate" value="#ReleaseDate#">
                 <p class="error"></p>
             </div>
             <div class="input-wrapper">
                 <label for="developer">Software House / Developer</label>
-                <input type="text" name="developer" id="developer">
+                <input type="text" name="developer" id="developer" value="#Developer#">
                 <p class="error"></p>
             </div>   
             <div class="form-buttons">

@@ -18,6 +18,35 @@ if(!isset($username) || $username == '' || $userRole != 1){    // the user is no
     header("location: login.php");
 }
 
+// DEFAULT VARs FOR STR_REPLACE AT EOF
+$name = '';
+$description = '';
+$releaseDate = '';
+$developer = '';
+$genre_id = 1;
+$game_img = '';
+$default_article_img = '';
+$destination = "add_game.php";
+$header = "<h1>Add a game</h1>";
+$breadcrumb = "<a href='administration.php'>Administration</a> &gt; Add game</p>";
+
+if($_GET['id']){
+    $game_id = $_GET['id'];
+    $game_data = getGameData($game_id);
+    if($game_data){
+        $name = $game_data['name'];
+        $description = $game_data['description'];
+        $releaseDate = $game_data['release_date'];
+        $developer = $game_data['developer'];
+        $genre_id = getGenreIdsFromGameId($game_id);
+        $game_img = $game_data['game_img'];
+        $default_article_img = $game_id."-cover-1080.jpg";
+        $destination = "add_game.php?id=".$game_id;
+        $header = "<h1>Edit game</h1>";
+        $breadcrumb = "<a href='administration.php'>Administration</a> &gt; Edit game</p>";
+    }
+}
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // POST the comment in db
 
@@ -57,10 +86,12 @@ $genres = getGenres();
 
 if(isset($genres)){
     $selectOptions="";
-    foreach($genres as $genre){
-        $selectOptions .= "<option value='" . $genre['id'] . "'>" . $genre['name'] . "</option>";
+    foreach ($genres as $genre) {
+        if($genre['id']==$genre_id)
+            $selectOptions .= "<option value='" . $genre['id'] . "' selected>" . $genre['name'] . "</option>";
+        else
+            $selectOptions .= "<option value='" . $genre['id'] . "'>" . $genre['name'] . "</option>";
     }
-
     $selectbox = "
         <select name='genre' id='genre'>" .
             $selectOptions
@@ -70,6 +101,17 @@ if(isset($genres)){
 
 $htmlPage = str_replace('<selectGenre/>', $selectbox, $htmlPage);
 $htmlPage = str_replace('<formErrors/>', $errors, $htmlPage);
+
+//if he's coming from edit_article
+$htmlPage = str_replace('#Cover#', $game_img, $htmlPage);
+$htmlPage = str_replace('#DefaultArticleImg#', $default_article_img, $htmlPage);
+$htmlPage = str_replace('#Name#', $name, $htmlPage);
+$htmlPage = str_replace('#Description#', $description, $htmlPage);
+$htmlPage = str_replace('#ReleaseDate#', $releaseDate, $htmlPage);
+$htmlPage = str_replace('#Developer#', $developer, $htmlPage);
+$htmlPage = str_replace("add_game.php", $destination, $htmlPage);
+$htmlPage = str_replace("<h1>Add a game</h1>", $header, $htmlPage);
+$htmlPage = str_replace("<a href='administration.php'>Administration</a> &gt; Add game</p>", $breadcrumb, $htmlPage);
 
 require_once('php/full_sec_loader.php');
 
