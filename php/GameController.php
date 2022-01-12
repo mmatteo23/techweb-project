@@ -29,6 +29,45 @@ function getGames(bool $name = TRUE, bool $description = TRUE, bool $release_dat
     }
 }
 
+function getGameData($id) {
+    $connection_manager = new DBAccess();
+    $conn_ok = $connection_manager->openDBConnection();
+
+    if ($conn_ok) {
+        $query = "SELECT * from Game WHERE id=$id";
+        $game = $connection_manager->executeQuery($query);
+        $connection_manager->closeDBConnection();
+
+        if($game != 'WrongQuery')
+        //  return $game[0];
+            return $game[0];
+    }
+
+    $connection_manager->closeDBConnection();
+
+    return false;
+}
+
+function getGenreIdsFromGameId($game_id) {
+    $connection_manager = new DBAccess();
+    $conn_ok = $connection_manager->openDBConnection();
+
+    if ($conn_ok) {
+        $query = "SELECT genre_id from game_genre WHERE game_id=$game_id";
+        $genre_id = $connection_manager->executeQuery($query);
+        $connection_manager->closeDBConnection();
+
+        if($genre_id != 'WrongQuery')
+        // PER ORA SOLO IL PRIMO GENERE DELL'ARRAY
+            return $genre_id[0]['genre_id'];
+    }
+
+    $connection_manager->closeDBConnection();
+
+    return false;
+}
+
+
 function getGenres() {
     $connection_manager = new DBAccess();
     $conn_ok = $connection_manager->openDBConnection();

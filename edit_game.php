@@ -1,115 +1,64 @@
 <?php
-require_once("php/validSession.php");
-require_once("php/utilityFunctions.php");
-require_once("php/GameController.php");
-require_once("php/UserController.php");
+
+require_once('php/db.php');
+require_once('php/error_management.php');
+session_start();
+use DB\DBAccess;
+
+// create a connection istance to talk with the db
+$connection_manager = new DBAccess();
+$conn_ok = $connection_manager->openDBConnection();
 
 // variables
-$content = "";  // html code to send to the page
-$errors = "";
+$user = "";
+$user_output = "";  // html code to send to the page
 
-$games = getGames(true,true,true,true,true);
-
-if($_SERVER['REQUEST_METHOD'] == "POST"){
-    // take the data
-    // USER input for article
-    $name = $_POST['name'];
-    $description = $_POST['description'];
-    $releaseDate = $_POST['releaseDate'];
-    $developer = $_POST['developer'];
-    $genres = $_POST['tags'];
-    $game_img = NULL;
-    
-    $errorsImage = checkImageToUpload($profile_img, "images/user_profiles/", "profile_img", $_SESSION['username']);
-
-    $username = $_SESSION['username'];
-    $userData = show($username);
-    $userRole = $userData['role'];
-    
-    if(!$errors){
-        $result = update($_SESSION['username'], $firstname, $lastname, $email, $password, $rep_password, $profile_img);
-        if($result === TRUE){
-            redirect('../profile.php', false, 201);
-        } else {
-            $errors = $result;
+if($conn_ok){
+    $games = $connection_manager->getGames();
+    if($games=="ErroreDB"){ 
+        $connection_manager->closeDBConnection();
+        $user_output = createEmptyDBErrorHTML("games");
+    }
+    else{
+        $game_tags = $connection_manager->getGamesTags();
+        $connection_manager->closeDBConnection();
+        if($games != null){  // there's at least one game exists  
+            $user_output .= '
+                <h1>Choose a game to edit</h1>
+                    <ul class="game-list" id="game-list">
+                ';      
+            $num_of_games = count($games);
+            $x=0;
+            for($i = 0; $i < $num_of_games; $i++){
+                $game = $games[$i];            
+                $user_output .= '<li class="card" id="'.$game['name'].'">
+                <a tabindex="-1" href="add_game.php?id='.urlencode($game['id']).'"><img src="/images/games/' . $game['game_img'] . '" alt="' . $game['name'] . ' cover" class="card-img"></a>
+                <div class="card-content">
+                    <h2 class="card-title"><a href="add_game.php?id='.urlencode($game['id']).'" class="card-title-link">' . $game['name'] . '</a></h2>';
+                    if($game_tags[$x]['game_id']==$game['id']){
+                        $user_output .= '<ul class="tag-list">';
+                        while(($game_tags[$x]['game_id'] == $game['id'])){
+                            $user_output .= '<li class="tag">'. $game_tags[$x]['name'] .'</li>';
+                            $x++;                     
+                        }
+                        $user_output .= '</ul>';
+                    }   
+                    $user_output .= '</div></li>';
+            }
+            $user_output .= '</ul>';
         }
     }
-
+} else { 
+    $user_output = createDBErrorHTML();
 }
-
-if(isset($games)){
-    $selectOptions="";
-    foreach($games as $game){
-        $selectOptions .= "<option value='" . $game['id'] . "'>" . $game['name'] . "</option>";
-    }
-
-    $selectbox = "
-        <select name='game' id='game'>" .
-            $selectOptions
-        . "</select>
-    ";
-}
-
-// TAKE OLD GAME INFO
-$oldGameData = show($_SESSION['username']);
-
-$content = '
-    <form method="POST" action="add_game.php" id="articleForm" enctype="multipart/form-data">
-    <div class="input-wrapper">
-        <label for="game">Game</label>
-        <selectGame/>
-        <p class="error"></p>
-    </div>
-    <div class="input-wrapper">
-        <label for="cover">Game Cover</label>
-        <input type="file" style="color: black;" name="cover" id="cover">
-        <p class="error"></p>
-    </div>
-    <div class="input-wrapper">
-        <label for="name">Game name</label>
-        <input type="text" name="name" id="name">
-        <p class="error"></p>
-    </div>
-    <div class="input-wrapper">
-        <label for="description">Game description</label>
-        <input type="text" name="description" id="description">
-        <p class="error"></p>
-    </div>
-    <div class="input-wrapper">
-        <label for="tags">Game genres</label>
-        <ul class="tag-list tag-container" id="article-tags">
-        </ul>
-        <input type="text" name="tags" id="tags">  
-    </div>
-    <div class="input-wrapper">
-        <label for="releaseDate">Release date</label>
-        <input type="date" name="releaseDate" id="releaseDate">
-        <p class="error"></p>
-    </div>
-    <div class="input-wrapper">
-        <label for="developer">Software House / Developer</label>
-        <input type="text" name="developer" id="developer">
-        <p class="error"></p>
-    </div>   
-    <div class="form-buttons">
-        <a href="../profile.php" id="undoBtn" class="action-button">Discard</a>
-        <input id="submit-btn" class="action-button" type="submit" value="Add game">    
-    </div>
-    </form>'
-;
-
-
 // paginate the content
 // page structure
 $htmlPage = file_get_contents("html/edit_game.html");
 
-//header footer and dynamic navbar all at once (^^^ sostituisce il commento qua sopra ^^^)
+//header footer and dynamic navbar all at once
 require_once('php/full_sec_loader.php');
 
-$htmlPage = str_replace('<editForm/>', $content, $htmlPage);
-$htmlPage = str_replace('<selectGame/>', $selectbox, $htmlPage);
-$htmlPage = str_replace('<formErrors/>', $errors, $htmlPage);
-
-echo $htmlPage;
+//str_replace finale col conenuto specifico della pagina
+echo str_replace('<content/>', $user_output, $htmlPage);
 
 ?>
