@@ -49,7 +49,7 @@ if($connection){
         $user_output .= '
                     </div>
                     <img class="cover" src="images/article_covers/'.$articleData['cover_img'].'" id="article-cover" alt="article cover picture">
-                    <div id="article-body" class="cover-linguetta">
+                    <section id="article-body" class="cover-linguetta" aria-label="article text">
                     <p>'.$articleData['text'].'</p>';
 
         if(isset($username) && $username != ''){
@@ -78,7 +78,7 @@ if($connection){
             }       
         }
 
-        $user_output .= '   </div>
+        $user_output .= '   </section>
             </article>';
     } 
     else {

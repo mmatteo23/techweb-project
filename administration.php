@@ -8,7 +8,7 @@ require_once("php/UserController.php");
 $htmlPage = file_get_contents("html/administration.html");
 
 $username = $_SESSION['username'];
-$userData = show($username);
+$userData = getUser($username);
 $userRole = $userData['role'];
 
 if ($userRole == 1) {
