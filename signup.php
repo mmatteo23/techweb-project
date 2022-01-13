@@ -1,7 +1,6 @@
 <?php
 
 require_once('php/utilityFunctions.php');
-require_once('php/db.php');
 require_once('php/error_management.php');
 use DB\DBAccess;
 
@@ -38,24 +37,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $password       = $_POST['password'];
     $rep_password   = $_POST['repeated_password'];
 
-    // create a connection istance to talk with the db
-    $connection_manager = new DBAccess();
-    $conn_ok = $connection_manager->openDBConnection();
 
-    if($conn_ok){
-
-        $errors = validateUserData($connection_manager, $username, $firstname, $lastname, $email, $password, $rep_password);
-        if(!$errors){
-            
-            // if the username is valid 
-            if($connection_manager->insertNewUser($username, $firstname, $lastname, $email, $password)){
-                //echo "creazione utente";
-                $connection_manager->closeDBConnection();
-                
-                $_SESSION['username'] = $username;
-                //echo "utente creato";
-                header("location: private_area.php");
-            }
+    $errors = "";
+    if(!$errors){        
+        // if the username is valid 
+        if(insertNewUser($username, $firstname, $lastname, $email, $password, $rep_password, $errors, 1)){
+            $_SESSION['username'] = $username;
+            //echo "utente creato";
+            header("location: private_area.php");
         }
     } else {
         $errors = createDBErrorHTML();

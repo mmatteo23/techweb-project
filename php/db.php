@@ -40,8 +40,9 @@ class DBAccess {
 
 	public function executeQuery(string $query){
 		$queryResults = mysqli_query($this->connection, $query);
-		if(!$queryResults)
+		if(!$queryResults){
 			return "WrongQuery";
+		}
 		// Different query => different result to return
 		// INSERT
 		//echo "<p>" . $query . "</p>";
@@ -117,20 +118,6 @@ class DBAccess {
 		die;
 	}
 
-	/**
-	 * @brief insertNewUser()		insert new user in Person table
-	 * @return 	
-	 */
-	public function insertNewUser(string $username, string $firstname, string $lastname, string $email, string $password, int $role = 2){
-		$today = date("Y-m-d");
-		// create the query
-		$query = "INSERT INTO Person (username, firstName, lastName, email, password, role, subscription_date)
-            VALUES ('$username', '$firstname', '$lastname', '$email', '$password', $role, '$today')";
-
-		// run the query
-        return mysqli_query($this->connection, $query); //or die("An error occours! " . mysqli_error($this->connection));
-        		
-	}
 
 	public function getFavArticles($user){		
 		$query = "SELECT Article.id AS id, title, subtitle, publication_date, cover_img, Game.name AS game FROM (Article JOIN saved_articles ON id=article_id) JOIN Game ON game_id=Game.id WHERE username= '$user' ORDER BY publication_date DESC";   

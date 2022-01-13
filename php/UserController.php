@@ -5,18 +5,29 @@ use DB\DBAccess;
 
 
 	/**
-	 * @brief getUser()		returns the user data from username
+	 * @brief getUserData()		returns the user data from username
 	 * @return 	array()			if user exists it returns an array with user data
 	 * 			NULL			if user doesn't exist it returns null
 	 */
+function getUserData(string $username, $connection_manager) {
+    $query = "SELECT * FROM Person
+            WHERE username = '$username' LIMIT 1";
+
+    $queryResults = $connection_manager->executeQuery($query); 
+    $connection_manager->closeDBConnection();
+    if($queryResults=="WrongQuery")
+        return false;
+    return $queryResults[0];
+}
+
 function getUser(string $username) {
     $connection_manager = new DBAccess();
     $conn_ok = $connection_manager->openDBConnection();
-    
+
     if($conn_ok){
         $query = "SELECT * FROM Person
                 WHERE username = '$username' LIMIT 1";
-        //echo $query;
+
         $queryResults = $connection_manager->executeQuery($query); 
         $connection_manager->closeDBConnection();
         if($queryResults=="WrongQuery")
@@ -25,13 +36,7 @@ function getUser(string $username) {
     }
 }
 
-function validateUserData (string $username, string $firstname, string $lastname, string $email, string $password, string $password2, bool $new = true) {
-    // Verify that the user is unique in db
-    $errors = '';
-
-    if($new && getUser($username)){    // there is an user with the same username
-        $errors .= "<li class='error'>An user with this username already exists, please change it and retry.</li>";
-    }
+function validateUserData (string $username, string $firstname, string $lastname, string $email, string $password, string $password2, string &$errors, bool $new = true) {
     
     if($firstname === ''){
         $errors .= "<li class='error'>The firstname is required</li>";
@@ -67,6 +72,36 @@ function validateUserData (string $username, string $firstname, string $lastname
     return $errors;
 }
 
+
+/**
+ * @brief insertNewUser()		insert new user in Person table
+ * @return 	
+ */
+function insertNewUser(string $username, string $firstname, string $lastname, string $email, string $password, string $password2, string &$errors, int $role = 2){
+    $today = date("Y-m-d");
+    // create the query
+    $query = "INSERT INTO Person (username, firstName, lastName, email, password, role, subscription_date)
+        VALUES ('$username', '$firstname', '$lastname', '$email', '$password', $role, '$today')";
+    
+    $connection_manager = new DBAccess();
+    $conn_ok = $connection_manager->openDBConnection();
+    // Verify that the user is unique in db
+    if($new && getUserData($username, $connection_manager)){    // there is an user with the same username
+        $errors .= "<li class='error'>An user with this username already exists, please change it and retry.</li>";
+    }   
+    if($conn_ok){
+        validateUserData($username, $firstname, $lastname, $email, $password, $password2, $errors, true);
+        if($errors=="")
+            $results = $connection_manager->executeQuery($query);
+        $connection_manager->closeDBConnection();
+        if($results==1){
+            return true;
+        }
+        return false;
+    }
+            
+}
+
 function updateUserInfo($username, $firstname, $lastname, $email, $password, $image){
     $updateQuery = "UPDATE Person
     SET	firstName='$firstname', lastName='$lastname', email='$email', password='$password'";
@@ -83,7 +118,8 @@ function updateUserInfo($username, $firstname, $lastname, $email, $password, $im
 
 function updateUser(string $username, string $firstname, string $lastname, string $email, string $password, string $rep_password, $profile_img){
     // create a connection istance to talk with the db
-    $errors = validateUserData($username, $firstname, $lastname, $email, $password, $rep_password, FALSE);
+    $errors="";
+    validateUserData($username, $firstname, $lastname, $email, $password, $rep_password, $errors, FALSE);
     if(!$errors){
         $connection_manager = new DBAccess();
         $conn_ok = $connection_manager->openDBConnection();
