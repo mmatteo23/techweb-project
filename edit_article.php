@@ -13,7 +13,7 @@ $user_output = '';
 
 if($articles){ 
     if(count($articles) > 0){
-        $user_output .= '<h1>Your Articles</h1><div id="search-results">';
+        $user_output .= '<h1>Your Articles</h1><div id="search-results"><p>Select one of your articles to get to the edit page where you can update or delete the entire article</p>';
         $x=0;
         foreach($articles as $art){
             $user_output .= 

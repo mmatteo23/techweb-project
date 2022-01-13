@@ -273,7 +273,8 @@
       }
     }
   
-    .favorites-content{
+    .favorites-content,
+    .search-content{
       padding: 0 var(--lateral-padding);
     }
     .home-content {

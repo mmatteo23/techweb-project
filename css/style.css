@@ -730,6 +730,7 @@ a.card-article-link:visited h3{
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;
+  row-gap: .5em;
 }
 #article-tags li{
   box-shadow: none;
@@ -1119,9 +1120,13 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   justify-content: center;
 }
 
-
-.favorites-content p{
+.favorites-content p,
+.search-content p{
   text-align: center;
+}
+
+.search-content p{
+  margin-bottom: 1em;
 }
 
 .wrapper{

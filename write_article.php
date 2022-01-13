@@ -36,9 +36,9 @@ if($_GET['id']){
         foreach($tags as $tag){
             $tagString .= $tag['tag'].',';
         }
-        $tagString = trim($tagString, ',')."\n";
+        $tagString = trim($tagString, ',');
         $header = "<h1>Edit article</h1>";
-        $breadcrumb = "<a href='administration.php'>Administration</a> &gt; <a href='edit_article.php'> Choose one of your articles to edit </a> &gt; Edit article";
+        $breadcrumb = "<a href='administration.php'>Administration</a> &gt; <a href='edit_article.php'> Manage articles </a> &gt; Edit article";
         $button_name = '<input id="submit-btn" class="action-button" type="submit" value="Save changes">';
         $title_name = '<title>Edit Article - Penta News</title>';
     }
