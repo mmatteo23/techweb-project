@@ -87,7 +87,9 @@ label[for='profile_img'] {
     font-size: .8em;
 }
 
-#content form input{
+#content form input,
+#content form textarea{
+    font-family: 'Poppins', sans-serif;
     font-size: 1.5em;
     padding: 0.5em 1em;
     border-radius: 5em;
@@ -100,12 +102,15 @@ label[for='profile_img'] {
     box-shadow: 2px 2px 4px 0 var(--input-shadow);
 }
 
-#content form input::placeholder{
+#content form input::placeholder,
+#content form textarea::placeholder{
     font-style: italic;
 }
 
 #content form input:hover,
-#content form input:focus{
+#content form input:focus,
+#content form textarea:hover,
+#content form textarea:focus{
     background-color: var(--teal-accent);
     border-color: var(--teal-accent);
     outline: none;
@@ -178,7 +183,7 @@ label[for='profile_img'] {
 
 
 /*******************************************
-*               WRITE ARTICLE FORM
+*      WRITE ARTICLE FORM e about us
 *******************************************/
 
 
@@ -191,16 +196,37 @@ label[for='profile_img'] {
     margin: 0 auto;
 }
 
-#content form#articleForm input:not(input[type='submit']){
+#content form#articleForm input:not(input[type='submit']),
+#content #aboutus-body form#contactForm input:not(input[type='submit']){
     border-radius: .2em;
     width: 100%;
     max-width: 100%;
 }
 
-#content form#articleForm label{
+#content #aboutus-body #contactForm{
+    margin-top: 1em;
+}
+
+#content #aboutus-body #contactForm #form-email{
+    margin-bottom: 1em;
+}
+
+#content #aboutus-body #contactForm textarea{
+    resize: none;
+    min-height: 9em;
+    width: 100%;
+    max-width: 100%;
+    border-radius: .2em;
+}
+
+#content form#articleForm label,
+#content #aboutus-body form#contactForm label{
     color: white;
 }
 
+#content #aboutus-body #contactForm input[type="submit"].action-button{
+    margin-top: 1em;
+}
 
 .form-buttons{
     width: 100%;

@@ -41,7 +41,7 @@
 
 
 html, body{
-  font-family: 'Poppins', serif;
+  font-family: 'Poppins', sans-serif;
 	margin: auto;
 	max-width: var(--content-max_width);
   background-color: var(--bg);
@@ -863,6 +863,10 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   color: var(--teal-accent);
 }
 
+#aboutus-body h3:nth-child(2){
+  padding-top: 0;
+}
+
 #aboutus-body p span{
   color:var(--bg-accent);
 }
@@ -907,9 +911,6 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   color: var(--teal-accent);
 }
 
-#aboutus-body :nth-child(2){
-  padding-top: 0;
-}
 
 /*
 ======== NAVBAR MOBILE========

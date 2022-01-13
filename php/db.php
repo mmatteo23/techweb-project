@@ -121,7 +121,7 @@ class DBAccess {
 	 * @brief insertNewUser()		insert new user in Person table
 	 * @return 	
 	 */
-	public function insertNewUser(string $username, string $firstname, string $lastname, string $email, string $password, int $role = 1){
+	public function insertNewUser(string $username, string $firstname, string $lastname, string $email, string $password, int $role = 2){
 		$today = date("Y-m-d");
 		// create the query
 		$query = "INSERT INTO Person (username, firstName, lastName, email, password, role, subscription_date)
