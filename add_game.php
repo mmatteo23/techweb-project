@@ -44,7 +44,7 @@ if($_GET['id']){
         $default_article_img = $game_id."-cover-1080.jpg";
         $destination = "add_game.php?id=".$game_id;
         $header = "<h1>Edit game</h1>";
-        $breadcrumb = "<a href='administration.php'>Administration</a> &gt; Edit game</p>";
+        $breadcrumb = "<a href='administration.php'>Administration</a> &gt; <a href='edit_game.php'>Choose a game to edit</a> &gt; Edit game</p>";
         $button_name = '<input id="submit-btn" class="action-button" type="submit" value="Save changes">';
         $title_name = '<title>Edit game - Penta News</title>';
     }
@@ -114,7 +114,7 @@ $htmlPage = str_replace('#ReleaseDate#', $releaseDate, $htmlPage);
 $htmlPage = str_replace('#Developer#', $developer, $htmlPage);
 $htmlPage = str_replace("add_game.php", $destination, $htmlPage);
 $htmlPage = str_replace("<h1>Add a game</h1>", $header, $htmlPage);
-$htmlPage = str_replace("<a href='administration.php'>Administration</a> &gt; Add game</p>", $breadcrumb, $htmlPage);
+$htmlPage = str_replace("<a href='administration.php'>Administration</a> &gt; Add game", $breadcrumb, $htmlPage);
 $htmlPage = str_replace('<input id="submit-btn" class="action-button" type="submit" value="Add game">', $button_name, $htmlPage);
 $htmlPage = str_replace('<title>Add game - Penta News</title>', $title_name, $htmlPage);
 

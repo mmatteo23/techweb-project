@@ -505,7 +505,7 @@ input#saveBtn.action-button:focus{
     }
 
     #content .form-wrapper{
-        max-width: 724px;
+        max-width: 768px;
         animation: popdown ease-out normal forwards 0.75s 1;
     }
     a.action-button{
