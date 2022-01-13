@@ -18,7 +18,9 @@ $text = '<p>This is the initial editor content.</p>';
 $destination = "write_article.php";
 $tagString = '';
 $header = "<h1>Write an article</h1>";
-$breadcrumb = "<a href='administration.php'>Administration</a> &gt; Write article</p>";
+$breadcrumb = "<a href='administration.php'>Administration</a> &gt; Write article";
+$button_name = '<input id="submit-btn" class="action-button" type="submit" value="Post article">';
+$title_name = '<title>Write Article - Penta News</title>';
 
 if($_GET['id']){
     $art_id = $_GET['id'];
@@ -36,7 +38,9 @@ if($_GET['id']){
         }
         $tagString = trim($tagString, ',')."\n";
         $header = "<h1>Edit article</h1>";
-        $breadcrumb = "<a href='administration.php'>Administration</a> &gt; Edit article</p>";
+        $breadcrumb = "<a href='administration.php'>Administration</a> &gt; <a href='edit_article.php'> Choose one of your articles to edit </a> &gt; Edit article";
+        $button_name = '<input id="submit-btn" class="action-button" type="submit" value="Save changes">';
+        $title_name = '<title>Edit Article - Penta News</title>';
     }
 }
 
@@ -111,7 +115,8 @@ $htmlPage = str_replace('<p>This is the initial editor content.</p>', $text, $ht
 $htmlPage = str_replace("write_article.php", $destination, $htmlPage);
 $htmlPage = str_replace("<h1>Write an article</h1>", $header, $htmlPage);
 $htmlPage = str_replace("<a href='administration.php'>Administration</a> &gt; Write article</p>", $breadcrumb, $htmlPage);
-
+$htmlPage = str_replace('<input id="submit-btn" class="action-button" type="submit" value="Post article">', $button_name, $htmlPage);
+$htmlPage = str_replace('<title>Write Article - Penta News</title>', $title_name, $htmlPage);
 
 
 

@@ -42,8 +42,8 @@ $content = "
             <div class='input-wrapper'>
                 <label for='profile_img'>
                     <img src='images/user_profiles/" . ($oldUserData['profile_img']?$oldUserData['profile_img']:'default.png') . "' id='user-profile-img' alt='user profile image'>
-                    Your picture
-                    <p>Max file size 2<abbr title='megabyte'>MB</abbr></p>
+                    Your picture<br>
+                    <span>Max file size 2<abbr title='megabyte'>MB</abbr></span>
                 </label>
                 <input type='file' accept='image/png,image/jpeg,image/bmp' id='profile_img' class='custom-file-input' name='profile_img' onchange='showPreview(event);'>
                 <p class='error'></p>
@@ -80,7 +80,7 @@ $content = "
             </div>
             <div id='btnBlock' class='form-buttons'>
                 <a class='edit-profile-btn action-button' href='profile.php' id='undoBtn'>Discard</a>
-                <input id='submit-btn' class='edit-profile-btn action-button' type='submit' id='saveBtn' value='Update'>
+                <input class='edit-profile-btn action-button' type='submit' id='saveBtn' value='Update'>
             </div>
         </form>
     </div>";

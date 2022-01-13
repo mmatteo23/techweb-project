@@ -7,7 +7,7 @@
       display: none;
     }
   
-    header h2{
+    header.page-header h2{
       font-size: 0;
     }
   
@@ -192,17 +192,6 @@
       transform: translate(.5em, -.5em);
     }
     
-    #article-header{
-      padding: 2em var(--lateral-padding) 7.5em;
-    }
-  
-    #article-body{
-      padding: 3em var(--lateral-padding) 1.5em;
-    }
-  
-    #breadcrumb{
-      padding: 0.5em var(--lateral-padding);
-    }
   
     .navbar li:first-child{
       margin: 0;
@@ -361,7 +350,7 @@
         font-size: 0.8em;
     }
 
-    #latest-articles #card-article-tags {
+    #latest-articles .card-article-tags {
         margin-bottom: 0.3em;
     }
 
@@ -386,11 +375,6 @@
     #search-results .card-article-info{
         min-height: 11em;
     }
-
-    /* #search-results #card-article-tags{
-      position: absolute;
-      bottom:1em;
-    } */
 
     #search-results a{
       width: max(17em, 45%);

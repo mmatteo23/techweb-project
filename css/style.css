@@ -144,7 +144,7 @@ header{
   margin-top: -0.1em;
 }
 
-header h2 {
+header.page-header h2 {
   text-indent: -999em;
   font-size: 0.25em;
 }
@@ -306,7 +306,7 @@ footer .credits{
 #breadcrumb {
 	background-color: var(--bg-accent) ;    /* mettere lo stesso colore degli h2?*/
 	color: #000000;
-	padding: 0.5em 2em;
+	padding: 0.5em var(--lateral-padding);
   width: 100%;
   position: relative;
   z-index: 1;
@@ -494,7 +494,7 @@ a.card-article-link:visited h3{
   color: var(--pink-accent);
 }
 
-#card-article-tags{
+.card-article-tags{
   margin: 0.5em 0 0em;
   display: flex;
   justify-content: flex-start;
@@ -677,7 +677,7 @@ a.card-article-link:visited h3{
 #article-header{
   display: flex;
   flex-direction: column;
-  padding: 2em 2em 7.5rem;
+  padding: 2em var(--lateral-padding) 2em;
   /*background-image: linear-gradient(to bottom right, var(--bg), var(--bg), #999)SCUSAAAAAAAAAA MILAN */
 }
 
@@ -742,12 +742,12 @@ a.card-article-link:visited h3{
   transition: transform .25s ease-in-out;
 }
 
-#article-tags #game-tag{
+#article-tags .game-tag{
   background-color:var(--bg-accent);
   color: #1b1b1b;
 }
 
-#card-article-tags #game-tag{
+.card-article-tags .tag.game-tag{
   background-color:var(--bg-accent);
   color: #1b1b1b;
 }
@@ -768,7 +768,6 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
 .cover{
   position: relative;
   z-index: 3;
-  margin-top: -6rem;
 }
 
 .cover-linguetta{
@@ -783,7 +782,7 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
 }
 
 #article-body{
-  padding: 3em 2em 1.5em;
+  padding: 3em var(--lateral-padding) 1.5em;
 }
 
 #article-body > *{
@@ -1039,6 +1038,7 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   background-color: transparent;
   outline: none;
   border: none;
+  cursor: pointer;
 }
 
 .navbar li{
@@ -1173,6 +1173,7 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   font-weight: 900;
   line-height: 1.1em;
   text-align: center;
+  width: 100%;
 }
 
 #latest-articles h1 {

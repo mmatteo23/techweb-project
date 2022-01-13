@@ -83,9 +83,10 @@ label[for='profile_img'] {
     margin-bottom: 0.5em;
 }
 
-#content form label p{
+#content form label span{
     font-size: .8em;
 }
+
 
 #content form input,
 #content form textarea{
@@ -247,7 +248,8 @@ label[for='profile_img'] {
     gap: 1em;
 }
 
-.form-buttons input#submit-btn.action-button{
+.form-buttons input#submit-btn.action-button,
+.form-buttons input#saveBtn.action-button{
     margin: 0;
 }
 
@@ -324,7 +326,8 @@ p.error{
 }
   
 a.action-button,
-input#submit-btn.action-button{
+input#submit-btn.action-button,
+input#saveBtn.action-button{
     display: block;
     border-radius: 2em;
     width: fit-content;
@@ -342,11 +345,9 @@ input#submit-btn.action-button{
 a.action-button{
     box-shadow: 2px 2px 2px 0px var(--teal-accent);
 }
-input#submit-btn.action-button{
+input#submit-btn.action-button,
+input#saveBtn.action-button{
     box-shadow: 2px 2px 2px 0px var(--pink-accent);
-}
-  
-input#submit-btn.action-button{
     margin-top: 1em;
     background-color: var(--purple-accent);
     color: white
@@ -367,7 +368,9 @@ a.action-button:focus,
 #undoBtn.action-button:hover,
 #undoBtn.action-button:focus,
 input#submit-btn.action-button:hover,
-input#submit-btn.action-button:focus{
+input#submit-btn.action-button:focus,
+input#saveBtn.action-button:hover,
+input#saveBtn.action-button:focus{
     transform: scale(.98) translate(2px, 2px);
     box-shadow: 0px 0px 0px 0px #ffffff99;
     border: none;
@@ -375,14 +378,17 @@ input#submit-btn.action-button:focus{
 }
   
 #profileEditForm #undoBtn.action-button,
-#profileEditForm #submit-btn.action-button{
+#profileEditForm #submit-btn.action-button,
+#profileEditForm #saveBtn.action-button{
     box-shadow: 2px 2px 2px 0px black;
 }
   
 #profileEditForm #undoBtn.action-button:hover,
 #profileEditForm #undoBtn.action-button:focus,
+#profileEditForm #submit-btn.action-button:hover,
 #profileEditForm #submit-btn.action-button:focus,
-#profileEditForm #submit-btn.action-button:hover{
+#profileEditForm #saveBtn.action-button:hover,
+#profileEditForm #saveBtn.action-button:focus{
     box-shadow: 0px 0px 0px 0px black;    
 }
   
@@ -396,11 +402,14 @@ input#submit-btn.action-button:focus{
 }
   
 input#submit-btn.action-button:hover,
-input#submit-btn.action-button:focus{
+input#submit-btn.action-button:focus,
+input#saveBtn.action-button:hover,
+input#saveBtn.action-button:focus{
     background-color: var(--purple-accent);
 }
 
-#submit-btn.action-button:focus{
+#submit-btn.action-button:focus,
+#saveBtn.action-button:focus{
     outline: 3px solid var(--fucsia-accent);
     outline-offset: .3em;
 }
@@ -420,6 +429,7 @@ input#submit-btn.action-button:focus{
     margin-right: auto;
     font-size: 2em;
     padding: 1em;
+    color: var(--teal-accent);
 }
 
 #user-profile-img {

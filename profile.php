@@ -32,6 +32,8 @@ if ($userData['role'] == 1) {
     $adminButton = '<h3 class="admin-link-info">Click the link below to get to the administration page:</h3>    
     <a href="administration.php" class="center action-button">Manage site</a>';
     $htmlPage = str_replace('<adminButton/>', $adminButton, $htmlPage);
+}else{
+    $htmlPage = str_replace('<adminButton/>', '', $htmlPage);
 }
 
 echo str_replace('<userInfo/>', $content, $htmlPage);

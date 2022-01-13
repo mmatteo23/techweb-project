@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8"/>
-	<title>Write Article - Penta News</title>
+	<title>Add game - Penta News</title>
 	<meta name="keywords" content="angry birds, gioco, red, suggerimenti"/>
 	<meta name="description" content="esercizio di tecnologie web"/>
 	<meta name="author" content="Davide Milan, Danilo Stojkovic, Matteo Midena, Matteo Casonato"/>
@@ -23,8 +23,8 @@
     <nav id="breadcrumb">
 		<p>
             <a href="index.php">Home</a> &gt; 
-            <a href="private_area.php">Your Private Area</a> &gt; 
-            <a href='administration.php'>Administration</a> &gt; Add game</p>
+            <a href="profile.php">Your Profile</a> &gt; 
+            <a href='administration.php'>Administration</a> &gt; Add game
         </p>
 	</nav>
 
@@ -36,13 +36,17 @@
 
         <form method="POST" action="add_game.php" id="articleForm" enctype="multipart/form-data">
             <div class="input-wrapper">
-                <label for="cover">Game Cover<p>1920 x 1080 image file</p></label>
-                <input type="file" style="color: black;" name="cover" id="cover" value="#Cover#">
+                <label for="cover">Game Cover <br>
+                    <span>1920 x 1080 image file</span>
+                </label>
+                <input type="file" style="color: black;" name="cover" id="cover">
                 <p class="error"></p>
             </div>
             <div class="input-wrapper">
-                <label for="default-article-img">Default article image<p>285 x 380 image file</p></label>
-                <input type="file" style="color: black;" name="default-article-img" id="default-article-img" value="#defaultArticleImg#">
+                <label for="default-article-img">Default article image
+                    <span>285 x 380 image file</span>
+                </label>
+                <input type="file" style="color: black;" name="default-article-img" id="default-article-img">
                 <p class="error"></p>
             </div>
             <div class="input-wrapper">
@@ -71,7 +75,7 @@
                 <p class="error"></p>
             </div>   
             <div class="form-buttons">
-                <a href="../profile.php" id="undoBtn" class="action-button">Discard</a>
+                <a href="../administration.php" id="undoBtn" class="action-button">Discard</a>
                 <input id="submit-btn" class="action-button" type="submit" value="Add game">    
             </div>
         </form>

@@ -44,14 +44,14 @@ if($connection){
                 $HTMLSlide = 
                     '<a class="card-article-link" href="article.php?id='.$art['id'].'">
                         <div class="card-article-image">
-                            <img src="images/article_covers/'.$art['cover_img'].'"/>
+                            <img src="images/article_covers/'.$art['cover_img'].'" alt="' . $art['alt_cover_img'] . '"/>
                         </div>
                         <div class="card-article-info">
                             <h3>'.$art['title'].'</h3>
                             <h4>'.$art['subtitle'].'</h4>
                             <p>'.$art['publication_date'].'</p>';
-                $HTMLSlide .= '<ul id="card-article-tags" class="tag-list">
-                                    <li class="tag" id="game-tag">'.$art['game'].'</li>';
+                $HTMLSlide .= '<ul class="tag-list card-article-tags">
+                                    <li class="tag game-tag">'.$art['game'].'</li>';
                 if($CarouselTags[$art['id']]){
                     foreach($CarouselTags[$art['id']] as $tag){
                         $HTMLSlide .= '<li class="tag">'.$tag['name'].'</li>';
@@ -70,7 +70,7 @@ if($connection){
                 <ul class="game-list" id="game-list">';
             for($i = 0; $i < count($HotGames); $i++){
                 $game = $HotGames[$i];            
-                $HotGamesHTML .= '<li class="card" id="'.$game['name'].'">
+                $HotGamesHTML .= '<li class="card" id="game_'.$game['id'].'">
                 <a tabindex="-1" href="search.php?game='.urlencode($game['name']).'"><img src="/images/games/' . $game['img'] . '" alt="' . $game['name'] . ' cover" class="card-img"></a>
                 <div class="card-content">
                     <h2 class="card-title"><a href="search.php?game='.urlencode($game['name']).'" class="card-title-link">' . $game['name'] . '</a></h2>';
@@ -84,7 +84,7 @@ if($connection){
             $carousel=' 
                 <aside class="slider">
                     <h2 class="subtitle">Most liked</h2>
-                        <section class="slides">';
+                        <div class="slides">';
             $i=1;
             foreach($slides as $art){
                 if($art!=""){
@@ -92,7 +92,7 @@ if($connection){
                     $i++;
                 }
             }
-            $carousel .= '</section>' . $HotGamesHTML . '</aside>';
+            $carousel .= '</div>' . $HotGamesHTML . '</aside>';
         }
         $user_output.='<button class="action-button" id="more-articles" type="button" onClick=loadMore('.$lastArticleLoaded.')>Load more</button></section>';
     }      

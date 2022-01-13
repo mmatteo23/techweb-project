@@ -9,14 +9,14 @@ function loadArticles($articles, $tags, int $from, int $to) {
             '<a class="card-article-link" href="article.php?id='.$art['id'].'">
             <article>
                 <div class="card-article-image">
-                    <img src="images/article_covers/'.$art['cover_img'].'"/>
+                    <img src="images/article_covers/'.$art['cover_img'].'" alt="' . $art['alt_cover_img'] . '"/>
                 </div>
                 <div class="card-article-info">
                     <h3>'.$art['title'].'</h3>
                     <h4>'.$art['subtitle'].'</h4>
                     <p>'.$art['publication_date'].'</p>';
-        $user_output .= '<ul id="card-article-tags" class="tag-list">
-                            <li class="tag" id="game-tag">'.$art['game'].'</li>';
+        $user_output .= '<ul class="tag-list card-article-tags">
+                            <li class="tag game-tag">'.$art['game'].'</li>';
         if($tags){
             foreach($tags as $tag){
                 if($tag['article_id']==$art['id']){
