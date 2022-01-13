@@ -254,9 +254,9 @@
       font-size: .7em;
     }
   
-    footer .valid-code-wrapper{
+    /* footer .valid-code-wrapper{            SE SI USANO LE DUE IMMAGINI DI HTML5 CSS VALIDO AI LATI
       justify-content: space-between;
-    }
+    } */
   
   
     @keyframes searchPopUp {
