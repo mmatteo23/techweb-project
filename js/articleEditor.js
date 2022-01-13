@@ -52,7 +52,7 @@ form.addEventListener('submit', e => {
         if(validForm){
             var content = editor.innerHTML;
             articleText.value = content.toString();
-            console.log(content.toString());
+            //console.log(content.toString());
             inputTag.value = tags.join(';')
             form.submit()
         }
@@ -140,6 +140,8 @@ function createTag(label) {
   closeIcon.innerHTML = 'close';
   closeIcon.setAttribute('class', 'material-icons');
   closeIcon.setAttribute('data-item', label);
+  closeIcon.setAttribute('type', 'button');
+  closeIcon.setAttribute('onclick', 'AddAllTheTags()');
   tagItem.appendChild(span);
   tagItem.appendChild(closeIcon);
   return tagItem;
@@ -187,8 +189,8 @@ window.onload = function(){
 }
 
 document.addEventListener('click', (e) => {
-  console.log(e.target.tagName);
-  if (e.target.tagName === 'I') {
+  //console.log(e.target.tagName);
+  if (e.target.tagName === 'BUTTON') {
     const tagLabel = e.target.getAttribute('data-item');
     const index = tags.indexOf(tagLabel);
     tags = [...tags.slice(0, index), ...tags.slice(index+1)];

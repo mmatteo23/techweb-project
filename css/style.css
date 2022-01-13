@@ -1398,10 +1398,7 @@ ERRORs
 }
 
 #imgNoDB{
-  display: none;  
-  width: 30%;
-  height: auto;
-  margin: 0 0 0 20%;  
+  display: none;
 }
 
 #errorUL{

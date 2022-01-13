@@ -4,6 +4,7 @@ require_once("php/validSession.php");
 require_once("php/ArticleController.php");
 require_once("php/GameController.php");
 require_once("php/utilityFunctions.php");
+require_once('php/error_management.php');
 
 $tags=array();
 $articles = getAuthorArticles($_SESSION['username'], $tags);
@@ -46,7 +47,7 @@ if($articles){
     }
 }
 else{
-    $content=createDBErrorHTML();
+    $user_output = createDBErrorHTML();
 }
 
 $htmlPage = file_get_contents("html/edit_article.html");

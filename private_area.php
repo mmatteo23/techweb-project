@@ -26,7 +26,7 @@ $userRole = $userData['role'];
 
 if ($userRole == 1) {
     $htmlAdmin = '
-        <p>SITE ADMINISTRATION <a href="administration.php">Edit site</a></p>
+        <p>SITE ADMINISTRATION <a href="administration.php">Go to the admin page</a></p>
     ';
     $htmlPage = str_replace('<adminArea/>', $htmlAdmin, $htmlPage);
 }
