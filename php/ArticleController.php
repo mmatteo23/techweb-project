@@ -20,7 +20,7 @@ function getArticleData(int $id, string $author, array &$tags){
         
         $connection_manager->closeDBConnection();
         
-        if($articles != 'WrongQuery')
+        if($articles)
             return $articles[0];
     }
     $connection_manager->closeDBConnection();

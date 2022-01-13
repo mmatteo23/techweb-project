@@ -3,23 +3,11 @@ require_once('utilityFunctions.php');
 require_once('php/db.php');
 use DB\DBAccess;
 
-
-	/**
-	 * @brief getUserData()		returns the user data from username
-	 * @return 	array()			if user exists it returns an array with user data
-	 * 			NULL			if user doesn't exist it returns null
-	 */
-function getUserData(string $username, $connection_manager) {
-    $query = "SELECT * FROM Person
-            WHERE username = '$username' LIMIT 1";
-
-    $queryResults = $connection_manager->executeQuery($query); 
-    $connection_manager->closeDBConnection();
-    if($queryResults=="WrongQuery")
-        return false;
-    return $queryResults[0];
-}
-
+/**
+ * @brief getUserData()		returns the user data from username
+ * @return 	array()			if user exists it returns an array with user data
+ * @return  NULL			if user doesn't exist it returns null
+ */
 function getUser(string $username) {
     $connection_manager = new DBAccess();
     $conn_ok = $connection_manager->openDBConnection();
@@ -30,13 +18,11 @@ function getUser(string $username) {
 
         $queryResults = $connection_manager->executeQuery($query); 
         $connection_manager->closeDBConnection();
-        if($queryResults=="WrongQuery")
-            return false;
         return $queryResults[0];
     }
 }
 
-function validateUserData (string $username, string $firstname, string $lastname, string $email, string $password, string $password2, string &$errors, bool $new = true) {
+function validateUserData (string $username, string $firstname, string $lastname, string $email, string $password, string $password2, string &$errors) {
     
     if($firstname === ''){
         $errors .= "<li class='error'>The firstname is required</li>";
@@ -75,31 +61,31 @@ function validateUserData (string $username, string $firstname, string $lastname
 
 /**
  * @brief insertNewUser()		insert new user in Person table
- * @return 	
+ * @return TRUE                 the user is correctly created
+ * @return FALSE                there was an error during the creation process
  */
 function insertNewUser(string $username, string $firstname, string $lastname, string $email, string $password, string $password2, string &$errors, int $role = 2){
     $today = date("Y-m-d");
     // create the query
-    $query = "INSERT INTO Person (username, firstName, lastName, email, password, role, subscription_date)
+    $insertQuery = "INSERT INTO Person (username, firstName, lastName, email, password, role, subscription_date)
         VALUES ('$username', '$firstname', '$lastname', '$email', '$password', $role, '$today')";
     
     $connection_manager = new DBAccess();
     $conn_ok = $connection_manager->openDBConnection();
     // Verify that the user is unique in db
-    if($new && getUserData($username, $connection_manager)){    // there is an user with the same username
+    if($new && getUserData($username)){    // there is an user with the same username
         $errors .= "<li class='error'>An user with this username already exists, please change it and retry.</li>";
     }   
     if($conn_ok){
-        validateUserData($username, $firstname, $lastname, $email, $password, $password2, $errors, true);
+        validateUserData($username, $firstname, $lastname, $email, $password, $password2, $errors);
         if($errors=="")
-            $results = $connection_manager->executeQuery($query);
+            $results = $connection_manager->executeQuery($insertQuery, 'insert');
         $connection_manager->closeDBConnection();
-        if($results==1){
+        if($results){
             return true;
         }
         return false;
-    }
-            
+    }         
 }
 
 function updateUserInfo($username, $firstname, $lastname, $email, $password, $image){
@@ -119,7 +105,7 @@ function updateUserInfo($username, $firstname, $lastname, $email, $password, $im
 function updateUser(string $username, string $firstname, string $lastname, string $email, string $password, string $rep_password, $profile_img){
     // create a connection istance to talk with the db
     $errors="";
-    validateUserData($username, $firstname, $lastname, $email, $password, $rep_password, $errors, FALSE);
+    validateUserData($username, $firstname, $lastname, $email, $password, $rep_password, $errors);
     if(!$errors){
         $connection_manager = new DBAccess();
         $conn_ok = $connection_manager->openDBConnection();
@@ -131,7 +117,7 @@ function updateUser(string $username, string $firstname, string $lastname, strin
             }
             $updateQuery .= " WHERE username='$username'";
 
-            $queryResult = $connection_manager->executeQuery($updateQuery);
+            $queryResult = $connection_manager->executeQuery($updateQuery, 'update');
             $connection_manager->closeDBConnection();
             if($queryResults=="WrongQuery"){
                 return "<li>Error during user update</li>";
@@ -139,10 +125,24 @@ function updateUser(string $username, string $firstname, string $lastname, strin
             return true;
         }
         else{
-            header("Location: 500.php");
+            header("Location: error.php");
         }
     } else {
         return $errors;
+    }
+}
+
+function deleteUser(string $username){
+    // create a connection istance to talk with the db
+    $connection_manager = new DBAccess();
+    $conn_ok = $connection_manager->openDBConnection();
+    if($conn_ok){
+        $deleteQuery = "DELETE FROM Person WHERE username = '$username'";
+        $result = $connection_manager->executeQuery($deleteQuery);
+
+        return $result;
+    } else {
+        header("Location: error.php");
     }
 }
 

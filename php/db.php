@@ -37,11 +37,41 @@ class DBAccess {
 	 * 	ATTENZIONE!!! MODIFICARE PRIMA DI METTERE IN PRODUZIONE
 	 * 
 	 ****************************************************************/
-
+	/**
+	 * @brief executeQuery(string)	it executes the passed query and return the result
+	 * @return key/id				INSERT: returns the id/key that identifies the created record.
+	 * @return array()				SELECT:	returns an array with the db records extracted
+	 * @return TRUE					UPDATE/DELETE: the query updates the record successfully
+	 * @return FALSE				default: the query was wrong								 
+	 * 
+	 ****************************************************************/
 	public function executeQuery(string $query){
-		$queryResults = mysqli_query($this->connection, $query);
+		
+		$queryResult = mysqli_query($this->connection, $query);
+
+		if($queryResult){
+			if(mysqli_insert_id($this->connection))			// INSERT QUERY
+				return mysqli_insert_id($this->connection);
+
+			if($queryResult === TRUE) // UPDATE
+				return TRUE;
+
+			// SELECT
+			$result = array();
+			while($row = mysqli_fetch_array($queryResult, MYSQLI_ASSOC)){
+				array_push($result, $row);
+			}
+			$queryResult->free();
+			return $result;
+		}
+
+		return $queryResult;	// FALSE => Query failed
+
+		/*	OLD QUERY
+		
 		if(!$queryResults){
-			return "WrongQuery";
+			//return "WrongQuery";
+			return FALSE;
 		}
 		// Different query => different result to return
 		// INSERT
@@ -64,6 +94,7 @@ class DBAccess {
 		}
 		$queryResults->free();
 		return $result;
+		*/
 	}
 
 	/**************************************************************

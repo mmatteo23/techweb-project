@@ -8,23 +8,29 @@ $content = "";  // html code to send to the page
 $errors = "";
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
-    // take the data
-    $firstname      = $_POST['firstname'];
-    $lastname       = $_POST['lastname'];
-    $email          = $_POST['email'];
-    $password       = $_POST['password'];
-    $rep_password   = $_POST['repeated_password'];
-    $profile_img    = NULL;
-    // ['name in form']['imported file name']
 
-    $errors .= checkImageToUpload($profile_img, "images/user_profiles/", "profile_img", $_SESSION['username'], "");
-
-    if($errors==""){
-        $result = updateUser($_SESSION['username'], $firstname, $lastname, $email, $password, $rep_password, $profile_img);
-        if($result === TRUE){
-            header("Location: profile.php");
-        } 
-        else {
+    if (isset($_POST['btnDelete'])) {
+        echo "DELETE";
+        //deleteUser($_SESSION['username']);
+    } else {
+        
+        // take the data
+        $firstname      = $_POST['firstname'];
+        $lastname       = $_POST['lastname'];
+        $email          = $_POST['email'];
+        $password       = $_POST['password'];
+        $rep_password   = $_POST['repeated_password'];
+        $profile_img    = NULL;
+        // ['name in form']['imported file name']
+    
+        
+        if($errors==""){
+            $result = updateUser($_SESSION['username'], $firstname, $lastname, $email, $password, $rep_password, $profile_img);
+            if($result === TRUE){
+                $errors .= checkImageToUpload($profile_img, "images/user_profiles/", "profile_img", $_SESSION['username'], "Default.png");
+                if(!$errors)
+                    header("Location: profile.php");
+            }
             $errors .= $result;
         }
     }
@@ -80,7 +86,8 @@ $content = "
             </div>
             <div id='btnBlock' class='form-buttons'>
                 <a class='edit-profile-btn action-button' href='profile.php' id='undoBtn'>Discard</a>
-                <input class='edit-profile-btn action-button' type='submit' id='saveBtn' value='Update'>
+                <input class='edit-profile-btn action-button' type='submit' id='deleteBtn' name='btnDelete' value='Delete'>
+                <input class='edit-profile-btn action-button' type='submit' id='saveBtn' name='btnUpdate' value='Update'>
             </div>
         </form>
     </div>";
