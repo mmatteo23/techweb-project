@@ -42,7 +42,7 @@
 
 html, body{
   font-family: 'Poppins', sans-serif;
-	margin: auto;
+	margin: 0 auto;
 	max-width: var(--content-max_width);
   background-color: var(--bg);
   color: white;  
@@ -333,11 +333,6 @@ footer .credits{
 */
 
 
-.subtitle:first-child(){
-  margin-top: 0;
-}
-
-
 /*.home-article-card {
   margin: 1em 0.5em 0.5em 0.5em;
   background-color: var(--bg);
@@ -349,20 +344,15 @@ footer .credits{
 
 .card-article-image{
   border-radius: 1em 1em 0 0 ;
-  height: 8em;
-  width: auto;
+  width: 100%;
   overflow: hidden;
   position: relative;
+  aspect-ratio: 2.5 / 1;
 }
 
 .card-article-image img{
   height: auto;
-  width:100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: translateY(-20%);
-  transform-origin: 50% 150%;
+  width: 100%;
 }
 
 #content .slider h2.subtitle{
@@ -399,7 +389,6 @@ footer .credits{
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2; /* number of lines to show */
-          line-clamp: 2; 
   -webkit-box-orient: vertical;
 }
 .slides .card-article-info{
@@ -430,6 +419,9 @@ footer .credits{
 .card-article-link{
   color: white;
   text-decoration: none; 
+  display: block;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .slider a.card-article-link:hover article,
@@ -510,6 +502,8 @@ a.card-article-link:visited h3{
 
 .slider {
   overflow: hidden;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .slides {
@@ -517,7 +511,7 @@ a.card-article-link:visited h3{
   overflow-x: auto;
   scroll-snap-type: x mandatory;  
   scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;  
+  -webkit-overflow-scrolling: touch;
 }
 
 .slides h4{
@@ -676,6 +670,10 @@ a.card-article-link:visited h3{
   border: 0;
 }
 
+.article-list tr:nth-child(even){
+  background-color: #434a52;
+}
+
 .article-list thead {
   display: table-header-group;
   vertical-align: middle;
@@ -692,8 +690,11 @@ a.card-article-link:visited h3{
   padding: 0.3em 0.5em;
 }
 
-.article-list tr:hover {
-  background-color: rgba(255, 255, 255, 0.075);
+.article-list tr:hover,
+.article-list tr:hover a:link,
+.article-list tr:hover a:visited{
+  background-color: var(--bg-accent);
+  color: black;
 }
 
 /*
@@ -1260,7 +1261,7 @@ h1{
 
 .card > a:hover,
 .card > a:focus{
-  transform: scale(104%);
+  transform: scale(1.04);
   border-radius: 3em 3em 1.75em 1.75em;
   background-color: var(--teal-accent);
   outline: none;

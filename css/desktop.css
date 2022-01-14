@@ -301,9 +301,15 @@
         margin-right: 1.5em;
     }
 
+
+    .card-article-link{
+      max-width: none;
+    }
+    
     .slider {
         width: 35%;
         overflow: initial;
+        max-width: none;
     }
 
     #content .slider h2.subtitle {
