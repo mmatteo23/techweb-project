@@ -44,7 +44,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         if(insertNewUser($username, $firstname, $lastname, $email, $password, $rep_password, $errors, 1)){
             $_SESSION['username'] = $username;
             //echo "utente creato";
-            header("location: private_area.php");
+            header("location: landing_page.php");
         }
     } else {
         $errors = createDBErrorHTML();
@@ -56,7 +56,7 @@ $htmlPage = str_replace("<formErrors/>", $errors, $htmlPage);
 
 // se l'utente ha già effettuato il login non deve visualizzare questa pagina
 if(isset($_SESSION['username']) && $_SESSION['username'] != '') {             
-    header("location: private_area.php");
+    header("location: landing_page.php");
 }
 
 //str_replace finale col conenuto specifico della pagina

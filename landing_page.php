@@ -17,7 +17,7 @@ if($conn_ok){
     $connection_manager->closeDBConnection();           // va in errore
 }
 */
-$htmlPage = file_get_contents("html/private_area.html");
+$htmlPage = file_get_contents("html/landing_page.html");
 
 $htmlPage = str_replace('<userName/>', $_SESSION['username'], $htmlPage);
 

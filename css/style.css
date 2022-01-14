@@ -781,7 +781,6 @@ a.card-article-link:visited h3{
   color: #1b1b1b;
 }
 
-
 #article-tags li a:hover,
 #article-tags li a:focus{
   transform: scale(1.15);
@@ -1137,11 +1136,12 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   display: none;
 }
 
-.private_area_content,
+.landing_page_content,
 .error-content,
 .favorites-content,
 .search-content,
-.edit-users-content{
+.edit-users-content,
+.editgame-content{
   min-height: 60vh;
   display: flex;
   flex-direction: column;
@@ -1149,8 +1149,8 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   justify-content: center;
 }
 
-.favorites-content p,
-.search-content p{
+.favorites-content>p,
+.search-content>p{
   text-align: center;
 }
 
@@ -1165,7 +1165,7 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   justify-content: center;
 }
 
-.private_area_content > .wrapper,
+.landing_page_content > .wrapper,
 .error-content > .wrapper{
   display: flex;
   flex-direction: column;
@@ -1173,12 +1173,12 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   justify-content: center;
 }
 
-.private_area_content > .wrapper .secondary{
+.landing_page_content > .wrapper .secondary{
   font-size: .8em;
   margin-top: 2em;
 }
 
-.private_area_content > .wrapper > h1 > span{
+.landing_page_content > .wrapper > h1 > span{
   color: var(--teal-accent)
 }
 

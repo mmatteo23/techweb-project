@@ -4,6 +4,7 @@ session_start();
 
 require_once("php/validSession.php");
 require_once("php/UserController.php");
+require_once("php/error_management.php");
 
 $htmlPage = file_get_contents("html/administration.html");
 
@@ -24,7 +25,7 @@ if ($userRole == 1) {
     ';
 } else {
     // Utente loggato ma non è admin
-    $html = '<h1 id="page-title">You\'r not an admin! Go back <a href="/">Home</a>!</h1>';
+    $html = accessNotAllowed("admin");
 }
 
 $htmlPage = str_replace('<welcome/>', $html, $htmlPage);

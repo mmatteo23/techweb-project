@@ -29,6 +29,15 @@
         </section>";
     }
 
+    function accessNotAllowed($not){
+        return "
+        <section class='error-display'>
+            <h1 class='error-title'>You're not a ".$not."!</h1>
+            <h2>You don't have access to this part of the website</h2>
+            <a href='index.php'>Return to home</a>
+        </section>";
+    }
+
     function genericErrorHTML($title, $subtitle, $thingToDo=null){
         $returnHTML = "
         <section class='error-display'>
