@@ -62,7 +62,6 @@ CREATE TABLE Article (
     cover_img       VARCHAR(255),
     alt_cover_img   VARCHAR(255) DEFAULT 'article cover image',
     read_time       INT,
-    is_approved     BOOLEAN DEFAULT FALSE,
     author        VARCHAR(100) NOT NULL,
     game_id INT NOT NULL,
     FOREIGN KEY (author) REFERENCES Person(username),
