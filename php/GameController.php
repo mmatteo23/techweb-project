@@ -59,7 +59,7 @@ function getGenreIdsFromGameId($game_id) {
 
         if($genre_id != 'WrongQuery')
         // PER ORA SOLO IL PRIMO GENERE DELL'ARRAY
-            return $genre_id[0]['genre_id'];
+            return $genre_id['genre_id'];
     }
 
     $connection_manager->closeDBConnection();

@@ -22,7 +22,7 @@ $name = '';
 $description = '';
 $releaseDate = '';
 $developer = '';
-$genre_id = 1;
+$genre_id = [1];
 $game_img = '';
 $default_article_img = '';
 $destination = "add_game.php";
@@ -59,6 +59,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $releaseDate = $_POST['releaseDate'];
     $developer = $_POST['developer'];
     $genre_id = $_POST['genre'];
+    $genre_id_0 = $POST['genre-0'];
+    $genre_id_1 = $POST['genre-1'];
+    $genre_id_2 = $POST['genre-2'];
+    $genre_ids = array_push($genre_id_0, $genre_id_1, $genre_id_2);
     $default_article_img = NULL;
     $game_img = NULL;
 
@@ -88,7 +92,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if (is_int($game_id)) {
                 $errorsImage .= checkImageToUpload($default_article_img, "images/article_covers/Default/", "default-article-img", $game_id."-cover-1080", "");
             } 
-            $result = storeGameGenre($game_id, $genre_id);
+            foreach($genre_ids as $genre_id)
+                $result += storeGameGenre($game_id, $genre_id);
         }
         // check errori
         if(is_int(intval($game_id)) && ($errorsImage == "") && is_int(intval($result))) {
@@ -111,16 +116,37 @@ $genres = getGenres();
 if(isset($genres)){
     $selectOptions="";
     foreach ($genres as $genre) {
-        if($genre['id']==$genre_id)
-            $selectOptions .= "<option value='" . $genre['id'] . "' selected>" . $genre['name'] . "</option>";
+        if($genre['id']==$genre_id_0)
+            $selectOptions_0 .= "<option value='" . $genre['id'] . "' selected>" . $genre['name'] . "</option>";
         else
-            $selectOptions .= "<option value='" . $genre['id'] . "'>" . $genre['name'] . "</option>";
+            $selectOptions_0 .= "<option value='" . $genre['id'] . "'>" . $genre['name'] . "</option>";
+    }
+    foreach ($genres as $genre) {
+        if($genre['id']==$genre_id_0)
+            $selectOptions_0 .= "<option value='" . $genre['id'] . "' selected>" . $genre['name'] . "</option>";
+        else
+            $selectOptions_0 .= "<option value='" . $genre['id'] . "'>" . $genre['name'] . "</option>";
+    }
+    foreach ($genres as $genre) {
+        if($genre['id']==$genre_id_0)
+            $selectOptions_0 .= "<option value='" . $genre['id'] . "' selected>" . $genre['name'] . "</option>";
+        else
+            $selectOptions_0 .= "<option value='" . $genre['id'] . "'>" . $genre['name'] . "</option>";
     }
     $selectbox = "
-        <select name='genre' id='genre'>" .
-            $selectOptions
+        <select name='genre-0' id='genre-0'>" .
+            $selectOptions_0
         . "</select>
     ";
+    for ($i = 1; $i <= 2; $i++) {
+        $selectbox .= " <div>
+        <button type='button' onclick='enableDisableGenre(".$i.")'> ENABLE/DISABLE </button>
+        <select name='genre-".$i."' id='genre-".$i."' disabled>" .
+            $selectOptions
+        . "</select>
+        </div>
+        ";
+    }
 }
 
 $htmlPage = str_replace('<selectGenre/>', $selectbox, $htmlPage);
