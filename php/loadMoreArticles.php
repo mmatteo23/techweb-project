@@ -28,15 +28,16 @@ if($connection){
                         <h3>'.$art['title'].'</h3>
                         <h4>'.$art['subtitle'].'</h4>
                         <p>'.$art['publication_date'].'</p>';
+            $user_output .= '<ul class="tag-list card-article-tags">
+            <li class="tag game-tag">'.$art['game'].'</li>';
             if($tags){
-                $user_output .= '<ul id="card-article-tags" class="tag-list">';
                 foreach($tags as $tag){
                     if($tag['article_id']==$art['id']){
                         $user_output .= '<li class="tag">'.$tag['name'].'</li>';
                     }
                 }
-                $user_output .= '</ul>';
             }   
+            $user_output .= '</ul>';
             $user_output .= '</div>
             </article>
             </a>';

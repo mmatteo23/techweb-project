@@ -1296,7 +1296,7 @@ h1{
 .tag-list .tag {
   list-style-type: none;
   font-size: clamp(0.35rem, 5vh + .3rem, .85rem);
-  padding: 0.2em 0.4em;
+  padding: 0.2em 0.8em;
   margin: 0 .35ch;
   text-transform: capitalize;
 }

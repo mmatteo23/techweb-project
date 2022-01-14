@@ -357,7 +357,7 @@ class DBAccess {
 
 	public function getTopArticles(int $nArt, int $offset = 0){
         //da Mettere WHERE is_approved e non !is_approved
-        $query = "SELECT Article.id AS id, title, subtitle, publication_date, cover_img, Game.name AS game FROM Article JOIN Game ON game_id=Game.id WHERE !is_approved ORDER BY publication_date DESC LIMIT ".$nArt." OFFSET ".$offset;   
+        $query = "SELECT Article.id AS id, title, subtitle, publication_date, cover_img, Game.name AS game FROM Article JOIN Game ON game_id=Game.id WHERE !is_approved ORDER BY publication_date DESC, id DESC LIMIT ".$nArt." OFFSET ".$offset;   
         $queryResults = mysqli_query($this->connection, $query);
 		if(!$queryResults) 
 			return "ErroreDB";
