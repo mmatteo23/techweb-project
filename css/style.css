@@ -948,7 +948,7 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   flex-direction: column-reverse;
   position: fixed;
   bottom: 0;
-  z-index: 100;
+  z-index: 200;
   width: 100%;
   height: 6vh;
 }
@@ -1139,7 +1139,8 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
 .private_area_content,
 .error-content,
 .favorites-content,
-.search-content{
+.search-content,
+.edit-users-content{
   min-height: 60vh;
   display: flex;
   flex-direction: column;

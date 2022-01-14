@@ -61,11 +61,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $errorsImage = checkImageToUpload($article_img, "images/article_covers/", "cover", $title, "Default/" . $game_id . "-cover-1080.jpg");
 
     // system params for storing an article
-    $publication_date   = date('Y-m-d');
+    $publication_date = date('Y-m-d');
     if($errorsImage == ""){
         if(isset($_GET['id'])){
-            if($article_img=="Default/" . $game_id . "-cover-1080.jpg" && isset($art_data['cover_img']))
+
+
+            /* se un articolo è stato impostato con un'immagine di default, quando si cambia il gioco viene aggiornata anche l'immagine di default automaticamente*/ 
+            if($article_img=="Default/" . $game_id . "-cover-1080.jpg" && isset($art_data['cover_img']) && explode('/', $art_data['cover_img'])[0]!='Default')
                 $article_img = $art_data['cover_img'];
+
             deleteArticleById($_GET['id']);
             $result = storeArticle($title, $subtitle, $article_text, $publication_date, $article_img, $read_time, $author, $game_id, $tags, $_GET['id']);
         }

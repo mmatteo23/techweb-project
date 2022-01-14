@@ -53,8 +53,9 @@ class DBAccess {
 			if(mysqli_insert_id($this->connection))			// INSERT QUERY
 				return mysqli_insert_id($this->connection);
 
-			if($queryResult === TRUE) // UPDATE
+			if($queryResult === TRUE){ // UPDATE
 				return TRUE;
+			}
 
 			// SELECT
 			$result = array();
@@ -64,7 +65,6 @@ class DBAccess {
 			$queryResult->free();
 			return $result;
 		}
-
 		return $queryResult;	// FALSE => Query failed
 
 		/*	OLD QUERY

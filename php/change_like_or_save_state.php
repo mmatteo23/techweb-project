@@ -7,7 +7,7 @@ use DB\DBAccess;
 $db = new DBAccess();
 
 $connection = $db->openDBConnection();
-
+echo $_POST['username'];
 if($connection){
     $username = $_POST['username'];
     $articleId = $_POST['articleId'];
