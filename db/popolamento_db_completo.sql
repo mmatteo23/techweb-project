@@ -9,7 +9,8 @@ INSERT INTO Person VALUES
 ('matteocasonato', 'Matteo', 'Casonato', 'matteo.quasinato@pentanews.com', 'matteocasonato', 1, CURDATE(),''),
 ('matteomidena', 'Matteo', 'Midena', 'matteo.milena@pentanews.com', 'matteomidena', 1, CURDATE(),'matteomidena.jpg'),
 ('admin', 'admin', 'admin', 'admin@pentanews.com', 'admin', 1, CURDATE(),''),
-('user', 'user', 'user', 'user@useremail.com', 'user', 3, CURDATE(),'');
+('user', 'user', 'user', 'user@useremail.com', 'user', 3, CURDATE(),''),
+('writer', 'writer', 'writer', 'writer@writeremail.com', 'writer', 2, CURDATE(), '');
 
 INSERT INTO Game (name, description, release_date, developer, game_img)
 VALUES(
