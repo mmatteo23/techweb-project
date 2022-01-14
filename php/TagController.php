@@ -38,7 +38,7 @@ function manageTags(array $newTags){
                     $insertQuery .= "('".$tag."'),";
                 }
                 $insertQuery = trim($insertQuery, ',');
-                echo $insertQuery;
+                // echo $insertQuery;
                 $connection_manager->executeQuery($insertQuery);
             }
         }
@@ -58,7 +58,7 @@ function storeTags(array $newTags){
             $selectQuery .= "('$tag'),";
         }
         $insertQuery = trim($insertQuery, ',');
-        echo $insertQuery;
+        // echo $insertQuery;
         
         $connection_manager->executeQuery($insertQuery);
         $connection_manager->closeDBConnection();

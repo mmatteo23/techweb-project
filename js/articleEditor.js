@@ -113,9 +113,9 @@ function validateInputs () {
     if(articleTextValue === '') {
         setError(articleText, 'A text is required')
         validForm = false
-    /*} else if (articleTextValue.length < 100) {
+    } else if (articleTextValue.length < 100) {
         setError(articleText, 'Article text needs to be at least 100 characters long.')
-        validForm = false*/
+        validForm = false
     } else {
         setSuccess(articleText);
     }
