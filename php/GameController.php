@@ -97,40 +97,82 @@ function gameValidator($name, $description, $release_date, $developer, $game_img
     return $errors;
 }
 
-function storeGame(string $name, string $description, string $release_date, string $developer, $game_img, int $roleUser){
+function storeGame(string $name, string $description, string $release_date, string $developer, $game_img){
     // create a connection istance to talk with the db
     $connection_manager = new DBAccess();
     $conn_ok = $connection_manager->openDBConnection();
     
     if($conn_ok){
-        if($roleUser == 1) {
+        $validationErrors = gameValidator($name, $description, $release_date, $developer, $game_img);
+        
+        $name = $connection_manager->escape_string($name);
+        $description = $connection_manager->escape_string($description);
+        // SERVE VALIDARE LA DATA? L'INPUT FORZA IL FORMATO CORRETTAMENTE...
+        $developer = $connection_manager->escape_string($developer);
 
-            $validationErrors = gameValidator($name, $description, $release_date, $developer, $game_img);
-            
-            $name = $connection_manager->escape_string($name);
-            $description = $connection_manager->escape_string($description);
-            // SERVE VALIDARE LA DATA? L'INPUT FORZA IL FORMATO CORRETTAMENTE...
-            $developer = $connection_manager->escape_string($developer);
+        if(!$validationErrors){
 
-            if(!$validationErrors){
-    
-                $insertQuery = "
-                    INSERT INTO Game (name, description, release_date, developer, game_img)
-                    VALUES ('$name', '$description', '$release_date', '$developer', '$game_img')
-                ";
-    
-                $gameId = $connection_manager->executeQuery($insertQuery);
-                if($gameId)
-                    return $gameId;
-                else
-                    return buildError("There was an error during the insert of the game");
-            }
+            $insertQuery = "
+                INSERT INTO Game (name, description, release_date, developer, game_img)
+                VALUES ('$name', '$description', '$release_date', '$developer', '$game_img')
+            ";
 
-            return $validationErrors;
-
-        } else {
-            return buildError("This user can't add games");
+            $gameId = $connection_manager->executeQuery($insertQuery);
+            if($gameId)
+                return $gameId;
+            else
+                return buildError("There was an error during the insert of the game");
         }
+
+        return $validationErrors;
+    } else {
+        return buildError("Internal server error");
+    }
+}
+
+function updateGame(int $game_id, string $name, string $description, string $release_date, string $developer, $game_img) {
+    $connection_manager = new DBAccess();
+    $conn_ok = $connection_manager->openDBConnection();
+
+    if($conn_ok){
+        $validationErrors = gameValidator($name, $description, $release_date, $developer, $game_img);
+        
+        $name = $connection_manager->escape_string($name);
+        $description = $connection_manager->escape_string($description);
+        // SERVE VALIDARE LA DATA? L'INPUT FORZA IL FORMATO CORRETTAMENTE...
+        $developer = $connection_manager->escape_string($developer);
+
+        if(!$validationErrors){
+
+            $updateQuery = "
+                UPDATE Game 
+                SET
+            ";
+
+            if ($name != "") $updateQuery .= "name='$name', ";
+            if ($description != "") $updateQuery .= "description='$description', ";
+            if ($release_date != "") $updateQuery .= "release_date='$release_date', ";
+            if ($developer != "") $updateQuery .= "developer='$developer', ";
+            if ($game_img != "") $updateQuery .= "game_img='$game_img', ";
+
+            $updateQuery = trim($updateQuery, ', ');
+
+            $updateQuery .= " WHERE id=$game_id;";
+
+            echo($updateQuery);
+
+            $gameId = $connection_manager->executeQuery($updateQuery);
+
+            if($gameId)
+                return $gameId;
+            else {
+                echo($gameId);
+                return buildError("There was an error during the update of the game");
+            }
+                
+        }
+
+        return $validationErrors;
     } else {
         return buildError("Internal server error");
     }

@@ -11,8 +11,13 @@ function buildError(string $msg){
 }
 
 // $idInputFrom è l'id nel campo img del form
-function checkImageToUpload(&$img, string $target_dir, string $idInputForm, string $img_name, string $defaultImage){
-    $errors = "";
+function checkImageToUpload(&$img, string $target_dir, string $idInputForm, string $img_name, string $defaultImage/*, string $type*/){
+    $errors = "";/*
+    if($type == "update") {
+        if (!isset($_FILES[$idInputForm]) {
+                
+        }
+    }*/
     if(isset($_FILES[$idInputForm]) && $_FILES[$idInputForm]['name']){
 
         $target_file = $target_dir . basename($_FILES[$idInputForm]["name"]);

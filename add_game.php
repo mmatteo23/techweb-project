@@ -59,29 +59,53 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $releaseDate = $_POST['releaseDate'];
     $developer = $_POST['developer'];
     $genre_id = $_POST['genre'];
-    $default_article_img = NULL;
-    $game_img = NULL;
+    // NON LEGGE I POST DELLE IMMAGINI !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    $default_article_img = $_POST['default-article-img'];
+    $game_img = $_POST['cover'];
 
     $username = $_SESSION['username'];
     $userData = getUser($username);
     $userRole = $userData['role'];
 
-    $errorsImage = checkImageToUpload($game_img, "images/games/", "cover", $name, "");
-    $game_id = storeGame($name, $description, $releaseDate, $developer, $game_img, $userRole);
-    if(is_int($game_id)) {
-        $errorsImage .= checkImageToUpload($default_article_img, "images/article_covers/Default/", "default-article-img", $game_id."-cover-1080", "");
-    } 
-    $result = storeGameGenre($game_id, $genre_id);
+    $result = 0;
 
-    if(is_int($game_id) && ($errorsImage == "") && is_int(intval($result))) {
-        header("Location: games.php");
+    if ($userRole == 1) {
+        // se è un edit --> vede se modificare le immagini e fa l'update
+        if (isset($_GET['id'])) {
+            // se l'admin vuole modificare la cover
+            if(isset($_FILES["cover"]) && $_FILES["cover"]['name']) {
+                $errorsImage = checkImageToUpload($game_img, "images/games/", "cover", $name, "");
+                echo("SONO DENTRO 1");
+            }
+            // se vuole modificare quella di default
+            if(isset($_FILES["default-article-img"]) && $_FILES["default-article-img"]['name']) {
+                $errorsImage .= checkImageToUpload($default_article_img, "images/article_covers/Default/", "default-article-img", $_GET['id']."-cover-1080", "");
+                echo("SONO DENTRO 2");
+            }
+            // fa l'update di tutto
+            $game_id = updateGame($_GET['id'], $name, $description, $releaseDate, $developer, $game_img);
+        } else {
+        // se è un add game --> fai tutto (crea immagini da zero + store)
+            $errorsImage = checkImageToUpload($game_img, "images/games/", "cover", $name, "");
+            $game_id = storeGame($name, $description, $releaseDate, $developer, $game_img);
+            if (is_int($game_id)) {
+                $errorsImage .= checkImageToUpload($default_article_img, "images/article_covers/Default/", "default-article-img", $game_id."-cover-1080", "");
+            } 
+            $result = storeGameGenre($game_id, $genre_id);
+        }
+        // check errori
+        if(is_int($game_id) && ($errorsImage == "") && is_int(intval($result))) {
+            header("Location: games.php");
+        } else {
+            if (is_int(intval($game_id))) {
+                $errors = "<ul>" . $errorsImage . "</ul>";
+            }
+            else {
+                $errors = "<ul>" . $errorsImage . $game_id . "</ul>";
+            }
+        }
     } else {
-        if (is_int($game_id)) {
-            $errors = "<ul>" . $errorsImage . "</ul>";
-        }
-        else {
-            $errors = "<ul>" . $errorsImage . $game_id . "</ul>";
-        }
+        header("location: login.php");
     }
 }
 
