@@ -74,12 +74,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             // se l'admin vuole modificare la cover
             if(isset($_FILES["cover"]) && $_FILES["cover"]['name']) {
                 $errorsImage = checkImageToUpload($game_img, "images/games/", "cover", $name, "");
-                echo("SONO DENTRO 1");
             }
             // se vuole modificare quella di default
             if(isset($_FILES["default-article-img"]) && $_FILES["default-article-img"]['name']) {
                 $errorsImage .= checkImageToUpload($default_article_img, "images/article_covers/Default/", "default-article-img", $_GET['id']."-cover-1080", "");
-                echo("SONO DENTRO 2");
             }
             // fa l'update di tutto
             $game_id = updateGame($_GET['id'], $name, $description, $releaseDate, $developer, $game_img);
