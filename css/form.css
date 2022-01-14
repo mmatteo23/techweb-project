@@ -346,13 +346,13 @@ a.action-button{
     box-shadow: 2px 2px 2px 0px var(--teal-accent);
 }
 input#submit-btn.action-button,
-input#saveBtn.action-button{
+input#saveBtn.action-button,
+input#deleteBtn.action-button{
     box-shadow: 2px 2px 2px 0px var(--pink-accent);
     margin-top: 1em;
     background-color: var(--purple-accent);
     color: white
-}
-  
+}  
   
   /*per bottoni generali*/
 a.action-button:hover,
@@ -369,6 +369,8 @@ a.action-button:focus,
 #undoBtn.action-button:focus,
 input#submit-btn.action-button:hover,
 input#submit-btn.action-button:focus,
+input#deleteBtn.action-button:hover,
+input#deleteBtn.action-button:focus,
 input#saveBtn.action-button:hover,
 input#saveBtn.action-button:focus{
     transform: scale(.98) translate(2px, 2px);
@@ -379,6 +381,7 @@ input#saveBtn.action-button:focus{
   
 #profileEditForm #undoBtn.action-button,
 #profileEditForm #submit-btn.action-button,
+#profileEditForm #deleteBtn.action-button,
 #profileEditForm #saveBtn.action-button{
     box-shadow: 2px 2px 2px 0px black;
 }
@@ -387,6 +390,8 @@ input#saveBtn.action-button:focus{
 #profileEditForm #undoBtn.action-button:focus,
 #profileEditForm #submit-btn.action-button:hover,
 #profileEditForm #submit-btn.action-button:focus,
+#profileEditForm #deleteBtn.action-button:hover,
+#profileEditForm #deleteBtn.action-button:focus,
 #profileEditForm #saveBtn.action-button:hover,
 #profileEditForm #saveBtn.action-button:focus{
     box-shadow: 0px 0px 0px 0px black;    
@@ -403,15 +408,22 @@ input#saveBtn.action-button:focus{
   
 input#submit-btn.action-button:hover,
 input#submit-btn.action-button:focus,
+input#deleteBtn.action-button:hover,
+input#deleteBtn.action-button:focus,
 input#saveBtn.action-button:hover,
 input#saveBtn.action-button:focus{
     background-color: var(--purple-accent);
 }
 
 #submit-btn.action-button:focus,
+#deleteBtn.action-button:focus,
 #saveBtn.action-button:focus{
     outline: 3px solid var(--fucsia-accent);
     outline-offset: .3em;
+}
+
+input#deleteBtn.action-button{
+    background-color: #ff3860;
 }
 
 /*

@@ -15,6 +15,30 @@ if($articles){
     if(count($articles) > 0){
         $user_output .= '<h1>Your Articles</h1><div id="search-results"><p>Select one of your articles to get to the edit page where you can update or delete the entire article</p>';
         $x=0;
+        $user_output .= "
+            <table class='article-list'>
+                <tr>
+                    <th>Article Id</th>
+                    <th>Title</th>
+                    <th>Publication Date</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>";
+        foreach($articles as $art){
+            $user_output .= "
+                <tr>
+                    <td>" . $art['id'] . "</td>
+                    <td>" . $art['title'] . "</td>
+                    <td>" . $art['publication_date'] . "</td>
+                    <td><a class='action-button' href='write_article.php?id=" . $art['id'] . "'>U</a></td>
+                    <td><a class='action-button' href='write_article.php?deleteId=" . $art['id'] . "'>D</a></td>
+                </tr>";
+            
+        }
+
+        $user_output .= "</table>"; 
+        
+        /*
         foreach($articles as $art){
             $user_output .= 
                 '<a class="card-article-link" href="write_article.php?id='.$art['id'].'">
@@ -38,7 +62,8 @@ if($articles){
             $user_output .= '</div>
             </article>
             </a>';
-        }      
+        }
+        */
         $user_output .= "</div>"; 
     }
     else{
