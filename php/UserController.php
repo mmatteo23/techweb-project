@@ -150,7 +150,7 @@ function getFullListOfUsers(){
     $connection_manager = new DBAccess();
     $conn_ok = $connection_manager->openDBConnection();
     if($conn_ok){
-        $query = "SELECT * FROM Person WHERE role = 2";
+        $query = "SELECT * FROM Person WHERE role >= 2";
         $result = $connection_manager->executeQuery($query);
         return $result;
     } else {
