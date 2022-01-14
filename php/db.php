@@ -165,7 +165,7 @@ class DBAccess {
 	}
 	
 	public function getFavArticlesTags($user){
-		$query = "SELECT saved_articles.article_id, tag_id, name FROM (article_tags JOIN Article ON article_id=Article.id) JOIN Tag ON tag_id=Tag.id JOIN saved_articles ON Article.id=saved_articles.article_id WHERE !is_approved AND username='$user' ORDER BY publication_date DESC";   
+		$query = "SELECT saved_articles.article_id, tag_id, name FROM (article_tags JOIN Article ON article_id=Article.id) JOIN Tag ON tag_id=Tag.id JOIN saved_articles ON Article.id=saved_articles.article_id WHERE username='$user' ORDER BY publication_date DESC";   
 		$queryResults = mysqli_query($this->connection, $query);
 		if(!$queryResults)
 			return null;
@@ -202,7 +202,7 @@ class DBAccess {
 		$query1 = "CREATE OR REPLACE VIEW SearchRelatedArticles AS 
 		(SELECT Article.id AS id, title, subtitle, Tag.name, publication_date, cover_img, Game.name AS game, alt_cover_img FROM 
 		((article_tags JOIN Article ON article_id=Article.id) JOIN Tag ON tag_id=Tag.id) JOIN Game on game_id=Game.id
-		WHERE !is_approved AND(
+		WHERE (
 		title LIKE '%$src_text%' OR
 		subtitle LIKE '%$src_text%' OR
 		text LIKE '%$src_text%' OR
@@ -237,7 +237,7 @@ class DBAccess {
 		$game = urldecode($game);
 		$query1 = "CREATE OR REPLACE VIEW SearchRelatedArticles AS 
 		(SELECT Article.id AS id, title, subtitle, Game.name AS game, publication_date, cover_img, alt_cover_img FROM Article JOIN Game ON game_id=Game.id
-		WHERE !is_approved AND Game.name='$game'
+		WHERE Game.name='$game'
 		GROUP BY title
 		ORDER BY publication_date DESC)";
 		$queryResults = mysqli_query($this->connection, $query1);
@@ -282,7 +282,7 @@ class DBAccess {
 	public function getSearchedArticlesTags($art_id){
 		$query = "SELECT article_id, tag_id, name FROM (article_tags JOIN Article ON article_id=Article.id) 
 		JOIN Tag ON tag_id=Tag.id 
-		WHERE !is_approved AND article_id = $art_id
+		WHERE article_id = $art_id
 		ORDER BY publication_date DESC;";   
 		$queryResults = mysqli_query($this->connection, $query);
 		if(!$queryResults)
@@ -356,8 +356,7 @@ class DBAccess {
 
 
 	public function getTopArticles(int $nArt, int $offset = 0){
-        //da Mettere WHERE is_approved e non !is_approved
-        $query = "SELECT Article.id AS id, title, subtitle, publication_date, cover_img, Game.name AS game, alt_cover_img FROM Article JOIN Game ON game_id=Game.id WHERE !is_approved ORDER BY publication_date DESC, id DESC LIMIT ".$nArt." OFFSET ".$offset;   
+        $query = "SELECT Article.id AS id, title, subtitle, publication_date, cover_img, Game.name AS game, alt_cover_img FROM Article JOIN Game ON game_id=Game.id ORDER BY publication_date DESC, id DESC LIMIT ".$nArt." OFFSET ".$offset;   
         $queryResults = mysqli_query($this->connection, $query);
 		if(!$queryResults) 
 			return "ErroreDB";
@@ -371,7 +370,7 @@ class DBAccess {
     }
 
 	public function getTopArticleTags(int $nArt, int $offset = 0){
-		$query1 = "CREATE OR REPLACE VIEW topArticles AS (SELECT id FROM Article WHERE !is_approved ORDER BY publication_date DESC LIMIT ".$nArt." OFFSET ".$offset.")";
+		$query1 = "CREATE OR REPLACE VIEW topArticles AS (SELECT id FROM Article ORDER BY publication_date DESC LIMIT ".$nArt." OFFSET ".$offset.")";
 		$query2 = "SELECT article_id, tag_id, name FROM (article_tags JOIN topArticles ON article_id=topArticles.id) JOIN Tag ON tag_id=Tag.id";   
 		mysqli_query($this->connection, $query1);
 		$queryResults = mysqli_query($this->connection, $query2);
