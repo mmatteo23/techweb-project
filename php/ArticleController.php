@@ -13,7 +13,7 @@ function getArticleData(int $id, string $author, array &$tags){
     $conn_ok = $connection_manager->openDBConnection();
     
     if($conn_ok){
-        $selectQuery = "SELECT Article.id AS id, Game.name AS game, publication_date, cover_img, title, subtitle, read_time, text FROM Article JOIN Game ON game_id=Game.id WHERE author = '$author' AND Article.id=".$id;
+        $selectQuery = "SELECT Article.id AS id, Game.name AS game, publication_date, cover_img, title, subtitle, read_time, text, alt_cover_img FROM Article JOIN Game ON game_id=Game.id WHERE author = '$author' AND Article.id=".$id;
         $articles = $connection_manager->executeQuery($selectQuery);
         $tagQuery = "SELECT Article.id AS id, Tag.name AS tag FROM (Article JOIN article_tags ON id=article_id) JOIN Tag ON tag_id=Tag.id WHERE author = '$author' AND Article.id=".$id;
         $tags = $connection_manager->executeQuery($tagQuery);
@@ -42,8 +42,7 @@ function getAuthorArticles(string $author, array &$tags){
         
         $connection_manager->closeDBConnection();
         
-        if($articles != 'WrongQuery')
-            return $articles;
+        return $articles;
     } else {
         $connection_manager->closeDBConnection();
         return buildError("Internal server error");
@@ -128,7 +127,7 @@ function deleteArticleById(int $id){
     }
 }
 
-function storeArticle(string $title, string $subtitle, string $article_text, string $publication_date, string $cover_img, string $read_time, string $author, int $game_id, string $tags, int $id=0){
+function storeArticle(string $title, string $subtitle, string $article_text, string $publication_date, string $cover_img, string $read_time, string $author, int $game_id, string $tags, string $alt_image, int $id=0){
     // create a connection istance to talk with the db
     $connection_manager = new DBAccess();
     $conn_ok = $connection_manager->openDBConnection();
@@ -145,21 +144,21 @@ function storeArticle(string $title, string $subtitle, string $article_text, str
             if(!$validationErrors){
                 if($id!=0){
                     $insertQuery = "
-                    INSERT INTO Article (id, title, subtitle, text, publication_date, cover_img, read_time, author, game_id)
-                    VALUES ($id, '$title', '$subtitle', '$article_text', '$publication_date', '$cover_img', $read_time, '$author', $game_id)
+                    INSERT INTO Article (id, title, subtitle, text, publication_date, cover_img, read_time, author, game_id, alt_cover_img)
+                    VALUES ($id, '$title', '$subtitle', '$article_text', '$publication_date', '$cover_img', $read_time, '$author', $game_id, '$alt_image')
                     ";
                 }
                 else{
                     $insertQuery = "
-                        INSERT INTO Article (title, subtitle, text, publication_date, cover_img, read_time, author, game_id)
-                        VALUES ('$title', '$subtitle', '$article_text', '$publication_date', '$cover_img', $read_time, '$author', $game_id)
+                        INSERT INTO Article (title, subtitle, text, publication_date, cover_img, read_time, author, game_id, alt_cover_img)
+                        VALUES ('$title', '$subtitle', '$article_text', '$publication_date', '$cover_img', $read_time, '$author', $game_id, '$alt_image')
                     ";
                 }
                 
                 $articleId = $connection_manager->executeQuery($insertQuery);
                 //$articleId = 15;
                 $connection_manager->closeDBConnection();
-                if($articleId != 'WrongQuery'){
+                if($articleId){
                     if($tags) linkTags($articleId, $tags);
                     return $articleId;
                 } else

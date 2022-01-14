@@ -50,7 +50,7 @@ if($connection){
                             <p>'.$art['publication_date'].'</p>';
                 $user_output .= '<ul class="tag-list card-article-tags">
                                     <li class="tag game-tag">'.$art['game'].'</li>';
-                if($tags && $tags != "WrongQuery"){
+                if($tags){
                     while($tags[$x]['id']==$art['id']){
                         $user_output .= '<li class="tag">'.$tags[$x]['tag'].'</li>';
                         $x++;
