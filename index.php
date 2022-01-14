@@ -63,7 +63,7 @@ if($connection){
                 array_push($slides, $HTMLSlide);
             }
         }
-        if(isset($HotGames) && $HotGames != "WrongQuery") {
+        if(isset($HotGames) && $HotGames) {
             $HotGamesHTML = '
             <section id="hot-games">
                 <h2 class="subtitle">Hot Games</h2>

@@ -119,7 +119,7 @@ function updateUser(string $username, string $firstname, string $lastname, strin
 
             $queryResult = $connection_manager->executeQuery($updateQuery, 'update');
             $connection_manager->closeDBConnection();
-            if($queryResults=="WrongQuery"){
+            if(!$queryResults){
                 return "<li>Error during user update</li>";
             }
             return true;

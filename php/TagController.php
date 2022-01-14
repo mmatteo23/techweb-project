@@ -26,7 +26,7 @@ function manageTags(array $newTags){
 
         $selectQuery = "SELECT * FROM Tag";
         $oldTags = $connection_manager->executeQuery($selectQuery);
-        if($oldTags!="WrongQuery"){
+        if($oldTags){
             foreach($oldTags as $tag){
                 if (($key = array_search($tag['name'], $newTags)) !== false) {
                     unset($newTags[$key]);

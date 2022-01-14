@@ -151,7 +151,7 @@ class DBAccess {
 
 
 	public function getFavArticles($user){		
-		$query = "SELECT Article.id AS id, title, subtitle, publication_date, cover_img, Game.name AS game FROM (Article JOIN saved_articles ON id=article_id) JOIN Game ON game_id=Game.id WHERE username= '$user' ORDER BY publication_date DESC";   
+		$query = "SELECT Article.id AS id, title, subtitle, publication_date, cover_img, Game.name AS game, alt_cover_img FROM (Article JOIN saved_articles ON id=article_id) JOIN Game ON game_id=Game.id WHERE username= '$user' ORDER BY publication_date DESC";   
 		$queryResults = mysqli_query($this->connection, $query);
 		if(!$queryResults)
 			return null;
@@ -200,7 +200,7 @@ class DBAccess {
 			return null;
 		$src_text = urldecode($src_text);
 		$query1 = "CREATE OR REPLACE VIEW SearchRelatedArticles AS 
-		(SELECT Article.id AS id, title, subtitle, Tag.name, publication_date, cover_img, Game.name AS game FROM 
+		(SELECT Article.id AS id, title, subtitle, Tag.name, publication_date, cover_img, Game.name AS game, alt_cover_img FROM 
 		((article_tags JOIN Article ON article_id=Article.id) JOIN Tag ON tag_id=Tag.id) JOIN Game on game_id=Game.id
 		WHERE !is_approved AND(
 		title LIKE '%$src_text%' OR
@@ -236,7 +236,7 @@ class DBAccess {
 			return null;
 		$game = urldecode($game);
 		$query1 = "CREATE OR REPLACE VIEW SearchRelatedArticles AS 
-		(SELECT Article.id AS id, title, subtitle, Game.name AS game, publication_date, cover_img FROM Article JOIN Game ON game_id=Game.id
+		(SELECT Article.id AS id, title, subtitle, Game.name AS game, publication_date, cover_img, alt_cover_img FROM Article JOIN Game ON game_id=Game.id
 		WHERE !is_approved AND Game.name='$game'
 		GROUP BY title
 		ORDER BY publication_date DESC)";
@@ -260,7 +260,7 @@ class DBAccess {
 			return null;
 		$tag = urldecode($tag);
 		$query1 = "CREATE OR REPLACE VIEW SearchRelatedArticles AS 
-		(SELECT Article.id AS id, title, subtitle, publication_date, cover_img, Game.name AS game FROM 
+		(SELECT Article.id AS id, title, subtitle, publication_date, cover_img, Game.name AS game, alt_cover_img FROM 
 		((Article JOIN article_tags ON id=article_id) JOIN Tag on Tag.id = tag_id) JOIN Game on game_id=Game.id
 		WHERE Tag.name='$tag' ORDER BY publication_date DESC)";
 		$queryResults = mysqli_query($this->connection, $query1);
@@ -357,7 +357,7 @@ class DBAccess {
 
 	public function getTopArticles(int $nArt, int $offset = 0){
         //da Mettere WHERE is_approved e non !is_approved
-        $query = "SELECT Article.id AS id, title, subtitle, publication_date, cover_img, Game.name AS game FROM Article JOIN Game ON game_id=Game.id WHERE !is_approved ORDER BY publication_date DESC, id DESC LIMIT ".$nArt." OFFSET ".$offset;   
+        $query = "SELECT Article.id AS id, title, subtitle, publication_date, cover_img, Game.name AS game, alt_cover_img FROM Article JOIN Game ON game_id=Game.id WHERE !is_approved ORDER BY publication_date DESC, id DESC LIMIT ".$nArt." OFFSET ".$offset;   
         $queryResults = mysqli_query($this->connection, $query);
 		if(!$queryResults) 
 			return "ErroreDB";
@@ -389,7 +389,7 @@ class DBAccess {
 	public function getMostLikedArticles(){
 		$today = new DateTime(date("Y-m-d"));
 		$oneMonthAgo = ($today->modify('-1 month'))->format("Y-m-d");
-		$query = "SELECT Article.id AS id, title, subtitle, publication_date, cover_img, COUNT(*) AS numLikes, Game.name AS game FROM (Article JOIN liked_articles ON id=article_id) JOIN Game ON game_id=Game.id WHERE publication_date>'$oneMonthAgo' GROUP BY Article.id ORDER BY COUNT(*) DESC LIMIT 4";
+		$query = "SELECT Article.id AS id, title, subtitle, publication_date, cover_img, COUNT(*) AS numLikes, Game.name AS game, alt_cover_img FROM (Article JOIN liked_articles ON id=article_id) JOIN Game ON game_id=Game.id WHERE publication_date>'$oneMonthAgo' GROUP BY Article.id ORDER BY COUNT(*) DESC LIMIT 4";
 		$queryResults = mysqli_query($this->connection, $query);
 		if(!$queryResults)
 			return null;

@@ -17,7 +17,7 @@ if($connection){
     $username = $_SESSION['username'];
 
     $articleData = $db->getArticleData($idArticle);
-    if($articleData != "WrongQuery"){
+    if($articleData != "WrongQuery"){   
         $tags = $db->getArticleTags($idArticle);
         $numOfLikes = $db->getNumberOfLikes($idArticle);
         if(isset($username) && $username != ''){
@@ -47,7 +47,7 @@ if($connection){
         
         $user_output .= '
                     </header>
-                    <img class="cover" src="images/article_covers/'.$articleData['cover_img'].'" id="article-cover" alt="article cover picture">
+                    <img class="cover" src="images/article_covers/'.$articleData['cover_img'].'" id="article-cover" alt="'.$articleData['alt_cover_img'].'">
                     <article id="article-body" class="cover-linguetta" aria-label="article text">
                     <p>'.$articleData['text'].'</p>';
 
