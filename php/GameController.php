@@ -159,8 +159,6 @@ function updateGame(int $game_id, string $name, string $description, string $rel
 
             $updateQuery .= " WHERE id=$game_id;";
 
-            echo($updateQuery);
-
             $gameId = $connection_manager->executeQuery($updateQuery);
 
             if($gameId)

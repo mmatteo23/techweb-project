@@ -59,9 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $releaseDate = $_POST['releaseDate'];
     $developer = $_POST['developer'];
     $genre_id = $_POST['genre'];
-    // NON LEGGE I POST DELLE IMMAGINI !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    $default_article_img = $_POST['default-article-img'];
-    $game_img = $_POST['cover'];
+    $default_article_img = NULL;
+    $game_img = NULL;
 
     $username = $_SESSION['username'];
     $userData = getUser($username);
@@ -94,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $result = storeGameGenre($game_id, $genre_id);
         }
         // check errori
-        if(is_int($game_id) && ($errorsImage == "") && is_int(intval($result))) {
+        if(is_int(intval($game_id)) && ($errorsImage == "") && is_int(intval($result))) {
             header("Location: games.php");
         } else {
             if (is_int(intval($game_id))) {
