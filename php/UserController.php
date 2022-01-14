@@ -119,7 +119,7 @@ function updateUser(string $username, string $firstname, string $lastname, strin
 
             $queryResult = $connection_manager->executeQuery($updateQuery, 'update');
             $connection_manager->closeDBConnection();
-            if($queryResults=="WrongQuery"){
+            if(!$queryResults){
                 return "<li>Error during user update</li>";
             }
             return true;
@@ -145,5 +145,31 @@ function deleteUser(string $username){
         header("Location: error.php");
     }
 }
+
+function getFullListOfUsers(){
+    $connection_manager = new DBAccess();
+    $conn_ok = $connection_manager->openDBConnection();
+    if($conn_ok){
+        $query = "SELECT * FROM Person WHERE role = 2";
+        $result = $connection_manager->executeQuery($query);
+        return $result;
+    } else {
+        header("Location: error.php");
+    }
+}
+
+// function MakeAdmin($username){
+//     $connection_manager = new DBAccess();
+//     $conn_ok = $connection_manager->openDBConnection();
+//     if($conn_ok){
+//         $query = "UPDATE Person role = 1 WHERE username = '$username'";
+//         $result = $connection_manager->executeQuery($query);
+
+//         return $result;
+//     } else {
+//         header("Location: error.php");
+//     }
+// }
+
 
 ?>

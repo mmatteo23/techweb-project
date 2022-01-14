@@ -221,7 +221,8 @@ label[for='profile_img'] {
 }
 
 #content form#articleForm label,
-#content #aboutus-body form#contactForm label{
+#content #aboutus-body form#contactForm label,
+#content form#privilegesForm label{
     color: white;
 }
 
@@ -345,6 +346,15 @@ input#saveBtn.action-button{
 a.action-button{
     box-shadow: 2px 2px 2px 0px var(--teal-accent);
 }
+a.action-button.no-grow{
+    flex-grow: 0;
+}
+
+.edit-users-content p{
+    margin: 1em 0;
+    font-size: 1.25em;
+}
+
 input#submit-btn.action-button,
 input#saveBtn.action-button,
 input#deleteBtn.action-button{
@@ -451,7 +461,7 @@ input#deleteBtn.action-button{
     margin-top: 1em;
     object-fit: cover;
     width:25em;
-    aspect-ratio: 1;
+    aspect-ratio: 1 / 1;
     min-height: 10em;
     min-width: 10em;
     max-height: 100%;
@@ -497,7 +507,7 @@ input#deleteBtn.action-button{
     filter:grayscale(.7);
 }
 
-#user-specs a.action-button{
+#user-specs + a.action-button{
     background-color: var(--purple-accent);
     box-shadow: 2px 2px 2px 0px var(--pink-accent);
     color: white;
@@ -524,5 +534,5 @@ input#deleteBtn.action-button{
         width: auto;
         flex-grow: 1;
         max-width: 18em;
-    }
+    }    
 }

@@ -24,7 +24,7 @@ if ($userRole == 1) {
     ';
 } else {
     // Utente loggato ma non è admin
-    $html = '<h1 id="page-title">You\'r not admin! Come back <a href="/">Home</a>!</h1>';
+    $html = '<h1 id="page-title">You\'r not an admin! Go back <a href="/">Home</a>!</h1>';
 }
 
 $htmlPage = str_replace('<welcome/>', $html, $htmlPage);

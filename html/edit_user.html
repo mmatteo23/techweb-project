@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<title>Edit users privileges - Penta News</title>
+	<meta name="keywords" content="angry birds, gioco, red, suggerimenti"/>
+	<meta name="description" content="esercizio di tecnologie web"/>
+	<meta name="author" content="Davide Milan, Danilo Stojkovic, Matteo Midena, Matteo Casonato"/>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/desktop.css">
+	<link rel="stylesheet" type="text/css" href="css/form.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script defer src="js/search.js"></script>
+	<script defer src="js/grantPrivileges.js"></script>
+
+</head>
+<body>
+    <pageHeader/>
+    
+	<nav id="breadcrumb">
+		<p><a href="index.php">Home</a> &gt; <a href="administration.php">Administration</a> &gt; Edit users privileges</p>
+	</nav>
+
+	<main id="content" class="edit-users-content">
+		<h1>Edit normal users privileges</h1>
+ 		<form method="POST" action="../edit_user.php" id="privilegesForm">        <!-- enctype='multipart/form' -->
+        	<selectUser/>
+       	</form>
+		<p>OR</p>
+		<a href="../administration.php" class="action-button no-grow">Go back to the admin page</a>
+	</main>
+
+
+    <pageFooter/>
+</body>
+</html>

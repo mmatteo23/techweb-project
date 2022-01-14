@@ -38,7 +38,7 @@ function getGameData($id) {
         $game = $connection_manager->executeQuery($query);
         $connection_manager->closeDBConnection();
 
-        if($game != 'WrongQuery')
+        if($game)
         //  return $game[0];
             return $game[0];
     }
@@ -57,7 +57,7 @@ function getGenreIdsFromGameId($game_id) {
         $genre_id = $connection_manager->executeQuery($query);
         $connection_manager->closeDBConnection();
 
-        if($genre_id != 'WrongQuery')
+        if($genre_id)
         // PER ORA SOLO IL PRIMO GENERE DELL'ARRAY
             return $genre_id['genre_id'];
     }

@@ -17,6 +17,7 @@ $gameName = 'Apex Legends';
 $text = '<p>This is the initial editor content.</p>';
 $destination = "write_article.php";
 $tagString = '';
+$alt_image = '';
 $header = "<h1>Write an article</h1>";
 $breadcrumb = "<a href='administration.php'>Administration</a> &gt; Write article";
 $button_name = '<input id="submit-btn" class="action-button" type="submit" value="Post article">';
@@ -37,6 +38,7 @@ if($_GET['id']){
             $tagString .= $tag['tag'].',';
         }
         $tagString = trim($tagString, ',');
+        $alt_image = $art_data['alt_cover_img'];
         $header = "<h1>Edit article</h1>";
         $breadcrumb = "<a href='administration.php'>Administration</a> &gt; <a href='edit_article.php'> Manage articles </a> &gt; Edit article";
         $button_name = '<input id="submit-btn" class="action-button" type="submit" value="Save changes">';
@@ -57,20 +59,26 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $author             = $_SESSION['username'];
     $game_id            = $_POST['game'];
     $tags               = $_POST['tags'];
+    $alt_image          = $_POST['alt-image'];
+    if(!isset($alt_image) || $alt_image==""){
+        $alt_image = "article cover image";
+    }
     $article_img = NULL;    
     $errorsImage = checkImageToUpload($article_img, "images/article_covers/", "cover", $title, "Default/" . $game_id . "-cover-1080.jpg");
 
     // system params for storing an article
-    $publication_date   = date('Y-m-d');
+    $publication_date = date('Y-m-d');
     if($errorsImage == ""){
         if(isset($_GET['id'])){
-            if($article_img=="Default/" . $game_id . "-cover-1080.jpg" && isset($art_data['cover_img']))
+            /* se un articolo è stato impostato con un'immagine di default, quando si cambia il gioco viene aggiornata anche l'immagine di default automaticamente*/ 
+            if($article_img=="Default/" . $game_id . "-cover-1080.jpg" && isset($art_data['cover_img']) && explode('/', $art_data['cover_img'])[0]!='Default')
                 $article_img = $art_data['cover_img'];
+
             deleteArticleById($_GET['id']);
-            $result = storeArticle($title, $subtitle, $article_text, $publication_date, $article_img, $read_time, $author, $game_id, $tags, $_GET['id']);
+            $result = storeArticle($title, $subtitle, $article_text, $publication_date, $article_img, $read_time, $author, $game_id, $tags, $alt_image, $_GET['id']);
         }
         else
-            $result = storeArticle($title, $subtitle, $article_text, $publication_date, $article_img, $read_time, $author, $game_id, $tags);
+            $result = storeArticle($title, $subtitle, $article_text, $publication_date, $article_img, $read_time, $author, $game_id, $tags, $alt_image);
         if(is_int($result)){
             header("Location: article.php?id=".$result);
         }
@@ -111,6 +119,7 @@ $htmlPage = str_replace('#TitleValue#', $title, $htmlPage);
 $htmlPage = str_replace('#SubitleValue#', $subtitle, $htmlPage);
 $htmlPage = str_replace('#ReadTimeValue#', $read_time, $htmlPage);
 $htmlPage = str_replace('#TagValues#', $tagString, $htmlPage);
+$htmlPage = str_replace('#AltImage#', $alt_image, $htmlPage);
 $htmlPage = str_replace('<p>This is the initial editor content.</p>', $text, $htmlPage);
 $htmlPage = str_replace("write_article.php", $destination, $htmlPage);
 $htmlPage = str_replace("<h1>Write an article</h1>", $header, $htmlPage);
