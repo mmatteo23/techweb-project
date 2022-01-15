@@ -10,8 +10,9 @@ $errors = "";
 if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     if (isset($_POST['btnDelete'])) {
-        echo "DELETE";
-        //deleteUser($_SESSION['username']);
+        //echo "DELETE";
+        deleteUser($_SESSION['username']);
+        header('Location: index.php');
     } else {
         
         // take the data
