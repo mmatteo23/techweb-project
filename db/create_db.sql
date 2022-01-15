@@ -33,15 +33,15 @@ CREATE TABLE Person (
     subscription_date   DATE NOT NULL,
     profile_img       varchar(255),
     PRIMARY KEY (username),
-    FOREIGN KEY (role) REFERENCES Role(id)
+    FOREIGN KEY (role) REFERENCES Role(id) ON DELETE CASCADE
 );
 
 CREATE TABLE follow (
     followed      VARCHAR(100),
     follower      VARCHAR(100),
     PRIMARY KEY (followed, follower),
-    FOREIGN KEY (followed) REFERENCES Person(username),
-    FOREIGN KEY (follower) REFERENCES Person(username)
+    FOREIGN KEY (followed) REFERENCES Person(username) ON DELETE CASCADE,
+    FOREIGN KEY (follower) REFERENCES Person(username) ON DELETE CASCADE
 );
 
 CREATE TABLE Game (
@@ -64,24 +64,24 @@ CREATE TABLE Article (
     read_time       INT,
     author        VARCHAR(100) NOT NULL,
     game_id INT NOT NULL,
-    FOREIGN KEY (author) REFERENCES Person(username),
-    FOREIGN KEY (game_id) REFERENCES Game(id)
+    FOREIGN KEY (author) REFERENCES Person(username) ON DELETE CASCADE,
+    FOREIGN KEY (game_id) REFERENCES Game(id) ON DELETE CASCADE
 );
 
 CREATE TABLE liked_articles (
     username      VARCHAR(100),
     article_id      INT,
     PRIMARY KEY (username, article_id),
-    FOREIGN KEY (username) REFERENCES Person(username),
-    FOREIGN KEY (article_id) REFERENCES Article(id)
+    FOREIGN KEY (username) REFERENCES Person(username) ON DELETE CASCADE,
+    FOREIGN KEY (article_id) REFERENCES Article(id) ON DELETE CASCADE
 );
 
 CREATE TABLE saved_articles (
     username      VARCHAR(100),
     article_id      INT,
     PRIMARY KEY (username, article_id),
-    FOREIGN KEY (username) REFERENCES Person(username),
-    FOREIGN KEY (article_id) REFERENCES Article(id)
+    FOREIGN KEY (username) REFERENCES Person(username) ON DELETE CASCADE,
+    FOREIGN KEY (article_id) REFERENCES Article(id) ON DELETE CASCADE
 );
 
 CREATE TABLE Genre (
@@ -92,8 +92,8 @@ CREATE TABLE Genre (
 CREATE TABLE game_genre (
   game_id INT,
   genre_id INT,
-  FOREIGN KEY (game_id) REFERENCES Game(id),
-  FOREIGN KEY (genre_id) REFERENCES Genre(id),
+  FOREIGN KEY (game_id) REFERENCES Game(id) ON DELETE CASCADE,
+  FOREIGN KEY (genre_id) REFERENCES Genre(id) ON DELETE CASCADE,
   PRIMARY KEY(game_id, genre_id)
 );
 
@@ -105,15 +105,15 @@ CREATE TABLE Tag (
 CREATE TABLE article_tags (
   tag_id INT,
   article_id INT,
-  FOREIGN KEY (tag_id) REFERENCES Tag(id),
-  FOREIGN KEY (article_id) REFERENCES Article(id),
+  FOREIGN KEY (tag_id) REFERENCES Tag(id) ON DELETE CASCADE,
+  FOREIGN KEY (article_id) REFERENCES Article(id) ON DELETE CASCADE,
   PRIMARY KEY (tag_id, article_id)
 );
 
 CREATE TABLE favorite_games (
   game_id INT,
   username VARCHAR(100),
-  FOREIGN KEY (game_id) REFERENCES Game(id),
-  FOREIGN KEY (username) REFERENCES Person(username),
+  FOREIGN KEY (game_id) REFERENCES Game(id) ON DELETE CASCADE,
+  FOREIGN KEY (username) REFERENCES Person(username) ON DELETE CASCADE,
   PRIMARY KEY (game_id, username)
 );

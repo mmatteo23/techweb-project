@@ -9,7 +9,12 @@ $content = "";  // html code to send to the page
 $userData = getUser($_SESSION['username']);
 
 if($userData){
-    $role = ($userData['role']==1) ? 'Admin' : 'User';
+    $role="";
+    switch($userData['role']){
+        case 1: $role = 'Admin';break;
+        case 2: $role = 'Writer';break;
+        case 3: $role = 'User';break;
+    }
     $content = "<img src='images/user_profiles/" . ($userData['profile_img']?$userData['profile_img']:'default.png') . "' id='user-profile-img' alt='user profile image'>
         <span id='user-username'>" . $userData['username'] . "</span>
         <ul id='user-specs'>
@@ -31,7 +36,14 @@ if ($userData['role'] == 1) {
     $adminButton = '<h3 class="admin-link-info">Click the link below to get to the administration page:</h3>    
     <a href="administration.php" class="center action-button">Manage site</a>';
     $htmlPage = str_replace('<adminButton/>', $adminButton, $htmlPage);
-}else{
+} else if($userData['role'] == 2){
+    $adminButton = '
+        <div class="action-buttons">
+            <a href="write_article.php" class="action-button">Write article</a>
+            <a href="edit_article.php" class="action-button">Edit articles</a>
+        </div>';
+    $htmlPage = str_replace('<adminButton/>', $adminButton, $htmlPage);
+} else{
     $htmlPage = str_replace('<adminButton/>', '', $htmlPage);
 }
 

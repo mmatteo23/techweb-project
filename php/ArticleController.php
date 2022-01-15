@@ -51,6 +51,21 @@ function getAuthorArticles(string $author, array &$tags){
     return false;
 }
 
+function getNewId(){
+    $connection_manager = new DBAccess();
+    $conn_ok = $connection_manager->openDBConnection();
+    
+    if($conn_ok){
+        $query = "SELECT id FROM Article ORDER BY id DESC LIMIT 1";
+        $result = $connection_manager->executeQuery($query);
+        $connection_manager->closeDBConnection();
+        if($result)
+            return $result[0]['id'];
+    }
+    return false;
+
+}
+
 
 function articleValidator($title, $subtitle, $article_text, $publication_date, $cover_img, $read_time){
     $errors = "";

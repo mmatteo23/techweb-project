@@ -72,7 +72,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $alt_image = "article cover image";
     }
     $article_img = NULL;    
-    $errorsImage = checkImageToUpload($article_img, "images/article_covers/", "cover", $title, "Default/" . $game_id . "-cover-1080.jpg");
+    $idImg="";
+    if(isset($_GET['id']))
+        $idImg = $_GET['id'];
+    else 
+        $idImg = getNewId() + 1;
+    $errorsImage = checkImageToUpload($article_img, "images/article_covers/", "cover", $idImg, "Default/" . $game_id . "-cover-1080.jpg");
 
     // system params for storing an article
     $publication_date = date('Y-m-d');
@@ -83,10 +88,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 $article_img = $art_data['cover_img'];
 
             deleteArticleById($_GET['id']);
-            $result = storeArticle($title, $subtitle, $article_text, $publication_date, $article_img, $read_time, $author, $game_id, $tags, $alt_image, $_GET['id']);
         }
-        else
-            $result = storeArticle($title, $subtitle, $article_text, $publication_date, $article_img, $read_time, $author, $game_id, $tags, $alt_image);
+        $result = storeArticle($title, $subtitle, $article_text, $publication_date, $article_img, $read_time, $author, $game_id, $tags, $alt_image, $idImg);
         if(is_int($result)){
             header("Location: article.php?id=".$result);
         }
