@@ -11,6 +11,7 @@ $db = new DBAccess();
 $connection = $db->openDBConnection();
 
 $user_output="";
+$tagsForKeywords = "";
 
 if($connection){
     $idArticle = $_GET['id']; ///codice per leggere get
@@ -38,12 +39,14 @@ if($connection){
         //sono sicuro che esiste game perché è NOT NULL nel DB
         $user_output .= '<ul id="article-tags" class="tag-list">
                             <li><a href="search.php?game='.urlencode($articleData['name']).'" class="game-tag">'.$articleData['name'].'</a></li>';
+        $tagsForKeywords .= $articleData['name'];
         if(isset($tags) && count($tags)>0){
-            foreach($tags as $tag)
+            foreach($tags as $tag){
                 $user_output .= '<li><a href="search.php?tag='.urlencode($tag['name']).'">'.$tag['name'].'</a></li>';
+                $tagsForKeywords .= ','.$tag['name'];
+            }
         }
         $user_output .= '</ul>';
-        $articleData['text']=str_replace("\n", "<br><br>", $articleData['text']);
         
         $user_output .= '
                     </header>
@@ -93,6 +96,7 @@ $htmlPage = file_get_contents("html/article.html");
 require_once('php/full_sec_loader.php');
 
 $htmlPage = str_replace("<theArticle/>", $user_output, $htmlPage);
+$htmlPage = str_replace("#secret-keywords#", $tagsForKeywords, $htmlPage);
 
 echo $htmlPage;
 
