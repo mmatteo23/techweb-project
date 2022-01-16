@@ -51,22 +51,26 @@ function checkImageToUpload(&$img, string $target_dir, string $idInputForm, stri
     
 }
 
+function preventMaliciousCodeArray (array &$userInputs){
+    foreach($userInputs as $stringhetta)
+        $stringhetta=htmlspecialchars($stringhetta);
+}
+
 function preventMaliciousCode (string &$userInput, bool $longText = false) {
+    //se è il text controllo che non ci siano tags vietati, se è input normale accetto ma li rendo innocui ("<"  ==>  "&lt;")
     //$allowedTags = [];
     $allowedTags = '';
     if($longText){
         //$allowedTags = ['p', 'h2', 'h3', 'h4', 'a', 'strong', 'ul', 'li', 'ol'];
         $allowedTags = '<p><h2><h3><h4><a><strong><ul><li><ol>';
-    } else {
-        $userInput = htmlspecialchars($userInput);
+        $filteredString = strip_tags($userInput, $allowedTags);
+        //echo "<p>" . $filteredString . "</p>";
+        //echo "<p>" . htmlspecialchars($userInput) . "</p>";
+        if($filteredString === $userInput)
+            return TRUE;
+        return FALSE;
     }
-    $filteredString = strip_tags($userInput, $allowedTags);
-    //echo "<p>" . $filteredString . "</p>";
-    //echo "<p>" . htmlspecialchars($userInput) . "</p>";
-    if($filteredString == $userInput)
-        return TRUE;
-        
-    return FALSE;
+    $userInput = htmlspecialchars($userInput);
 }
 
 ?>
