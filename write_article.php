@@ -90,12 +90,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             deleteArticleById($_GET['id']);
         }
         $result = storeArticle($title, $subtitle, $article_text, $publication_date, $article_img, $read_time, $author, $game_id, $tags, $alt_image, $idImg);
+        //echo $result;
         if(is_int($result)){
             header("Location: article.php?id=".$result);
         }
-    } else {
-        $errors = "<ul>" . $result . "</ul>";
     }
+
+    if($errorsImage || $result)
+        $errors = "<ul>" . $errorsImage . $result . "</ul>";
+    
 }
 
 if(isset($games)){

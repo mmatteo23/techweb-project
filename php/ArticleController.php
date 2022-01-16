@@ -67,22 +67,33 @@ function getNewId(){
 }
 
 
-function articleValidator($title, $subtitle, $article_text, $publication_date, $cover_img, $read_time){
+function articleValidator($title, $subtitle, $article_text, $publication_date, $cover_img, $read_time, $tags){
     $errors = "";
 
     if($title == '')
         $errors .= buildError('Title is required');
+    elseif(!preventMaliciousCode($title))
+        $errors .= buildError('The title field contains unacceptable input');
 
     if($subtitle == '')
         $errors .= buildError('Subtitle is required');
-
+    elseif(!preventMaliciousCode($subtitle))
+        $errors .= buildError('The subtitle field contains unacceptable input');
+    
     if($article_text == '')
         $errors .= buildError('Article text is required');
     elseif(strlen(strip_tags($article_text)) < 100)
         $errors .= buildError('Article text must be at least 100 characters long');
+    elseif(!preventMaliciousCode($article_text, TRUE))
+        $errors .= buildError('The text field contains unacceptable input');
     
     if($read_time <= 0)
         $errors .= buildError('Read time need to be a positive value');
+    elseif(!preventMaliciousCode($read_time))
+        $errors .= buildError('The read time field contains unacceptable input');
+
+    if(!preventMaliciousCode($tags))
+        $errors .= buildError('The tag field contains unacceptable input');
 
     return $errors;
 }
@@ -150,7 +161,7 @@ function storeArticle(string $title, string $subtitle, string $article_text, str
     if($conn_ok){
         if(getUser($author)){      // this is a valid author
 
-            $validationErrors = articleValidator($title, $subtitle, $article_text, $publication_date, $cover_img, $read_time);
+            $validationErrors = articleValidator($title, $subtitle, $article_text, $publication_date, $cover_img, $read_time, $tags);
             
             $title = $connection_manager->escape_string($title);
             $subtitle = $connection_manager->escape_string($subtitle);
