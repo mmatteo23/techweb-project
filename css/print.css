@@ -202,6 +202,7 @@
   }
 
 
+
   /**********************************
   *       SLIDER HOME
   *********************************/
@@ -311,27 +312,25 @@
     width: max(17em, 45%);
     flex: 1 1 auto;
   }
+      
+  .error-text{
+    width:70%;
+  }
+
+  #imgNoDB{
+    display: block;  
+    width: 30%;
+    height: auto;
+    margin: 3em 0 0 0;  
+  }
 
 
-    
-.error-text{
-  width:70%;
-}
-
-#imgNoDB{
-  display: block;  
-  width: 30%;
-  height: auto;
-  margin: 3em 0 0 0;  
-}
-
-
-#content .action-button{
-  background-color: transparent;
-  text-decoration: underline;
-  box-shadow: none;
-  border: 3px solid black;
-}
-}
+  #content *.action-button{
+    background-color: transparent;
+    text-decoration: underline;
+    box-shadow: none;
+    border: 3px solid black;
+  }
+  }
 
 

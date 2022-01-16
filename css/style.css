@@ -94,7 +94,7 @@ a:hover,
 
 .skip-to-content{
   position: absolute;
-  z-index: 110;
+  z-index: 300;
   left: 0;
   transform: translateY(-110%);
   background-color: var(--fucsia-accent);
