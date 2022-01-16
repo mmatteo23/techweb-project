@@ -535,3 +535,16 @@ p.error{
     filter: grayscale(.5);
 }
 
+.action-button.pink.sh-teal.enableGenre {
+    flex: 0 0 auto;
+    margin-right: 0.5em;
+    margin-top: 0.2em;
+}
+
+.genre-select {
+    display: flex;
+}
+
+.genre-selector {
+    flex: 1 1 auto;
+}

@@ -59,7 +59,7 @@ function getGenreIdsFromGameId($game_id) {
 
         if($genre_id)
         // PER ORA SOLO IL PRIMO GENERE DELL'ARRAY
-            return $genre_id['genre_id'];
+            return $genre_id;
     }
 
     $connection_manager->closeDBConnection();
@@ -75,8 +75,12 @@ function getGenres() {
     if($conn_ok) {
         $query = "SELECT id, name FROM Genre";
         $queryResults = $connection_manager->executeQuery($query);
+        $connection_manager->closeDBConnection();
         return $queryResults;
     }
+
+    $connection_manager->closeDBConnection();
+    return false;
 }
 
 function gameValidator($name, $description, $release_date, $developer, $game_img){
@@ -118,6 +122,7 @@ function storeGame(string $name, string $description, string $release_date, stri
             ";
 
             $gameId = $connection_manager->executeQuery($insertQuery);
+            $connection_manager->closeDBConnection();
             if($gameId)
                 return $gameId;
             else
@@ -126,6 +131,7 @@ function storeGame(string $name, string $description, string $release_date, stri
 
         return $validationErrors;
     } else {
+        $connection_manager->closeDBConnection();
         return buildError("Internal server error");
     }
 }
@@ -160,6 +166,7 @@ function updateGame(int $game_id, string $name, string $description, string $rel
             $updateQuery .= " WHERE id=$game_id;";
 
             $gameId = $connection_manager->executeQuery($updateQuery);
+            $connection_manager->closeDBConnection();
 
             if($gameId)
                 return $gameId;
@@ -172,22 +179,42 @@ function updateGame(int $game_id, string $name, string $description, string $rel
 
         return $validationErrors;
     } else {
+        $connection_manager->closeDBConnection();
         return buildError("Internal server error");
     }
 }
 
 function storeGameGenre($game_id, $genre_id) {
-    $connection_manager = new DBAccess();
-    $conn_ok = $connection_manager->openDBConnection();
-
     if (!is_int($game_id)) 
         return buildError("Failed adding record: no game associated to genre_id.");
+
+    $connection_manager = new DBAccess();
+    $conn_ok = $connection_manager->openDBConnection();
 
     if($conn_ok) {
         $query = "INSERT INTO game_genre (game_id, genre_id) VALUES ($game_id,$genre_id)";
         $queryResults = $connection_manager->executeQuery($query);
+        $connection_manager->closeDBConnection();
         return $queryResults;
     }
+
+    $connection_manager->closeDBConnection();
+    return false;
+}
+
+function deletePreviousGameGenres($game_id) {
+    $connection_manager = new DBAccess();
+    $conn_ok = $connection_manager->openDBConnection();
+
+    if($conn_ok) {
+        $query = "DELETE FROM game_genre WHERE game_id=$game_id";
+        $queryResults = $connection_manager->executeQuery($query);
+        $connection_manager->closeDBConnection();
+        return $queryResults;
+    }
+
+    $connection_manager->closeDBConnection();
+    return false;
 }
 
 ?>
