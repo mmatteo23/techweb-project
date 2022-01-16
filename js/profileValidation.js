@@ -18,19 +18,19 @@ form.addEventListener('submit', e => {
 });
 */
 
-deleteBtn.addEventListener('click', e => {
-    const choice = window.confirm("Are you sure? From this point you can't come back :)");
+// deleteBtn.addEventListener('click', e => {
+//     const choice = window.confirm("Are you sure? From this point you can't come back :)");
     
-    if(choice){
-        console.log("delete")
-        deleteBtn.click
-    }
-    else {
-        console.log("annulla")
-        e.preventDefault();
-    }
-    //alert("Are you sure? From this point you can't come back :)");
-});
+//     if(choice){
+//         console.log("delete")
+//         deleteBtn.click
+//     }
+//     else {
+//         console.log("annulla")
+//         e.preventDefault();
+//     }
+//     //alert("Are you sure? From this point you can't come back :)");
+// });
 
 updateBtn.addEventListener('click', e => {
     e.preventDefault();

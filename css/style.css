@@ -459,7 +459,10 @@ a.card-article-link:focus h3{
 #likeBtn{
   margin-right:1em;
 }
-#likeBtn, #saveBtn{
+
+
+button,
+input[type='submit']{
   text-decoration: none;
   background: none;
   border: none;
@@ -644,11 +647,7 @@ a.card-article-link:visited h3{
   width: fit-content;
 }
 
-#content .center{
-  display: block;
-  margin: 0 auto;
-  width: fit-content;
-}
+
 
 #content .admin-link-info{
   font-size: 1.25em;

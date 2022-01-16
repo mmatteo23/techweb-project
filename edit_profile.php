@@ -86,9 +86,9 @@ $content = "
                 <p class='error'></p>
             </div>
             <div id='btnBlock' class='form-buttons'>
-                <a class='edit-profile-btn action-button' href='profile.php' id='undoBtn'>Discard</a>
-                <input class='edit-profile-btn action-button' type='submit' id='deleteBtn' name='btnDelete' value='Delete'>
-                <input class='edit-profile-btn action-button' type='submit' id='saveBtn' name='btnUpdate' value='Update'>
+                <a class='edit-profile-btn action-button pink discard' href='profile.php' id='undoBtn'>Discard</a>
+                <button class='edit-profile-btn action-button red' type='button' id='deleteBtn' name='btnDelete'>Delete</button>
+                <input class='edit-profile-btn action-button purple' type='submit' id='saveBtn' name='btnUpdate' value='Update'>
             </div>
         </form>
     </div>";
