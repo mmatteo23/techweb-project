@@ -63,18 +63,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $developer = $_POST['developer'];
 
     $genre_errors = "";
-    $genre_ids = array();
+    
     $genre_0 = intval($_POST['genre-0']);
     $genre_1 = intval($_POST['genre-1']);
     $genre_2 = intval($_POST['genre-2']);
     if ($genre_0 == $genre_1 || $genre_0 == $genre_2 || $genre_1 == $genre_2) {
         $genre_errors = "Genres must be different each other.";
     } else {
+        $genre_ids = array();
         array_push($genre_ids, $genre_0);
         if ($genre_1) array_push($genre_ids, $genre_1);
         if ($genre_2) array_push($genre_ids, $genre_2);
     }
-    
     $default_article_img = NULL;
     $game_img = NULL;
 
@@ -153,7 +153,7 @@ if(isset($genres)){
             $disabled = "";
         }
         $selectbox .= " <div class='genre-select'>
-        <button type='button' onclick='enableDisableGenre(".$i.")' class='action-button pink sh-teal enableGenre'> ENABLE/DISABLE </button>
+        <button type='button' onclick='enableDisableGenre(".$i.")' class='action-button pink sh-teal enableGenre'> Enable/Disable </button>
         <select name='genre-".$i."' id='genre-".$i."' ".$disabled." class='genre-selector'>" .
             $selectOptions[$i]
         . "</select>
