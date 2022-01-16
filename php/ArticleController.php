@@ -67,18 +67,14 @@ function getNewId(){
 }
 
 
-function articleValidator($title, $subtitle, $article_text, $publication_date, $cover_img, $read_time, $tags){
+function articleValidator(&$title, &$subtitle, $article_text, $publication_date, $cover_img, &$read_time, &$tags, &$alt_image){
     $errors = "";
 
     if($title == '')
         $errors .= buildError('Title is required');
-    elseif(!preventMaliciousCode($title))
-        $errors .= buildError('The title field contains unacceptable input');
 
     if($subtitle == '')
         $errors .= buildError('Subtitle is required');
-    elseif(!preventMaliciousCode($subtitle))
-        $errors .= buildError('The subtitle field contains unacceptable input');
     
     if($article_text == '')
         $errors .= buildError('Article text is required');
@@ -89,11 +85,11 @@ function articleValidator($title, $subtitle, $article_text, $publication_date, $
     
     if($read_time <= 0)
         $errors .= buildError('Read time need to be a positive value');
-    elseif(!preventMaliciousCode($read_time))
-        $errors .= buildError('The read time field contains unacceptable input');
 
-    if(!preventMaliciousCode($tags))
-        $errors .= buildError('The tag field contains unacceptable input');
+    //chiama la funzione htmlspecialchars su ogni stringa in input per non far compilare codice html malevolo
+    $inputs = [&$title, &$subtitle, &$read_time, &$tags, &$alt_image];
+    foreach($inputs as &$stringhetta)
+        $stringhetta=htmlspecialchars($stringhetta);
 
     return $errors;
 }
@@ -161,7 +157,7 @@ function storeArticle(string $title, string $subtitle, string $article_text, str
     if($conn_ok){
         if(getUser($author)){      // this is a valid author
 
-            $validationErrors = articleValidator($title, $subtitle, $article_text, $publication_date, $cover_img, $read_time, $tags);
+            $validationErrors = articleValidator($title, $subtitle, $article_text, $publication_date, $cover_img, $read_time, $tags, $alt_image);
             
             $title = $connection_manager->escape_string($title);
             $subtitle = $connection_manager->escape_string($subtitle);
