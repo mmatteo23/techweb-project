@@ -60,7 +60,7 @@ function preventMaliciousCode (string &$userInput, bool $longText = false) {
     //se è il text controllo che non ci siano tags vietati, se è input normale accetto ma li rendo innocui ("<"  ==>  "&lt;")
     //$allowedTags = [];
     $allowedTags = '';
-    if($longText){
+    if($longText){/*
         //$allowedTags = ['p', 'h2', 'h3', 'h4', 'a', 'strong', 'ul', 'li', 'ol'];
         $allowedTags = '<p><h2><h3><h4><a><strong><ul><li><ol>';
         $filteredString = strip_tags($userInput, $allowedTags);
@@ -68,7 +68,13 @@ function preventMaliciousCode (string &$userInput, bool $longText = false) {
         //echo "<p>" . htmlspecialchars($userInput) . "</p>";
         if($filteredString === $userInput)
             return TRUE;
-        return FALSE;
+        return FALSE;*/
+        $inputPieces = explode('script', $userInput);
+        if(count($inputPieces)>0 && strpos($inputPieces[0], '&lt;')!==false && strpos($inputPieces[1], '&gt;')!==false){
+            echo ("\n io gli ho dato false fra!");  
+            return false;
+        }
+        return true;
     }
     $userInput = htmlspecialchars($userInput);
 }

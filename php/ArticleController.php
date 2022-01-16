@@ -81,7 +81,7 @@ function articleValidator(&$title, &$subtitle, $article_text, $publication_date,
     elseif(strlen(strip_tags($article_text)) < 100)
         $errors .= buildError('Article text must be at least 100 characters long');
     elseif(!preventMaliciousCode($article_text, TRUE))
-        $errors .= buildError('The text field contains unacceptable input');
+        $errors .= buildError("The text field seems to be containing malicious code, if this isn't the case contact us");
     
     if($read_time <= 0)
         $errors .= buildError('Read time need to be a positive value');
