@@ -6,14 +6,27 @@ function deleteArticleById(articleId) {
     xhr.open("POST", "../php/deleteArticle.php");
     xhr.onload = function (){
         var resp = this.response;
-        console.log(resp);
         if(resp){
             document.getElementById("art-"+articleId).remove();
-        }
-        else {
-            console.log("non ce l'ho fatta");
+            hideModal();
         }
     };
     xhr.send(data);
     return false;
+}
+
+function showModal(articleId) {
+    var box = document.getElementById('delete-box');
+    var backdrop = document.getElementById('backdrop');
+    box.style.display = 'flex';
+    backdrop.style.display = 'block';
+    var confirmDelete = document.getElementById('confirmDelete');
+    confirmDelete.setAttribute('onClick', 'deleteArticleById('+articleId+')');
+}
+
+function hideModal() {
+    var box = document.getElementById('delete-box');
+    var backdrop = document.getElementById('backdrop');
+    box.style.display = 'none';
+    backdrop.style.display = 'none';
 }

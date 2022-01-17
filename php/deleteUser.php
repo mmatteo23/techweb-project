@@ -7,15 +7,15 @@ use DB\DBAccess;
 $connection_manager = new DBAccess();
 $conn_ok = $connection_manager->openDBConnection();
 
-$id = $_POST['deleteId'];
-if($conn_ok){
-    $deleteQuery = "DELETE FROM Article WHERE id=".$id;
+session_start();
+
+$username = $_SESSION['username'];
+if($conn_ok && isset($username) && $username!=''){
+    $deleteQuery = "DELETE FROM Person WHERE username='".$username."'";
     $result = $connection_manager->executeQuery($deleteQuery);
 }
-else
-    $result = false;
 $connection_manager->closeDBConnection();
-
-echo $result;
+session_destroy();
+header("location: ../index.php");
 
 ?>

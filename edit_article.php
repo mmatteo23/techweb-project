@@ -13,7 +13,7 @@ $user_output = '';
 
 if($articles){ 
     if(count($articles) > 0){
-        $user_output .= '<h1>Your Articles</h1><div id="search-results"><p>Select one of your articles to get to the edit page where you can update or delete the entire article</p>';
+        $user_output .= '<h1>Your Articles</h1><div><p>Select one of your articles to get to the edit page where you can update or delete the entire article</p>';
         $x=0;
         $user_output .= "
             <table class='article-list'>
@@ -30,8 +30,8 @@ if($articles){
                     <td>" . $art['id'] . "</td>
                     <td>" . $art['title'] . "</td>
                     <td>" . $art['publication_date'] . "</td>
-                    <td><a class='action-button' href='write_article.php?id=" . $art['id'] . "'>U</a></td>
-                    <td><button class='action-button' onClick='deleteArticleById(" . $art['id'] . ")'>D</button></td>
+                    <td><a class='action-button pink sh-teal' href='write_article.php?id=" . $art['id'] . "'>Edit</a></td>
+                    <td><button class='action-button red sh-teal' onClick='showModal(" . $art['id'] . ")'>Delete</button></td>
                 </tr>";
             
         }

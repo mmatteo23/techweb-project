@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script defer src="js/search.js"></script>
     <script src="js/alerts.js"></script>
+    <script defer src="js/confirmDelete.js"></script>
 </head>
 <body>
     <pageHeader/>
@@ -31,12 +32,22 @@
             <h1 id="page-title">Your Profile</h1>
             <userInfo/>
             <a href='edit_profile.php' class='action-button purple sh-pink center'>Edit</a>
+            <button class='edit-profile-btn action-button red' type='button' id='deleteBtn' name='btnDelete' onclick="showModal()">Delete</button>
         </section> 
         <adminButton/>
         <div class="logout-wrapper">
             <a class="logout" href="php/logout.php"><span class="material-icons">logout</span><p>Logout</p></a>
         </div>
     </main>
+    <div id="backdrop" class="backdrop"></div>
+    <section id="delete-box" class="confirm-delete-box">        
+        <h2>Are you sure you want to delete your account?</h2>
+        <h3>This can't be reversed!</h3>
+        <div class="delete-box-buttons">
+            <button id = 'cancelDelete' class="action-button purple sh-teal" onclick="hideModal()">Cancel</button>
+            <a id = 'confirmDelete' class="action-button red sh-teal" href="php/deleteUser.php">Delete</a>
+        </div>
+    </section>
 
 
     <pageFooter/>

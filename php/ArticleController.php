@@ -200,20 +200,6 @@ function storeArticle(string $title, string $subtitle, string $article_text, str
     }
 }
 
-function DeleteArticle($id){
-    $connection_manager = new DBAccess();
-    $conn_ok = $connection_manager->openDBConnection();
-    
-    if($conn_ok){
-        $deleteQuery = "DELETE FROM Article WHERE id=".$id;
-        echo $deleteQuery;
-        $result = $connection_manager->executeQuery($deleteQuery);
-        $connection_manager->closeDBConnection();
-        return $result;
-    }
-    $connection_manager->closeDBConnection();
-    return false;
-}
 
 
 ?>

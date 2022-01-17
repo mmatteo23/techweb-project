@@ -12,6 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/desktop.css">
     <link rel="stylesheet" type="text/css" href="css/print.css">
+    <link rel="stylesheet" type="text/css" href="css/form.css">
     
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -26,7 +27,7 @@
 		<p><a href="index.php">Home</a> &gt; <a href="profile.php">Your Profile</a> &gt; <a href="administration.php">Administration</a> &gt; Manage articles</p>
 	</nav>
 
-    <main id="content" class="search-content">
+    <main id="content">
         <AuthorArticles/>
 
         <!--
@@ -57,6 +58,15 @@
         -->
 
     </main>
+    <div id="backdrop" class="backdrop"></div>
+    <section id="delete-box" class="confirm-delete-box">        
+        <h2>Are you sure you want to delete this Article?</h2>
+        <h3>This can't be reversed!</h3>
+        <div class="delete-box-buttons">
+            <button id = 'cancelDelete' class="action-button purple sh-teal" onClick='hideModal()'>Cancel</button>
+            <button id = 'confirmDelete' class="action-button red sh-teal">Delete</button>
+        </div>
+    </section>
 
     <pageFooter/>
 
