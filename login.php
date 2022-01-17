@@ -55,7 +55,7 @@ $htmlPage = str_replace("<formErrors/>", $errors, $htmlPage);
 
 // se l'utente ha già effettuato il login non deve visualizzare questa pagina
 if(isset($_SESSION['username']) && $_SESSION['username'] != '') {             
-    header("location: landing_page.php");
+    header("location: profile.php");
 }
 
 //str_replace finale col conenuto specifico della pagina

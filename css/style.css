@@ -1180,6 +1180,17 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   color: var(--teal-accent)
 }
 
+.landing_page_content li::marker{
+  color: var(--pink-accent);
+}
+
+.landing_page_content h1{
+  margin-bottom: 0;
+}
+.landing_page_content h2{
+  margin-bottom: 1em;
+}
+
 
 /**********************************
  *      STANDARD CLASSES

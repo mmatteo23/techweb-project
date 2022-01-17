@@ -490,7 +490,7 @@ p.error{
 
     #user-info .profile-hero,
     #user-info .profile-info{
-        max-width: 45%;
+        max-width: 35%;
     }
     #user-info .profile-info #user-specs li{
         text-align: initial;
