@@ -26,12 +26,12 @@ if($articles){
                 </tr>";
         foreach($articles as $art){
             $user_output .= "
-                <tr>
+                <tr id='art-".$art['id']."'>
                     <td>" . $art['id'] . "</td>
                     <td>" . $art['title'] . "</td>
                     <td>" . $art['publication_date'] . "</td>
                     <td><a class='action-button' href='write_article.php?id=" . $art['id'] . "'>U</a></td>
-                    <td><a class='action-button' href='write_article.php?deleteId=" . $art['id'] . "'>D</a></td>
+                    <td><button class='action-button' onClick='deleteArticleById(" . $art['id'] . ")'>D</button></td>
                 </tr>";
             
         }

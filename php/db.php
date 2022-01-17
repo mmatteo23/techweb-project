@@ -53,7 +53,7 @@ class DBAccess {
 			if(mysqli_insert_id($this->connection))			// INSERT QUERY
 				return mysqli_insert_id($this->connection);
 
-			if($queryResult === TRUE){ // UPDATE
+			if($queryResult === TRUE){ // UPDATE o DELETE
 				return TRUE;
 			}
 

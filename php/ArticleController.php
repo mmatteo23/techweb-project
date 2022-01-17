@@ -34,10 +34,10 @@ function getAuthorArticles(string $author, array &$tags){
     $conn_ok = $connection_manager->openDBConnection();
     
     if($conn_ok){
-        $selectQuery = "SELECT Article.id AS id, Game.name AS game, publication_date, cover_img, title, subtitle FROM Article JOIN Game ON game_id=Game.id WHERE author = '$author' ORDER BY publication_date DESC";
+        $selectQuery = "SELECT Article.id AS id, Game.name AS game, publication_date, cover_img, title, subtitle FROM Article JOIN Game ON game_id=Game.id WHERE author = '$author' ORDER BY publication_date DESC, id DESC";
 
         $articles = $connection_manager->executeQuery($selectQuery);
-        $tagQuery = "SELECT Article.id AS id, Tag.name AS tag FROM (Article JOIN article_tags ON id=article_id) JOIN Tag ON tag_id=Tag.id WHERE author = '$author' ORDER BY publication_date DESC";
+        $tagQuery = "SELECT Article.id AS id, Tag.name AS tag FROM (Article JOIN article_tags ON id=article_id) JOIN Tag ON tag_id=Tag.id WHERE author = '$author' ORDER BY publication_date DESC, id DESC";
         $tags = $connection_manager->executeQuery($tagQuery);
         
         $connection_manager->closeDBConnection();
@@ -198,6 +198,21 @@ function storeArticle(string $title, string $subtitle, string $article_text, str
         $connection_manager->closeDBConnection();
         return buildError("Internal server error");
     }
+}
+
+function DeleteArticle($id){
+    $connection_manager = new DBAccess();
+    $conn_ok = $connection_manager->openDBConnection();
+    
+    if($conn_ok){
+        $deleteQuery = "DELETE FROM Article WHERE id=".$id;
+        echo $deleteQuery;
+        $result = $connection_manager->executeQuery($deleteQuery);
+        $connection_manager->closeDBConnection();
+        return $result;
+    }
+    $connection_manager->closeDBConnection();
+    return false;
 }
 
 

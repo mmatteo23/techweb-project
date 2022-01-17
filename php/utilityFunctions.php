@@ -71,7 +71,6 @@ function preventMaliciousCode (string &$userInput, bool $longText = false) {
         return FALSE;*/
         $inputPieces = explode('script', $userInput);
         if(count($inputPieces)>0 && strpos($inputPieces[0], '&lt;')!==false && strpos($inputPieces[1], '&gt;')!==false){
-            echo ("\n io gli ho dato false fra!");  
             return false;
         }
         return true;
