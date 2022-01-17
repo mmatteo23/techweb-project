@@ -56,7 +56,7 @@ CREATE TABLE Game (
 CREATE TABLE Article (
     id            INT AUTO_INCREMENT PRIMARY KEY,
     title         VARCHAR(255) NOT NULL,
-    subtitle      VARCHAR(255),
+    subtitle      TEXT NOT NULL,
     text        LONGTEXT NOT NULL,
     publication_date  DATE NOT NULL,
     cover_img       VARCHAR(255),
