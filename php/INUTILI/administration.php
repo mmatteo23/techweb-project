@@ -21,8 +21,7 @@ if ($userRole == 1) {
             <a href="add_game.php" class="action-button pink sh-teal">Add game</a>
             <a href="edit_game.php" class="action-button pink sh-teal">Edit games</a>            
             <a href="edit_user.php" class="action-button pink sh-teal">Edit users</a>
-        </div>
-    ';
+        </div>';
 } else {
     // Utente loggato ma non è admin
     $html = accessNotAllowed("admin");

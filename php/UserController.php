@@ -146,7 +146,7 @@ function deleteUser(string $username){
     }
 }
 
-function getFullListOfUsers(){
+function getFullListOfNonAdminUsers(){
     $connection_manager = new DBAccess();
     $conn_ok = $connection_manager->openDBConnection();
     if($conn_ok){
@@ -157,19 +157,5 @@ function getFullListOfUsers(){
         header("Location: error.php");
     }
 }
-
-// function MakeAdmin($username){
-//     $connection_manager = new DBAccess();
-//     $conn_ok = $connection_manager->openDBConnection();
-//     if($conn_ok){
-//         $query = "UPDATE Person role = 1 WHERE username = '$username'";
-//         $result = $connection_manager->executeQuery($query);
-
-//         return $result;
-//     } else {
-//         header("Location: error.php");
-//     }
-// }
-
 
 ?>

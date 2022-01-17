@@ -8,7 +8,10 @@ $connection = $db->openDBConnection();
 
 if ($connection) {
    $username = $_POST['username'];
-   $query = "UPDATE Person SET role = 1 WHERE username = '$username'";
+   if($_POST['type'] == 'Grant ADMIN privileges')
+      $query = "UPDATE Person SET role = 1 WHERE username = '$username'";
+   else
+   $query = "UPDATE Person SET role = 2 WHERE username = '$username'";
    $db->executeQuery($query);
    $db->closeDBConnection();
 } else {

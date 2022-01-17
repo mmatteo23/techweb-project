@@ -68,7 +68,8 @@ a:visited{
 
 a:hover,
 a:focus{
-  color: var(--purple-accent);  
+  color: var(--purple-accent);
+  background-color: var(--teal-accent);
 }
 
 a:focus,
@@ -365,8 +366,8 @@ footer .credits{
 
 .slides .card-article-info{
   background-color: #dcdcdc;  
-
 }
+
 #hot-games{
   display: none;
 }
@@ -378,6 +379,8 @@ footer .credits{
   border-radius: 0 0 1em 1em;
   background-color: #2A2A2A;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .card-article-info h4{
@@ -422,6 +425,11 @@ footer .credits{
   display: block;
   max-width: 500px;
   margin: 0 auto;
+}
+
+a.card-article-link:hover,
+a.card-article-link:focus{
+  background-color: transparent;
 }
 
 .slider a.card-article-link:hover article,
@@ -490,7 +498,7 @@ a.card-article-link:visited h3{
 }
 
 .card-article-tags{
-  margin: 0.5em 0 0em;
+  margin: auto 0 .75em;
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
@@ -645,15 +653,6 @@ a.card-article-link:visited h3{
   box-shadow: 0px 0px 0px 0px #ffffff99;
   border: none;
   width: fit-content;
-}
-
-
-
-#content .admin-link-info{
-  font-size: 1.25em;
-  margin: 2em auto 1em;
-  color: var(--teal-accent);
-  text-align: center;
 }
 
 #all-the-articles{
@@ -1060,7 +1059,6 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   font-size: 0.5em;
 }
 .navbar #search{
-  background-color: transparent;
   outline: none;
   border: none;
   cursor: pointer;
@@ -1173,6 +1171,9 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
 .landing_page_content > .wrapper .secondary{
   font-size: .8em;
   margin-top: 2em;
+}
+.landing_page_content > .wrapper .secondary > span{
+  color: var(--teal-accent);
 }
 
 .landing_page_content > .wrapper > h1 > span{

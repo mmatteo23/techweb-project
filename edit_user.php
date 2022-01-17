@@ -15,7 +15,7 @@ if(!isset($username) || $username == '' || $userRole != 1){    // the user is no
 $htmlPage = file_get_contents('html/edit_user.html');
 require_once('php/full_sec_loader.php');
 
-$usersList = getFullListOfUsers();
+$usersList = getFullListOfNonAdminUsers();
 
 if(isset($usersList)){
     $selectOptions="";
@@ -32,8 +32,7 @@ if(isset($usersList)){
 $output = ' <div class="input-wrapper">
                 <label for="user">Select an user</label>'
                 . $selectbox . 
-            '</div>
-            <input id="submit-btn" type="submit" value="Grant admin privileges" class="action-button">';
+            '</div>';
 
 $htmlPage = str_replace("<selectUser/>", $output, $htmlPage);
 echo $htmlPage;

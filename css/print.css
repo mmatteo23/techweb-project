@@ -40,15 +40,25 @@
       line-height: 1.1em;
   }
 
+  #content p{
+    color: black;
+  }
   #content a,
   #content button{
     color: black;
     text-decoration: underline;
   }
 
-  .tag-list li:nth-child(2n), .tag-list li:nth-child(2n) a{
-    text-shadow: none;
-  }
+  .landing_page_content,
+  .error-content,
+  .favorites-content,
+  .search-content,
+  .edit-users-content,
+  .editgame-content{
+  min-height: 20vh;
+}
+
+
 
   
   /**********************************
@@ -73,7 +83,7 @@
 
   .sticky-nav{
     flex-direction: column;
-    position: sticky;
+    position: relative;
     top: 0;
     height: auto;
   }
@@ -112,19 +122,14 @@
   .navbar #search span:last-child{
     display: inline;
   }
-
-  .navbar li:last-child span:first-child{
-    display: none;
-  }
-  .navbar li:last-child span:last-child{
-    display: none;
-  }
-  .navbar li:last-child .profile-img span:first-child{
-    display: inline;
-  }
-
   .navbar li:last-child .profile-img span:last-child{
-    display: none;
+    display: inline-block;
+    height: 2.5em;
+    width: 2.5em;
+  }
+  .navbar li:last-child .profile-img span:last-child img{   
+    height: 2.5em;
+    width: 2.5em;
   }
   
   .navbar li > * span:nth-child(2){
@@ -167,6 +172,10 @@
     right: 9%;
   }
 
+  #breadcrumb{
+    margin-top: 3em;
+  }
+
   /**********************************
   *       GAMES CLASSES 
   *********************************/
@@ -189,8 +198,14 @@
 
   .favorites-content,
   .search-content{
-    padding: 0 var(--lateral-padding);
+    padding: 0;
   }
+
+  .search-content .card-article-link,
+  .search-content .card-article-link{
+    max-width: 45%;
+  }
+
   .home-content {
       display: flex;
   }
@@ -294,6 +309,13 @@
     text-decoration: underline;
   }
 
+  #content .tag-list li{
+    color:black;
+  }
+  .tag-list li:nth-child(2n), .tag-list li:nth-child(2n) a{
+    text-shadow: none;
+  }
+
 
   /**********************************
   *       SEARCH CLASSES 
@@ -331,6 +353,9 @@
     box-shadow: none;
     border: 3px solid black;
   }
-  }
+
+
+  
+}
 
 

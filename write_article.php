@@ -27,9 +27,10 @@ $destination = "write_article.php";
 $tagString = '';
 $alt_image = '';
 $header = "<h1>Write an article</h1>";
-$breadcrumb = "<a href='administration.php'>Administration</a> &gt; Write article";
-$button_name = '<input id="submit-btn" class="action-button" type="submit" value="Post article">';
+$breadcrumb = '<a href="profile.php">Your Profile</a> &gt; Write article';
+$button_name = '<input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Post article">';
 $title_name = '<title>Write Article - Penta News</title>';
+$discard_link = '<a href="profile.php" id="undoBtn"';
 
 if($_GET['id']){
     $art_id = $_GET['id'];
@@ -48,9 +49,10 @@ if($_GET['id']){
         $tagString = trim($tagString, ',');
         $alt_image = $art_data['alt_cover_img'];
         $header = "<h1>Edit article</h1>";
-        $breadcrumb = "<a href='administration.php'>Administration</a> &gt; <a href='edit_article.php'> Manage articles </a> &gt; Edit article";
-        $button_name = '<input id="submit-btn" class="action-button" type="submit" value="Save changes">';
+        $breadcrumb = '<a href="profile.php">Your Profile</a> &gt; <a href="edit_article.php"> Manage articles </a> &gt; Edit article';
+        $button_name = '<input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Save changes">';
         $title_name = '<title>Edit Article - Penta News</title>';
+        $discard_link = '<a href="edit_article.php" id="undoBtn"';
     }
 }
 
@@ -137,9 +139,10 @@ $htmlPage = str_replace('#AltImage#', $alt_image, $htmlPage);
 $htmlPage = str_replace('<p>This is the initial editor content.</p>', $text, $htmlPage);
 $htmlPage = str_replace("write_article.php", $destination, $htmlPage);
 $htmlPage = str_replace("<h1>Write an article</h1>", $header, $htmlPage);
-$htmlPage = str_replace("<a href='administration.php'>Administration</a> &gt; Write article</p>", $breadcrumb, $htmlPage);
-$htmlPage = str_replace('<input id="submit-btn" class="action-button" type="submit" value="Post article">', $button_name, $htmlPage);
+$htmlPage = str_replace('<a href="profile.php">Your Profile</a> &gt; Write article</p>', $breadcrumb, $htmlPage);
+$htmlPage = str_replace('<input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Post article">', $button_name, $htmlPage);
 $htmlPage = str_replace('<title>Write Article - Penta News</title>', $title_name, $htmlPage);
+$htmlPage = str_replace('<a href="profile.php" id="undoBtn"', $discard_link, $htmlPage);
 
 
 

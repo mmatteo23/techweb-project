@@ -281,9 +281,20 @@ form:not(form.search-form) ul.tag-list li.tag {
 p.error{
     margin-bottom: 1.3em;
 }
-  
+
+
+.edit-users-content .action-buttons{
+    margin-top: 2em;
+}
+.edit-users-content .action-button{
+    margin-top: 1em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .edit-users-content p{
-    margin: 1em 0;
+    margin: 1em 0 0;
     font-size: 1.25em;
 }
 
@@ -297,13 +308,13 @@ p.error{
     flex-direction: column;
 }
 
-#user-username {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+#user-info .profile-info #user-specs li#user-username{
     font-size: 2em;
-    padding: 1em;
     color: var(--teal-accent);
+    text-align: center;
+}
+#user-info .profile-info #user-specs li span{
+    color: var(--bg-accent);
 }
 
 #user-profile-img {
@@ -342,18 +353,27 @@ p.error{
 .logout:hover,
 .logout:focus{
     color: #FB5B5B;
+    background-color: transparent;
 }
 
 .logout p{
     text-decoration: underline;
 }
   
-
-#user-info h3{
-    margin-top:3em;
-    margin-left: 1.5em;
+#content.profile-content .admin-link-info{
+    font-size: 1.25em;
+    margin: 2em auto 0em;
+    color: var(--teal-accent);
+    text-align: center;
 }
 
+.profile-content .action-buttons{
+    margin: 1em auto;
+    width: 95%;
+}
+.profile-content .action-buttons .action-button{
+    max-width: 45%;
+}
 
   /**********************************
    *      BUTTON CLASSES
@@ -446,6 +466,9 @@ p.error{
        width: fit-content;
        padding: 0 2em;
    }
+   .action-button.no-grow{
+       flex-grow: 0;
+   }
    
    .form-buttons .action-button{
        flex-basis: 10%;
@@ -458,6 +481,20 @@ p.error{
 
 
 @media only screen and (max-height: 1500px) and (min-width: 768px){
+    #user-info{
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    #user-info .profile-hero,
+    #user-info .profile-info{
+        max-width: 45%;
+    }
+    #user-info .profile-info #user-specs li{
+        text-align: initial;
+    }
 
     .action-buttons{
         flex-direction: row;
