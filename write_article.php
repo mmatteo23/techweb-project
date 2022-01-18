@@ -32,7 +32,7 @@ $button_name = '<input id="submit-btn" class="action-button purple sh-pink" type
 $title_name = '<title>Write Article - Penta News</title>';
 $discard_link = '<a href="profile.php" id="undoBtn"';
 
-if($_GET['id']){
+if(isset($_GET['id'])){
     $art_id = $_GET['id'];
     $tags = array();
     $art_data = getArticleData($art_id, $_SESSION['username'], $tags);

@@ -840,6 +840,7 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
 #article-body a:hover,
 #article-body a:focus{
   color: var(--pink-accent);
+  background-color: transparent;
 }
 
 #article-body ul{
@@ -1425,6 +1426,10 @@ ERRORs
 
 .error-text{
   width:100%;
+}
+
+.error-display ::marker{
+  color: var(--fucsia-accent)
 }
 
 .error-display li{

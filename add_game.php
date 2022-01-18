@@ -32,7 +32,7 @@ $button_name = '<input id="submit-btn" class="action-button" type="submit" value
 $title_name = '<title>Add game - Penta News</title>';
 $discard_link = '<a href="profile.php" id="undoBtn"';
 
-if($_GET['id']){
+if(isset($_GET['id'])){
     $game_id = $_GET['id'];
     $game_data = getGameData($game_id);
     if($game_data){
@@ -42,7 +42,8 @@ if($_GET['id']){
         $developer = $game_data['developer'];
         $genre_id = getGenreIdsFromGameId($game_id);
         for ($i = 0; $i <= 2; $i++) {
-            $genre_ids[$i] = $genre_id[$i]['genre_id'];
+            if(isset($genre_id[$i]))
+                $genre_ids[$i] = $genre_id[$i]['genre_id'];
         }
         $game_img = $game_data['game_img'];
         $default_article_img = $game_id."-cover-1080.jpg";
@@ -137,8 +138,9 @@ $genres = getGenres();
 if(isset($genres)){
     $selectOptions = array();
     for ($i = 0; $i <= 2; $i++) {
+        $selectOptions[$i] = '';
         foreach ($genres as $genre) {
-            if($genre['id']==$genre_ids[$i])
+            if(isset($genre_ids[$i]) && $genre['id']==$genre_ids[$i])
                 $selectOptions[$i] .= "<option value='" . $genre['id'] . "' selected>" . $genre['name'] . "</option>";
             else
                 $selectOptions[$i] .= "<option value='" . $genre['id'] . "'>" . $genre['name'] . "</option>";
@@ -151,7 +153,7 @@ if(isset($genres)){
     ";
     for ($i = 1; $i <= 2; $i++) {
         $disabled = "disabled";
-        if ($genre_ids[$i]) {
+        if (isset($genre_ids[$i])) {
             $disabled = "";
         }
         $selectbox .= " <div class='genre-select'>

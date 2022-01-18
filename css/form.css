@@ -462,7 +462,7 @@ p.error{
    
    
    .action-button.center{
-       margin: 0 auto;
+       margin: 1em auto 0;
        width: fit-content;
        padding: 0 2em;
    }
@@ -488,9 +488,11 @@ p.error{
         align-items: center;
     }
 
-    #user-info .profile-hero,
-    #user-info .profile-info{
+    #user-info .profile-hero{
         max-width: 35%;
+    }
+    #user-info .profile-info{
+        max-width: 45%;
     }
     #user-info .profile-info #user-specs li{
         text-align: initial;

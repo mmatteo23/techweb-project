@@ -225,7 +225,7 @@ class DBAccess {
 		return $result;
 	}
 
-	public function getSearchRelatedArticlesTags($src_text){
+	public function getSearchRelatedArticlesTags(){
 		$query = "SELECT SearchRelatedArticles.id AS id, Tag.name AS tag, publication_date FROM (SearchRelatedArticles JOIN article_tags ON id=article_id) JOIN Tag ON tag_id=Tag.id ORDER BY publication_date DESC";
 		$results = $this->executeQuery($query);
 		return $results;

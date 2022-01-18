@@ -1,3 +1,4 @@
+/*
 async function postData(username, article, isLiked) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "php/ajaxLikeAndSave.php", true); 
@@ -11,7 +12,7 @@ async function postData(username, article, isLiked) {
     xhttp.send(JSON.stringify(data));
     console.log("JSON sent");
 }
-/*
+
 async function LikeThisArticle(username, article, isLiked) {
     if (isLiked) {
         //se era liked adesso l'user vuole togliere il like
@@ -90,7 +91,7 @@ function LikeThisArticle(username, id, liked){
     data.append("table", "like");
     
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../php/change_like_or_save_state.php");
+    xhr.open("POST", "php/change_like_or_save_state.php");
     xhr.onload = function (){
         console.log(this.response);
     };
@@ -114,7 +115,7 @@ function SaveThisArticle(username, id, saved){
     data.append("table", "save");
     
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../php/change_like_or_save_state.php");
+    xhr.open("POST", "php/change_like_or_save_state.php");
     xhr.onload = function (){
         console.log(this.response);
     };

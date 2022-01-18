@@ -32,7 +32,7 @@ if($connection){
             //$tags = $db->getSelectedGameArticles($_GET['game']);
             $dynamicBreadcrumb=': articles about "'.$_GET['game'].'"';
         }
-        $tags = $db->getSearchRelatedArticlesTags($_GET['src_text']);
+        $tags = $db->getSearchRelatedArticlesTags();
         $db->closeDBConnection();   //ho finito di usare il db quindi chiudo la connessione
         if($articles){
             $user_output .= '<section id="search-results"><h1>Search results</h1>';
