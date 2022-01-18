@@ -107,15 +107,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             }
         } else {
         // se è un add game --> fai tutto (crea immagini da zero + store)
-            $errorsImage = checkImageToUpload($game_img, "images/games/", "cover", $name, "");
-            $game_id = storeGame($name, $description, $releaseDate, $developer, $game_img);
-            if (is_int($game_id)) {
-                $errorsImage .= checkImageToUpload($default_article_img, "images/article_covers/Default/", "default-article-img", $game_id."-cover-1080", "");
-                if ($genre_errors == "") {
+            if ($genre_errors == "") {
+                $errorsImage = checkImageToUpload($game_img, "images/games/", "cover", $name, "");
+                $game_id = storeGame($name, $description, $releaseDate, $developer, $game_img);
+                if (is_int($game_id)) {
+                    $errorsImage .= checkImageToUpload($default_article_img, "images/article_covers/Default/", "default-article-img", $game_id."-cover-1080", "");
                     foreach($genre_ids as $genre_id)
                         $result += storeGameGenre($game_id, $genre_id);
-                }
-            } 
+                } 
+            }
         }
         // check errori
         if(is_int(intval($game_id)) && $errorsImage == "" && $genre_errors == "" && is_int(intval($result))) {
