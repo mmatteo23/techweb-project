@@ -26,14 +26,10 @@
       height: 2em;
       padding: 0em var(--lateral-padding);  
       border-radius: 0 0 .65em .65em;
-    }
-  
-    #src-bar:hover,
-    #src-bar:focus{
       border-top: 0px solid transparent;
       border-bottom: 2px solid var(--pink-accent);
     }
-  
+    
     #src-bar-wrapper button:hover ~ *,
     #src-bar-wrapper button:focus ~ *{
       border-top: 0px solid transparent;
@@ -136,6 +132,7 @@
       transition: all 0.4s ease-out;
       border: 3px solid var(--fucsia-accent);
     }
+    
     .navbar li > *::before{
       bottom: .2em;
       left: .6em;
@@ -148,6 +145,20 @@
       border-bottom: none;
       border-left: none;
     }
+
+    .navbar li p.nav-active-link{
+      background-color: var(--fucsia-accent);
+      color: white;
+      transition: none;
+    }
+    
+    .navbar li p.nav-active-link:hover::before,
+    .navbar li p.nav-active-link:focus::before,
+    .navbar li p.nav-active-link:hover::after,
+    .navbar li p.nav-active-link:focus::after{
+      opacity: 0;
+    }
+
     .navbar li > *:hover::before,
     .navbar li > *:focus::before{
       opacity: 100%;
@@ -178,6 +189,26 @@
     .navbar li:last-child .profile-img:focus{
       transform: scale(1.2);
       background-color: transparent;
+    }
+
+    .navbar li:last-child .profile-img.nav-active-link,
+    .navbar li:last-child .profile-img.nav-active-link{
+      background-color: transparent;
+    }
+    .navbar li:last-child .profile-img.nav-active-link:hover,
+    .navbar li:last-child .profile-img.nav-active-link:focus{
+      transform: scale(1);
+    }
+    .navbar li:last-child .profile-img.nav-active-link span:last-child,
+    .navbar li:last-child .profile-img.nav-active-link span:last-child{
+      outline-color: var(--fucsia-accent);
+    }
+
+    .navbar li:last-child .profile-img.nav-active-link:hover::before,
+    .navbar li:last-child .profile-img.nav-active-link:focus::before,
+    .navbar li:last-child .profile-img.nav-active-link:hover::after,
+    .navbar li:last-child .profile-img.nav-active-link:focus::after{
+      opacity: 0;
     }
   
     .navbar li:last-child .profile-img:hover::before,

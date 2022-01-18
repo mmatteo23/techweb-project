@@ -2,6 +2,7 @@
 
 require_once('php/db.php');
 require_once('php/error_management.php');
+require_once('php/UserController.php');
 use DB\DBAccess;
 
 session_start();
@@ -10,18 +11,14 @@ session_start();
 // page structure
 $htmlPage = file_get_contents('html/login.html');
 
-// // page header
-// $pageHeader = file_get_contents("html/components/header.html");
-
-// // page footer
-// $pageFooter = file_get_contents("html/components/footer.html");
-
-// // replace the template placeholders
-// $htmlPage = str_replace('<pageHeader/>', $pageHeader, $htmlPage);
-// $htmlPage = str_replace('<pageFooter/>', $pageFooter, $htmlPage);
-
-//header footer and dynamic navbar all at once (^^^ sostituisce il commento qua sopra ^^^)
-//require_once('php/full_sec_loader.php');
+$profile_img = '<li><p tabindex=-1 id="profile-link" href="login.php" class="nav-active-link"><span aria-hidden="true" class="material-icons md-36">person</span><span>Profile</span></p></li>';
+// SHOW USER INFO
+$userData = getUser($_SESSION['username']);
+if(isset($_SESSION['username'])){
+    $user = getUser($_SESSION['username']);
+    if($user)
+        $profile_img = '<li><p tabindex=-1 id="profile-link" href="profile.php" class="profile-img nav-active-link"><span aria-hidden="true" class="material-icons md-36">person</span><span><img src="images/user_profiles/'. ($user['profile_img']?$user['profile_img']:'default.png') .'" alt="Profile"></span></p></li>';
+}
 
 $errors = "";
 
@@ -47,8 +44,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){     // Pulsante submit premuto
 
     } else {
         $errors = createDBErrorHTML();
-    }
-    
+    }    
 }
 
 $htmlPage = str_replace("<formErrors/>", $errors, $htmlPage);
@@ -57,8 +53,8 @@ $htmlPage = str_replace("<formErrors/>", $errors, $htmlPage);
 if(isset($_SESSION['username']) && $_SESSION['username'] != '') {             
     header("location: profile.php");
 }
-
 //str_replace finale col conenuto specifico della pagina
+$htmlPage = str_replace('<profile-image/>', $profile_img, $htmlPage);
 echo $htmlPage;     // visualizzo la pagina costruita
 
 ?>

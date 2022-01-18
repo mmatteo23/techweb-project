@@ -274,6 +274,10 @@ footer .social-links svg {
   filter: opacity(.5);
   transition: all 0.2s ease-in-out;
 }
+footer .social-links a:hover,
+footer .social-links a:focus{
+  background-color: transparent;
+}
 
 footer .social-links a:hover svg,
 footer .social-links a:focus svg{
@@ -487,15 +491,19 @@ a.card-article-link:link h3{
 }
 
 a.card-article-link:link:hover h3,
-a.card-article-link:link:focus h3,
-a.card-article-link:visited:hover h3,
-a.card-article-link:visited:focus h3{
-  color: var(--purple-accent);
+a.card-article-link:link:focus h3{
+  color: white;
 }
 
 a.card-article-link:visited h3{
   color: var(--pink-accent);
 }
+a.card-article-link:visited:hover h3,
+a.card-article-link:visited:focus h3{
+  color: var(--purple-accent);
+}
+
+
 
 .card-article-tags{
   margin: auto 0 .75em;
@@ -973,16 +981,11 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   width: 100%;
   font-size: 1em;
   padding: .75em 1.5em;  
-  border: 2px solid transparent;  
+  border: 2px solid var(--pink-accent);
+  border-bottom: 0px solid transparent;
   border-radius: .65em .65em  0 0 ;
   outline: none;
   height: 100%;
-}
-
-#src-bar:hover,
-#src-bar:focus{
-  border: 2px solid var(--pink-accent);
-  border-bottom: 0px solid transparent;
 }
 
 #src-bar::placeholder{
@@ -1094,6 +1097,13 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   background-color: #04AA6D;
   color: white;
 }
+
+.navbar li p.nav-active-link{
+  background-color: white;
+  transition: none;
+}
+
+
 
 .navbar li > span{
   cursor: pointer;
@@ -1431,6 +1441,9 @@ ERRORs
 
 .error-display-text li {
   margin-left: 2.5em;
+}
+.error-display-text p{
+  text-align: center;
 }
 
 .error-text{

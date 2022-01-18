@@ -3,11 +3,11 @@
 require_once('php/db.php');
 require_once('php/error_management.php');
 
+session_start();
 $htmlPage = file_get_contents("html/favorites.html");
-//header footer and dynamic navbar all at once (^^^ sostituisce il commento qua sopra ^^^)
+//header footer and dynamic navbar all at once
 require_once('php/full_sec_loader.php');
 
-session_start();
 use DB\DBAccess;
 
 // prendere il risultato dal DB
