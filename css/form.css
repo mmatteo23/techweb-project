@@ -98,6 +98,8 @@ form:not(form.search-form) textarea{
     box-shadow: 2px 2px 4px 0 var(--input-shadow);
 }
 
+
+
 form:not(form.search-form) input:not(input[type='submit'])::placeholder,
 form:not(form.search-form) textarea::placeholder{
     font-style: italic;
@@ -258,6 +260,16 @@ form:not(form.search-form) ul.tag-list li.tag {
 }
   
 .input-wrapper.error input:not(input[type='submit']){
+    border-color: #ff3860;
+    background-color: #ff3860;
+}
+
+.input-wrapper.success select:not(input[type='submit']){
+    border-color: #09c372;
+    background-color: #09c372;
+}
+  
+.input-wrapper.error select:not(input[type='submit']){
     border-color: #ff3860;
     background-color: #ff3860;
 }
