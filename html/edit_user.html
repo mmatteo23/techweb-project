@@ -8,7 +8,7 @@
 	<meta name="author" content="Davide Milan, Danilo Stojkovic, Matteo Midena, Matteo Casonato"/>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/desktop.css">
 	<link rel="stylesheet" type="text/css" href="css/form.css">
 	<link rel="stylesheet" type="text/css" href="css/print.css">
@@ -28,15 +28,15 @@
 
 	<main id="content" class="edit-users-content">
 		<h1>Edit normal users privileges</h1>
- 		<form method="POST" action="../edit_user.php" id="privilegesForm">        <!-- enctype='multipart/form' -->
+ 		<form method="POST" action="edit_user.php" id="privilegesForm">        <!-- enctype='multipart/form' -->
         	<selectUser/>
 			<div class="action-buttons">
-				<input id="make_writer" type="submit" name='type' value="Grant WRITER privileges" class="action-button pink sh-teal">
-				<input id="submit-btn" type="submit" name='type' value="Grant ADMIN privileges" class="action-button purple sh-teal">
+				<button id="writer-btn" type="button" onClick="privileges(2)" class="action-button purple sh-teal">Grant WRITER privileges</button>
+				<button id="submit-btn" type="button" onClick="privileges(1)" class="action-button purple sh-teal">Grant ADMIN privileges</button>
 			</div>
        	</form>
 		<p>OR</p>
-		<a href="../profile.php" class="action-button no-grow red sh-teal">I'm done</a>
+		<a href="profile.php" class="action-button no-grow red sh-teal">I'm done</a>
 	</main>
 
 
