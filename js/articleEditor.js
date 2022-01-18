@@ -1,40 +1,31 @@
-
 DecoupledEditor
-    .create( document.querySelector( '#editor' ), {
-        removePlugins: ['CKFinderUploadAdapter', 'CKFinder', 'EasyImage', 'Image', 'ImageCaption', 'ImageStyle', 'ImageToolbar', 'ImageUpload', 'MediaEmbed', 'mediaEmbed']
-    } )
-    .then( editor => {
-        const toolbarContainer = document.querySelector( '#toolbar-container' );
-
-        toolbarContainer.appendChild( editor.ui.view.toolbar.element );
-    } )
-    .catch( error => {
-        console.error( error );
+.create( document.querySelector( '#editor' ), {
+    removePlugins: [
+        'CKFinderUploadAdapter', 
+        'CKFinder', 
+        'EasyImage', 
+        'Image', 
+        'ImageCaption', 
+        'ImageStyle', 
+        'ImageToolbar',
+        'ImageUpload', 
+        'MediaEmbed', 
+        'mediaEmbed', 
+        'FontColor', 'FontFamily', 'FontSize', 'FontBackgroundColor',
+        'textalignment',
+        'IncreaseIndent',
+        'DecreaseIndent'
+    ]
+} )
+.then( editor => {
+    const toolbarContainer = document.querySelector( '#toolbar-container' );
+    
+    toolbarContainer.appendChild( editor.ui.view.toolbar.element );
+} )
+.catch( error => {
+    console.error( error );
 });
-/*
-ClassicEditor
-    .create( document.querySelector( '#editor' ), {
-        toolbar: {
-            items: [
-            'heading',
-            '|',
-            'bold',
-            'italic',
-            '|',
-            'bulletedList',
-            'numberedList',
-            '|',
-            'link',
-            '|',
-            'undo',
-            'redo'
-            ]
-        },
-        language: 'en'
-        })
-    .catch( error => {
-        console.error( error );
-    } );*/
+
 
 const editor = document.getElementById("editor");
 const form = document.getElementById('articleForm');
