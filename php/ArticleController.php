@@ -135,20 +135,6 @@ function linkArticleTags(int $articleId, array $tags){
 
 }
 
-function deleteArticleById(int $id){
-    // create a connection istance to talk with the db
-    $connection_manager = new DBAccess();
-    $conn_ok = $connection_manager->openDBConnection();
-    
-    if($conn_ok){
-        $deleteQuery1 = "DELETE FROM article_tags WHERE article_id=".$id; 
-        $deleteQuery2 = "DELETE FROM Article WHERE id=".$id;
-        $connection_manager->executeQuery($deleteQuery1);
-        $connection_manager->executeQuery($deleteQuery2);
-        $connection_manager->closeDBConnection();
-    }
-}
-
 function storeArticle(string $title, string $subtitle, string $article_text, string $publication_date, string $cover_img, string $read_time, string $author, int $game_id, string $tags, string $alt_image, int $id=0){
     // create a connection istance to talk with the db
     $connection_manager = new DBAccess();
@@ -200,6 +186,54 @@ function storeArticle(string $title, string $subtitle, string $article_text, str
     }
 }
 
+function IsAuthorOf($author, $id, $connection_manager){
+    $query = "SELECT * FROM Article WHERE id=".$id." AND author='$author'";
+    $result = $connection_manager->executeQuery($query);
+    if($result===FALSE)
+        return false;
+    return true;
+}
+
+function updateArticle(string $title, string $subtitle, string $article_text, string $publication_date, string $cover_img, string $read_time, string $author, int $game_id, string $tags, string $alt_image, int $id=0){
+    // create a connection istance to talk with the db
+    $connection_manager = new DBAccess();
+    $conn_ok = $connection_manager->openDBConnection();
+    
+    if($conn_ok){
+        if(IsAuthorOf($author, $id, $connection_manager)){      // he is the author
+            $validationErrors = articleValidator($title, $subtitle, $article_text, $publication_date, $cover_img, $read_time, $tags, $alt_image);
+            
+            $title = $connection_manager->escape_string($title);
+            $subtitle = $connection_manager->escape_string($subtitle);
+            $article_text = $connection_manager->escape_string($article_text);
+
+            if(!$validationErrors){
+                $updateQuery = "
+                    UPDATE Article SET title = '$title', subtitle = '$subtitle', text = '$article_text', cover_img = '$cover_img', 
+                        read_time = $read_time, game_id = $game_id, alt_cover_img = '$alt_image'
+                        WHERE id=$id;";
+                $result = $connection_manager->executeQuery($updateQuery);
+                $connection_manager->closeDBConnection();
+                if($result){
+                    if($tags) 
+                        linkTags($id, $tags);
+                    return $id;
+                } else
+                    return buildError("There was an error during the update of the article");
+            }
+
+            $connection_manager->closeDBConnection();
+            return $validationErrors;
+
+        } else {
+            $connection_manager->closeDBConnection();
+            return "NotTheAuthor";
+        }
+    } else {
+        $connection_manager->closeDBConnection();
+        return buildError("Internal server error");
+    }
+}
 
 
 ?>

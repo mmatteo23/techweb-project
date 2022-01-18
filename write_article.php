@@ -89,10 +89,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             if($article_img=="Default/" . $game_id . "-cover-1080.jpg" && isset($art_data['cover_img']) && explode('/', $art_data['cover_img'])[0]!='Default')
                 $article_img = $art_data['cover_img'];
 
-            deleteArticleById($_GET['id']);
+            $result = updateArticle($title, $subtitle, $article_text, $publication_date, $article_img, $read_time, $author, $game_id, $tags, $alt_image, $idImg);
+            if($result == "NotTheAuthor")
+                header("location: index.php");
         }
-        $result = storeArticle($title, $subtitle, $article_text, $publication_date, $article_img, $read_time, $author, $game_id, $tags, $alt_image, $idImg);
-        //echo $result;
+        else
+            $result = storeArticle($title, $subtitle, $article_text, $publication_date, $article_img, $read_time, $author, $game_id, $tags, $alt_image, $idImg);
+        
         if(is_int($result)){
             header("Location: article.php?id=".$result);
         }
