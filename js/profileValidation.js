@@ -155,7 +155,7 @@ function validateInputs () {
         setError(password2, 'Please confirm your password')
         validForm = false
     } else if (password2Value !== passwordValue) {
-        setError(password2, 'Passwords doesn\'t match.')
+        setError(password2, 'Password doesn\'t match.')
         validForm = false
     } else {
         setSuccess(password2);

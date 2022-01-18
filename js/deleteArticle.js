@@ -3,7 +3,7 @@ function deleteArticleById(articleId) {
     data.append("deleteId", articleId);
     
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../php/deleteArticle.php");
+    xhr.open("POST", "php/deleteArticle.php");
     xhr.onload = function (){
         var resp = this.response;
         if(resp){

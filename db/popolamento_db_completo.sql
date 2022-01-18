@@ -5,7 +5,7 @@ INSERT INTO Role (title, level) VALUES
 
 INSERT INTO Person VALUES
 ('danilostojkovic', 'Danilo', 'Stojkovic', 'danilo.ricky@pentanews.com', 'danilostojkovic', 1, CURDATE(),''),
-('davidemilan', 'Davide', 'Milan', 'davide.inter@pentanews.com', 'davidemilan', 1, CURDATE(),'davidemilan.jpg'),
+('davidemilan', 'Davide', 'Milan', 'davide.inter@pentanews.com', 'davidemilan', 1, CURDATE(),'davidemilan.png'),
 ('matteocasonato', 'Matteo', 'Casonato', 'matteo.quasinato@pentanews.com', 'matteocasonato', 1, CURDATE(),''),
 ('matteomidena', 'Matteo', 'Midena', 'matteo.milena@pentanews.com', 'matteomidena', 1, CURDATE(),'matteomidena.jpg'),
 ('admin', 'admin', 'admin', 'admin@pentanews.com', 'admin', 1, CURDATE(),''),
