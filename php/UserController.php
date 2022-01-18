@@ -22,21 +22,32 @@ function getUser(string $username) {
     }
 }
 
-function validateUserData (string $username, string $firstname, string $lastname, string $email, string $password, string $password2, string &$errors) {
+function validateUserData (string &$username, string &$firstname, string &$lastname, string &$email, string $password, string $password2, string &$errors) {
     
-    if($firstname === ''){
-        $errors .= "<li class='error'>The firstname is required</li>";
-    }
+    $inputs = [&$username, &$firstname, &$lastname, &$email];
+    foreach($inputs as &$stringhetta)
+        $stringhetta=htmlspecialchars($stringhetta);
 
-    if($lastname === ''){
+    if(!preventMaliciousCode($username))
+        $errors .= buildError("The username field seems to be containing unacceptable input, if this isn't the case contact us");
+
+    if($firstname === '')
+        $errors .= "<li class='error'>The firstname is required</li>";
+    else if(!preventMaliciousCode($firstname))
+        $errors .= buildError("The first name field seems to be containing unacceptable input, if this isn't the case contact us");
+
+    if($lastname === '')
         $errors .= "<li class='error'>The lastname is required</li>";
-    }
+    else if(!preventMaliciousCode($lastname))
+        $errors .= buildError("The last name field seems to be containing unacceptable input, if this isn't the case contact us");
 
     if($email === ''){
         $errors .= "<li class='error'>E-mail is required</li>";
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors .= "<li class='error'>The e-mail format is invalid</li>";
     }
+    else if(!preventMaliciousCode($email))
+        $errors .= buildError("The email field seems to be containing unacceptable input, if this isn't the case contact us");
 
     if($password === ''){
         $errors .= "<li class='error'>The password is required</li>";

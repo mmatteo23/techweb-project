@@ -51,31 +51,11 @@ function checkImageToUpload(&$img, string $target_dir, string $idInputForm, stri
     
 }
 
-function preventMaliciousCodeArray (array &$userInputs){
-    foreach($userInputs as $stringhetta)
-        $stringhetta=htmlspecialchars($stringhetta);
-}
-
-function preventMaliciousCode (string &$userInput, bool $longText = false) {
-    //se è il text controllo che non ci siano tags vietati, se è input normale accetto ma li rendo innocui ("<"  ==>  "&lt;")
-    //$allowedTags = [];
-    $allowedTags = '';
-    if($longText){/*
-        //$allowedTags = ['p', 'h2', 'h3', 'h4', 'a', 'strong', 'ul', 'li', 'ol'];
-        $allowedTags = '<p><h2><h3><h4><a><strong><ul><li><ol>';
-        $filteredString = strip_tags($userInput, $allowedTags);
-        //echo "<p>" . $filteredString . "</p>";
-        //echo "<p>" . htmlspecialchars($userInput) . "</p>";
-        if($filteredString === $userInput)
-            return TRUE;
-        return FALSE;*/
-        $inputPieces = explode('script', $userInput);
-        if(count($inputPieces)>0 && strpos($inputPieces[0], '&lt;')!==false && strpos($inputPieces[1], '&gt;')!==false){
-            return false;
-        }
-        return true;
-    }
-    $userInput = htmlspecialchars($userInput);
+function preventMaliciousCode (string $userInput) {
+    $inputPieces = explode('script', strtolower($userInput));
+    if(count($inputPieces)>0 && strpos($inputPieces[0], '&lt;')!==false && strpos($inputPieces[1], '&gt;')!==false)
+        return false;
+    return true;
 }
 
 ?>

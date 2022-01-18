@@ -69,27 +69,37 @@ function getNewId(){
 
 function articleValidator(&$title, &$subtitle, $article_text, $publication_date, $cover_img, &$read_time, &$tags, &$alt_image){
     $errors = "";
-
-    if($title == '')
-        $errors .= buildError('Title is required');
-
-    if($subtitle == '')
-        $errors .= buildError('Subtitle is required');
-    
-    if($article_text == '')
-        $errors .= buildError('Article text is required');
-    elseif(strlen(strip_tags($article_text)) < 100)
-        $errors .= buildError('Article text must be at least 100 characters long');
-    elseif(!preventMaliciousCode($article_text, TRUE))
-        $errors .= buildError("The text field seems to be containing malicious code, if this isn't the case contact us");
-    
-    if($read_time <= 0)
-        $errors .= buildError('Read time need to be a positive value');
-
     //chiama la funzione htmlspecialchars su ogni stringa in input per non far compilare codice html malevolo
     $inputs = [&$title, &$subtitle, &$read_time, &$tags, &$alt_image];
     foreach($inputs as &$stringhetta)
         $stringhetta=htmlspecialchars($stringhetta);
+
+    if($title == '')
+        $errors .= buildError('Title is required');
+    else if(!preventMaliciousCode($title))
+        $errors .= buildError("The title field seems to be containing unaccaptable input, if this isn't the case contact us");
+    
+    if($subtitle == '')
+        $errors .= buildError('Subtitle is required');
+    else if(!preventMaliciousCode($subtitle))
+        $errors .= buildError("The subtitle field seems to be containing unaccaptable input, if this isn't the case contact us");
+    
+    if($article_text == '')
+        $errors .= buildError('Article text is required');
+    else if(strlen(strip_tags($article_text)) < 100)
+        $errors .= buildError('Article text must be at least 100 characters long');
+    else if(!preventMaliciousCode($article_text))
+        $errors .= buildError("The text field seems to be containing unaccaptable input, if this isn't the case contact us");
+    
+    if($read_time <= 0)
+        $errors .= buildError('Read time need to be a positive value');
+
+    if(!preventMaliciousCode($tags))
+        $errors .= buildError("One of the tags seems to be containing unaccaptable input, if this isn't the case contact us");
+
+    if(!preventMaliciousCode($alt_image))
+        $errors .= buildError("The image description seems to be containing unaccaptable input, if this isn't the case contact us");
+
 
     return $errors;
 }
