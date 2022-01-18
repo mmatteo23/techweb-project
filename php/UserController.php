@@ -139,7 +139,7 @@ function deleteUser(string $username){
     if($conn_ok){
         $deleteQuery = "DELETE FROM Person WHERE username = '$username'";
         $result = $connection_manager->executeQuery($deleteQuery);
-
+        $connection_manager->closeDBConnection();
         return $result;
     } else {
         header("Location: error.php");
@@ -152,10 +152,24 @@ function getFullListOfNonAdminUsers(){
     if($conn_ok){
         $query = "SELECT * FROM Person WHERE role >= 2";
         $result = $connection_manager->executeQuery($query);
+        $connection_manager->closeDBConnection();
         return $result;
     } else {
         header("Location: error.php");
     }
 }
 
+
+function getProfileImageOf($username){
+    $connection_manager = new DBAccess();
+    $conn_ok = $connection_manager->openDBConnection();
+    if($conn_ok){
+        $query = "SELECT profile_img FROM Person WHERE username='$username'";
+        $result = $connection_manager->executeQuery($query);
+        $connection_manager->closeDBConnection();
+        if(!$result)
+            return false;
+        return $result[0]['profile_img'];
+    }
+}
 ?>

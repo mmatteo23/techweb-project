@@ -22,10 +22,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $password       = $_POST['password'];
         $rep_password   = $_POST['repeated_password'];
         $profile_img    = NULL;
+        $previousImage = getProfileImageOf($_SESSION['username']);
         // ['name in form']['imported file name']
-    
-        $errors .= checkImageToUpload($profile_img, "images/user_profiles/", "profile_img", $_SESSION['username'], "Default.png");
+        if(!$previousImage || $previousImage=="")
+            $previousImage="default.png";
         
+        $errors .= checkImageToUpload($profile_img, "images/user_profiles/", "profile_img", $_SESSION['username'], $previousImage);
         if($errors==""){
             $result = updateUser($_SESSION['username'], $firstname, $lastname, $email, $password, $rep_password, $profile_img);
             if($result === TRUE){
