@@ -117,9 +117,9 @@ function updateUser(string $username, string $firstname, string $lastname, strin
             }
             $updateQuery .= " WHERE username='$username'";
 
-            $queryResult = $connection_manager->executeQuery($updateQuery, 'update');
+            $queryResult = $connection_manager->executeQuery($updateQuery);
             $connection_manager->closeDBConnection();
-            if(!$queryResults){
+            if(!$queryResult){
                 return "<li>Error during user update</li>";
             }
             return true;

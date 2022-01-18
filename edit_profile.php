@@ -24,13 +24,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $profile_img    = NULL;
         // ['name in form']['imported file name']
     
+        $errors .= checkImageToUpload($profile_img, "images/user_profiles/", "profile_img", $_SESSION['username'], "Default.png");
         
         if($errors==""){
             $result = updateUser($_SESSION['username'], $firstname, $lastname, $email, $password, $rep_password, $profile_img);
             if($result === TRUE){
-                $errors .= checkImageToUpload($profile_img, "images/user_profiles/", "profile_img", $_SESSION['username'], "Default.png");
-                if(!$errors)
-                    header("Location: profile.php");
+                header("Location: profile.php");
             }
             $errors .= $result;
         }

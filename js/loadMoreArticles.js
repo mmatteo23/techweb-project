@@ -4,7 +4,7 @@ function loadMore(lastArticleLoaded) {
     data.append("lastArticle", lastArticleLoaded);
     
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../php/loadMoreArticles.php");
+    xhr.open("POST", "php/loadMoreArticles.php");
     xhr.onload = function (){
         var html_to_append = this.response;
         document.getElementById("latest-articles").innerHTML=(document.getElementById("latest-articles").innerHTML).split('<button class="action-button" ')[0]+html_to_append;
