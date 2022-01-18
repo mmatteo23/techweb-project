@@ -16,14 +16,37 @@
     
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script defer src="js/index.js"></script>
+    <script defer src="js/signupValidator.js"></script>
     <script defer src="js/search.js"></script>
 </head>
 <body>
 	<pageHeader/>
+
+    <nav class="sticky-nav">
+        <ul class="navbar"  id="navbar">
+            <li id="navbar-logo">
+                <a tabindex=2 class="logo" href="index.php">
+                    <img class="text-logo" src="images/Penta_logo_open.png" alt="Penta News - the eSports network logo">
+                    <img aria-hidden="true" class="rotating-logo" src="images/small_logo.png" alt="rotating part of logo">
+                </a>
+            </li>
+            <li><a tabindex=3 id="home-link" href="index.php"><span aria-hidden="true" class="material-icons md-36">home</span><span>Home</span></a></li>
+            <li><a tabindex=4 id="games-link" href="games.php"><span aria-hidden="true" class="material-icons md-36">games</span><span>All Games</span></a></li>
+            <li><a tabindex=5 id="favorites-link" href="favorites.php"><span aria-hidden="true" class="material-icons md-36">grade</span><span>Favorites</span></a></li>
+            <li><button onclick="toggleSearchBar();" aria-label="Toggle search bar" tabindex=6 id="search"><span aria-hidden="true" class="material-icons md-36">search</span><span aria-hidden="true">Search</span></button></li>
+            <profile-image/>
+        
+        </ul>
+        <div id="src-bar-wrapper">
+            <form class="search-form" action="search.php" method="get">
+                <button aria-label="Search" tabindex=9 type="submit"><span aria-hidden="true" class="material-icons md-36">search</span></button>
+                <input tabindex=8 id="src-bar" name='src_text' type="search" placeholder="Write something to search for an article">
+            </form>
+        </div>
+    </nav>
     
 	<nav id="breadcrumb">
-		<p><a href="index.php">Home</a> &gt; Sign-up</p>
+		<p><a href="index.php">Home</a> &gt; <a href="login.php">Login</a> &gt; Sign-up</p>
 	</nav>
 
 
@@ -34,35 +57,35 @@
             <form action="signup.php" method="POST" id="form">
                 <div class="input-wrapper">
                     <label for="username">username</label>
-                    <input placeholder="username" type="text" id="username" name="username">
+                    <input onblur="validateUsername()" placeholder="username" type="text" id="username" name="username">
                     <p class='error'></p>
                 </div>
                 <div class="input-wrapper">
                     <label for="firstname">firstname</label>
-                    <input placeholder="Jack" type="text" id="firstname" name="firstname">
+                    <input onblur="validateFirstName()" placeholder="Jack" type="text" id="firstname" name="firstname">
                     <p class='error'></p>
                 </div>
                 <div class="input-wrapper">
                     <label for="lastname">lastname</label>
-                    <input placeholder="Red" type="text" id="lastname" name="lastname">
+                    <input onblur="validateLastName()" placeholder="Red" type="text" id="lastname" name="lastname">
                     <p class='error'></p>
                 </div>                
                 <div class="input-wrapper">
                     <label for="email">email</label>
-                    <input placeholder="jackred@email.com" type="text" id="email" name="email">
+                    <input onblur="validateEmail()" placeholder="jackred@email.com" type="text" id="email" name="email">
                     <p class='error'></p>
                 </div>
                 <div class="input-wrapper">
                     <label for="password">password</label>
-                    <input type="password" name="password" id="password">
+                    <input onblur="validatePassword()" type="password" name="password" id="password">
                     <p class='error'></p>
                 </div>
                 <div class="input-wrapper">
                     <label for="repeated_password">repeat password</label>
-                    <input type="password" name="repeated_password" id="repeated_password">
+                    <input onblur="validatePassword2()" type="password" name="repeated_password" id="repeated_password">
                     <p class='error'></p>
                 </div>
-                <input type="submit" class="login-signup-btn" value="Signup">
+                <input type="submit" name="signup" class="login-signup-btn" value="Signup" id="signup">
             </form>          
         </div>
     </main>

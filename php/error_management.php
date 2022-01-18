@@ -17,7 +17,7 @@
 
     function createEmptyDBErrorHTML($table){
         return "
-        <section class='error-display'>
+        <section class='error-display-text'>
                 <h1 class='error-title'>The page seems to be empty</h1>
                 <h2>Looks like there are no ".$table." on our site.</h2>
                 <p>Things you can do about it: </p>
@@ -31,7 +31,7 @@
 
     function accessNotAllowed($not){
         return "
-        <section class='error-display'>
+        <section class='error-display-text'>
             <h1 class='error-title'>You're not a ".$not."!</h1>
             <h2>You don't have access to this part of the website</h2>
             <a href='index.php'>Return to home</a>
@@ -40,7 +40,7 @@
 
     function genericErrorHTML($title, $subtitle, $thingToDo=null){
         $returnHTML = "
-        <section class='error-display'>
+        <section class='error-display-text'>
                 <h1 class='error-title'>".$title."</h1>
                 <p>".$subtitle."</p>";
         if($thingToDo&&count($thingToDo)>0){

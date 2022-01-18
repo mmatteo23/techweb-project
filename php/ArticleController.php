@@ -45,7 +45,7 @@ function getAuthorArticles(string $author, array &$tags){
         return $articles;
     } else {
         $connection_manager->closeDBConnection();
-        return buildError("Internal server error");
+        //return buildError("Internal server error");
     }
 
     return false;

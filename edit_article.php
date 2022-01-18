@@ -11,7 +11,7 @@ $articles = getAuthorArticles($_SESSION['username'], $tags);
 
 $user_output = '';
 
-if($articles){ 
+if($articles !== FALSE){ 
     if(count($articles) > 0){
         $user_output .= '<h1>Your Articles</h1><div><p>Select one of your articles to get to the edit page where you can update or delete the entire article</p>';
         $x=0;

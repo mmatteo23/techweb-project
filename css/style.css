@@ -1425,6 +1425,14 @@ ERRORs
   align-items: center;
 }
 
+.error-display-text {
+  margin: 0 10%;
+}
+
+.error-display-text li {
+  margin-left: 2.5em;
+}
+
 .error-text{
   width:100%;
 }

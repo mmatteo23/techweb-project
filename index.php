@@ -22,7 +22,7 @@ if($connection){
     $nArticles=10;
 
     $articles = $db->getTopArticles($nArticles);
-    if($articles=="ErroreDB"){ 
+    if(!isset($articles) || $articles == "ErroreDB"){ 
         $db->closeDBConnection();
         $user_output = createEmptyDBErrorHTML("articles");
     }

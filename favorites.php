@@ -3,6 +3,10 @@
 require_once('php/db.php');
 require_once('php/error_management.php');
 
+$htmlPage = file_get_contents("html/favorites.html");
+//header footer and dynamic navbar all at once (^^^ sostituisce il commento qua sopra ^^^)
+require_once('php/full_sec_loader.php');
+
 session_start();
 use DB\DBAccess;
 
@@ -50,19 +54,18 @@ if(isset($_SESSION['username'])){
         }
     } else {
         $user_output = createDBErrorHTML();
-    }
-    $htmlPage = file_get_contents("html/favorites.html");
-    //header footer and dynamic navbar all at once (^^^ sostituisce il commento qua sopra ^^^)
-    require_once('php/full_sec_loader.php');
-   
+    }   
 
     //str_replace finale col conenuto specifico della pagina
-    echo str_replace("<favArticles/>", $user_output, $htmlPage);
+    $htmlPage = str_replace("<favArticles/>", $user_output, $htmlPage);
 
 }else{
-    $errorMessage = "<p>This page is only accessible while being logged in! Click <a href='login.php'>here</a> to log in</p>";
-    require_once('error.php');
-    $htmlPage = str_replace('<error/>', $errorMessage, $htmlPage);
+    $errorMessage = genericErrorHTML(
+        "Whoooops! Seems like you are not logged in!", 
+        "<p>This page is only accessible while being logged in! Click <a href='login.php'>here</a> to log in</p>"
+    );
+    $htmlPage = str_replace('<favArticles/>', $errorMessage, $htmlPage);
 }
 
+echo $htmlPage;
 ?>

@@ -21,7 +21,7 @@ $htmlPage = file_get_contents('html/login.html');
 // $htmlPage = str_replace('<pageFooter/>', $pageFooter, $htmlPage);
 
 //header footer and dynamic navbar all at once (^^^ sostituisce il commento qua sopra ^^^)
-require_once('php/full_sec_loader.php');
+//require_once('php/full_sec_loader.php');
 
 $errors = "";
 

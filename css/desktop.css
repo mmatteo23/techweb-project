@@ -234,6 +234,10 @@
       right: 9%;
       animation: rotating-logo-animation 25s linear forwards normal infinite 0s;
     }
+
+    .navbar p.nav-active-link{
+
+    }
   
     /**********************************
     *       GAMES CLASSES 

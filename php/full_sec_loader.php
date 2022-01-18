@@ -21,8 +21,8 @@ $pageHeader = file_get_contents("html/components/header.html");
 $pageFooter = file_get_contents("html/components/footer.html");
 
 // replace the placeholders
-$pageHeader = str_replace('<profile-image/>', $profile_img, $pageHeader);
 $htmlPage =  str_replace('<pageHeader/>', $pageHeader, $htmlPage);
+$htmlPage = str_replace('<profile-image/>', $profile_img, $htmlPage);
 $htmlPage = str_replace('<pageFooter/>', $pageFooter, $htmlPage);
 
 ?>
