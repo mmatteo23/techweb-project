@@ -23,6 +23,9 @@
 //     return false;
 // });
 
+
+const selectBox = document.getElementById("user");
+
 function privileges(role){
     var userList= document.getElementById("user");
     var selectedUser = user.options[user.selectedIndex];
@@ -42,5 +45,9 @@ function privileges(role){
     };
     xhr.send(data);
     
+    if(selectBox.innerHTML==''){
+        
+    }
+
     return false;
 };

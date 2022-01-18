@@ -28,7 +28,7 @@ $default_article_img = '';
 $destination = "add_game.php";
 $header = "<h1>Add a game</h1>";
 $breadcrumb = "<a href='profile.php'>Private Area</a> &gt; Add game</p>";
-$button_name = '<input id="submit-btn" class="action-button" type="submit" value="Add game">';
+$button_name = '<input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Add game">';
 $title_name = '<title>Add game - Penta News</title>';
 $discard_link = '<a href="profile.php" id="undoBtn"';
 
@@ -50,7 +50,7 @@ if(isset($_GET['id'])){
         $destination = "add_game.php?id=".$game_id;
         $header = "<h1>Edit game</h1>";
         $breadcrumb = "<a href='profile.php'>Your Profile</a> &gt; <a href='edit_game.php'>Choose a game to edit</a> &gt; Edit game</p>";
-        $button_name = '<input id="submit-btn" class="action-button" type="submit" value="Save changes">';
+        $button_name = '<input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Save changes">';
         $title_name = '<title>Edit game - Penta News</title>';
         $discard_link = '<a href="edit_game.php" id="undoBtn"';
     }
@@ -66,11 +66,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $developer = $_POST['developer'];
 
     $genre_errors = "";
+    $errorsImage = "";
+
+    $genre_1 = $genre_2 = 0;
     
     $genre_0 = intval($_POST['genre-0']);
-    $genre_1 = intval($_POST['genre-1']);
-    $genre_2 = intval($_POST['genre-2']);
-    if ($genre_0 == $genre_1 || $genre_0 == $genre_2 || $genre_1 == $genre_2) {
+    if(isset($_POST['genre-1']))
+        $genre_1 = intval($_POST['genre-1']);
+    if(isset($_POST['genre-2']))
+        $genre_2 = intval($_POST['genre-2']);
+    if (($genre_0 == $genre_1 || $genre_0 == $genre_2 || $genre_1 == $genre_2)) {
         $genre_errors = "Genres must be different each other.";
     } else {
         $genre_ids = array();
@@ -86,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $userRole = $userData['role'];
 
     $result = 0;
-
+    $game_id = 0;
     if ($userRole == 1) {
         // se è un edit --> vede se modificare le immagini e fa l'update
         if (isset($_GET['id'])) {
@@ -179,7 +184,7 @@ $htmlPage = str_replace('#Developer#', $developer, $htmlPage);
 $htmlPage = str_replace("add_game.php", $destination, $htmlPage);
 $htmlPage = str_replace("<h1>Add a game</h1>", $header, $htmlPage);
 $htmlPage = str_replace('<a href="profile.php">Private Area</a> &gt; Add game', $breadcrumb, $htmlPage);
-$htmlPage = str_replace('<input id="submit-btn" class="action-button" type="submit" value="Add game">', $button_name, $htmlPage);
+$htmlPage = str_replace('<input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Add game">', $button_name, $htmlPage);
 $htmlPage = str_replace('<title>Add game - Penta News</title>', $title_name, $htmlPage);
 $htmlPage = str_replace('<a href="profile.php" id="undoBtn"', $discard_link, $htmlPage);
 

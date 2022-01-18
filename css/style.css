@@ -93,7 +93,7 @@ a:hover,
 */
 
 
-.skip-to-content{
+a.skip-to-content{
   position: absolute;
   z-index: 300;
   left: 0;
@@ -104,13 +104,14 @@ a:hover,
   transition: transform .2s ease-out 
 }
 
-.skip-to-content:visited,
-.skip-to-content:link{
+a.skip-to-content:visited,
+a.skip-to-content:link{
   color: white;
 }
 
-.skip-to-content:focus{
+a.skip-to-content:focus{
   transform: translateY(0);
+  background-color: var(--fucsia-accent);
 }
 
 #content{
@@ -407,8 +408,7 @@ footer .credits{
   color: #1b1b1b;
 }
 
-.slides .card-article-link:link h4,
-.slides .card-article-link:link li{
+.slides .card-article-link:link h4{
   color: black;
 }
 
@@ -1306,6 +1306,7 @@ h1{
 .card-content .card-title .card-title-link:hover,
 .card-content .card-title .card-title-link:focus{
   color: var(--pink-accent);
+  background-color: transparent;
   outline: none;
 }
 
