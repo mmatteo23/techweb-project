@@ -139,7 +139,7 @@ $htmlPage = str_replace('#SubitleValue#', $subtitle, $htmlPage);
 $htmlPage = str_replace('#ReadTimeValue#', $read_time, $htmlPage);
 $htmlPage = str_replace('#TagValues#', $tagString, $htmlPage);
 $htmlPage = str_replace('#AltImage#', $alt_image, $htmlPage);
-$htmlPage = str_replace('<p>This is the initial editor content.</p>', $text, $htmlPage);
+$htmlPage = str_replace('<p>This is the initial article content.</p>', $text, $htmlPage);
 $htmlPage = str_replace("write_article.php", $destination, $htmlPage);
 $htmlPage = str_replace("<h1>Write an article</h1>", $header, $htmlPage);
 $htmlPage = str_replace('<a href="profile.php">Private Area</a> &gt; Write article</p>', $breadcrumb, $htmlPage);

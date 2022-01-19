@@ -40,6 +40,10 @@
       border-radius: 0 0 .65em 0;
     }
   
+/*
+======== NAVBAR DESKTOP ========
+*/
+
     .navbar #navbar-logo{
       display: block;
     }
@@ -242,9 +246,17 @@
       background-color: transparent;
       transform: scale(1.05);
     }
+    .navbar li > .logo.nav-active-link:hover,
+    .navbar li > .logo.nav-active-link:focus{
+      background-color: transparent;
+      transform: scale(1);
+    }
     
     .navbar li > .logo:focus{
       outline: 2px solid var(--fucsia-accent);
+    }
+    .navbar li > .logo.nav-active-link:focus{
+      outline: 2px solid transparent;
     }
     
     .navbar li > .logo::after,

@@ -15,7 +15,8 @@ $tagsForKeywords = "";
 
 if($connection){
     $idArticle = $_GET['id']; ///codice per leggere get
-    $username = $_SESSION['username'];
+    if(isset($_SESSION['username']))
+        $username = $_SESSION['username'];
 
     $articleData = $db->getArticleData($idArticle);
     if($articleData != "WrongQuery"){   

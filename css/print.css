@@ -18,6 +18,10 @@
     border: 1px solid #000;
     font-size: 1.25em;
     box-shadow: none;
+    color: black;
+  }
+  #content li{
+    color: black;
   }
 
   #content{
@@ -354,8 +358,14 @@
     border: 3px solid black;
   }
 
-
-  
+  /**********************************
+  *       FORM CLASSES 
+  *********************************/
+  input{
+    outline: 2px solid black;
+    border: 2px solid black;
+    color: red !important;
+  }
 }
 
 

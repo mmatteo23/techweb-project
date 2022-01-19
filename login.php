@@ -14,7 +14,6 @@ $htmlPage = file_get_contents('html/login.html');
 $profile_img = '<li><p tabindex=-1 id="profile-link" href="login.php" class="nav-active-link"><span aria-hidden="true" class="material-icons md-36">person</span><span>Profile</span></p></li>';
 // SHOW USER INFO
 if(isset($_SESSION['username'])){
-    $userData = getUser($_SESSION['username']);
     $user = getUser($_SESSION['username']);
     if($user)
         $profile_img = '<li><p tabindex=-1 id="profile-link" href="profile.php" class="profile-img nav-active-link"><span aria-hidden="true" class="material-icons md-36">person</span><span><img src="images/user_profiles/'. ($user['profile_img']?$user['profile_img']:'default.png') .'" alt="Profile"></span></p></li>';
