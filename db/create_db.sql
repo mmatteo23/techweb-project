@@ -1,7 +1,6 @@
 /* ---------------------------- */
 /* --------- BUILD DB --------- */
 /* ---------------------------- */
-
 DROP TABLE IF EXISTS article_games;
 DROP TABLE IF EXISTS saved_articles;
 DROP TABLE IF EXISTS liked_articles;
