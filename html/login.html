@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script defer src="js/search.js"></script>
+    <script defer src="js/loginValidator.js"></script>
 </head>
 <body>
     <a tabindex=1 href="#content" class="skip-to-content screen-reader-friendly">Press Enter to skip to content</a>
@@ -60,14 +61,16 @@
     <main id="content" class="form-content">
         <div class="form-wrapper">
             <h1>LOGIN</h1>
-            <form action="login.php" method="POST">
+            <form action="login.php" method="POST" id="formLogin">
                 <div class="input-wrapper">
                     <label for="username">username</label>
-                    <input placeholder="your username" type="text" name="username" id="username">
+                    <input onblur="validateUsername()" placeholder="your username" type="text" name="username" id="username">
+                    <p class='error'></p>
                 </div>
                 <div class="input-wrapper">
                     <label for="password">password</label>
-                    <input type="password" name="password" id="password">
+                    <input onblur="validatePassword()" type="password" name="password" id="password">
+                    <p class='error'></p>
                 </div>
                 <formErrors/>
                 <input type="submit" class="login-signup-btn" value="Login" name="login">
