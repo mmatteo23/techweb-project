@@ -5,9 +5,7 @@
 DROP TABLE IF EXISTS article_games;
 DROP TABLE IF EXISTS saved_articles;
 DROP TABLE IF EXISTS liked_articles;
-DROP TABLE IF EXISTS follow;
 DROP TABLE IF EXISTS game_genre;
-DROP TABLE IF EXISTS favorite_games;
 DROP TABLE IF EXISTS article_tags;
 DROP TABLE IF EXISTS Article;
 DROP TABLE IF EXISTS Person;
@@ -34,14 +32,6 @@ CREATE TABLE Person (
     profile_img       varchar(255),
     PRIMARY KEY (username),
     FOREIGN KEY (role) REFERENCES Role(id) ON DELETE CASCADE
-);
-
-CREATE TABLE follow (
-    followed      VARCHAR(100),
-    follower      VARCHAR(100),
-    PRIMARY KEY (followed, follower),
-    FOREIGN KEY (followed) REFERENCES Person(username) ON DELETE CASCADE,
-    FOREIGN KEY (follower) REFERENCES Person(username) ON DELETE CASCADE
 );
 
 CREATE TABLE Game (
@@ -108,12 +98,4 @@ CREATE TABLE article_tags (
   FOREIGN KEY (tag_id) REFERENCES Tag(id) ON DELETE CASCADE,
   FOREIGN KEY (article_id) REFERENCES Article(id) ON DELETE CASCADE,
   PRIMARY KEY (tag_id, article_id)
-);
-
-CREATE TABLE favorite_games (
-  game_id INT,
-  username VARCHAR(100),
-  FOREIGN KEY (game_id) REFERENCES Game(id) ON DELETE CASCADE,
-  FOREIGN KEY (username) REFERENCES Person(username) ON DELETE CASCADE,
-  PRIMARY KEY (game_id, username)
 );
