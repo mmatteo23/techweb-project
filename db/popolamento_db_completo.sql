@@ -101,6 +101,13 @@ VALUES(
     '2020:03:10',
     'Activision',
     'warzone.jpg'
+),
+(
+    'Pok&#233;mon Unite',
+    'Pok&#233;mon Unite is a free-to-play videogame published by Timi Studio Group for Nintendo Swtich Console first.',
+    '2021:07:21',
+    'TiMi Studio Group',
+    'pokemon_unite.jpg'
 );
 
 INSERT INTO Article (id, title, subtitle, text, publication_date, cover_img, alt_cover_img, read_time, author, game_id) VALUES 
@@ -111,7 +118,7 @@ INSERT INTO Article (id, title, subtitle, text, publication_date, cover_img, alt
     "<p>At certain times since release, Fortnite has had a pretty impressive player base. A lot of people wonder about the exact size of the Fortnite player count. It seems like the game is incredibly popular, although thereâ€™s often a feeling that it is past its peak.</p><p>Most game developers rarely release this kind of information. There is an exception to this though, every now again Epic release some very specific data on the Fortnite player base. This is typically when the player base or active players reaches some kind of all-time high. We can figure out a bit of a bigger picture of the player count from this data and some other sources. While it is sometimes decreasing, the Fortnite player count in 2021 is still impressive.</p><p><br data-cke-filler=\"true\"></p><h3>HOW MANY PEOPLE PLAY FORTNITE?</h3><p>Epic Games doesnâ€™t give entirely frequent or accurate pictures of how many people play Fortnite. We do have some metrics and measurements though for how many active players Fortnite has.</p><p>The first is the total amount of active accounts. We know that Fortnite had over 125 million players within a year of its release. It also seems that the total number of registered numbers is up to 350 million registered users. That is around 4% of the worldâ€™s population. Something about that fact probably doesnâ€™t seem right though, does it? Thatâ€™s because registered users are a pretty bad measure of the Fortnite player count.</p><p>The total registered users is just the total number of accounts created. This is by no means one per person. Lots of people have access to more than one Fortnite account, created accidentally or sometimes on purpose. On top of, if youâ€™re wondering is Fortnite loosing players then this is a factor too. Registered accounts arenâ€™t necessarily in use.</p><p>Even among big figures in Fortnite like the best Fortnite streamers or the top Fortnite pro players, have operated quite a few accounts under their own name. It might be against the rules, but that rule-breaking can be pretty brazenly flouted. Some players even start up a new account frequently to have a quick match with a lobby full of bots to practice. So registered users arenâ€™t a particularly helpful measure of how many people are actually playing.</p><p>In terms of how many are actually active and playing, there were 12.5 million playing concurrently in 2019. Fortniteâ€™s best ever month for player count was in 2018, when 78 million were actively playing in August. Additionally, back in December 2020, over 15.3 million players united to beat Galactus in a single-day event.</p>",
     "2021-05-14",
     "fortnite-player-count-number-of-players.jpg",
-    "article image cover showing a lot of fortnite characters",
+    "article image cover showArticleing a lot of fortnite characters",
     10,
     "danilostojkovic",
     9
@@ -199,6 +206,30 @@ INSERT INTO Article (id, title, subtitle, text, publication_date, cover_img, alt
     8,
     "matteocasonato",
     7
+  ),
+  (
+    10,
+    "Players can play as any available Pokémon in Pokémon UNITE until Jan. 3",
+    "The trial period will be limited to Standard and Quick Battles.",
+    "<p>TiMi Studio has been releasing a lot of content in small bursts to celebrate the holidays and reward players before the New Year in Pokémon UNITE, and now there is an added bonus going live. From now until Jan. 3, players will be able to play as any Pokémon currently playable in the game, regardless of if they have acquired a Unite License for that Pokémon.</p><p>Players will be limited to using trial Pokémon in Standard and Quick Battles, meaning that you must own the Unite License for a Pokémon to use it during Ranked matchmaking.</p><p>Typically, players will need to have either unlocked or purchased a Pokémon’s Unite License in order to have access to them during a match. This is usually done by completing side missions, participating in limited-time events, or just outright buying the license with Aeos Coins or Aeos Gems.</p><p>TiMi also has several ways for players to try out a Pokémon before they decide to unlock them. The most common method is the free-to-try rotations, which change every Sunday and gives all players access to a set of four different Pokémon for that week.</p><p>Additionally, there are limited trial licenses that will unlock a specific Pokémon for a set number of days, typically ranging from one to seven days. These are obtained through completing side or event missions. This all-trial will run from now until Jan. 3 at 5:59pm CT and is available for the entire playable roster.</p>",
+    "2021-12-31",
+    "pokemon-unite-unlock-all-characters.jpg",
+    "article image cover showing a list of almost all pokèmon playable",
+    9,
+    "matteomidena",
+    13
+  ),
+  (
+    9,
+    "All free and premium Battle Pass rewards for Pokémon UNITE: Agent of Disaster",
+    "Time to put on a dark show.",
+    "<p>Pok&#233;mon UNITE’s fourth Battle Pass is well underway, adding in new items, rewards, and Holowear themed around concerts, music, and putting on a show.</p><p>Agent of Disaster will run until Jan. 30 at 6pm CT, giving players plenty of time to complete the daily, weekly, and seasonal challenges in order to level the battle pass up and earn rewards.</p><p>For this season, players can obtain Pikachu – Concert Style and Absol – Dark Suit Style Holowear, along with items like the Dark Suit avatar set and a new profile expression. Just like with UNITE’s previous passes, the free-to-play MOBA offers options for players who want to spend money or just play casually. The Premium Battle Pass option is the only way to unlock the exclusive Holowear and half of the other available rewards.</p><p>And if you can reach Rank 60 in the battle pass, the Prize Box is available and will give rewards to players who surpass the maximum level by letting them roll for Aeos Tickets, Holowear Tickets, or Fashion Tickets. Just remember, you only have until Jan. 30 to earn all of the Agent of Disaster rewards.</p><p><h3>Sun, Sun, Sunshine rewards</h3><ul><li>Rank 1: Pikachu – Concert Style</li><li>Rank 2: 150 Aeos Tickets</li><li>Rank 3:Expression</li><li>Rank 4: 150 Aeos Tickets</li><li>Rank 5: 30 Item Enhancers</li><li>Rank 6: 150 Aeos Tickets</li></ul></p>",
+    "2022-01-05",
+    "pokemon-unite-premium-battle-pass.jpg",
+    "article image cover showing two pokemons with unlocked premium clothes",
+    12,
+    "matteomidena",
+    13
   );
 
 INSERT INTO Genre (name)
