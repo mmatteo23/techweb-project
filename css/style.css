@@ -1430,8 +1430,6 @@ ERRORs
 .error-display{
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
 }
 
 .error-display-text {
