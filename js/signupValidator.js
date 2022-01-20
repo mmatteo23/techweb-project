@@ -9,7 +9,7 @@ const password2 = document.getElementById('repeated_password');
 form.addEventListener('submit', e => {
     e.preventDefault();
 
-    validForm = validateInputs();
+     validForm = validateInputs();
     
     if(validForm)
         form.submit()
@@ -45,7 +45,7 @@ const isValidName = name => {
 
 function validateUsername(){
     const usernameValue = username.value.trim();    // trim remove white space
-    
+    var validForm = true;    
     if(usernameValue === '') {
         setError(username, 'Username is required')
         validForm = false
@@ -58,7 +58,7 @@ function validateUsername(){
 
 function validateFirstName(){
     const firstnameValue = firstname.value.trim();    // trim remove white space
-    
+    var validForm = true;    
     if(firstnameValue === '') {
         setError(firstname, 'Firstname is required')
         validForm = false
@@ -74,7 +74,7 @@ function validateFirstName(){
 
 function validateLastName(){
     const lastnameValue = lastname.value;
-
+    var validForm = true;
     if(lastnameValue === '') {
         setError(lastname, 'Lastname is required')
         validForm = false
@@ -90,7 +90,7 @@ function validateLastName(){
 
 function validateEmail(){
     const emailValue = email.value;
-
+    var validForm = true;
     if(emailValue === '') {
         setError(email, 'Email is required')
         validForm = false
@@ -106,7 +106,8 @@ function validateEmail(){
 
 function validatePassword(){
     const passwordValue = password.value.trim();
-
+    const password2Value = password2.value.trim();
+    var validForm = true;
     if(passwordValue === '') {
         setError(password, 'Password is required')
         validForm = false
@@ -116,13 +117,6 @@ function validatePassword(){
     } else {
         setSuccess(password);
     }
-
-    return validForm
-}
-
-function validatePassword2(){
-    const password2Value = password2.value.trim();
-
     if(password2Value === '') {
         setError(password2, 'Please confirm your password')
         validForm = false
@@ -136,6 +130,11 @@ function validatePassword2(){
     return validForm
 }
 
+// function validatePassword2(){    
+//     var validForm = true;    
+//     return validForm
+// }
+
 function validateInputs () {    
 
     var validForm = true
@@ -145,7 +144,7 @@ function validateInputs () {
     validForm = (validForm & validateLastName())
     validForm = (validForm & validateEmail())
     validForm = (validForm & validatePassword())
-    validForm = (validForm & validatePassword2())
+    // validForm = (validForm & validatePassword2())
 
     return validForm
 }

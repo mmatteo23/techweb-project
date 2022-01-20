@@ -62,7 +62,7 @@ if(isset($_SESSION['username'])){
 }else{
     $errorMessage = genericErrorHTML(
         "Whoooops! Seems like you are not logged in!", 
-        "<p>This page is only accessible while being logged in! Click <a href='login.php'>here</a> to log in</p>"
+        "This page is only accessible while being logged in! Click <a href='login.php'>here</a> to log in"
     );
     $htmlPage = str_replace('<favArticles/>', $errorMessage, $htmlPage);
 }
