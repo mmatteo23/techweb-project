@@ -5,6 +5,7 @@ require_once("php/UserController.php");
 // variables
 $content = "";  // html code to send to the page
 
+$profile_img = '<li><p tabindex=-1 id="profile-link" href="login.php" class="nav-active-link"><span aria-hidden="true" class="material-icons md-36">person</span><span>Profile</span></p></li>';
 $userData = getUser($_SESSION['username']);
 if(isset($_SESSION['username'])){
     $user = getUser($_SESSION['username']);
@@ -40,27 +41,28 @@ if($userData){
 $htmlPage = file_get_contents("html/profile.html");
 
 //header footer and dynamic navbar all at once (^^^ sostituisce il commento qua sopra ^^^)
-
-if ($userData['role'] == 1) {
-    $adminButton = '<h3 class="admin-link-info">Admin options:</h3>    
-    <div class="action-buttons">
-        <a href="write_article.php" class="action-button pink sh-teal">Write article</a>
-        <a href="edit_article.php" class="action-button pink sh-teal">Edit articles</a>
-        <a href="add_game.php" class="action-button pink sh-teal">Add game</a>
-        <a href="edit_game.php" class="action-button pink sh-teal">Edit games</a>            
-        <a href="edit_user.php" class="action-button pink sh-teal">Edit users</a>
-    </div>';
-    $htmlPage = str_replace('<adminButton/>', $adminButton, $htmlPage);
-} else if($userData['role'] == 2){
-    $adminButton = '
-        <h3 class="admin-link-info">Writer options:</h3>
+if(isset$userData['role']){
+    if ($userData['role'] == 1) {
+        $adminButton = '<h3 class="admin-link-info">Admin options:</h3>    
         <div class="action-buttons">
             <a href="write_article.php" class="action-button pink sh-teal">Write article</a>
             <a href="edit_article.php" class="action-button pink sh-teal">Edit articles</a>
+            <a href="add_game.php" class="action-button pink sh-teal">Add game</a>
+            <a href="edit_game.php" class="action-button pink sh-teal">Edit games</a>            
+            <a href="edit_user.php" class="action-button pink sh-teal">Edit users</a>
         </div>';
-    $htmlPage = str_replace('<adminButton/>', $adminButton, $htmlPage);
-} else{
-    $htmlPage = str_replace('<adminButton/>', '', $htmlPage);
+        $htmlPage = str_replace('<adminButton/>', $adminButton, $htmlPage);
+    } else if($userData['role'] == 2){
+        $adminButton = '
+            <h3 class="admin-link-info">Writer options:</h3>
+            <div class="action-buttons">
+                <a href="write_article.php" class="action-button pink sh-teal">Write article</a>
+                <a href="edit_article.php" class="action-button pink sh-teal">Edit articles</a>
+            </div>';
+        $htmlPage = str_replace('<adminButton/>', $adminButton, $htmlPage);
+    } else{
+        $htmlPage = str_replace('<adminButton/>', '', $htmlPage);
+    }
 }
 $htmlPage = str_replace('<profile-image/>', $profile_img, $htmlPage);
 echo str_replace('<userInfo/>', $content, $htmlPage);
