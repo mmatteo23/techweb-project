@@ -8,9 +8,11 @@ require_once("php/utilityFunctions.php");
 $errors = '';
 
 /* controlli sul ruolo dell'utente */
-$username = $_SESSION['username'];
-$userData = getUser($username);
-$userRole = $userData['role'];
+if(isset($_SESSION['username'])){
+    $username = $_SESSION['username'];
+    $userData = getUser($username);
+    $userRole = $userData['role'];
+}
 if(!isset($username) || $username == '' || $userRole > 2){    // the user is not authorized
     header("location: login.php");
 }

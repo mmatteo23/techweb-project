@@ -175,8 +175,8 @@ $htmlPage = str_replace('<selectGenre/>', $selectbox, $htmlPage);
 $htmlPage = str_replace('<formErrors/>', $errors, $htmlPage);
 
 //if he's coming from edit_article
-$htmlPage = str_replace('#Cover#', $game_img, $htmlPage);
-$htmlPage = str_replace('#DefaultArticleImg#', $default_article_img, $htmlPage);
+// $htmlPage = str_replace('<#Cover#>', 'value="'.$game_img.'"', $htmlPage);
+// $htmlPage = str_replace('#DefaultArticleImg#', $default_article_img, $htmlPage);
 $htmlPage = str_replace('#Name#', $name, $htmlPage);
 $htmlPage = str_replace('#Description#', $description, $htmlPage);
 $htmlPage = str_replace('#ReleaseDate#', $releaseDate, $htmlPage);

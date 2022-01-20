@@ -41,7 +41,7 @@ if($userData){
 $htmlPage = file_get_contents("html/profile.html");
 
 //header footer and dynamic navbar all at once (^^^ sostituisce il commento qua sopra ^^^)
-if($userData['role']){
+if(isset($userData['role'])){
     if ($userData['role'] == 1) {
         $adminButton = '<h3 class="admin-link-info">Admin options:</h3>    
         <div class="action-buttons">
