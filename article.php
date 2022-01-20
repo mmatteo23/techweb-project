@@ -52,31 +52,30 @@ if($connection){
         $user_output .= '
                     </header>
                     <img class="cover" src="images/article_covers/'.$articleData['cover_img'].'" id="article-cover" alt="'.$articleData['alt_cover_img'].'">
-                    <article id="article-body" class="cover-linguetta" aria-label="article text">
-                    <p>'.$articleData['text'].'</p>';
+                    <article id="article-body" class="cover-linguetta" aria-label="article text">' .$articleData['text'];
 
         if(isset($username) && $username != ''){
             if ($liked != 1) $liked = 0; // se non è 1 è undefined --> lo correggo in 0
             if ($liked) {
                 $user_output .= '
                 <span id="likeContainer">
-                    <button id="likeBtn" onclick=LikeThisArticle("'.$username.'",'.$idArticle.','.$liked.')><span class="material-icons md-36">favorite</span></button>
+                    <button id="likeBtn" onclick="LikeThisArticle(' . "'" .$username. "'" . ','.$idArticle.','.$liked.')"><span class="material-icons md-36">favorite</span></button>
                 </span>';
             } else {
                 $user_output .= '
                 <span id="likeContainer">
-                    <button id="likeBtn" onclick=LikeThisArticle("'.$username.'",'.$idArticle.','.$liked.')><span class="material-icons md-36">favorite_border</span></button>
+                    <button id="likeBtn" onclick="LikeThisArticle(' . "'" .$username. "'" . ','.$idArticle.','.$liked.')"><span class="material-icons md-36">favorite_border</span></button>
                 </span>';
             }
             if ($saved) {
                 $user_output .= '
                 <span id="saveContainer">
-                    <button id="saveBtn" onclick=SaveThisArticle("'.$username.'",'.$idArticle.','.$saved.')><span class="material-icons md-36">bookmark</span></button>
+                    <button id="saveBtn" onclick="SaveThisArticle(' . "'" .$username. "'" . ','.$idArticle.','.$saved.')"><span class="material-icons md-36">bookmark</span></button>
                 </span>';
             } else {
                 $user_output .= '
                 <span id="saveContainer">
-                    <button id="saveBtn" onclick=SaveThisArticle("'.$username.'",'.$idArticle.','.$saved.')><span class="material-icons md-36">bookmark_border</span></button>
+                    <button id="saveBtn" onclick="SaveThisArticle(' . "'" .$username. "'" . ','.$idArticle.','.$saved.')"><span class="material-icons md-36">bookmark_border</span></button>
                 </span>';
             }       
         }
