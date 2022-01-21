@@ -313,7 +313,7 @@ INSERT INTO Article (id, title, subtitle, text, publication_date, cover_img, alt
   'Minecraft and bees',
   4,
   'danilostojkovic',
-  4
+  10
 ),
 (
   16,

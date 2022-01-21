@@ -1,6 +1,7 @@
 <?php
 
 require_once('php/utilityFunctions.php');
+require_once('php/UserController.php');
 require_once('php/error_management.php');
 use DB\DBAccess;
 
@@ -41,7 +42,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $errors = "";
     if(!$errors){        
         // if the username is valid 
-        if(insertNewUser($username, $firstname, $lastname, $email, $password, $rep_password, $errors, 1)){
+        if(insertNewUser($username, $firstname, $lastname, $email, $password, $rep_password, $errors, 3)){
             $_SESSION['username'] = $username;
             //echo "utente creato";
             header("location: landing_page.php");
