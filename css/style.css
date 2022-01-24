@@ -1105,6 +1105,10 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   transition: none;
 }
 
+.navbar li p.nav-active-link span{
+  color: black;
+}
+
 
 
 .navbar li > span{

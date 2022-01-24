@@ -278,8 +278,8 @@
       animation: rotating-logo-animation 25s linear forwards normal infinite 0s;
     }
 
-    .navbar p.nav-active-link{
-
+    .navbar li p.nav-active-link span{
+      color: white;
     }
   
     /**********************************
