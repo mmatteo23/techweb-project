@@ -19,6 +19,7 @@
     font-size: 1.25em;
     box-shadow: none;
     color: black;
+    font-family: "Times New Roman", serif;
   }
   #content li{
     color: black;
@@ -366,6 +367,15 @@
     border: 2px solid black;
     color: black;
   }
+
+  /**********************************
+  *       PROFILE CLASSES 
+  *********************************/
+
+  #content.profile-content .admin-link-info,
+  #user-info .profile-info #user-specs li#user-username{
+    color: black;
+  } 
 }
 
 
