@@ -131,6 +131,7 @@ function createTag(label) {
   closeIcon.innerHTML = 'close';
   closeIcon.setAttribute('class', 'material-icons');
   closeIcon.setAttribute('data-item', label);
+  closeIcon.setAttribute('aria-label', 'Press to remove tag');
   closeIcon.setAttribute('type', 'button');
   closeIcon.setAttribute('onclick', 'AddAllTheTags()');
   tagItem.appendChild(span);
