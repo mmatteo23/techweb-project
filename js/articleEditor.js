@@ -36,7 +36,7 @@ const minutes = document.getElementById('minutes');
 
 form.addEventListener('submit', e => {
     e.preventDefault();
-    if(document.activeElement.id != 'tags'){
+    if(document.activeElement.id != 'tags' && document.activeElement.id != "tag-confirm-button"){
         
         validForm = validateInputs();
         
@@ -119,7 +119,7 @@ const tagContainer = document.getElementById('article-tags');
 //const inputTag = document.querySelector('.tag-container input');
 const inputTag = document.getElementById('tags');
 
-let tags = [];
+var tags = [];
 
 function createTag(label) {
   const tagItem = document.createElement('li');
@@ -141,12 +141,13 @@ function createTag(label) {
 
 function clearTags() {
   document.querySelectorAll('.tag').forEach(tag => {
+      console.log("rimosso");
     tag.parentElement.removeChild(tag);
   });
 }
 
 function addTags() {
-  clearTags();
+  //clearTags();
   tags.slice().reverse().forEach(tag => {
     tagContainer.prepend(createTag(tag));
   });
@@ -155,23 +156,23 @@ function addTags() {
 function AddAllTheTags(){
     if(document.getElementById("tags").value!=""){
         document.getElementById("tags").value.split(',').forEach(tag => {
-            // check if the user insert a tag two times
+            // check if the user inserted a tag twice
             if(tags.indexOf(tag) == -1){
                 tags.push(tag);
+                tagContainer.prepend(createTag(tag));
             }
         });
-    
-        addTags();
+        //addTags();
         tagContainer.style.display = "flex";
         inputTag.value = '';
     }
 }
 
-inputTag.addEventListener('keyup', (e) => {
+/*inputTag.addEventListener('keyup', (e) => {
     if (e.key === 'Enter') {
         AddAllTheTags();
     }
-});
+});*/
 
 window.onload = function(){ 
     if(tags.length == 0){
@@ -180,7 +181,7 @@ window.onload = function(){
     AddAllTheTags();
 }
 
-document.addEventListener('click', (e) => {
+/*document.addEventListener('click', (e) => {
   //console.log(e.target.tagName);
   if (e.target.tagName === 'BUTTON') {
     const tagLabel = e.target.getAttribute('data-item');
@@ -190,6 +191,6 @@ document.addEventListener('click', (e) => {
     if(tags.length == 0) 
         tagContainer.style.display = "none"; 
   }
-})
+})*/
 
 //inputTag.focus();

@@ -131,6 +131,10 @@ function linkArticleTags(int $articleId, array $tags){
 
         $tagIds = $connection_manager->executeQuery($selectQuery);
 
+        //elimina tutti i tag per poi ripopolare il db con solo quelli selezionati
+        $deleteQuery = "DELETE FROM article_tags WHERE article_id=$articleId";
+        $connection_manager->executeQuery($deleteQuery);
+
         $insertQuery = "INSERT INTO article_tags VALUES";
 
         foreach($tagIds as $tag){

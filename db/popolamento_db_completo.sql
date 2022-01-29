@@ -481,7 +481,20 @@ INSERT INTO liked_articles VALUES
 ('matteocasonato', 6),
 ('matteomidena', 8),
 ('davidemilan', 8),
-('matteocasonato', 8);
+('matteocasonato', 8),
+('danilostojkovic', 12),
+('matteomidena', 12),
+('davidemilan', 12),
+('matteocasonato', 12),
+('matteomidena', 13),
+('davidemilan', 13),
+('matteocasonato', 13),
+('matteomidena', 16),
+('davidemilan', 16),
+('matteocasonato', 16),
+('matteomidena', 15),
+('davidemilan', 15),
+('matteocasonato', 15);
 
 
 INSERT INTO saved_articles VALUES

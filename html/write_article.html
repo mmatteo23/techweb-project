@@ -6,6 +6,7 @@
 	<meta name="keywords" content="write, esports, article, contribute, games, writer, admin"/>
 	<meta name="description" content="Write an article for our website, contribute to the spread of information. Visit our about us page to obtain writing privileges and start editing."/>
 	<meta name="author" content="Davide Milan, Danilo Stojkovic, Matteo Midena, Matteo Casonato"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     
@@ -97,7 +98,10 @@
                 <label for="tags">Tags</label>
                 <ul class="tag-list tag-container" id="article-tags">
                 </ul>
-                <input type="text" name="tags" id="tags" value='#TagValues#'>  
+                <div id="tag-adder-wrapper">
+                    <input type="text" name="tags" id="tags" value='#TagValues#'>  
+                    <button id="tag-confirm-button" class="action-button pink sh-teal" onclick="AddAllTheTags()">Add</button>
+                </div>
                 <p class='error'></p>
             </div>
             <div class="input-wrapper editorBox">
