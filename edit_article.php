@@ -17,17 +17,20 @@ if($articles !== FALSE){
         $x=0;
         $user_output .= "
             <table class='article-list'>
-                <tr>
-                    <th>Article Id</th>
-                    <th>Title</th>
-                    <th>Publication Date</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </tr>";
+                <thead>
+                    <tr>
+                        <th scope='col' abbr='id'>Article Id</th>
+                        <th scope='col'>Title</th>
+                        <th scope='col' abbr='publicated'>Publication Date</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>";
         foreach($articles as $art){
             $user_output .= "
                 <tr id='art-".$art['id']."'>
-                    <td>" . $art['id'] . "</td>
+                    <th scope='row'>".$art['id']."</th>
                     <td>" . $art['title'] . "</td>
                     <td>" . $art['publication_date'] . "</td>
                     <td><a class='action-button pink sh-teal' href='write_article.php?id=" . $art['id'] . "'>Edit</a></td>
@@ -36,7 +39,7 @@ if($articles !== FALSE){
             
         }
 
-        $user_output .= "</table>"; 
+        $user_output .= "</tbody></table>"; 
         
         /*
         foreach($articles as $art){

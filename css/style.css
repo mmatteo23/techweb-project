@@ -676,8 +676,15 @@ a.card-article-link:visited:focus h3{
   border: 0;
 }
 
+
+.article-list thead th{
+  background-color: #2e2d2d;
+}
 .article-list tr:nth-child(even){
-  background-color: #434a52;
+  background-color: #2e2d2d;
+}
+.article-list tr:nth-child(odd){
+  background-color: #414242;
 }
 
 .article-list thead {
