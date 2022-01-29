@@ -4,6 +4,8 @@ const subtitle = document.getElementById('subtitle');
 const minutes = document.getElementById('minutes');
 const articleText = document.getElementById('articleText');
 
+var changes = false;
+
 form.addEventListener('submit', e => {
     e.preventDefault();
 
@@ -11,6 +13,23 @@ form.addEventListener('submit', e => {
     
     if(validForm)
         form.submit()
+});
+
+function updateChanges(){ 
+    changes = true; 
+    console.log(changes);
+}
+
+window.addEventListener('beforeunload', function (e) {
+
+    // Check if any of the input was changed
+    if (changes) {
+        // Cancel the event and
+        // show alert that the unsaved
+        // changes would be lost
+        e.preventDefault();
+        e.returnValue = 'Ehi Gamer! You haven\'t submit your article, if you go away you will lost all changes.';
+    }
 });
 
 const setError = (element, message) => {

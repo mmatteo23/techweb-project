@@ -2,12 +2,10 @@ const formLogin = document.getElementById('formLogin');
 const username = document.getElementById('username');
 const password = document.getElementById('password');
 
-var validForm = true;
-
 formLogin.addEventListener('submit', e => {
     e.preventDefault();
 
-    validForm = validateInputs();
+    var validForm = validateInputs();
     
     if(validForm)
         formLogin.submit()
@@ -36,12 +34,12 @@ function validateUsername(){
     
     if(usernameValue === '') {
         setError(username, 'Username is required')
-        validForm = false
+        return false
     } else {
         setSuccess(username)
     }
 
-    return validForm
+    return true
 }
 
 function validatePassword(){
@@ -49,20 +47,20 @@ function validatePassword(){
 
     if(passwordValue === '') {
         setError(password, 'Password is required')
-        validForm = false
+        return false
     } else {
         setSuccess(password);
     }
 
-    return validForm
+    return true
 }
 
 function validateInputs () {    
 
-    var validForm = true
+    var validInput = true
  
-    validForm = (validForm & validateUsername())
-    validForm = (validForm & validatePassword())
+    validInput = (validInput & validateUsername())
+    validInput = (validInput & validatePassword())
 
-    return validForm
+    return validInput
 }

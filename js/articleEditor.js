@@ -26,6 +26,7 @@ DecoupledEditor
     console.error( error );
 });
 
+window.addEventListener('load', setFormInputs);
 
 const editor = document.getElementById("editor");
 const form = document.getElementById('articleForm');
@@ -33,6 +34,15 @@ const articleText = document.getElementById('articleText');
 const title = document.getElementById('title');
 const subtitle = document.getElementById('subtitle');
 const minutes = document.getElementById('minutes');
+const altImage = document.getElementById('alt-image');
+
+function setFormInputs() {
+    altImage.parentElement.style.display = "none";
+}
+
+function displayAltImageDescription(){
+    altImage.parentElement.style.display = "block";
+}
 
 form.addEventListener('submit', e => {
     e.preventDefault();
