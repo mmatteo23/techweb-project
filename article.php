@@ -59,23 +59,23 @@ if($connection){
             if ($liked) {
                 $user_output .= '
                 <span id="likeContainer">
-                    <button id="likeBtn" aria-label="Press to like this article" onclick="LikeThisArticle(' . "'" .$username. "'" . ','.$idArticle.','.$liked.')"><span class="material-icons md-36">favorite</span></button>
+                    <button id="likeBtn" aria-label="Press to unlike this article" onclick="LikeThisArticle(' . "'" .$username. "'" . ','.$idArticle.','.$liked.')"><span class="material-icons md-36">favorite</span></button>
                 </span>';
             } else {
                 $user_output .= '
                 <span id="likeContainer">
-                    <button id="likeBtn" aria-label="Press to unlike this article" onclick="LikeThisArticle(' . "'" .$username. "'" . ','.$idArticle.','.$liked.')"><span class="material-icons md-36">favorite_border</span></button>
+                    <button id="likeBtn" aria-label="Press to like this article" onclick="LikeThisArticle(' . "'" .$username. "'" . ','.$idArticle.','.$liked.')"><span class="material-icons md-36">favorite_border</span></button>
                 </span>';
             }
             if ($saved) {
                 $user_output .= '
                 <span id="saveContainer">
-                    <button id="saveBtn" aria-label="Press to save this article" onclick="SaveThisArticle(' . "'" .$username. "'" . ','.$idArticle.','.$saved.')"><span class="material-icons md-36">bookmark</span></button>
+                    <button id="saveBtn" aria-label="Press to unsave this article" onclick="SaveThisArticle(' . "'" .$username. "'" . ','.$idArticle.','.$saved.')"><span class="material-icons md-36">bookmark</span></button>
                 </span>';
             } else {
                 $user_output .= '
                 <span id="saveContainer">
-                    <button id="saveBtn" aria-label="Press to unsave this article" onclick="SaveThisArticle(' . "'" .$username. "'" . ','.$idArticle.','.$saved.')"><span class="material-icons md-36">bookmark_border</span></button>
+                    <button id="saveBtn" aria-label="Press to save this article" onclick="SaveThisArticle(' . "'" .$username. "'" . ','.$idArticle.','.$saved.')"><span class="material-icons md-36">bookmark_border</span></button>
                 </span>';
             }       
         }
