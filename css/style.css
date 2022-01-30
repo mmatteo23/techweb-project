@@ -35,7 +35,7 @@
 
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
-.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-36 { font-size: 36px; color: white; }
 .material-icons.md-48 { font-size: 48px; }
 .material-icons.md-60 { font-size: 60px; }
 
@@ -201,7 +201,7 @@ footer{
 	font-size: .9em;
 	border-top: 1px solid #000;
 	padding: 1.5em 1.5em 1em;
-  background-color: #999;
+  background-color: #af87b9;
   box-shadow: inset 0 3px 10px 0px var(--shadow);
   margin-bottom: 6vh;
 }
@@ -370,7 +370,7 @@ footer .credits{
 }
 
 .slides .card-article-info{
-  background-color: #dcdcdc;  
+  background-color: #cbfcff;  
 }
 
 #hot-games{
@@ -389,9 +389,8 @@ footer .credits{
 }
 
 .card-article-info h4{
-  font-size: 0.9em;
+  font-size: 1.1em;
   font-weight: normal;
-
   /*to make it show only 2 text lines and what overflows becomes "..." */
   overflow: hidden;
   text-overflow: ellipsis;
@@ -399,6 +398,17 @@ footer .credits{
   -webkit-line-clamp: 2; /* number of lines to show */
   -webkit-box-orient: vertical;
 }
+
+.card-article-info h3 {
+  font-size: 1.4em;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+}
+
+.card-article-info p {
+  padding-top: 0.2em;
+}
+
 .slides .card-article-info{
   min-height: 11em;  
 }
@@ -478,7 +488,7 @@ input[type='submit']{
   text-decoration: none;
   background: none;
   border: none;
-  color: white;
+  color: black;
   cursor: pointer;
 }
 
@@ -512,6 +522,7 @@ a.card-article-link:visited:focus h3{
   flex-wrap: wrap;
   font-size: 0.7em;
   row-gap: .75em;
+  padding-top: 0.2em;
 }
 
 /* #article-tags-home li{
@@ -721,7 +732,7 @@ a.card-article-link:visited:focus h3{
 }
 
 #content #article-header #article-title{
-  font-size: 2.8em;
+  font-size: 2.3em;
   line-height: 1.1em;
   text-transform: uppercase;
   text-align: initial;
@@ -732,6 +743,7 @@ a.card-article-link:visited:focus h3{
 #article-subtitle{
   font-weight: 300;
   line-height: 1.25em;
+  font-size: 1.3em;
 }
 
 #article-info{
@@ -760,6 +772,15 @@ a.card-article-link:visited:focus h3{
   quindi per mantenere la convenzione interna dei link nei testi di questo colore
   e in più ci sta un sacco*/
 }
+
+#article-info p:nth-child(2) {
+  border-right: none;
+}
+
+#article-info p:nth-child(3) {
+  padding-left: 0;
+}
+
 #article-info p:last-child {
   border: none;
 }
