@@ -426,8 +426,17 @@
         flex-wrap: wrap;
         gap: .75em;
     }
+
     #search-results .card-article-info{
         min-height: 11em;
+    }
+
+    #article-info p:nth-child(2) {
+      border-right: 1px solid white;
+    }
+    
+    #article-info p:nth-child(3) {
+      padding-left: 0.7rem;
     }
 
     #search-results a{
