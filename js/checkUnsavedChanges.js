@@ -5,9 +5,9 @@ form.addEventListener("input", function () {
 });
 
 window.addEventListener('beforeunload', function (e) {
-
+    console.log(e, e.type)
     // Check if any of the input was changed
-    if (changes) {
+    if (changes && document.activeElement.id != 'submit-btn') {
         // Cancel the event and
         // show alert that the unsaved
         // changes would be lost
