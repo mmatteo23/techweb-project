@@ -685,6 +685,8 @@ a.card-article-link:visited:focus h3{
   color: white;
   width: 100%;
   border: 0;
+  display: block;
+  overflow-x: auto;
 }
 
 
@@ -718,6 +720,8 @@ a.card-article-link:visited:focus h3{
   background-color: var(--bg-accent);
   color: black;
 }
+
+
 
 /*
 ===== ARTICLE =====
@@ -1253,7 +1257,7 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
 #content h1{
   color: var(--fucsia-accent);
   text-transform: uppercase;
-  font-size: 2.7em;
+  font-size: 2.3em;
   font-weight: 900;
   line-height: 1.1em;
   text-align: center;
