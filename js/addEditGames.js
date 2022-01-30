@@ -60,7 +60,7 @@ const setSuccess = element => {
     inputWrapper.classList.add('success');
     inputWrapper.classList.remove('error');
 };
-
+/*
 function validateInputs () {    
  
     validForm = (validForm & validateUsername())
@@ -95,6 +95,22 @@ function validateDescription(submit = 0) {
     return validForm
 }
 
+function validateGenres(submit = 0) {
+    if (!genre_1.disabled) {
+        if (genre_0.value == genre_1.value)
+            genre_error = true;
+        if (!genre_2.disabled && !genre_error)
+            if (genre_0.value == genre_2.value || genre_1.value == genre_2.value)
+                    genre_error = true;
+    }
+    if (genre_error) {
+        setError(genre_0, 'Genres must be different')
+        validForm = false
+    } else {
+        setSuccess(genre_0);
+    }
+}
+
 function validateReleaseDate(submit = 0) {
     const releaseDateValue = releaseDate.value;
 
@@ -120,7 +136,7 @@ function validateDeveloper(submit = 0) {
 
     return validForm
 }
-
+*/
 function validateInputs () {
     const coverValue = cover.value;
     const defaultCoverValue = defaultCover.value;

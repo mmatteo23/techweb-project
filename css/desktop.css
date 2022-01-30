@@ -180,13 +180,13 @@
     .navbar #search:hover,
     .navbar #search:focus{
       background-color: var(--fucsia-accent);
-      color: white;
+      color: black;
       outline: none;
     }
   
     .navbar li > *:visited:hover,
     .navbar li > *:visited:focus{
-      color: white;
+      color: black;
     }
   
     .navbar li:last-child .profile-img:hover,
@@ -279,7 +279,7 @@
     }
 
     .navbar li p.nav-active-link span{
-      color: white;
+      color: black;
     }
   
     /**********************************

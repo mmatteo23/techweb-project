@@ -19,6 +19,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script defer src="js/search.js"></script>
     <script defer src="js/addEditGames.js"></script>
+    <script defer src="js/checkUnsavedChanges.js"></script>
 </head>
 <body>
     <pageHeader/>
@@ -76,12 +77,14 @@
             </div>
             <div class="input-wrapper">
                 <label for="name">Game name</label>
-                <input onblur="validateName()" type="text" name="name" id="name" value="#Name#">
+                <!-- <input onblur="validateName()" type="text" name="name" id="name" value="#Name#"> -->
+                <input type="text" name="name" id="name" value="#Name#">
                 <p class="error"></p>
             </div>
             <div class="input-wrapper">
                 <label for="description">Game description</label>
-                <input onblur="validateDescription()" type="text" name="description" id="description" value="#Description#">
+                <!-- <input onblur="validateDescription()" type="text" name="description" id="description" value="#Description#"> -->
+                <input type="text" name="description" id="description" value="#Description#">
                 <p class="error"></p>
             </div>
             <div class="input-wrapper">
@@ -91,12 +94,14 @@
             </div>
             <div class="input-wrapper">
                 <label for="releaseDate">Release date</label>
-                <input onblur="validateReleaseDate()" type="date" name="releaseDate" id="releaseDate" value="#ReleaseDate#">
+                <!-- <input onblur="validateReleaseDate()" type="date" name="releaseDate" id="releaseDate" value="#ReleaseDate#"> -->
+                <input type="date" name="releaseDate" id="releaseDate" value="#ReleaseDate#">
                 <p class="error"></p>
             </div>
             <div class="input-wrapper">
                 <label for="developer">Software House / Developer</label>
-                <input onblur="validateDeveloper()" type="text" name="developer" id="developer" value="#Developer#">
+                <!-- <input onblur="validateDeveloper()" type="text" name="developer" id="developer" value="#Developer#"> -->
+                <input type="text" name="developer" id="developer" value="#Developer#">
                 <p class="error"></p>
             </div>   
             <div class="form-buttons">
