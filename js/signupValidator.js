@@ -6,21 +6,22 @@ const email = document.getElementById('email');
 const password = document.getElementById('password');
 const password2 = document.getElementById('repeated_password');
 
-function checkIfUserExists() {
+function checkIfUserExists(usernameVal) {
     //con AJAX
-    var exists = false;
+    var exists = 0;
     var data = new FormData();
-    data.append("newUserName", username.value.trim());
+    data.append("newUserName", usernameVal);
     
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "php/checkIfUserExists.php");
+    xhr.open("POST", "php/checkIfUserExists.php", false);
     xhr.onload = function() {
         exists = this.response;
+        console.log(exists);
     };
     xhr.send(data);
-    if (exists == 1)
-        return true
-    return false
+    if(exists==1)
+        return true;
+    return false;
 }
 
 form.addEventListener('submit', e => {
@@ -66,10 +67,12 @@ function validateUsername(){
     if(usernameValue === '') {
         setError(username, 'Username is required')
         validForm = false
-    } else if (checkIfUserExists()) {
+    } else if (checkIfUserExists(usernameValue)) {
+        console.log("sono entrato");
         setError(username, 'Username is already taken')
         validForm = false
     } else {
+        console.log("non sono entrato");
         setSuccess(username)
     }
 

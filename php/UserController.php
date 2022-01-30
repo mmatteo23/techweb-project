@@ -18,7 +18,7 @@ function getUser(string $username) {
 
         $queryResults = $connection_manager->executeQuery($query); 
         $connection_manager->closeDBConnection();
-        if(isset($queryResults[0]))
+        if(isset($queryResults[0]['username']))
             return $queryResults[0];
         return false;
     }
