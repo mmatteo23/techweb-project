@@ -1,1 +1,1 @@
-SELECT * FROM Person where username='matteocasonato' LIMIt 1SELECT genre_id from game_genre WHERE game_id=$game_id
+SELECT * FROM Game WHERE id=50

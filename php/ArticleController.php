@@ -6,6 +6,44 @@ require_once('TagController.php');
 require_once('UserController.php');
 use DB\DBAccess;
 
+function getNumberOfArticles() {
+    $connection_manager = new DBAccess();
+    $conn_ok = $connection_manager->openDBConnection();
+
+    if($conn_ok){
+
+        $selectQuery = "SELECT * FROM Article";
+        $queryResults = $connection_manager->executeQuery($selectQuery);
+        $connection_manager->closeDBConnection();
+
+        return count($queryResults);
+    }
+
+    $connection_manager->closeDBConnection();
+
+    return false;
+}
+
+function checkIfUserIsAuthor(int $article_id, string $user) {
+    $connection_manager = new DBAccess();
+    $conn_ok = $connection_manager->openDBConnection();
+
+    if($conn_ok){
+
+        $selectQuery = "SELECT * FROM Article WHERE id=".$article_id;
+        $article = $connection_manager->executeQuery($selectQuery);
+        $connection_manager->closeDBConnection();
+
+        if ($article[0]['author'] == $user)
+            return true;
+
+        return false;
+    }
+
+    $connection_manager->closeDBConnection();
+
+    return false;
+}
 
 function getArticleData(int $id, string $author, array &$tags){
     

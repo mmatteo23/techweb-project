@@ -33,28 +33,97 @@ $breadcrumb = '<a href="profile.php">Private Area</a> &gt; Write article';
 $button_name = '<input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Post article">';
 $title_name = '<title>Write Article - Penta News</title>';
 $discard_link = '<a href="profile.php" id="undoBtn"';
+$formContent = '
+<form method="POST" action="write_article.php" id="articleForm" enctype="multipart/form-data">
+    <div class="input-wrapper">
+        <label for="title">Article Title</label>
+        <input type="text" name="title" id="title" value="#TitleValue#">
+        <p class="error"></p>
+    </div>
+    <div class="input-wrapper">
+        <label for="subtitle">Article Subtitle</label>
+        <input type="text" name="subtitle" id="subtitle" value="#SubitleValue#">
+        <p class="error"></p>
+    </div>    
+    <div class="input-wrapper">
+        <label for="cover">Article Cover <br>
+            <span>If no image is uploaded a default image for the selected game will be applied. Images with 1920 x 1080 resolution are preferred</span></label>
+        <input type="file" name="cover" id="cover" onchange="displayAltImageDescription()">
+        <p class="error"></p>
+    </div>
+    <div class="input-wrapper">
+        <label for="alt-image">Short Image Description <br>
+            <span>You have uploaded an image for your article, please take a minute and provide a short description. This is very important for keeping our site accessible for everyone.</span></label>
+        <input type="text" name="alt-image" id="alt-image" value="#AltImage#">  
+        <p class="error"></p>
+    </div>
+    <div class="input-wrapper">
+        <label for="minutes">Reading minutes</label>
+        <input type="number" min="1" max="45" value="#ReadTimeValue#" name="minutes" id="minutes">
+        <p class="error"></p>
+    </div>
+    <div class="input-wrapper">
+        <label for="game">Game</label>
+        <selectGame/>
+        <p class="error"></p>
+    </div>
+    <div class="input-wrapper">
+        <label for="tags">Tags</label>
+        <ul class="tag-list tag-container" id="article-tags">
+        </ul>
+        <div id="tag-adder-wrapper">
+            <input type="text" name="tags" id="tags" value="#TagValues#">  
+            <button id="tag-confirm-button" class="action-button pink sh-teal" onclick="AddAllTheTags()">Add</button>
+        </div>
+        <p class="error"></p>
+    </div>
+    <div class="input-wrapper editorBox">
+        <label>Article Content</label>
+        <input type="text" name="articleText" id="articleText" hidden>         
+        <!-- The toolbar will be rendered in this container. -->
+        <div id="toolbar-container"></div>
+        <!-- This container will become the editable. -->
+        <div id="editor">
+            <p>Let\'s go writer! Now is your moment, overwrite this piece of text and start writing!</p>
+        </div>
+        <p class="error"></p>
+    </div>
+    <div class="form-buttons">
+        <a href="profile.php" id="undoBtn" class="action-button pink sh-teal">Discard</a>
+        <input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Post article">    
+    </div>
+</form>
+';
 
 if(isset($_GET['id'])){
     $art_id = $_GET['id'];
     $tags = array();
-    $art_data = getArticleData($art_id, $_SESSION['username'], $tags);
-    if($art_data){
-        $title = $art_data['title'];
-        $subtitle = $art_data['subtitle'];
-        $read_time = $art_data['read_time'];
-        $gameName = $art_data['game'];
-        $text = $art_data['text'];
-        $destination = "write_article.php?id=".$art_id;
-        foreach($tags as $tag){
-            $tagString .= $tag['tag'].',';
+    $numOfArticles = getNumberOfArticles();
+    if($art_id <= $numOfArticles){
+        $userIsAuthor = checkIfUserIsAuthor($art_id, $username);
+        if ($userIsAuthor) {
+            $art_data = getArticleData($art_id, $_SESSION['username'], $tags);
+            $title = $art_data['title'];
+            $subtitle = $art_data['subtitle'];
+            $read_time = $art_data['read_time'];
+            $gameName = $art_data['game'];
+            $text = $art_data['text'];
+            $destination = "write_article.php?id=".$art_id;
+            foreach($tags as $tag){
+                $tagString .= $tag['tag'].',';
+            }
+            $tagString = trim($tagString, ',');
+            $alt_image = $art_data['alt_cover_img'];
+            $header = "<h1>Edit article</h1>";
+            $breadcrumb = '<a href="profile.php">Private Area</a> &gt; <a href="edit_article.php"> Manage articles </a> &gt; Edit article';
+            $button_name = '<input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Save changes">';
+            $title_name = '<title>Edit Article - Penta News</title>';
+            $discard_link = '<a href="edit_article.php" id="undoBtn"';
+        } else {
+            $formContent = '<p style="font-size: 1.3em; text-align:center;">ERROR: You aren\'t the author of the article you want to edit. Please <a href="/edit_article.php">retry</a>.</p>';
         }
-        $tagString = trim($tagString, ',');
-        $alt_image = $art_data['alt_cover_img'];
-        $header = "<h1>Edit article</h1>";
-        $breadcrumb = '<a href="profile.php">Private Area</a> &gt; <a href="edit_article.php"> Manage articles </a> &gt; Edit article';
-        $button_name = '<input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Save changes">';
-        $title_name = '<title>Edit Article - Penta News</title>';
-        $discard_link = '<a href="edit_article.php" id="undoBtn"';
+    } else {
+        $formContent = '<p style="font-size: 1.3em; text-align:center;">ERROR: The article you want to edit doesn\'t exist. Please <a href="/edit_article.php">retry</a>.</p>';
     }
 }
 
@@ -131,6 +200,7 @@ if(isset($games)){
 // page structure
 $htmlPage = file_get_contents("html/write_article.html");
 
+$htmlPage = str_replace('<content/>', $formContent, $htmlPage);
 $htmlPage = str_replace('<selectGame/>', $selectbox, $htmlPage);
 $htmlPage = str_replace('<formErrors/>', $errors, $htmlPage);
 

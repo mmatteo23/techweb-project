@@ -31,11 +31,63 @@ $breadcrumb = "&gt; Add game";
 $button_name = '<input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Add game">';
 $title_name = '<title>Add game - Penta News</title>';
 $discard_link = '<a href="profile.php" id="undoBtn"';
+$formContent = '
+<form method="POST" action="add_game.php" id="articleForm" enctype="multipart/form-data">
+    <div class="input-wrapper">
+        <label for="cover">Game Cover <br>
+            <span>285 x 380 image file</span>                    
+        </label>
+        <input type="file" style="color: black;" name="cover" id="cover">   <!-- <#Cover#> -->
+        <p class="error"></p>
+    </div>
+    <div class="input-wrapper">
+        <label for="default-article-img">Default article image <br>
+            <span>1920 x 1080 image file</span>
+        </label>
+        <input type="file" style="color: black;" name="default-article-img" id="default-article-img">              
+        <p class="error"></p>
+    </div>
+    <div class="input-wrapper">
+        <label for="name">Game name</label>
+        <!-- <input onblur="validateName()" type="text" name="name" id="name" value="#Name#"> -->
+        <input type="text" name="name" id="name" value="#Name#">
+        <p class="error"></p>
+    </div>
+    <div class="input-wrapper">
+        <label for="description">Game description</label>
+        <!-- <input onblur="validateDescription()" type="text" name="description" id="description" value="#Description#"> -->
+        <input type="text" name="description" id="description" value="#Description#">
+        <p class="error"></p>
+    </div>
+    <div class="input-wrapper">
+        <label for="genre-0">Genre</label>
+        <selectGenre/>
+        <p class="error"></p>
+    </div>
+    <div class="input-wrapper">
+        <label for="releaseDate">Release date</label>
+        <!-- <input onblur="validateReleaseDate()" type="date" name="releaseDate" id="releaseDate" value="#ReleaseDate#"> -->
+        <input type="date" name="releaseDate" id="releaseDate" value="#ReleaseDate#">
+        <p class="error"></p>
+    </div>
+    <div class="input-wrapper">
+        <label for="developer">Software House / Developer</label>
+        <!-- <input onblur="validateDeveloper()" type="text" name="developer" id="developer" value="#Developer#"> -->
+        <input type="text" name="developer" id="developer" value="#Developer#">
+        <p class="error"></p>
+    </div>   
+    <div class="form-buttons">
+        <a href="profile.php" id="undoBtn" class="action-button pink sh-teal">Discard</a>
+        <input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Add game">
+    </div>
+</form>
+';
 
 if(isset($_GET['id'])){
     $game_id = $_GET['id'];
-    $game_data = getGameData($game_id);
-    if($game_data){
+    $numOfGames = getNumberOfGames();
+    if($game_id <= $numOfGames){
+        $game_data = getGameData($game_id);
         $name = $game_data['name'];
         $description = $game_data['description'];
         $releaseDate = $game_data['release_date'];
@@ -53,6 +105,8 @@ if(isset($_GET['id'])){
         $button_name = '<input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Save changes">';
         $title_name = '<title>Edit game - Penta News</title>';
         $discard_link = '<a href="edit_game.php" id="undoBtn"';
+    } else {
+        $formContent = '<p style="font-size: 1.3em; text-align:center;">ERROR: The game you want to edit doesn\'t exist. Please <a href="/edit_game.php">retry</a>.</p>';
     }
 }
 
@@ -171,6 +225,7 @@ if(isset($genres)){
     }
 }
 
+$htmlPage = str_replace('<content/>', $formContent, $htmlPage);
 $htmlPage = str_replace('<selectGenre/>', $selectbox, $htmlPage);
 $htmlPage = str_replace('<formErrors/>', $errors, $htmlPage);
 

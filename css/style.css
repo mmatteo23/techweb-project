@@ -727,6 +727,10 @@ a.card-article-link:visited:focus h3{
   color: black;
 }
 
+.article-list > thead > tr:nth-of-type(1) {
+  color: white;
+}
+
 
 
 /*
