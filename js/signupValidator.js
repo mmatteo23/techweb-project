@@ -16,7 +16,6 @@ function checkIfUserExists(usernameVal) {
     xhr.open("POST", "php/checkIfUserExists.php", false);
     xhr.onload = function() {
         exists = this.response;
-        console.log(exists);
     };
     xhr.send(data);
     if(exists==1)
@@ -68,11 +67,9 @@ function validateUsername(){
         setError(username, 'Username is required')
         validForm = false
     } else if (checkIfUserExists(usernameValue)) {
-        console.log("sono entrato");
-        setError(username, 'Username is already taken')
+        setError(username, 'This username is already taken')
         validForm = false
     } else {
-        console.log("non sono entrato");
         setSuccess(username)
     }
 
