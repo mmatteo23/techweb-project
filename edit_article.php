@@ -13,10 +13,11 @@ $user_output = '';
 
 if($articles !== FALSE){ 
     if(count($articles) > 0){
-        $user_output .= '<h1>Your Articles</h1><div><p>Select one of your articles to get to the edit page where you can update or delete the entire article</p>';
+        $user_output .= '<h1>Your Articles</h1><div>';
         $x=0;
         $user_output .= "
             <table class='article-list'>
+            <caption>Select one of your articles to get to the edit page where you can update or delete the entire article</caption>
                 <thead>
                     <tr>
                         <th scope='col' abbr='id'>Article Id</th>
