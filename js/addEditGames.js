@@ -31,6 +31,8 @@ const genre_2 = document.getElementById('genre-2');
 const releaseDate = document.getElementById('releaseDate');
 const developer = document.getElementById('developer');
 
+var validform = true;
+
 form.addEventListener('submit', e => {
     e.preventDefault();
         
@@ -58,6 +60,66 @@ const setSuccess = element => {
     inputWrapper.classList.add('success');
     inputWrapper.classList.remove('error');
 };
+
+function validateInputs () {    
+ 
+    validForm = (validForm & validateUsername())
+    validForm = (validForm & validatePassword())
+
+    return validForm
+}
+
+function validateName(submit = 0) {
+    const gameNameValue = gameName.value;
+
+    if (gameNameValue === '') {
+        setError(gameName, 'Name is required')
+        validForm = false
+    } else {
+        setSuccess(gameName)
+    }
+
+    return validForm
+}
+
+function validateDescription(submit = 0) {
+    const gameDescriptionValue = gameDescription.value;
+
+    if (gameDescriptionValue === '') {
+        setError(gameDescription, 'Description is required')
+        validForm = false
+    } else {
+        setSuccess(gameDescription)
+    }
+
+    return validForm
+}
+
+function validateReleaseDate(submit = 0) {
+    const releaseDateValue = releaseDate.value;
+
+    if (releaseDateValue === '') {
+        setError(releaseDate, 'Release date is required')
+        validForm = false
+    } else {
+        setSuccess(releaseDate)
+    }
+
+    return validForm
+}
+
+function validateDeveloper(submit = 0) {
+    const developerValue = developer.value;
+
+    if (developerValue === '') {
+        setError(developer, 'Developer is required')
+        validForm = false
+    } else {
+        setSuccess(developer)
+    }
+
+    return validForm
+}
 
 function validateInputs () {
     const coverValue = cover.value;

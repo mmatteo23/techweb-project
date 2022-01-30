@@ -143,7 +143,7 @@ function createTag(label) {
   closeIcon.setAttribute('data-item', label);
   closeIcon.setAttribute('aria-label', 'Press to remove tag');
   closeIcon.setAttribute('type', 'button');
-  closeIcon.setAttribute('onclick', 'AddAllTheTags()');
+  closeIcon.setAttribute('onclick', 'deleteTag("'+label+'")');
   tagItem.appendChild(span);
   tagItem.appendChild(closeIcon);
   return tagItem;
@@ -151,9 +151,17 @@ function createTag(label) {
 
 function clearTags() {
   document.querySelectorAll('.tag').forEach(tag => {
-      console.log("rimosso");
     tag.parentElement.removeChild(tag);
   });
+}
+
+function deleteTag(tagLabel) {
+    document.querySelectorAll('.tag').forEach(tag => {
+        if (tagLabel == tag.firstChild.innerHTML) {
+            tag.parentElement.removeChild(tag);
+            tags.splice(tags.indexOf(tagLabel),1);
+        }
+    });
 }
 
 function addTags() {

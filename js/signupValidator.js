@@ -6,6 +6,23 @@ const email = document.getElementById('email');
 const password = document.getElementById('password');
 const password2 = document.getElementById('repeated_password');
 
+function checkIfUserExists() {
+    //con AJAX
+    var exists = false;
+    var data = new FormData();
+    data.append("newUserName", username.value.trim());
+    
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "php/checkIfUserExists.php");
+    xhr.onload = function() {
+        exists = this.response;
+    };
+    xhr.send(data);
+    if (exists == 1)
+        return true
+    return false
+}
+
 form.addEventListener('submit', e => {
     e.preventDefault();
 
@@ -48,6 +65,9 @@ function validateUsername(){
     var validForm = true;    
     if(usernameValue === '') {
         setError(username, 'Username is required')
+        validForm = false
+    } else if (checkIfUserExists()) {
+        setError(username, 'Username is already taken')
         validForm = false
     } else {
         setSuccess(username)
@@ -130,11 +150,6 @@ function validatePassword(){
     return validForm
 }
 
-// function validatePassword2(){    
-//     var validForm = true;    
-//     return validForm
-// }
-
 function validateInputs () {    
 
     var validForm = true
@@ -144,7 +159,6 @@ function validateInputs () {
     validForm = (validForm & validateLastName())
     validForm = (validForm & validateEmail())
     validForm = (validForm & validatePassword())
-    // validForm = (validForm & validatePassword2())
 
     return validForm
 }

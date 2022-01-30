@@ -1,6 +1,6 @@
 <?php
 require_once('utilityFunctions.php');
-require_once('php/db.php');
+require_once('db.php');
 use DB\DBAccess;
 
 /**
