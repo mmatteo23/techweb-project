@@ -180,7 +180,7 @@
     .navbar #search:hover,
     .navbar #search:focus{
       background-color: var(--fucsia-accent);
-      color: black;
+      color: white;
       outline: none;
     }
   

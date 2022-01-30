@@ -35,7 +35,7 @@
 
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
-.material-icons.md-36 { font-size: 36px; color: white; }
+.material-icons.md-36 { font-size: 36px; }
 .material-icons.md-48 { font-size: 48px; }
 .material-icons.md-60 { font-size: 60px; }
 
@@ -478,6 +478,11 @@ a.card-article-link:focus h3{
   text-decoration: underline;
 }
 
+#likeContainer .material-icons.md-36,
+#saveContainer .material-icons.md-36{
+  color: white;
+}
+
 #likeBtn{
   margin-right:1em;
 }
@@ -647,6 +652,7 @@ a.card-article-link:visited:focus h3{
 } */
 
 .home-content .action-button{
+  font-style: 'Poppins';
   height: 2.3em;
   color: white;
   display: block;
