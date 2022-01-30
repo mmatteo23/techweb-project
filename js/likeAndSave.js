@@ -75,12 +75,12 @@ function LikeThisArticle(username, id, liked){
     var likes=((document.getElementById("article-likes").innerHTML).split(" likes")[0]).substring(70);
     if(liked){          //sta togliendo il like
         liked=0;
-        document.getElementById("likeContainer").innerHTML='<button id="likeBtn" aria-label="Press to unlike this article" onclick="LikeThisArticle(' + "'" +username+ "'" + ','+id+','+liked+')"><span class="material-icons md-36">favorite_border</span></button>';
+        document.getElementById("likeContainer").innerHTML='<button id="likeBtn" aria-label="Press to like this article" onclick="LikeThisArticle(' + "'" +username+ "'" + ','+id+','+liked+')"><span class="material-icons md-36">favorite_border</span></button>';
         likes--;
     }
     else{
         liked=1;
-        document.getElementById("likeContainer").innerHTML='<button id="likeBtn" aria-label="Press to like this article" onclick="LikeThisArticle(' + "'" +username+ "'" + ','+id+','+liked+')"><span class="material-icons md-36">favorite</span></button>';
+        document.getElementById("likeContainer").innerHTML='<button id="likeBtn" aria-label="Press to unlike this article" onclick="LikeThisArticle(' + "'" +username+ "'" + ','+id+','+liked+')"><span class="material-icons md-36">favorite</span></button>';
         likes++;
     }
     document.getElementById("article-likes").innerHTML='<i class="material-icons" aria-hidden="true">favorite_border</i><span>'+likes+' likes</span>';
@@ -106,7 +106,7 @@ function SaveThisArticle(username, id, saved){
     }
     else{
         saved=1;
-        document.getElementById("saveContainer").innerHTML='<button id="saveBtn" aria-label="Press to save this article" onclick="SaveThisArticle(' + "'" +username+ "'" + ','+id+','+saved+')"><span class="material-icons md-36">bookmark</span></button>';
+        document.getElementById("saveContainer").innerHTML='<button id="saveBtn" aria-label="Press to unsave this article" onclick="SaveThisArticle(' + "'" +username+ "'" + ','+id+','+saved+')"><span class="material-icons md-36">bookmark</span></button>';
     }
     var data = new FormData();
     data.append("username", username);
