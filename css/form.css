@@ -223,7 +223,7 @@ form#articleForm input:not(input[type='submit']),
 }
 
 #aboutus-body #contactForm{
-    margin-top: 1em;
+    margin-top: 2em;
 }
 
 #aboutus-body #contactForm #form-email{
@@ -511,10 +511,12 @@ p.error{
    .action-button.no-grow{
        flex-grow: 0;
    }
-   
-   .form-buttons .action-button{
-       flex-basis: 10%;
-   }
+
+   @media only screen and (min-width: 769px) {
+        .form-buttons .action-button{
+            flex-basis: 10%;
+        }
+    }
    
    .form-content .form-buttons{
        width: 80%;

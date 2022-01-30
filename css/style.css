@@ -915,7 +915,7 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
 */
 
 #aboutus-body{
-  padding: 0em 3em 2em 3em;
+  padding: 0em 1em 2em 1em;
 }
 
 #aboutus-body h2{
@@ -924,7 +924,7 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
 }
 
 #aboutus-body h3{
-  font-size: 3rem;
+  font-size: 2rem;
   padding-top: 0.5em;
   color: var(--teal-accent);
 }
@@ -975,6 +975,10 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   content: "☀";
   padding-right: 5px;
   color: var(--teal-accent);
+}
+
+#contactForm {
+  max-width: 100%;
 }
 
 
