@@ -25,25 +25,29 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){     // Pulsante submit premuto
     $username = $_POST['username'];           // prendo i dati inseriti dall'utente
     $password = $_POST['password'];
 
-    // create a connection istance to talk with the db
-    $connection_manager = new DBAccess();
-    $conn_ok = $connection_manager->openDBConnection();
-
-    if($conn_ok){
-        $isValid = $connection_manager->authentication($username, $password);
-        $connection_manager->closeDBConnection();
-
-        if($isValid){  // utente trovato
-            $_SESSION['username'] = $username;
-        } else {    // utente non registrato o credenziali errate
-            $errors = "<p class='error'>
-                Your credentials are wrong!
-            </p>";
-        }
-
+    if ($username == '' || $password == ''){
+        $errors = "<p class='error'>Username and Password fields are required!</p>";
     } else {
-        $errors = createDBErrorHTML();
-    }    
+        // create a connection istance to talk with the db
+        $connection_manager = new DBAccess();
+        $conn_ok = $connection_manager->openDBConnection();
+
+        if($conn_ok){
+            $isValid = $connection_manager->authentication($username, $password);
+            $connection_manager->closeDBConnection();
+
+            if($isValid){  // utente trovato
+                $_SESSION['username'] = $username;
+            } else {    // utente non registrato o credenziali errate
+                $errors = "<p class='error'>
+                    Your credentials are wrong!
+                </p>";
+            }
+
+        } else {
+            $errors = createDBErrorHTML();
+        } 
+    }   
 }
 
 $htmlPage = str_replace("<formErrors/>", $errors, $htmlPage);

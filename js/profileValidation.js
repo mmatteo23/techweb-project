@@ -7,30 +7,6 @@ const password = document.getElementById('password');
 const password2 = document.getElementById('repeated_password');
 const updateBtn = document.getElementById('saveBtn');
 const deleteBtn = document.getElementById('deleteBtn');
-/*
-form.addEventListener('submit', e => {
-    e.preventDefault();
-
-    validForm = validateInputs();
-    
-    if(validForm)
-        form.submit()
-});
-*/
-
-// deleteBtn.addEventListener('click', e => {
-//     const choice = window.confirm("Are you sure? From this point you can't come back :)");
-    
-//     if(choice){
-//         console.log("delete")
-//         deleteBtn.click
-//     }
-//     else {
-//         console.log("annulla")
-//         e.preventDefault();
-//     }
-//     //alert("Are you sure? From this point you can't come back :)");
-// });
 
 updateBtn.addEventListener('click', e => {
     e.preventDefault();
@@ -47,7 +23,6 @@ function validateImage() {
 
     var t = file.type.split('/').pop().toLowerCase();
     if (t != "jpeg" && t != "jpg" && t != "png" && t != "bmp" && t != "gif") {
-        //alert('Please select a valid image file');
         setError(fileInput, 'Please select a valid image file')
         document.getElementById("profile_img").value = '';
         return false;

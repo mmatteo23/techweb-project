@@ -20,6 +20,8 @@ function showModal(articleId) {
     var backdrop = document.getElementById('backdrop');
     box.style.display = 'flex';
     backdrop.style.display = 'block';
+    var cancelDelete = document.getElementById('cancelDelete');
+    cancelDelete.focus();
     var confirmDelete = document.getElementById('confirmDelete');
     confirmDelete.setAttribute('onClick', 'deleteArticleById('+articleId+')');
 }
