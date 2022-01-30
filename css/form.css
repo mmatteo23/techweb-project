@@ -27,7 +27,13 @@
 
 #content .form-wrapper h1{
     color: #000000b4;
-    font-size: 3em;
+    font-size: 2.3em;
+}
+
+@media only screen and (min-width: 769px) {
+    #content .form-wrapper h1{
+        font-size: 3em;
+    }
 }
 
 #content .form-wrapper h1::before,
@@ -63,10 +69,16 @@ label[for='profile_img'] {
 }
 
 form:not(form.search-form) .input-wrapper{
-    margin: 0.5rem 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
     width: 100%;
+}
+
+@media only screen and (min-width: 769px) {
+    form:not(form.search-form) .input-wrapper{
+        margin: 0.5rem 0;
+    }
 }
 
 form:not(form.search-form) label{
@@ -75,7 +87,7 @@ form:not(form.search-form) label{
     text-transform: uppercase;
     text-align: center;
     color: black;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.2em;
 }
 
 form:not(form.search-form) label span{
@@ -145,7 +157,7 @@ form:not(form.search-form) input[type="submit"].login-signup-btn:focus{
     text-align: center;
 }
 .form-wrapper > div > p{
-    margin-top: 2em;
+    margin-top: 1.5em;
     /* background-color: #85FFFB; */
     padding: 0.3em 1em;
     border-radius: 0.2em 1em;
@@ -211,7 +223,7 @@ form#articleForm input:not(input[type='submit']),
 }
 
 #aboutus-body #contactForm{
-    margin-top: 1em;
+    margin-top: 2em;
 }
 
 #aboutus-body #contactForm #form-email{
@@ -499,10 +511,12 @@ p.error{
    .action-button.no-grow{
        flex-grow: 0;
    }
-   
-   .form-buttons .action-button{
-       flex-basis: 10%;
-   }
+
+   @media only screen and (min-width: 769px) {
+        .form-buttons .action-button{
+            flex-basis: 10%;
+        }
+    }
    
    .form-content .form-buttons{
        width: 80%;
@@ -612,6 +626,7 @@ p.error{
 
 .genre-select {
     display: flex;
+    contain: content;
 }
 
 .genre-selector {

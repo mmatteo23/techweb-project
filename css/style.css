@@ -685,6 +685,8 @@ a.card-article-link:visited:focus h3{
   color: white;
   width: 100%;
   border: 0;
+  display: block;
+  overflow-x: auto;
 }
 
 
@@ -718,6 +720,8 @@ a.card-article-link:visited:focus h3{
   background-color: var(--bg-accent);
   color: black;
 }
+
+
 
 /*
 ===== ARTICLE =====
@@ -911,7 +915,7 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
 */
 
 #aboutus-body{
-  padding: 0em 3em 2em 3em;
+  padding: 0em 1em 2em 1em;
 }
 
 #aboutus-body h2{
@@ -920,7 +924,7 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
 }
 
 #aboutus-body h3{
-  font-size: 3rem;
+  font-size: 2rem;
   padding-top: 0.5em;
   color: var(--teal-accent);
 }
@@ -971,6 +975,10 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   content: "☀";
   padding-right: 5px;
   color: var(--teal-accent);
+}
+
+#contactForm {
+  max-width: 100%;
 }
 
 
@@ -1253,7 +1261,7 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
 #content h1{
   color: var(--fucsia-accent);
   text-transform: uppercase;
-  font-size: 2.7em;
+  font-size: 2.3em;
   font-weight: 900;
   line-height: 1.1em;
   text-align: center;
