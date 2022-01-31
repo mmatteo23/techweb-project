@@ -50,7 +50,7 @@ if(isset($_SESSION['username'])){
             }        
             $user_output .= "</section>";
         }else{
-            $user_output = genericErrorHTML("No saved articles found on this account", "Browse <a href='index.php'>our home</a> and find some worth saving.");
+            $user_output = genericErrorHTML("No saved articles found on this account", "Browse <a href='index.php'>our home</a> and find some worth saving.", null, true);
         }
     } else {
         $user_output = createDBErrorHTML();

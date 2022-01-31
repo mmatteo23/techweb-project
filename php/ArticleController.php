@@ -45,15 +45,15 @@ function checkIfUserIsAuthor(int $article_id, string $user) {
     return false;
 }
 
-function getArticleData(int $id, string $author, array &$tags){
+function getArticleData(int $id, array &$tags){
     
     $connection_manager = new DBAccess();
     $conn_ok = $connection_manager->openDBConnection();
     
     if($conn_ok){
-        $selectQuery = "SELECT Article.id AS id, Game.name AS game, publication_date, cover_img, title, subtitle, read_time, text, alt_cover_img FROM Article JOIN Game ON game_id=Game.id WHERE author = '$author' AND Article.id=".$id;
+        $selectQuery = "SELECT Article.id AS id, Game.name AS game, publication_date, cover_img, title, subtitle, read_time, text, alt_cover_img FROM Article JOIN Game ON game_id=Game.id WHERE Article.id=".$id;
         $articles = $connection_manager->executeQuery($selectQuery);
-        $tagQuery = "SELECT Article.id AS id, Tag.name AS tag FROM (Article JOIN article_tags ON id=article_id) JOIN Tag ON tag_id=Tag.id WHERE author = '$author' AND Article.id=".$id;
+        $tagQuery = "SELECT Article.id AS id, Tag.name AS tag FROM (Article JOIN article_tags ON id=article_id) JOIN Tag ON tag_id=Tag.id WHERE Article.id=".$id;
         $tags = $connection_manager->executeQuery($tagQuery);
         
         if($articles){

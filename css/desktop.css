@@ -458,6 +458,18 @@
     width: 30%;
     height: auto;
     margin: 3em 0 0 0;  
+    position: relative;
+    left: 4em;
+    bottom: 3.4em;
+  }
+  #imgNoDB2{
+    display: block;  
+    width: 30%;
+    height: auto;
+    margin: 3em 0 0 0;  
+    position: relative;
+    left:25%;
+    bottom: 3.4em;
   }
 
   #aboutus-body{
@@ -466,5 +478,9 @@
 
   #aboutus-body h3{
     font-size: 3rem;
+  }
+
+  .article-list{
+    display:inline-table;
   }
 }

@@ -4,6 +4,7 @@ require_once("php/validSession.php");
 require_once("php/ArticleController.php");
 require_once("php/GameController.php");
 require_once("php/utilityFunctions.php");
+require_once("php/error_management.php");
 
 $errors = '';
 
@@ -34,6 +35,7 @@ $button_name = '<input id="submit-btn" class="action-button purple sh-pink" type
 $title_name = '<title>Write Article - Penta News</title>';
 $discard_link = '<a href="profile.php" id="undoBtn"';
 $formContent = '
+<h1>Write an article</h1>
 <form method="POST" action="write_article.php" id="articleForm" enctype="multipart/form-data">
     <div class="input-wrapper">
         <label for="title">Article Title</label>
@@ -102,7 +104,7 @@ if(isset($_GET['id'])){
     $art_id = $_GET['id'];
     $tags = array();
     $numOfArticles = getNumberOfArticles();
-    $art_data = getArticleData($art_id, $_SESSION['username'], $tags);
+    $art_data = getArticleData($art_id, $tags);
     if($art_data){
         $userIsAuthor = checkIfUserIsAuthor($art_id, $username);
         if ($userIsAuthor) {
@@ -127,10 +129,10 @@ if(isset($_GET['id'])){
                 $formContent = str_replace('<oldImage/>',$art_image,$formContent);
             }
         } else {
-            $formContent = '<p style="font-size: 1.3em; text-align:center;">ERROR: You aren\'t the author of the article you want to edit. Please <a href="/edit_article.php">retry</a>.</p>';
+            $formContent = error404("whooooops...", "You aren't the author of the article you want to edit. Please select <a href='/edit_article.php'>one of yours</a>.");
         }
     } else {
-        $formContent = '<p style="font-size: 1.3em; text-align:center;">ERROR: The article you want to edit doesn\'t exist. Please <a href="/edit_article.php">retry</a>.</p>';
+        $formContent = error404("whooooops...", "The article you want to edit doesn't exist. Please select <a href='/edit_article.php'>another one</a>.");
     }
 }
 

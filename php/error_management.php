@@ -15,18 +15,22 @@
             </section>";
     }
 
-    function createEmptyDBErrorHTML($table){
-        return "
-        <section class='error-display-text'>
+    function createEmptyDBErrorHTML($table, $img=false){
+        $returnHTML = "
+        <section class='error-display error-text'>
                 <h1 class='error-title'>The page seems to be empty</h1>
-                <h2>Looks like there are no ".$table." on our site.</h2>
+                <p>Looks like there are no ".$table." on our site.</p>
                 <p>Things you can do about it: </p>
                 <ul>
                     <li>Refresh the page, it might just be that easy.</li>
                     <li>Visit our other pages.</li>
                     <li>Wait a little, time heals everything.</li>
-                </ul>
-        </section>";
+                </ul>";
+                
+        if($img)
+            $returnHTML .= "<img id='imgNoDB2' src='images/OfflineDatabase.png'/>";
+        $returnHTML .= "</section>";
+        return $returnHTML;
     }
 
     function accessNotAllowed($not){
@@ -38,7 +42,7 @@
         </section>";
     }
 
-    function genericErrorHTML($title, $subtitle, $thingToDo=null){
+    function genericErrorHTML($title, $subtitle, $thingToDo=null, $img=false){
         $returnHTML = "
         <section class='error-display-text'>
                 <h1 class='error-title'>".$title."</h1>
@@ -49,7 +53,20 @@
                 $returnHTML .= "<li>".$thing."</li>";
             $returnHTML .= "</ul>";
         }
+        if($img)
+            $returnHTML .= "<img id='game-over-img' src='images/GameOverImg.png' alt='broken controller with cables coming out'/>";
+
         $returnHTML .= "</section>";
         return $returnHTML;
+    }
+
+    function error404($title, $description){
+        return "
+        <section class='error-display-text'>
+            <h1 class='error-title'>GAME OVER: 404</h1>
+            <h2 class='error-subtitle'>$title</h2>
+            <p>$description</p>
+            <img id='game-over-img' src='images/GameOverImg.png' alt='broken controller with colorful cables'/>
+        </section>";
     }
 ?>
