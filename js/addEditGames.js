@@ -89,6 +89,12 @@ function validateImage(id) {
         return false;
     }
 
+    if(file.size > 2097152) {
+        setError(fileInput, 'File too large. File must be less than 2 MB.')
+        document.getElementById(id).value = '';
+        return false;
+    }
+
     setSuccess(fileInput)
     return true;
 }
