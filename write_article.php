@@ -38,6 +38,7 @@ $art_image = '';
 $formContent = '
 <h1>Write an article</h1>
 <form method="POST" action="write_article.php" id="articleForm" enctype="multipart/form-data">
+    <formErrors/>
     <div class="input-wrapper">
         <label for="title">Article Title</label>
         <input type="text" name="title" id="title" value="#TitleValue#">

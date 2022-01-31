@@ -29,11 +29,11 @@ function checkImageToUpload(&$img, string $target_dir, string $idInputForm, stri
         );
 
         if(($_FILES[$idInputForm]['size'] >= $maxsize) || ($_FILES[$idInputForm]["size"] == 0)) {
-            $errors .= '<li>File too large. File must be less than 2 MB.</li>';
+            $errors .= '<li class="error">File too large. File must be less than 2 MB.</li>';
         }
 
         if((!in_array($_FILES[$idInputForm]['type'], $acceptable)) && (!empty($_FILES["uploaded_file"]["type"]))) {
-            $errors .= '<li>Invalid file type. Only JPG, GIF and PNG types are accepted.</li>';
+            $errors .= '<li class="error">Invalid file type. Only JPG, GIF and PNG types are accepted.</li>';
         }
 
         if($errors == "") {
