@@ -164,7 +164,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if (isset($_GET['id'])) {
             // se l'admin vuole modificare la cover
             if(isset($_FILES["cover"]) && $_FILES["cover"]['name']) {
-                $errorsImage = checkImageToUpload($game_img, "images/games/", "cover", $name, "");
+                $errorsImage = checkImageToUpload($game_img, "images/games/", "cover", $_GET['id'], "");
             }
             // se vuole modificare quella di default
             if(isset($_FILES["default-article-img"]) && $_FILES["default-article-img"]['name']) {
@@ -180,7 +180,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         } else {
         // se è un add game --> fai tutto (crea immagini da zero + store)
             if ($genre_errors == "") {
-                $errorsImage = checkImageToUpload($game_img, "images/games/", "cover", $name, "");
+                $game_id = getNumberOfGames() + 1;
+                $errorsImage = checkImageToUpload($game_img, "images/games/", "cover", $game_id, "");
                 $game_id = storeGame($name, $description, $releaseDate, $developer, $game_img);
                 if (is_int($game_id)) {
                     $errorsImage .= checkImageToUpload($default_article_img, "images/article_covers/Default/", "default-article-img", $game_id."-cover-1080", "");

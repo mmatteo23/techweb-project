@@ -110,7 +110,7 @@ if(isset($_GET['id'])){
     $art_data = getArticleData($art_id, $tags);
     if($art_data){
         $userIsAuthor = checkIfUserIsAuthor($art_id, $username);
-        if ($userIsAuthor) {
+        if ($userIsAuthor || $userRole == 1) {
             $title = $art_data['title'];
             $subtitle = $art_data['subtitle'];
             $read_time = $art_data['read_time'];
