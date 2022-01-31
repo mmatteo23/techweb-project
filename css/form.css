@@ -639,6 +639,7 @@ p.error{
     width: 30%;
     margin: auto;
     margin-bottom: 1em;
+    display: block;
 }
 
 button.action-button#remove-preview-button, 
