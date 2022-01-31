@@ -557,6 +557,9 @@ a.card-article-link:visited:focus h3{
   width: 10px;
   height: 10px;
 }
+.slides::-webkit-scrollbar-thumb{
+  background-color: var(--fucsia-accent);
+}
 
 .slides::-webkit-scrollbar-thumb {
   background: black;
@@ -584,6 +587,14 @@ a.card-article-link:visited:focus h3{
 .slides .card-article-link  article {
   border-radius: 2em 2em 1em 1em;
   color: #1B1B1B;
+}
+
+.slides .card-article-link{
+  display: flex;
+  flex-direction: column;
+}
+.slides .card-article-link .card-article-info{
+  flex-grow: 1;
 }
 
 .card-article-link article{
