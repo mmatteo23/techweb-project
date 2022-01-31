@@ -17,7 +17,7 @@ if ($userData['role'] == 1) {
     $articles = getAuthorArticles($username, $tags);
 }
 
-if(!isset($username) || $username == '' || $userRole > 2){    // the user is not authorized
+if(!isset($username) || $username === '' || $userData['role'] > 2){    // the user is not authorized
     header("location: login.php");
 }
 
