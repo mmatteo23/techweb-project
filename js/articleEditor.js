@@ -114,7 +114,7 @@ function showPreview(event){
             document.getElementsByTagName("figure")[0].appendChild(preview);
         }
         preview.src = src;
-        preview.setAttribute("alt", "selected image preview");
+        preview.setAttribute("alt", "selected article cover image preview");
         preview.style.display = "block";
         altImage.parentElement.style.display = "block";
         btnRemovePreview.style.display = 'block';

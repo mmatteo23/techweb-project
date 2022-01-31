@@ -111,6 +111,7 @@ function showPreview1(event){
             document.getElementsByTagName("figure")[0].appendChild(preview);
         }
         preview.src = src;
+        preview.setAttribute("alt", "selected game cover image preview");
         preview.style.display = "block";
         btnRemovePreview1.style.display = 'block';
     } else {
@@ -139,6 +140,7 @@ function showPreview2(event){
             document.getElementsByTagName("figure")[1].appendChild(preview);
         }
         preview.src = src;
+        preview.setAttribute("alt", "selected default article image preview");
         preview.style.display = "block";
         btnRemovePreview2.style.display = 'block';
     } else {
