@@ -1560,3 +1560,11 @@ ERRORs
     transform: scale(1);
   }
 }
+
+::-webkit-scrollbar {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--fucsia-accent);
+}
