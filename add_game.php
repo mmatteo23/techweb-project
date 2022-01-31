@@ -134,7 +134,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $genre_errors = "";
     $errorsImage = "";
 
-    $genre_1 = $genre_2 = 0;
+    $genre_1 = -1;
+    $genre_2 = -2;
     
     $genre_0 = intval($_POST['genre-0']);
     if(isset($_POST['genre-1']))
