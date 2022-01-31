@@ -115,8 +115,8 @@ if(isset($_GET['id'])){
         $button_name = '<input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Save changes">';
         $title_name = '<title>Edit game - Penta News</title>';
         $discard_link = '<a href="edit_game.php" id="undoBtn"';
-        $game_img_html = '<img src="images/games/'.$game_img.'" alt="prova" id="game_cover_image">';
-        $default_img_html = '<img src="images/article_covers/Default/'.$default_article_img.'" alt="prova" id="default_article_cover_image">';
+        $game_img_html = '<img src="images/games/'.$game_img.'" id="game_cover_image">';
+        $default_img_html = '<img src="images/article_covers/Default/'.$default_article_img.'" id="default_article_cover_image">';
     } else {
         $formContent = error404("whooooops...", "The game you want to edit doesn't exist. Please select <a href='/edit_game.php'>another one</a>.");
     }
