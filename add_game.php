@@ -31,20 +31,30 @@ $breadcrumb = "&gt; Add game";
 $button_name = '<input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Add game">';
 $title_name = '<title>Add game - Penta News</title>';
 $discard_link = '<a href="profile.php" id="undoBtn"';
+$game_img_html = '';
+$default_img_html = '';
 $formContent = '
 <form method="POST" action="add_game.php" id="articleForm" enctype="multipart/form-data">
     <div class="input-wrapper">
         <label for="cover">Game Cover <br>
             <span>285 x 380 image file</span>                    
         </label>
-        <input type="file" style="color: black;" name="cover" id="cover">   <!-- <#Cover#> -->
+        <figure id="image_preview_1">
+            <imgPreview1/>
+        </figure>   
+        <input type="file" style="color: black;" accept="image/png,image/jpeg,image/bmp" name="cover" id="cover" onchange="showPreview1(event);">
+        <button type="button" id="remove-preview-button-1" class="action-button pink sh-teal" onclick="removePreview1()">Remove Image</button>
         <p class="error"></p>
     </div>
     <div class="input-wrapper">
         <label for="default-article-img">Default article image <br>
             <span>1920 x 1080 image file</span>
         </label>
-        <input type="file" style="color: black;" name="default-article-img" id="default-article-img">              
+        <figure id="image_preview_2">
+            <imgPreview2/>
+        </figure>
+        <input type="file" style="color: black;" accept="image/png,image/jpeg,image/bmp" name="default-article-img" id="default-article-img" onchange="showPreview2(event);">           
+        <button type="button" id="remove-preview-button-2" class="action-button pink sh-teal" onclick="removePreview2()">Remove Image</button>
         <p class="error"></p>
     </div>
     <div class="input-wrapper">
@@ -105,8 +115,10 @@ if(isset($_GET['id'])){
         $button_name = '<input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Save changes">';
         $title_name = '<title>Edit game - Penta News</title>';
         $discard_link = '<a href="edit_game.php" id="undoBtn"';
+        $game_img_html = '<img src="images/games/'.$game_img.'" alt="prova" id="game_cover_image">';
+        $default_img_html = '<img src="images/article_covers/Default/'.$default_article_img.'" alt="prova" id="default_article_cover_image">';
     } else {
-        $formContent = '<p style="font-size: 1.3em; text-align:center;">ERROR: The game you want to edit doesn\'t exist. Please <a href="/edit_game.php">retry</a>.</p>';
+        $formContent = error404("whooooops...", "The game you want to edit doesn't exist. Please select <a href='/edit_game.php'>another one</a>.");
     }
 }
 
@@ -224,6 +236,9 @@ if(isset($genres)){
         ";
     }
 }
+
+$formContent = str_replace('<imgPreview1/>', $game_img_html, $formContent);
+$formContent = str_replace('<imgPreview2/>', $default_img_html, $formContent);
 
 $htmlPage = str_replace('<content/>', $formContent, $htmlPage);
 $htmlPage = str_replace('<selectGenre/>', $selectbox, $htmlPage);

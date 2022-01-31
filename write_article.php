@@ -34,6 +34,7 @@ $breadcrumb = '<a href="profile.php">Private Area</a> &gt; Write article';
 $button_name = '<input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Post article">';
 $title_name = '<title>Write Article - Penta News</title>';
 $discard_link = '<a href="profile.php" id="undoBtn"';
+$art_image = '';
 $formContent = '
 <h1>Write an article</h1>
 <form method="POST" action="write_article.php" id="articleForm" enctype="multipart/form-data">
@@ -101,7 +102,6 @@ $formContent = '
 </form>
 ';
 
-$art_image = '';
 if(isset($_GET['id'])){
     $art_id = $_GET['id'];
     $tags = array();
@@ -210,7 +210,7 @@ if(isset($games)){
 // page structure
 $htmlPage = file_get_contents("html/write_article.html");
 
-$formContent = str_replace('<imgPreview/>',$art_image,$formContent);
+$formContent = str_replace('<imgPreview/>', $art_image, $formContent);
 
 $htmlPage = str_replace('<content/>', $formContent, $htmlPage);
 $htmlPage = str_replace('<selectGame/>', $selectbox, $htmlPage);

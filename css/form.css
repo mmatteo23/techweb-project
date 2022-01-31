@@ -633,10 +633,17 @@ p.error{
     flex: 1 1 auto;
 }
 
-#article_cover_image {
-    width: 100%;
+#article_cover_image,
+#game_cover_image,
+#default_article_cover_image {
+    width: 30%;
+    margin: auto;
+    margin-bottom: 1em;
 }
 
-button.action-button#remove-preview-button{
-   margin: 1em 8em; 
+button.action-button#remove-preview-button, 
+button.action-button#remove-preview-button-1, 
+button.action-button#remove-preview-button-2 {
+    margin: 1em 8em; 
+    display: none;
 }

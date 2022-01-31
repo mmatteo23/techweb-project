@@ -20,6 +20,8 @@ function enableDisableGenre(select_id) {
     
 };
 
+window.addEventListener('load', setFormInputs);
+
 const form = document.getElementById('articleForm');
 const cover = document.getElementById('cover');
 const defaultCover = document.getElementById('default-article-img');
@@ -30,8 +32,23 @@ const genre_1 = document.getElementById('genre-1');
 const genre_2 = document.getElementById('genre-2');
 const releaseDate = document.getElementById('releaseDate');
 const developer = document.getElementById('developer');
+const btnRemovePreview1 = document.getElementById('remove-preview-button-1');
+const btnRemovePreview2 = document.getElementById('remove-preview-button-2');
 
 var validform = true;
+
+function setFormInputs() {
+    if(document.getElementById("game_cover_image")){
+        btnRemovePreview1.style.display = 'block';
+    } else {
+        btnRemovePreview1.style.display = 'none';
+    }
+    if(document.getElementById("default_article_cover_image")){
+        btnRemovePreview2.style.display = 'block';
+    } else {
+        btnRemovePreview2.style.display = 'none';
+    }
+}
 
 form.addEventListener('submit', e => {
     e.preventDefault();
@@ -60,83 +77,78 @@ const setSuccess = element => {
     inputWrapper.classList.add('success');
     inputWrapper.classList.remove('error');
 };
-/*
-function validateInputs () {    
- 
-    validForm = (validForm & validateUsername())
-    validForm = (validForm & validatePassword())
 
-    return validForm
+function validateImage(id) {
+    const fileInput = document.getElementById(id)
+    var file = document.getElementById(id).files[0];
+
+    var t = file.type.split('/').pop().toLowerCase();
+    if (t != "jpeg" && t != "jpg" && t != "png" && t != "bmp" && t != "gif") {
+        setError(fileInput, 'Please select a valid image file')
+        document.getElementById(id).value = '';
+        return false;
+    }
+
+    setSuccess(fileInput)
+    return true;
 }
 
-function validateName(submit = 0) {
-    const gameNameValue = gameName.value;
-
-    if (gameNameValue === '') {
-        setError(gameName, 'Name is required')
-        validForm = false
+function showPreview1(event){
+    if(event.target.files.length > 0 && validateImage('cover')){
+        var src = URL.createObjectURL(event.target.files[0]);
+        var preview;
+        if(document.getElementById("game_cover_image")){
+            preview = document.getElementById("game_cover_image");
+        } else {
+            preview = document.createElement("img");
+            preview.id = "game_cover_image";
+            document.getElementsByTagName("figure")[0].appendChild(preview);
+        }
+        preview.src = src;
+        preview.style.display = "block";
+        btnRemovePreview1.style.display = 'block';
     } else {
-        setSuccess(gameName)
+        document.getElementById("game_cover_image").remove();
+        btnRemovePreview1.style.display = 'none';
     }
-
-    return validForm
 }
 
-function validateDescription(submit = 0) {
-    const gameDescriptionValue = gameDescription.value;
+function removePreview1(){
+    document.getElementById("game_cover_image").remove();
+    document.getElementById('cover').value = '';
+    btnRemovePreview1.style.display = 'none';
+    const fileInput = document.getElementById('cover')
+    setError(fileInput, 'Please select an image')
+}
 
-    if (gameDescriptionValue === '') {
-        setError(gameDescription, 'Description is required')
-        validForm = false
+function showPreview2(event){
+    if(event.target.files.length > 0 && validateImage('default-article-img')){
+        var src = URL.createObjectURL(event.target.files[0]);
+        var preview;
+        if(document.getElementById("default_article_cover_image")){
+            preview = document.getElementById("default_article_cover_image");
+        } else {
+            preview = document.createElement("img");
+            preview.id = "default_article_cover_image";
+            document.getElementsByTagName("figure")[1].appendChild(preview);
+        }
+        preview.src = src;
+        preview.style.display = "block";
+        btnRemovePreview2.style.display = 'block';
     } else {
-        setSuccess(gameDescription)
-    }
-
-    return validForm
-}
-
-function validateGenres(submit = 0) {
-    if (!genre_1.disabled) {
-        if (genre_0.value == genre_1.value)
-            genre_error = true;
-        if (!genre_2.disabled && !genre_error)
-            if (genre_0.value == genre_2.value || genre_1.value == genre_2.value)
-                    genre_error = true;
-    }
-    if (genre_error) {
-        setError(genre_0, 'Genres must be different')
-        validForm = false
-    } else {
-        setSuccess(genre_0);
+        document.getElementById("default_article_cover_image").remove();
+        btnRemovePreview2.style.display = 'none';
     }
 }
 
-function validateReleaseDate(submit = 0) {
-    const releaseDateValue = releaseDate.value;
-
-    if (releaseDateValue === '') {
-        setError(releaseDate, 'Release date is required')
-        validForm = false
-    } else {
-        setSuccess(releaseDate)
-    }
-
-    return validForm
+function removePreview2(){
+    document.getElementById("default_article_cover_image").remove();
+    document.getElementById('default-article-img').value = '';
+    btnRemovePreview2.style.display = 'none';
+    const fileInput = document.getElementById('default-article-img')
+    setError(fileInput, 'Please select an image')
 }
 
-function validateDeveloper(submit = 0) {
-    const developerValue = developer.value;
-
-    if (developerValue === '') {
-        setError(developer, 'Developer is required')
-        validForm = false
-    } else {
-        setSuccess(developer)
-    }
-
-    return validForm
-}
-*/
 function validateInputs () {
     const coverValue = cover.value;
     const defaultCoverValue = defaultCover.value;
