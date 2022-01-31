@@ -177,7 +177,7 @@ class DBAccess {
 		$queryResults->free(); 
 		return $result;
 	}
-
+	
 	public function getArticleData($id){
 		$query="SELECT Article.id AS id, title, subtitle, text, publication_date, author, read_time, Game.name AS name, cover_img, alt_cover_img FROM Article JOIN Game on game_id = Game.id WHERE Article.id=".$id;
 		$result = $this->executeQuery($query);

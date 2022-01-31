@@ -92,7 +92,7 @@ function insertNewUser(string $username, string $firstname, string $lastname, st
     if($conn_ok){
         validateUserData($username, $firstname, $lastname, $email, $password, $password2, $errors);
         if($errors=="")
-            $results = $connection_manager->executeQuery($insertQuery, 'insert');
+            $results = $connection_manager->executeQuery($insertQuery);
         $connection_manager->closeDBConnection();
         if($results){
             return true;

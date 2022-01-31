@@ -35,13 +35,16 @@ const title = document.getElementById('title');
 const subtitle = document.getElementById('subtitle');
 const minutes = document.getElementById('minutes');
 const altImage = document.getElementById('alt-image');
+const btnRemovePreview = document.getElementById('remove-preview-button');
 
 function setFormInputs() {
-    altImage.parentElement.style.display = "none";
-}
-
-function displayAltImageDescription(){
-    altImage.parentElement.style.display = "block";
+    if(document.getElementById("article_cover_image")){
+        btnRemovePreview.style.display = 'block';
+        altImage.parentElement.style.display = "block";
+    } else {
+        btnRemovePreview.style.display = 'none';
+        altImage.parentElement.style.display = "none";
+    }
 }
 
 form.addEventListener('submit', e => {
@@ -58,7 +61,6 @@ form.addEventListener('submit', e => {
             form.submit()
         }
     }
-    
 });
 
 const setError = (element, message) => {
@@ -78,6 +80,55 @@ const setSuccess = element => {
     inputWrapper.classList.add('success');
     inputWrapper.classList.remove('error');
 };
+
+function validateImage() {
+    const fileInput = document.getElementById('cover')
+    var file = document.getElementById("cover").files[0];
+
+    var t = file.type.split('/').pop().toLowerCase();
+    if (t != "jpeg" && t != "jpg" && t != "png" && t != "bmp" && t != "gif") {
+        setError(fileInput, 'Please select a valid image file')
+        document.getElementById("cover").value = '';
+        return false;
+    }
+
+    setSuccess(fileInput)
+    return true;
+}
+
+function showPreview(event){
+    if(event.target.files.length > 0 && validateImage()){
+        var src = URL.createObjectURL(event.target.files[0]);
+        var preview;
+        if(document.getElementById("article_cover_image")){
+            preview = document.getElementById("article_cover_image");
+        } else {
+            preview = document.createElement("img");
+            preview.id = "article_cover_image";
+            document.getElementsByTagName("figure")[0].appendChild(preview);
+        }
+        preview.src = src;
+        preview.style.display = "block";
+        preview.style.width = "100%";
+        altImage.parentElement.style.display = "block";
+        btnRemovePreview.style.display = 'block';
+    } else {
+        document.getElementById("article_cover_image").remove();
+        altImage.parentElement.style.display = "none";
+        btnRemovePreview.style.display = 'none';
+    }
+}
+
+function removePreview(){
+    document.getElementById("article_cover_image").remove();
+    document.getElementById('cover').value = '';
+    altImage.value = '';
+
+
+    // remove front end
+    altImage.parentElement.style.display = "none";
+    btnRemovePreview.style.display = 'none';
+}
 
 function validateInputs () {
     const titleValue = title.value;    // trim remove white space
@@ -186,29 +237,9 @@ function AddAllTheTags(){
     }
 }
 
-/*inputTag.addEventListener('keyup', (e) => {
-    if (e.key === 'Enter') {
-        AddAllTheTags();
-    }
-});*/
-
 window.onload = function(){ 
     if(tags.length == 0){
         tagContainer.style.display = "none";
     }
     AddAllTheTags();
 }
-
-/*document.addEventListener('click', (e) => {
-  //console.log(e.target.tagName);
-  if (e.target.tagName === 'BUTTON') {
-    const tagLabel = e.target.getAttribute('data-item');
-    const index = tags.indexOf(tagLabel);
-    tags = [...tags.slice(0, index), ...tags.slice(index+1)];
-    addTags();
-    if(tags.length == 0) 
-        tagContainer.style.display = "none"; 
-  }
-})*/
-
-//inputTag.focus();

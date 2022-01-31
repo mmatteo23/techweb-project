@@ -56,11 +56,12 @@ function getArticleData(int $id, string $author, array &$tags){
         $tagQuery = "SELECT Article.id AS id, Tag.name AS tag FROM (Article JOIN article_tags ON id=article_id) JOIN Tag ON tag_id=Tag.id WHERE author = '$author' AND Article.id=".$id;
         $tags = $connection_manager->executeQuery($tagQuery);
         
-        $connection_manager->closeDBConnection();
-        
-        if($articles)
+        if($articles){
+            $connection_manager->closeDBConnection();
             return $articles[0];
+        }
     }
+
     $connection_manager->closeDBConnection();
 
     return false;
@@ -81,11 +82,9 @@ function getAuthorArticles(string $author, array &$tags){
         $connection_manager->closeDBConnection();
         
         return $articles;
-    } else {
-        $connection_manager->closeDBConnection();
-        //return buildError("Internal server error");
     }
-
+    
+    $connection_manager->closeDBConnection();
     return false;
 }
 
@@ -96,12 +95,15 @@ function getNewId(){
     if($conn_ok){
         $query = "SELECT id FROM Article ORDER BY id DESC LIMIT 1";
         $result = $connection_manager->executeQuery($query);
-        $connection_manager->closeDBConnection();
-        if($result)
+        
+        if($result){
+            $connection_manager->closeDBConnection();
             return $result[0]['id'];
+        }
     }
+    
+    $connection_manager->closeDBConnection();
     return false;
-
 }
 
 

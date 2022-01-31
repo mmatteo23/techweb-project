@@ -19,7 +19,7 @@ if($connection){
         $username = $_SESSION['username'];
 
     $articleData = $db->getArticleData($idArticle);
-    if($articleData != "WrongQuery"){   
+    if($articleData){   
         $tags = $db->getArticleTags($idArticle);
         $numOfLikes = $db->getNumberOfLikes($idArticle);
         if(isset($username) && $username != ''){

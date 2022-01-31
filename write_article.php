@@ -46,9 +46,12 @@ $formContent = '
         <p class="error"></p>
     </div>    
     <div class="input-wrapper">
-        <label for="cover">Article Cover <br>
-            <span>If no image is uploaded a default image for the selected game will be applied. Images with 1920 x 1080 resolution are preferred</span></label>
-        <input type="file" name="cover" id="cover" onchange="displayAltImageDescription()">
+        <label for="cover" id="label_cover">Article Cover <br>
+        <span>If no image is uploaded a default image for the selected game will be applied. Images with 1920 x 1080 resolution are preferred</span></label>
+        <figure id="image_preview">
+        </figure>       
+        <input type="file" accept="image/png,image/jpeg,image/bmp" name="cover" id="cover" onchange="showPreview(event);">
+        <button type="button" id="remove-preview-button" class="action-button pink sh-teal" onclick="removePreview()">Remove Image</button>
         <p class="error"></p>
     </div>
     <div class="input-wrapper">
@@ -73,7 +76,7 @@ $formContent = '
         </ul>
         <div id="tag-adder-wrapper">
             <input type="text" name="tags" id="tags" value="#TagValues#">  
-            <button id="tag-confirm-button" class="action-button pink sh-teal" onclick="AddAllTheTags()">Add</button>
+            <button id="tag-confirm-button" class="action-button pink sh-teal" onclick="AddAllTheTags()" type="button">Add</button>
         </div>
         <p class="error"></p>
     </div>
@@ -99,10 +102,10 @@ if(isset($_GET['id'])){
     $art_id = $_GET['id'];
     $tags = array();
     $numOfArticles = getNumberOfArticles();
-    if($art_id <= $numOfArticles){
+    $art_data = getArticleData($art_id, $_SESSION['username'], $tags);
+    if($art_data){
         $userIsAuthor = checkIfUserIsAuthor($art_id, $username);
         if ($userIsAuthor) {
-            $art_data = getArticleData($art_id, $_SESSION['username'], $tags);
             $title = $art_data['title'];
             $subtitle = $art_data['subtitle'];
             $read_time = $art_data['read_time'];
@@ -119,6 +122,10 @@ if(isset($_GET['id'])){
             $button_name = '<input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Save changes">';
             $title_name = '<title>Edit Article - Penta News</title>';
             $discard_link = '<a href="edit_article.php" id="undoBtn"';
+            if(isset($art_data['cover_img'])) {
+                $art_image = '<img src="images/article_covers/'.$art_data['cover_img'].'" alt="'. $art_data['alt_cover_img'] . '" id="article_cover_image">';
+                $formContent = str_replace('<oldImage/>',$art_image,$formContent);
+            }
         } else {
             $formContent = '<p style="font-size: 1.3em; text-align:center;">ERROR: You aren\'t the author of the article you want to edit. Please <a href="/edit_article.php">retry</a>.</p>';
         }
