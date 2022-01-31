@@ -54,7 +54,7 @@ if($connection){
         }
         $user_output .= '</ul>';
 
-        if ($userRole == 1 || checkIfUserIsAuthor($idArticle, $username)) {
+        if ($username && ($userRole == 1 || checkIfUserIsAuthor($idArticle, $username))) {
             $user_output .= '<a href="write_article.php?id='.$idArticle.'" class="action-button pink sh-teal">Edit Article</a>';
         }
         
