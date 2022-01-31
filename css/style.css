@@ -1395,7 +1395,6 @@ h1{
 .card-content .tag-list .tag {
   list-style-type: none;
   font-size: clamp(0.35em, 5vh + .3em, .85em);
-  padding: 0.2em 0.4em;
   margin: 0 .35ch;
   text-transform: capitalize;
 }
