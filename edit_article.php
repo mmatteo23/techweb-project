@@ -42,32 +42,6 @@ if($articles !== FALSE){
 
         $user_output .= "</tbody></table>"; 
         
-        /*
-        foreach($articles as $art){
-            $user_output .= 
-                '<a class="card-article-link" href="write_article.php?id='.$art['id'].'">
-                <article>
-                    <div class="card-article-image">
-                        <img src="images/article_covers/'.$art['cover_img'].'" alt="' . $art['alt_cover_img'] . '"/>
-                    </div>
-                    <div class="card-article-info">
-                        <h3>'.$art['title'].'</h3>
-                        <h4>'.$art['subtitle'].'</h4>
-                        <p>'.$art['publication_date'].'</p>';
-            $user_output .= '<ul class="tag-list card-article-tags">
-                                <li class="tag game-tag">'.$art['game'].'</li>';
-            if($tags){
-                while($tags[$x]['id']==$art['id']){
-                    $user_output .= '<li class="tag">'.$tags[$x]['tag'].'</li>';
-                    $x++;
-                }
-            }   
-            $user_output .= '</ul>';
-            $user_output .= '</div>
-            </article>
-            </a>';
-        }
-        */
         $user_output .= "</div>"; 
     }
     else{

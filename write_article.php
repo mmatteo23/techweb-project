@@ -51,6 +51,7 @@ $formContent = '
         <label for="cover" id="label_cover">Article Cover <br>
         <span>If no image is uploaded a default image for the selected game will be applied. Images with 1920 x 1080 resolution are preferred</span></label>
         <figure id="image_preview">
+            <imgPreview/>
         </figure>       
         <input type="file" accept="image/png,image/jpeg,image/bmp" name="cover" id="cover" onchange="showPreview(event);">
         <button type="button" id="remove-preview-button" class="action-button pink sh-teal" onclick="removePreview()">Remove Image</button>
@@ -100,6 +101,7 @@ $formContent = '
 </form>
 ';
 
+$art_image = '';
 if(isset($_GET['id'])){
     $art_id = $_GET['id'];
     $tags = array();
@@ -126,7 +128,6 @@ if(isset($_GET['id'])){
             $discard_link = '<a href="edit_article.php" id="undoBtn"';
             if(isset($art_data['cover_img'])) {
                 $art_image = '<img src="images/article_covers/'.$art_data['cover_img'].'" alt="'. $art_data['alt_cover_img'] . '" id="article_cover_image">';
-                $formContent = str_replace('<oldImage/>',$art_image,$formContent);
             }
         } else {
             $formContent = error404("whooooops...", "You aren't the author of the article you want to edit. Please select <a href='/edit_article.php'>one of yours</a>.");
@@ -208,6 +209,8 @@ if(isset($games)){
 // paginate the content
 // page structure
 $htmlPage = file_get_contents("html/write_article.html");
+
+$formContent = str_replace('<imgPreview/>',$art_image,$formContent);
 
 $htmlPage = str_replace('<content/>', $formContent, $htmlPage);
 $htmlPage = str_replace('<selectGame/>', $selectbox, $htmlPage);
