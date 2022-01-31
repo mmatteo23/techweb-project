@@ -157,8 +157,8 @@ function validateInputs () {
     const releaseDateValue = releaseDate.value;
     const developerValue = developer.value;
     
-    const coverExt = coverValue.slice(-3);
-    const defaultCoverExt = defaultCoverValue.slice(-3);
+    const coverExt = coverValue.slice(-3).toLowerCase();
+    const defaultCoverExt = defaultCoverValue.slice(-3).toLowerCase();
 
     var genre_error = false;
     var validForm = true;
