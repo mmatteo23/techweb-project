@@ -680,6 +680,11 @@ a.card-article-link:visited:focus h3{
   margin: 0 auto 2.5em;
 }
 
+header > a.action-button.pink.sh-teal {
+  margin: inherit;
+  margin-right: auto;
+}
+
 .home-content .action-button:hover,
 .home-content .action-button:focus{
   transform: scale(.98) translate(2px, 2px);
@@ -1494,7 +1499,8 @@ input[type="file"] {
 
 .error-display-text {
   margin: 0 10%;
-  padding-bottom: 40%;
+  padding-bottom: 10%;
+  padding-top: 5%;
 }
 
 .error-display-text li {

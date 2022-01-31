@@ -3,6 +3,8 @@
 session_start();
 require_once('php/db.php');
 require_once('php/error_management.php');
+require_once('php/ArticleController.php');
+require_once('php/UserController.php');
 
 use DB\DBAccess;
 
@@ -15,8 +17,11 @@ $tagsForKeywords = "";
 
 if($connection){
     $idArticle = $_GET['id']; ///codice per leggere get
-    if(isset($_SESSION['username']))
+    if(isset($_SESSION['username'])) {
         $username = $_SESSION['username'];
+        $userData = getUser($username);
+        $userRole = $userData['role'];
+    }
 
     $articleData = $db->getArticleData($idArticle);
     if($articleData){   
@@ -48,6 +53,10 @@ if($connection){
             }
         }
         $user_output .= '</ul>';
+
+        if ($userRole == 1 || checkIfUserIsAuthor($idArticle, $username)) {
+            $user_output .= '<a href="write_article.php?id='.$idArticle.'" class="action-button pink sh-teal">Edit Article</a>';
+        }
         
         $user_output .= '
                     </header>
