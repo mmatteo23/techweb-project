@@ -1485,7 +1485,7 @@ input[type="file"] {
 }
 
 /**************************************
-ERRORs
+                ERRORs
 **************************************/
 .error-display{
   display: flex;
@@ -1561,6 +1561,11 @@ ERRORs
   }
 }
 
+
+/**************************************
+              scrollbar
+**************************************/
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -1569,4 +1574,9 @@ ERRORs
 ::-webkit-scrollbar-thumb {
   background: var(--fucsia-accent);
   border-radius: 10px;
+}
+
+html{ /* for Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: var(--fucsia-accent) transparent;
 }
