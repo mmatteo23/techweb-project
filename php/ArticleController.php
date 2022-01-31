@@ -88,6 +88,22 @@ function getAuthorArticles(string $author, array &$tags){
     return false;
 }
 
+function getAllArticles() {
+    // create a connection istance to talk with the db
+    $connection_manager = new DBAccess();
+    $conn_ok = $connection_manager->openDBConnection();
+    
+    if($conn_ok){
+        $selectQuery = "SELECT Article.id AS id, publication_date, title FROM Article ORDER BY publication_date DESC, id DESC";
+        $articles = $connection_manager->executeQuery($selectQuery);  
+        $connection_manager->closeDBConnection();
+        return $articles;
+    }
+    
+    $connection_manager->closeDBConnection();
+    return false;
+}
+
 function getNewId(){
     $connection_manager = new DBAccess();
     $conn_ok = $connection_manager->openDBConnection();

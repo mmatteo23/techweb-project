@@ -435,6 +435,7 @@ p.error{
    }
    
    *.action-button{
+       margin: auto;
        height: 2.3em;
        display: block;
        font-size: 1.25em;
@@ -622,6 +623,10 @@ p.error{
     flex: 0 0 auto;
     margin-right: 0.5em;
     margin-top: 0.2em;
+}
+
+td > a.action-button.pink.sh-teal {
+    width: 5%;
 }
 
 .genre-select {

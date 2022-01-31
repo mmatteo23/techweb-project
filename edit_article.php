@@ -2,12 +2,20 @@
 
 require_once("php/validSession.php");
 require_once("php/ArticleController.php");
+require_once("php/UserController.php");
 require_once("php/GameController.php");
 require_once("php/utilityFunctions.php");
 require_once('php/error_management.php');
 
 $tags=array();
-$articles = getAuthorArticles($_SESSION['username'], $tags);
+$username = $_SESSION['username'];
+$userData = getUser($username);
+
+if ($userData['role'] == 1) {
+    $articles = getAllArticles();
+} else {
+    $articles = getAuthorArticles($username, $tags);
+}
 
 if(!isset($username) || $username == '' || $userRole != 1){    // the user is not authorized
     header("location: login.php");
