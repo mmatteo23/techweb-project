@@ -9,6 +9,10 @@ require_once('php/error_management.php');
 $tags=array();
 $articles = getAuthorArticles($_SESSION['username'], $tags);
 
+if(!isset($username) || $username == '' || $userRole != 1){    // the user is not authorized
+    header("location: login.php");
+}
+
 $user_output = '';
 
 if($articles !== FALSE){ 
