@@ -109,7 +109,6 @@ function showPreview(event){
         }
         preview.src = src;
         preview.style.display = "block";
-        preview.style.width = "100%";
         altImage.parentElement.style.display = "block";
         btnRemovePreview.style.display = 'block';
     } else {

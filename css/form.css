@@ -632,3 +632,11 @@ p.error{
 .genre-selector {
     flex: 1 1 auto;
 }
+
+#article_cover_image {
+    width: 100%;
+}
+
+button.action-button#remove-preview-button{
+   margin: 1em 8em; 
+}
