@@ -790,6 +790,12 @@ article > #edit-article-button.action-button.pink.sh-teal:hover {
   margin:0 auto;
 }
 
+.article-list thead tr th:nth-child(2) {
+  width: 100%;
+}
+
+
+
 
 
 /*

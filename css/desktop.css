@@ -484,14 +484,13 @@
     display:inline-table;
   }
 
-  
-.article-list tr th:first-child{
-  display: table-cell;
-}
-.article-list tr th:nth-child(3),
-.article-list tr td:nth-child(3){
-  display: table-cell;
-}
+  .article-list tr th:first-child{
+    display: table-cell;
+  }
+  .article-list tr th:nth-child(3),
+  .article-list tr td:nth-child(3){
+    display: table-cell;
+  }
 
   .article-list tbody tr td:nth-child(4) a:nth-child(2),
   .article-list tbody tr td:nth-child(5) button:nth-child(2){
@@ -501,4 +500,13 @@
   .article-list tbody tr td:nth-child(5) button:nth-child(1){
     display: none;
   }
+
+  .article-list thead tr th:nth-child(2) {
+    width: 80%;
+  }
+
+  .article-list thead tr th:nth-child(3) {
+    width: 20%;
+  }
+  
 }
