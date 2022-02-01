@@ -4,10 +4,10 @@ INSERT INTO Role (title, level) VALUES
 ('User', 0);
 
 INSERT INTO Person VALUES
-('danilostojkovic', 'Danilo', 'Stojkovic', 'danilo.ricky@pentanews.com', 'danilostojkovic', 1, CURDATE(),''),
-('davidemilan', 'Davide', 'Milan', 'davide.inter@pentanews.com', 'davidemilan', 1, CURDATE(),'davidemilan.png'),
-('matteocasonato', 'Matteo', 'Casonato', 'matteo.quasinato@pentanews.com', 'matteocasonato', 1, CURDATE(),''),
-('matteomidena', 'Matteo', 'Midena', 'matteo.milena@pentanews.com', 'matteomidena', 1, CURDATE(),'matteomidena.jpg'),
+('danilostojkovic', 'Danilo', 'Stojkovic', 'danilo.stojkovic@pentanews.com', 'danilostojkovic', 1, CURDATE(),''),
+('davidemilan', 'Davide', 'Milan', 'davide.milan@pentanews.com', 'davidemilan', 1, CURDATE(),'davidemilan.png'),
+('matteocasonato', 'Matteo', 'Casonato', 'matteo.casonato@pentanews.com', 'matteocasonato', 1, CURDATE(),''),
+('matteomidena', 'Matteo', 'Midena', 'matteo.midena@pentanews.com', 'matteomidena', 1, CURDATE(),'matteomidena.jpg'),
 ('admin', 'admin', 'admin', 'admin@pentanews.com', 'admin', 1, CURDATE(),''),
 ('user', 'user', 'user', 'user@useremail.com', 'user', 3, CURDATE(),''),
 ('writer', 'writer', 'writer', 'writer@writeremail.com', 'writer', 2, CURDATE(), '');

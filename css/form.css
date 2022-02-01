@@ -435,16 +435,18 @@ p.error{
    }
    
    *.action-button{
+       display: flex;
+       justify-content: center;
+       align-items: center;
        margin: auto;
-       height: 2.3em;
-       display: block;
+       height: 2.3em;       
        font-size: 1.25em;
        font-family: 'Poppins', sans-serif;
        min-width: 5em;
        border-radius: 2em;
        text-decoration: none;
        text-align: center;
-       line-height: 2.3em;
+       line-height: 1em;
        box-shadow: 2px 2px 2px 0px black;
        flex: 1 1 auto;
        transition: all 0.2s ease-in-out;
@@ -650,15 +652,6 @@ td > a.action-button.pink.sh-teal {
 button.action-button#remove-preview-button, 
 button.action-button#remove-preview-button-1, 
 button.action-button#remove-preview-button-2 {
-    margin: 1em 3em; 
+    margin: 1em clamp(1.5em, 6vw + .5em ,3em); 
     display: none;
-}
-
-@media only screen and (min-width: 769px) {
-    button.action-button#remove-preview-button, 
-    button.action-button#remove-preview-button-1, 
-    button.action-button#remove-preview-button-2 {
-        margin: 1em 14em; 
-        display: none;
-    }
 }

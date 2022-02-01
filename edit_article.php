@@ -31,7 +31,8 @@ if($articles !== FALSE){
         $total_pages = ceil(count($articles) / $per_page_record);
         $pageLink = '';
         $pageController = '';
-        $page = $_GET['page'];
+        if(isset($_GET['page']))
+            $page = $_GET['page'];
 
         if(!isset($page) || $page == NULL) $page = 1;
         if($page > $total_pages) $page = $total_pages;
@@ -69,7 +70,7 @@ if($articles !== FALSE){
                 </thead>
                 <tbody>";
         for($j=(($page-1)*($per_page_record)); $j<$page*($per_page_record); $j++){
-            if($articles[$j])
+            if(isset($articles[$j]))
                 $user_output .= "
                     <tr id='art-".$articles[$j]['id']."'>
                         <th scope='row'>".$articles[$j]['id']."</th>
