@@ -1617,3 +1617,26 @@ html{ /* for Firefox */
   scrollbar-width: thin;
   scrollbar-color: var(--fucsia-accent) transparent;
 }
+
+.pagination {   
+  display: flex;
+  justify-content: center;
+  margin: 2em 0;   
+}   
+.pagination a,
+.pagination span {   
+  font-weight:bold;   
+  font-size:18px;   
+  color: white;   
+  float: left;   
+  padding: 12px 20px;  
+  text-decoration: none;
+  background-color: #2e2d2d;  
+}
+.pagination span {
+  margin: 0 0.5em;
+  background-color: transparent;
+}
+.pagination a:hover {   
+  background-color: var(--fucsia-accent);   
+}

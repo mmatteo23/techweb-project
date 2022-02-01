@@ -25,6 +25,34 @@ $user_output = '';
 
 if($articles !== FALSE){ 
     if(count($articles) > 0){
+
+        // create paginator
+        $per_page_record = 10;
+        $total_pages = ceil(count($articles) / $per_page_record);
+        $pageLink = '';
+        $pageController = '';
+        $page = $_GET['page'];
+
+        if(!isset($page) || $page == NULL) $page = 1;
+        if($page > $total_pages) $page = $total_pages;
+
+        if($page >= 2) $pageController .= "<a href='edit_article.php?page=". ($page-1) ."'><abbr title='Previous'>Prev</abbr></a>";
+        /*
+        for($i=1; $i<=$total_pages; $i++) {   
+            if ($i == $page) {   
+                $pageController .= "<span class = 'active'>".$i." </span>";   
+            }               
+            else {   
+                $pageController .= "<a href='edit_article.php?page=".$i."'>".$i." </a>";     
+            }   
+        };
+        */
+        $pageController .= "<span>".$page." of ". $total_pages ."</span>";
+
+        if($page<$total_pages){   
+            $pageController .= "<a href='edit_article.php?page=".($page+1)."'>Next</a>";   
+        }
+
         $user_output .= '<h1>Your Articles</h1><div>';
         $x=0;
         $user_output .= "
@@ -40,6 +68,18 @@ if($articles !== FALSE){
                     </tr>
                 </thead>
                 <tbody>";
+        for($j=(($page-1)*($per_page_record)); $j<$page*($per_page_record); $j++){
+            if($articles[$j])
+                $user_output .= "
+                    <tr id='art-".$articles[$j]['id']."'>
+                        <th scope='row'>".$articles[$j]['id']."</th>
+                        <td>" . $articles[$j]['title'] . "</td>
+                        <td>" . $articles[$j]['publication_date'] . "</td>
+                        <td><a href='write_article.php?id=" . $articles[$j]['id'] . "'><i class='material-icons' aria-hidden='true'>edit</i></a><a class='action-button pink sh-teal' href='write_article.php?id=" . $articles[$j]['id'] . "'>Edit</a></td>
+                        <td><button class='delete-btn' onClick='showModal(" . $articles[$j]['id'] . ")'><i class='material-icons' aria-hidden='true'>delete</i></button><button class='action-button red sh-teal' onClick='showModal(" . $articles[$j]['id'] . ")'>Delete</button></td>
+                </tr>";
+        }
+        /*
         foreach($articles as $art){
             $user_output .= "
                 <tr id='art-".$art['id']."'>
@@ -51,10 +91,14 @@ if($articles !== FALSE){
                 </tr>";
             
         }
+        */
 
         $user_output .= "</tbody></table>"; 
         
-        $user_output .= "</div>"; 
+        $user_output .= "</div>";
+
+        if($total_pages > 1)
+            $user_output .= "<div class='pagination'>" . $pageController . "</div>";
     }
     else{
         $user_output .= genericErrorHTML("No articles found", "Looks like you haven't written anything yet", 

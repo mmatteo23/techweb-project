@@ -36,6 +36,7 @@ const subtitle = document.getElementById('subtitle');
 const minutes = document.getElementById('minutes');
 const altImage = document.getElementById('alt-image');
 const btnRemovePreview = document.getElementById('remove-preview-button');
+const deleteImage = document.getElementById('delete-image');
 
 function setFormInputs() {
     if(document.getElementById("article_cover_image")){
@@ -129,7 +130,7 @@ function removePreview(){
     document.getElementById("article_cover_image").remove();
     document.getElementById('cover').value = '';
     altImage.value = '';
-
+    deleteImage.value = 1;
 
     // remove front end
     altImage.parentElement.style.display = "none";

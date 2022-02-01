@@ -54,7 +54,8 @@ $formContent = '
         <span>If no image is uploaded a default image for the selected game will be applied. Images with 1920 x 1080 resolution are preferred</span></label>
         <figure id="image_preview">
             <imgPreview/>
-        </figure>       
+        </figure>
+        <input type="number" name="delete-image" id="delete-image" value="0">    
         <input type="file" accept="image/png,image/jpeg,image/bmp" name="cover" id="cover" onchange="showPreview(event);">
         <button type="button" id="remove-preview-button" class="action-button pink sh-teal" onclick="removePreview()">Remove Image</button>
         <p class="error"></p>
@@ -146,12 +147,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $subtitle           = $_POST['subtitle'];
     $read_time          = $_POST['minutes'];
     $article_text       = $_POST['articleText'];
-    
-
     $author             = $_SESSION['username'];
     $game_id            = $_POST['game'];
     $tags               = $_POST['tags'];
     $alt_image          = $_POST['alt-image'];
+    $deleteImg          = $_POST['delete-image'];
+
     if(!isset($alt_image) || $alt_image==""){
         $alt_image = "article cover image";
     }
