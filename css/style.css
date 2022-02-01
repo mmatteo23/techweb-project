@@ -430,7 +430,7 @@ footer .credits{
 
 .card-article-info p{
   font-weight: normal;
-  color: #818181;
+  color: #939393;
   font-size: 0.7em;
 }
 
@@ -508,7 +508,7 @@ a.card-article-link:link h3{
 
 a.card-article-link:link:hover h3,
 a.card-article-link:link:focus h3{
-  color: white;
+  color: var(--fucsia-accent);
 }
 
 a.card-article-link:visited h3{
@@ -516,7 +516,7 @@ a.card-article-link:visited h3{
 }
 a.card-article-link:visited:hover h3,
 a.card-article-link:visited:focus h3{
-  color: var(--purple-accent);
+  color: var(--fucsia-accent);
 }
 
 
