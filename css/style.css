@@ -1291,6 +1291,7 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0 1em;
 }
 
 .landing_page_content > .wrapper .secondary{

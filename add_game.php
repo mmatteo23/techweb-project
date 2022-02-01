@@ -111,7 +111,7 @@ if(isset($_GET['id'])){
         $default_article_img = $game_id."-cover-1080.jpg";
         $destination = "add_game.php?id=".$game_id;
         $header = "<h1>Edit game</h1>";
-        $breadcrumb = "&gt; Edit game";
+        $breadcrumb = "&gt; <a href='edit_game.php'>Choose a game to edit</a> &gt; Edit game";
         $button_name = '<input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Save changes">';
         $title_name = '<title>Edit game - Penta News</title>';
         $discard_link = '<a href="edit_game.php" id="undoBtn"';

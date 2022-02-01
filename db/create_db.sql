@@ -128,18 +128,14 @@ VALUES(
 ),
 (
     'Clash Royale',
-    'Enter the Arena! From the creators of Clash of Clans comes a real-time multiplayer game starring the Royales, your favorite Clash characters and much, much more.
-    Collect and upgrade dozens of cards featuring the Clash of Clans troops, spells and defenses you know and love, as well as the Royales: Princes, Knights, Baby Dragons and more. Knock the enemy King and Princesses from their towers to defeat your opponents and win Trophies, Crowns and glory in the Arena. Form a Clan to share cards and build your very own battle community.',
+    'Enter the Arena! From the creators of Clash of Clans comes a real-time multiplayer game starring the Royales, your favorite Clash characters and much, much more. Collect and upgrade dozens of cards featuring the Clash of Clans troops, spells and defenses you know and love, as well as the Royales: Princes, Knights, Baby Dragons and more. Knock the enemy King and Princesses from their towers to defeat your opponents and win Trophies, Crowns and glory in the Arena. Form a Clan to share cards and build your very own battle community.',
     '2016:03:02',
     'Supercell',
     '3.jpg'
 ),
 (
     'Apex Legends',
-    'Pick your character. Round up your squad. Show everyone what Legends are made of.
-    Whether you’re battling on a massive floating city in Battle Royale or dueling in close-quarters Arenas, you’ll need to think fast. Master your Legend’s unique abilities and coordinate with your teammates to discover new tactics and powerful combinations.
-    Master an expanding assortment of powerful weapons and equipment. You’ll need to move fast and learn the rhythms of each weapon to get the most from your arsenal. Plus change it up in limited-time modes, and get ready for a boatload of new content each season.
-    Apex Legends takes place in an immersive universe where the story continues to evolve, maps change each season, and new Legends keep joining the fight. Make your mark on the Apex Games with a multitude of distinct outfits and join the adventure!',
+    'Pick your character. Round up your squad. Show everyone what Legends are made of. Whether you’re battling on a massive floating city in Battle Royale or dueling in close-quarters Arenas, you’ll need to think fast. Master your Legend’s unique abilities and coordinate with your teammates to discover new tactics and powerful combinations. Master an expanding assortment of powerful weapons and equipment. You’ll need to move fast and learn the rhythms of each weapon to get the most from your arsenal. Plus change it up in limited-time modes, and get ready for a boatload of new content each season. Apex Legends takes place in an immersive universe where the story continues to evolve, maps change each season, and new Legends keep joining the fight. Make your mark on the Apex Games with a multitude of distinct outfits and join the adventure!',
     '2019:02:04',
     'Respawn Entertainment',
     '4.jpg'
@@ -174,8 +170,7 @@ VALUES(
 ),
 (
     'Fortnite',
-    'Fortnite is a massive multiplayer online video game released in July 2017, developed by Epic Games. The game includes two different game modes released as early access: Save the World and Battle Royale.
-    Fortnite Battle Royale is the free 100-player PvP mode in Fortnite. One giant map, a battle bus, Fortnite building skills and destructible environments combined with intense PvP combat while the last one standing wins; and Save the World is a cooperative shooter-survival game with up to 4-man squad to fight off husks and defend mission objectives with fortifications and defenses.',
+    'Fortnite is a massive multiplayer online video game released in July 2017, developed by Epic Games. The game includes two different game modes released as early access: Save the World and Battle Royale. Fortnite Battle Royale is the free 100-player PvP mode in Fortnite. One giant map, a battle bus, Fortnite building skills and destructible environments combined with intense PvP combat while the last one standing wins; and Save the World is a cooperative shooter-survival game with up to 4-man squad to fight off husks and defend mission objectives with fortifications and defenses.',
     '2017:07:21',
     'Epic Games',
     '9.jpg'
@@ -196,7 +191,7 @@ VALUES(
 ),
 (
     'Warzone',
-    'Warzone™ Pacific arrives with a new map, trading in the Eastern European front of Verdansk for the sunny Pacific island of Caldera. With plenty of tropical landscapes to explore, there’s always some action above and below the surface. And for an action-packed World War II experience, take to the skies in "Vanguard Royale”, a new Warzone-based game mode featuring a fighter plane and Anti-Aircraft vehicles.',
+    'Warzone™ Pacific arrives with a new map, trading in the Eastern European front of Verdansk for the sunny Pacific island of Caldera. With plenty of tropical landscapes to explore, there’s always some action above and below the surface. And for an action-packed World War II experience, take to the skies in Vanguard Royale, a new Warzone-based game mode featuring a fighter plane and Anti-Aircraft vehicles.',
     '2020:03:10',
     'Activision',
     '12.jpg'

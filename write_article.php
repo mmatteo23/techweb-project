@@ -229,7 +229,7 @@ $htmlPage = str_replace('#AltImage#', $alt_image, $htmlPage);
 $htmlPage = str_replace("<p>Let's go writer! Now is your moment, overwrite this piece of text and start writing!</p>", $text, $htmlPage);
 $htmlPage = str_replace("write_article.php", $destination, $htmlPage);
 $htmlPage = str_replace("<h1>Write an article</h1>", $header, $htmlPage);
-$htmlPage = str_replace('<a href="profile.php">Private Area</a> &gt; Write article</p>', $breadcrumb, $htmlPage);
+$htmlPage = str_replace('<a href="profile.php">Private Area</a> &gt; Write article', $breadcrumb, $htmlPage);
 $htmlPage = str_replace('<input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Post article">', $button_name, $htmlPage);
 $htmlPage = str_replace('<title>Write Article - Penta News</title>', $title_name, $htmlPage);
 $htmlPage = str_replace('<a href="profile.php" id="undoBtn"', $discard_link, $htmlPage);
