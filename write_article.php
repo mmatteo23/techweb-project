@@ -55,7 +55,7 @@ $formContent = '
         <figure id="image_preview">
             <imgPreview/>
         </figure>
-        <input type="number" name="delete-image" id="delete-image" value="0">    
+        <input type="number" name="delete-image" id="delete-image" value="0" hidden>    
         <input type="file" accept="image/png,image/jpeg,image/bmp" name="cover" id="cover" onchange="showPreview(event);">
         <button type="button" id="remove-preview-button" class="action-button pink sh-teal" onclick="removePreview()">Remove Image</button>
         <p class="error"></p>
@@ -170,7 +170,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     if($errorsImage == ""){
         if(isset($_GET['id'])){
             /* se un articolo è stato impostato con un'immagine di default, quando si cambia il gioco viene aggiornata anche l'immagine di default automaticamente*/ 
-            if($article_img=="Default/" . $game_id . "-cover-1080.".$fileGameExtension && isset($art_data['cover_img']) && explode('/', $art_data['cover_img'])[0]!='Default')
+            if($article_img=="Default/" . $game_id . "-cover-1080.".$fileGameExtension && isset($art_data['cover_img']) && explode('/', $art_data['cover_img'])[0]!='Default' && $deleteImg==0)
                 $article_img = $art_data['cover_img'];
 
             $result = updateArticle($title, $subtitle, $article_text, $publication_date, $article_img, $read_time, $author, $game_id, $tags, $alt_image, $idImg);
