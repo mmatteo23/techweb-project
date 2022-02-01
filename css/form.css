@@ -190,6 +190,10 @@ form:not(form.search-form) input[type="submit"].login-signup-btn:focus{
     color: black;
 }
 
+.editorBox a {
+    color: blue;
+}
+
 
 @keyframes popdown {
     0%{
