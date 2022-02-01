@@ -587,11 +587,15 @@ a.card-article-link:visited:focus h3{
   color: #1B1B1B;
 }
 
-.slides .card-article-link{
+.slides .card-article-link,
+.favorites-content .card-article-link,
+.search-content .card-article-link{
   display: flex;
   flex-direction: column;
 }
-.slides .card-article-link .card-article-info{
+.slides .card-article-link .card-article-info,
+.favorites-content .card-article-link,
+.search-content .card-article-link{
   flex-grow: 1;
 }
 
