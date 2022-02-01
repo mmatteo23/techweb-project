@@ -5,6 +5,7 @@ require_once("php/ArticleController.php");
 require_once("php/GameController.php");
 require_once("php/utilityFunctions.php");
 require_once('php/validSession.php');
+require_once("php/error_management.php");
 
 $errors = '';
 
@@ -34,6 +35,8 @@ $discard_link = '<a href="profile.php" id="undoBtn"';
 $game_img_html = '';
 $default_img_html = '';
 $formContent = '
+<h1>Add a game</h1>
+<formErrors/>
 <form method="POST" action="add_game.php" id="articleForm" enctype="multipart/form-data">
     <div class="input-wrapper">
         <label for="cover">Game Cover <br>
@@ -93,10 +96,10 @@ $formContent = '
 </form>
 ';
 
-if(isset($_GET['id'])){
+if(isset($_GET['id']) && is_numeric($_GET['id'])){
     $game_id = $_GET['id'];
     $numOfGames = getNumberOfGames();
-    if($game_id <= $numOfGames){
+    if($game_id <= $numOfGames && $game_id > 0){
         $game_data = getGameData($game_id);
         $name = $game_data['name'];
         $description = $game_data['description'];
@@ -172,7 +175,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             }
             // fa l'update di tutto
             $game_id = updateGame($_GET['id'], $name, $description, $releaseDate, $developer, $game_img);
-            if(is_int(intval($game_id)) && $genre_errors == "") {
+            if(is_numeric($game_id) && $genre_errors == "") {
                 deletePreviousGameGenres($_GET['id']);
                 foreach($genre_ids as $genre_id)
                    $result += storeGameGenre(intval($_GET['id']), $genre_id);
@@ -191,10 +194,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             }
         }
         // check errori
-        if(is_int(intval($game_id)) && $errorsImage == "" && $genre_errors == "" && is_int(intval($result))) {
+        if($game_id===TRUE && $errorsImage == "" && $genre_errors == "" && is_numeric($result)) {
             header("Location: games.php");
         } else {
-            if (is_int(intval($game_id))) {
+            if (is_numeric($game_id)) {
                 $errors = "<ul>" . $errorsImage . $genre_errors . "</ul>";
             }
             else {

@@ -31,7 +31,7 @@ if($articles !== FALSE){
         $total_pages = ceil(count($articles) / $per_page_record);
         $pageLink = '';
         $pageController = '';
-        if(isset($_GET['page']))
+        if(isset($_GET['page']) && is_numeric($_GET['page']) && $_GET['page'] > 0)
             $page = $_GET['page'];
 
         if(!isset($page) || $page == NULL) $page = 1;

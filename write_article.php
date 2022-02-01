@@ -104,7 +104,7 @@ $formContent = '
 </form>
 ';
 
-if(isset($_GET['id'])){
+if(isset($_GET['id']) && is_numeric($_GET['id'])){
     $art_id = $_GET['id'];
     $tags = array();
     $numOfArticles = getNumberOfArticles();
