@@ -222,13 +222,6 @@ function deleteTag(tagLabel) {
     });
 }
 
-function addTags() {
-  //clearTags();
-  tags.slice().reverse().forEach(tag => {
-    tagContainer.prepend(createTag(tag));
-  });
-}
-
 function AddAllTheTags(){
     if(document.getElementById("tags").value!=""){
         document.getElementById("tags").value.split(',').forEach(tag => {
@@ -238,10 +231,10 @@ function AddAllTheTags(){
                 tagContainer.prepend(createTag(tag));
             }
         });
-        //addTags();
         tagContainer.style.display = "flex";
         inputTag.value = '';
     }
+    document.getElementById("tags").focus();
 }
 
 window.onload = function(){ 
@@ -249,4 +242,5 @@ window.onload = function(){
         tagContainer.style.display = "none";
     }
     AddAllTheTags();
+    title.focus();
 }

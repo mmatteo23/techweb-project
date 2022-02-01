@@ -1,1 +1,0 @@
-SELECT * FROM Game WHERE id=50

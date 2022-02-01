@@ -594,8 +594,8 @@ a.card-article-link:visited:focus h3{
   flex-direction: column;
 }
 .slides .card-article-link .card-article-info,
-.favorites-content .card-article-link,
-.search-content .card-article-link{
+.favorites-content .card-article-link .card-article-info,
+.search-content .card-article-link .card-article-info{
   flex-grow: 1;
 }
 
