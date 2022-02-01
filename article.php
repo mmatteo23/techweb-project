@@ -54,9 +54,7 @@ if($connection){
         }
         $user_output .= '</ul>';
 
-        if ($username && ($userRole == 1 || checkIfUserIsAuthor($idArticle, $username))) {
-            $user_output .= '<a href="write_article.php?id='.$idArticle.'" class="action-button pink sh-teal">Edit Article</a>';
-        }
+        
         
         $user_output .= '
                     </header>
@@ -87,6 +85,10 @@ if($connection){
                     <button id="saveBtn" aria-label="Press to save this article" onclick="SaveThisArticle(' . "'" .$username. "'" . ','.$idArticle.','.$saved.')"><span class="material-icons md-36">bookmark_border</span></button>
                 </span>';
             }       
+        }
+
+        if ($username && ($userRole == 1 || checkIfUserIsAuthor($idArticle, $username))) {
+            $user_output .= '<a href="write_article.php?id='.$idArticle.'" class="action-button pink sh-teal" id="edit-article-button">Edit Article</a>';
         }
 
         $user_output .= '   </article>';
