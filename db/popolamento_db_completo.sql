@@ -168,7 +168,7 @@ INSERT INTO Article (id, title, subtitle, text, publication_date, cover_img, alt
   'MTG-Arcane-Secret-Lair.jpg',
   'article image cover showing a moment from the Arcane show: Jayce and Viktor floating with magic',
   9,
-  'davidemilan',
+  'writer',
   1
 ),
 (

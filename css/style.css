@@ -390,6 +390,7 @@ footer .credits{
 
 .card-article-info h4{
   font-size: 1.1em;
+  line-height: 1.1em;
   font-weight: normal;
   /*to make it show only 2 text lines and what overflows becomes "..." */
   overflow: hidden;
@@ -715,6 +716,10 @@ article > #edit-article-button.action-button.pink.sh-teal:hover {
   overflow-x: auto;
 }
 
+.article-list caption{
+  padding: 0.5em 0;
+}
+
 
 .article-list thead th{
   background-color: #2e2d2d;
@@ -749,6 +754,25 @@ article > #edit-article-button.action-button.pink.sh-teal:hover {
 
 .article-list > thead > tr:nth-of-type(1) {
   color: white;
+}
+
+.article-list tr th:first-child{
+  display: none;
+}
+.article-list tr th:nth-child(3),
+.article-list tr td:nth-child(3){
+  display: none;
+}
+
+.article-list tbody tr td:nth-child(4) a:nth-child(2),
+.article-list tbody tr td:nth-child(5) button:nth-child(2){
+  display: none;
+}
+
+.article-list .delete-btn{
+  color: #ff3860;
+  display: block;
+  margin:0 auto;
 }
 
 

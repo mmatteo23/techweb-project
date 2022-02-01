@@ -19,7 +19,7 @@ $articlesToLoad = 5;
 $lastArticleLoaded = 0;
 
 if($connection){
-    $nArticles=10;
+    $nArticles=7;
 
     $articles = $db->getTopArticles($nArticles);
     if(!isset($articles)){ 

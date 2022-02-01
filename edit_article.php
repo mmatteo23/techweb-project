@@ -43,11 +43,11 @@ if($articles !== FALSE){
         foreach($articles as $art){
             $user_output .= "
                 <tr id='art-".$art['id']."'>
-                    <th scope='row'>".$art['id']."</th>
+                    <th scope='row' abbr='article number ".$art['id']."'>".$art['id']."</th>
                     <td>" . $art['title'] . "</td>
                     <td>" . $art['publication_date'] . "</td>
-                    <td><a class='action-button pink sh-teal' href='write_article.php?id=" . $art['id'] . "'>Edit</a></td>
-                    <td><button class='action-button red sh-teal' onClick='showModal(" . $art['id'] . ")'>Delete</button></td>
+                    <td><a href='write_article.php?id=" . $art['id'] . "'><i class='material-icons' aria-hidden='true'>edit</i></a><a class='action-button pink sh-teal' href='write_article.php?id=" . $art['id'] . "'>Edit</a></td>
+                    <td><button class='delete-btn' onClick='showModal(" . $art['id'] . ")'><i class='material-icons' aria-hidden='true'>delete</i></button><button class='action-button red sh-teal' onClick='showModal(" . $art['id'] . ")'>Delete</button></td>
                 </tr>";
             
         }
