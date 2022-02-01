@@ -775,8 +775,8 @@ article > #edit-article-button.action-button.pink.sh-teal:hover {
 
 .article-list tbody tr td:nth-child(4) a:nth-child(1):hover,
 .article-list tbody tr td:nth-child(4) a:nth-child(1):focus,
-.article-list tbody tr td:nth-child(4) a:nth-child(2):hover,
-.article-list tbody tr td:nth-child(4) a:nth-child(2):focus{
+.article-list tbody tr td:nth-child(5) a:nth-child(1):hover,
+.article-list tbody tr td:nth-child(5) a:nth-child(1):focus{
   background-color: transparent;
 }
 
