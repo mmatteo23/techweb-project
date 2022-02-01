@@ -64,11 +64,11 @@ if($connection){
             $user_output .= "</section>";  
         }else{
             $user_output .= genericErrorHTML("Zero matches found", "No article includes what you're looking for.", 
-                            array("Change the search input.", "Refresh the page, it might just be that easy.", "Visit our other pages."));
+                            array("Change the search input.", "Refresh the page, it might just be that easy.", "Visit our other pages."), true);
         }
     }else{
         $user_output .= genericErrorHTML("The URL seems to be missing something", "Looks like something went wrong.", 
-                        array("Refresh the page, it might just be that easy.", "Visit our other pages."));
+                        array("Refresh the page, it might just be that easy.", "Visit our other pages."), true);
     }
 } else {
     $user_output = createDBErrorHTML();

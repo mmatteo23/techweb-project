@@ -51,6 +51,14 @@ function checkImageToUpload(&$img, string $target_dir, string $idInputForm, stri
     
 }
 
+function checkDefaultExtension($game_id){
+    $files = scandir("images/article_covers/Default");
+    foreach($files as $file){
+        if(explode("-", $file)[0]==$game_id)
+            return explode('.', $file)[1];
+    }
+}
+
 function preventMaliciousCode (string $userInput) {
     $inputPieces = explode('script', strtolower($userInput));
     if(count($inputPieces)>0 && strpos($inputPieces[0], '&lt;')!==false && strpos($inputPieces[1], '&gt;')!==false)
