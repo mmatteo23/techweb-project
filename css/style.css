@@ -688,7 +688,8 @@ article > #edit-article-button.action-button.pink.sh-teal {
 }
 
 article > #edit-article-button.action-button.pink.sh-teal:hover {
-  color: var(--pink-accent);
+  color: black;
+  background-color: var(--pink-accent);
 }
 
 .home-content .action-button:hover,
