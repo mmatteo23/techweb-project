@@ -680,9 +680,16 @@ a.card-article-link:visited:focus h3{
   margin: 0 auto 2.5em;
 }
 
-header > a.action-button.pink.sh-teal {
-  margin: inherit;
-  margin-right: auto;
+article > #edit-article-button.action-button.pink.sh-teal {
+  float: right;
+  margin-top: -0.4em;
+  margin-right: 1em;
+  color: black;
+}
+
+article > #edit-article-button.action-button.pink.sh-teal:hover {
+  color: black;
+  background-color: var(--pink-accent);
 }
 
 .home-content .action-button:hover,
