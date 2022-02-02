@@ -1089,6 +1089,14 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
   z-index: -1;
 }
 
+#src-label{
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  opacity: 0;
+  left: 0;
+}
+
 #src-bar{
   width: 100%;
   font-size: 1em;
