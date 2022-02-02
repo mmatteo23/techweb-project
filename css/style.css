@@ -993,14 +993,14 @@ z-index di #article-body, questo eviterebbe l'ombra che corre tutto lungo l'arti
 }
 
 #aboutus-body h2{
-  font-size: 4rem;
-  color: var(--pink-accent);
-}
-
-#aboutus-body h3{
   font-size: 2rem;
   padding-top: 0.5em;
   color: var(--teal-accent);
+}
+
+#aboutus-body h3 {
+  font-size: 1em;
+  color: white;
 }
 
 #aboutus-body h3:nth-child(2){

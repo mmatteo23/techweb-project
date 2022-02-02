@@ -151,7 +151,7 @@ class DBAccess {
 
 
 	public function getFavArticles($user){		
-		$query = "SELECT Article.id AS id, title, subtitle, publication_date, cover_img, Game.name AS game, alt_cover_img FROM (Article JOIN saved_articles ON id=article_id) JOIN Game ON game_id=Game.id WHERE username= '$user' ORDER BY publication_date DESC";   
+		$query = "SELECT Article.id AS id, title, subtitle, publication_date, cover_img, Game.name AS game, alt_cover_img FROM (Article JOIN saved_articles ON id=article_id) JOIN Game ON game_id=Game.id WHERE username= '$user' ORDER BY publication_date DESC, id DESC";   
 		$queryResults = mysqli_query($this->connection, $query);
 		if(!$queryResults)
 			return null;
@@ -165,7 +165,7 @@ class DBAccess {
 	}
 	
 	public function getFavArticlesTags($user){
-		$query = "SELECT saved_articles.article_id, tag_id, name FROM (article_tags JOIN Article ON article_id=Article.id) JOIN Tag ON tag_id=Tag.id JOIN saved_articles ON Article.id=saved_articles.article_id WHERE username='$user' ORDER BY publication_date DESC";   
+		$query = "SELECT saved_articles.article_id, tag_id, name FROM (article_tags JOIN Article ON article_id=Article.id) JOIN Tag ON tag_id=Tag.id JOIN saved_articles ON Article.id=saved_articles.article_id WHERE username='$user' ORDER BY publication_date DESC, saved_articles.article_id DESC";   
 		$queryResults = mysqli_query($this->connection, $query);
 		if(!$queryResults)
 			return null;
@@ -211,7 +211,7 @@ class DBAccess {
 		text LIKE '%$src_text%' OR
 		Tag.name IN (SELECT Tag.name as Tname FROM (article_tags JOIN Article ON article_id=Article.id) JOIN Tag ON tag_id=Tag.id WHERE Tag.name LIKE '%$src_text%'))
 		GROUP BY title
-		ORDER BY publication_date DESC)";
+		ORDER BY publication_date DESC, id DESC)";
 		$queryResults = mysqli_query($this->connection, $query1);
 		if(!$queryResults)
 			return null;
@@ -229,7 +229,7 @@ class DBAccess {
 	}
 
 	public function getSearchRelatedArticlesTags(){
-		$query = "SELECT SearchRelatedArticles.id AS id, Tag.name AS tag, publication_date FROM (SearchRelatedArticles JOIN article_tags ON id=article_id) JOIN Tag ON tag_id=Tag.id ORDER BY publication_date DESC";
+		$query = "SELECT SearchRelatedArticles.id AS id, Tag.name AS tag, publication_date FROM (SearchRelatedArticles JOIN article_tags ON id=article_id) JOIN Tag ON tag_id=Tag.id ORDER BY publication_date DESC, id DESC";
 		$results = $this->executeQuery($query);
 		return $results;
 	}
@@ -242,7 +242,7 @@ class DBAccess {
 		(SELECT Article.id AS id, title, subtitle, Game.name AS game, publication_date, cover_img, alt_cover_img FROM Article JOIN Game ON game_id=Game.id
 		WHERE Game.name='$game'
 		GROUP BY title
-		ORDER BY publication_date DESC)";
+		ORDER BY publication_date DESC, id DESC)";
 		$queryResults = mysqli_query($this->connection, $query1);
 		if(!$queryResults)
 			return null;
@@ -265,29 +265,12 @@ class DBAccess {
 		$query1 = "CREATE OR REPLACE VIEW SearchRelatedArticles AS 
 		(SELECT Article.id AS id, title, subtitle, publication_date, cover_img, Game.name AS game, alt_cover_img FROM 
 		((Article JOIN article_tags ON id=article_id) JOIN Tag on Tag.id = tag_id) JOIN Game on game_id=Game.id
-		WHERE Tag.name='$tag' ORDER BY publication_date DESC)";
+		WHERE Tag.name='$tag' ORDER BY publication_date DESC, id DESC)";
 		$queryResults = mysqli_query($this->connection, $query1);
 		if(!$queryResults)
 			return null;
 		$query2 = "SELECT * FROM SearchRelatedArticles";
 		$queryResults = mysqli_query($this->connection, $query2);
-		if(!$queryResults)
-			return null;
-		if(mysqli_num_rows($queryResults)==0){
-			return null;
-		}
-		$result = array();
-		while($row = mysqli_fetch_assoc($queryResults)) array_push($result, $row);
-		$queryResults->free(); 
-		return $result;
-	}
-
-	public function getSearchedArticlesTags($art_id){
-		$query = "SELECT article_id, tag_id, name FROM (article_tags JOIN Article ON article_id=Article.id) 
-		JOIN Tag ON tag_id=Tag.id 
-		WHERE article_id = $art_id
-		ORDER BY publication_date DESC;";   
-		$queryResults = mysqli_query($this->connection, $query);
 		if(!$queryResults)
 			return null;
 		if(mysqli_num_rows($queryResults)==0){
@@ -377,7 +360,7 @@ class DBAccess {
     }
 
 	public function getTopArticleTags(int $nArt, int $offset = 0){
-		$query1 = "CREATE OR REPLACE VIEW topArticles AS (SELECT id FROM Article ORDER BY publication_date DESC LIMIT ".$nArt." OFFSET ".$offset.")";
+		$query1 = "CREATE OR REPLACE VIEW topArticles AS (SELECT id FROM Article ORDER BY publication_date DESC, id DESC LIMIT ".$nArt." OFFSET ".$offset.")";
 		$query2 = "SELECT article_id, tag_id, name FROM (article_tags JOIN topArticles ON article_id=topArticles.id) JOIN Tag ON tag_id=Tag.id";   
 		mysqli_query($this->connection, $query1);
 		$queryResults = mysqli_query($this->connection, $query2);
