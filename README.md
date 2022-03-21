@@ -1,2 +1,2 @@
 # techweb-project
-Repository per il progetto di Tecnologie Web 2020/2021 - Università di Padova - Scienze Informatiche
+Repository per il progetto di Tecnologie Web 2021/2022 - Università di Padova - Scienze Informatiche
