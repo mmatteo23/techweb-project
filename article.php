@@ -58,7 +58,7 @@ if($connection){
         
         $user_output .= '
                     </header>
-                    <img class="cover" src="images/article_covers/'.$articleData['cover_img'].'" id="article-cover" alt="'.$articleData['alt_cover_img'].'">
+                    <img class="cover" src="images/article_covers/'.$articleData['cover_img'].'" id="article-cover" alt="'.$articleData['alt_cover_img'].'" />
                     <article id="article-body" class="cover-linguetta" aria-label="article text">' .$articleData['text'];
 
         if(isset($username) && $username != ''){

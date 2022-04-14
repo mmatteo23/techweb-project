@@ -29,7 +29,7 @@ $default_article_img = '';
 $destination = "add_game.php";
 $header = "<h1>Add a game</h1>";
 $breadcrumb = "&gt; Add game";
-$button_name = '<input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Add game">';
+$button_name = '<input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Add game" />';
 $title_name = '<title>Add game - Penta News</title>';
 $discard_link = '<a href="profile.php" id="undoBtn"';
 $game_img_html = '';
@@ -45,7 +45,7 @@ $formContent = '
         <figure id="image_preview_1">
             <imgPreview1/>
         </figure>   
-        <input type="file" style="color: black;" accept="image/png,image/jpeg,image/bmp" name="cover" id="cover" onchange="showPreview1(event);">
+        <input type="file" style="color: black;" accept="image/png,image/jpeg,image/bmp" name="cover" id="cover" onchange="showPreview1(event);" />
         <button type="button" id="remove-preview-button-1" class="action-button pink sh-teal" onclick="removePreview1()">Remove Image</button>
         <p class="error"></p>
     </div>
@@ -56,20 +56,20 @@ $formContent = '
         <figure id="image_preview_2">
             <imgPreview2/>
         </figure>
-        <input type="file" style="color: black;" accept="image/png,image/jpeg,image/bmp" name="default-article-img" id="default-article-img" onchange="showPreview2(event);">           
+        <input type="file" style="color: black;" accept="image/png,image/jpeg,image/bmp" name="default-article-img" id="default-article-img" onchange="showPreview2(event);" />           
         <button type="button" id="remove-preview-button-2" class="action-button pink sh-teal" onclick="removePreview2()">Remove Image</button>
         <p class="error"></p>
     </div>
     <div class="input-wrapper">
         <label for="name">Game name</label>
-        <!-- <input onblur="validateName()" type="text" name="name" id="name" value="#Name#"> -->
-        <input type="text" name="name" id="name" value="#Name#">
+        <!-- <input onblur="validateName()" type="text" name="name" id="name" value="#Name#" /> -->
+        <input type="text" name="name" id="name" value="#Name#" />
         <p class="error"></p>
     </div>
     <div class="input-wrapper">
         <label for="description">Game description</label>
-        <!-- <input onblur="validateDescription()" type="text" name="description" id="description" value="#Description#"> -->
-        <input type="text" name="description" id="description" value="#Description#">
+        <!-- <input onblur="validateDescription()" type="text" name="description" id="description" value="#Description#" /> -->
+        <input type="text" name="description" id="description" value="#Description#" />
         <p class="error"></p>
     </div>
     <div class="input-wrapper">
@@ -79,19 +79,19 @@ $formContent = '
     </div>
     <div class="input-wrapper">
         <label for="releaseDate">Release date</label>
-        <!-- <input onblur="validateReleaseDate()" type="date" name="releaseDate" id="releaseDate" value="#ReleaseDate#"> -->
-        <input type="date" name="releaseDate" id="releaseDate" value="#ReleaseDate#">
+        <!-- <input onblur="validateReleaseDate()" type="date" name="releaseDate" id="releaseDate" value="#ReleaseDate#" /> -->
+        <input type="date" name="releaseDate" id="releaseDate" value="#ReleaseDate#" />
         <p class="error"></p>
     </div>
     <div class="input-wrapper">
         <label for="developer">Software House / Developer</label>
-        <!-- <input onblur="validateDeveloper()" type="text" name="developer" id="developer" value="#Developer#"> -->
-        <input type="text" name="developer" id="developer" value="#Developer#">
+        <!-- <input onblur="validateDeveloper()" type="text" name="developer" id="developer" value="#Developer#" /> -->
+        <input type="text" name="developer" id="developer" value="#Developer#" />
         <p class="error"></p>
     </div>   
     <div class="form-buttons">
         <a href="profile.php" id="undoBtn" class="action-button pink sh-teal">Discard</a>
-        <input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Add game">
+        <input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Add game" />
     </div>
 </form>
 ';
@@ -115,11 +115,11 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
         $destination = "add_game.php?id=".$game_id;
         $header = "<h1>Edit game</h1>";
         $breadcrumb = "&gt; <a href='edit_game.php'>Choose a game to edit</a> &gt; Edit game";
-        $button_name = '<input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Save changes">';
+        $button_name = '<input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Save changes" />';
         $title_name = '<title>Edit game - Penta News</title>';
         $discard_link = '<a href="edit_game.php" id="undoBtn"';
-        $game_img_html = '<img src="images/games/'.$game_img.'"  alt="game cover image preview" id="game_cover_image">';
-        $default_img_html = '<img src="images/article_covers/Default/'.$default_article_img.'" alt="default article cover image preview" id="default_article_cover_image">';
+        $game_img_html = '<img src="images/games/'.$game_img.'"  alt="game cover image preview" id="game_cover_image" />';
+        $default_img_html = '<img src="images/article_covers/Default/'.$default_article_img.'" alt="default article cover image preview" id="default_article_cover_image" />';
     } else {
         $formContent = error404("whooooops...", "The game you want to edit doesn't exist. Please select <a href='/edit_game.php'>another one</a>.");
     }
@@ -228,7 +228,7 @@ if(isset($genres)){
         . "</select>
     ";
     for ($i = 1; $i <= 2; $i++) {
-        $disabled = "disabled";
+        $disabled = "disabled='disabled'";
         if (isset($genre_ids[$i])) {
             $disabled = "";
         }
@@ -259,7 +259,7 @@ $htmlPage = str_replace('#Developer#', $developer, $htmlPage);
 $htmlPage = str_replace("add_game.php", $destination, $htmlPage);
 $htmlPage = str_replace("<h1>Add a game</h1>", $header, $htmlPage);
 $htmlPage = str_replace("&gt; Add game", $breadcrumb, $htmlPage);
-$htmlPage = str_replace('<input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Add game">', $button_name, $htmlPage);
+$htmlPage = str_replace('<input id="submit-btn" class="action-button purple sh-pink" type="submit" value="Add game" />', $button_name, $htmlPage);
 $htmlPage = str_replace('<title>Add game - Penta News</title>', $title_name, $htmlPage);
 $htmlPage = str_replace('<a href="profile.php" id="undoBtn"', $discard_link, $htmlPage);
 

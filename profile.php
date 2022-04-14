@@ -20,7 +20,7 @@ if($userData){
         case 2: $role = 'Writer';break;
         case 3: $role = 'User';break;
     }
-    $content = "<div class='profile-hero'><img src='images/user_profiles/" . ($userData['profile_img']?$userData['profile_img']:'default.png') . "' id='user-profile-img' alt='user profile image'>        </div>
+    $content = "<div class='profile-hero'><img src='images/user_profiles/" . ($userData['profile_img']?$userData['profile_img']:'default.png') . "' id='user-profile-img' alt='user profile image' />        </div>
         <div class='profile-info'>
             <ul id='user-specs'>
                 <li id='user-username'>@" . $userData['username'] . "</li>

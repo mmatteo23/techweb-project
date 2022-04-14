@@ -49,46 +49,46 @@ $content = "
         <form action='edit_profile.php' method='POST' enctype='multipart/form-data' id='form'>
             <div class='input-wrapper'>
                 <label for='profile_img'>
-                    <img src='images/user_profiles/" . ($oldUserData['profile_img']?$oldUserData['profile_img']:'default.png') . "' id='user-profile-img' alt='user profile image'>
-                    Your picture<br>
+                    <img src='images/user_profiles/" . ($oldUserData['profile_img']?$oldUserData['profile_img']:'default.png') . "' id='user-profile-img' alt='user profile image' />
+                    Your picture<br />
                     <span>Max file size 2<abbr title='megabyte'>MB</abbr></span>
                 </label>
-                <input type='file' accept='image/png,image/jpeg,image/bmp' id='profile_img' class='custom-file-input' name='profile_img' onchange='showPreview(event);'>
+                <input type='file' accept='image/png,image/jpeg,image/bmp' id='profile_img' class='custom-file-input' name='profile_img' onchange='showPreview(event);' />
                 <p class='error'></p>
             </div>
             <div class='input-wrapper'>
                 <label for='username'>username</label>
-                <input placeholder='username' type='text' id='username' name='username' value='" . $oldUserData['username'] . "' disabled>
+                <input placeholder='username' type='text' id='username' name='username' value='" . $oldUserData['username'] . "' disabled='disabled' />
                 <p class='error'></p>
             </div>
             <div class='input-wrapper'>
                 <label for='firstname'>firstname</label>
-                <input placeholder='Jack' type='text' id='firstname' name='firstname' value='" . $oldUserData["firstName"] . "'>
+                <input placeholder='Jack' type='text' id='firstname' name='firstname' value='" . $oldUserData["firstName"] . "' />
                 <p class='error'></p>
             </div>
             <div class='input-wrapper'>
                 <label for='lastname'>lastname</label>
-                <input placeholder='Red' type='text' id='lastname' name='lastname' value='" . $oldUserData["lastName"] . "'>
+                <input placeholder='Red' type='text' id='lastname' name='lastname' value='" . $oldUserData["lastName"] . "' />
                 <p class='error'></p>
             </div>                
             <div class='input-wrapper'>
                 <label for='email'>email</label>
-                <input placeholder='jackred@email.com' type='text' id='email' name='email' value='" . $oldUserData["email"] . "'>
+                <input placeholder='jackred@email.com' type='text' id='email' name='email' value='" . $oldUserData["email"] . "' />
                 <p class='error'></p>
             </div>
             <div class='input-wrapper'>
                 <label for='password'>password</label>
-                <input type='password' name='password' id='password'>
+                <input type='password' name='password' id='password' />
                 <p class='error'></p>
             </div>
             <div class='input-wrapper'>
                 <label for='repeated_password'>repeat password</label>
-                <input type='password' name='repeated_password' id='repeated_password'>
+                <input type='password' name='repeated_password' id='repeated_password' />
                 <p class='error'></p>
             </div>
             <div id='btnBlock' class='form-buttons'>
                 <a class='edit-profile-btn action-button pink discard' href='profile.php' id='undoBtn'>Discard</a>
-                <input class='edit-profile-btn action-button purple' type='submit' id='saveBtn' name='btnUpdate' value='Update'>
+                <input class='edit-profile-btn action-button purple' type='submit' id='saveBtn' name='btnUpdate' value='Update' />
             </div>
         </form>
     </div>";

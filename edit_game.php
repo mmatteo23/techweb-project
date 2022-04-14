@@ -34,7 +34,7 @@ if($conn_ok){
                 for($i = 0; $i < $num_of_games; $i++){
                     $game = $games[$i];            
                     $user_output .= '<li class="card" id="game_'.$game['id'].'">
-                    <a tabindex="-1" href="add_game.php?id='.urlencode($game['id']).'"><img src="images/games/' . $game['game_img'] . '" alt="' . $game['name'] . ' cover" class="card-img"></a>
+                    <a tabindex="-1" href="add_game.php?id='.urlencode($game['id']).'"><img src="images/games/' . $game['game_img'] . '" alt="' . $game['name'] . ' cover" class="card-img" /></a>
                     <div class="card-content">
                         <h2 class="card-title"><a href="add_game.php?id='.urlencode($game['id']).'" class="card-title-link">' . $game['name'] . '</a></h2>';
                         if($game_tags[$x]['game_id']==$game['id']){

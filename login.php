@@ -16,7 +16,7 @@ $profile_img = '<li><p tabindex=-1 id="profile-link" href="login.php" class="nav
 if(isset($_SESSION['username'])){
     $user = getUser($_SESSION['username']);
     if($user)
-        $profile_img = '<li><p tabindex=-1 id="profile-link" href="profile.php" class="profile-img nav-active-link"><span aria-hidden="true" class="material-icons md-36">person</span><span><img src="images/user_profiles/'. ($user['profile_img']?$user['profile_img']:'default.png') .'" alt="Profile"></span></p></li>';
+        $profile_img = '<li><p tabindex=-1 id="profile-link" href="profile.php" class="profile-img nav-active-link"><span aria-hidden="true" class="material-icons md-36">person</span><span><img src="images/user_profiles/'. ($user['profile_img']?$user['profile_img']:'default.png') .'" alt="Profile" /></span></p></li>';
 }
 
 $errors = "";
