@@ -206,12 +206,12 @@ footer{
   margin-bottom: 6vh;
 }
 
-footer h3{
+footer h2{
   color: black;
   text-align: center;
   font-size: clamp(1.2em, 2vw + .3em, 1.25em);
 }
-footer h4{
+footer h3{
   color: var(--bg);
   text-align: center;
   font-size: clamp(1.1em, 2vw + .2em, 1.12em);
@@ -220,11 +220,11 @@ footer h4{
 
 
 footer p,
-footer h5{
+footer h4{
   color: var(--bg);
   text-align: center;
 }
-footer h5{
+footer h4{
   font-size: clamp(1.1em, 2vw + .1em, 1.15em);
 }
 footer p{
