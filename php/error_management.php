@@ -11,7 +11,7 @@
                         <li>It could be a great time to learn <a href = 'html/aboutUs.html'>about us</a>!</li>
                         <li>Wait a little, time heals everything.</li>
                     </ul>
-                <img id='imgNoDB' src='images/OfflineDatabase.png'/>
+                <img id='imgNoDB' src='images/OfflineDatabase.png' alt=''/>
             </section>";
     }
 
@@ -28,7 +28,7 @@
                 </ul>";
                 
         if($img)
-            $returnHTML .= "<img id='imgNoDB2' src='images/OfflineDatabase.png'/>";
+            $returnHTML .= "<img id='imgNoDB2' src='images/OfflineDatabase.png' alt=''/>";
         $returnHTML .= "</section>";
         return $returnHTML;
     }

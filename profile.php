@@ -5,12 +5,12 @@ require_once("php/UserController.php");
 // variables
 $content = "";  // html code to send to the page
 
-$profile_img = '<li><p tabindex=-1 id="profile-link" class="nav-active-link"><span aria-hidden="true" class="material-icons md-36">person</span><span>Profile</span></p></li>';
+$profile_img = '<li><p tabindex="-1" id="profile-link" class="nav-active-link"><span aria-hidden="true" class="material-icons md-36">person</span><span>Profile</span></p></li>';
 $userData = getUser($_SESSION['username']);
 if(isset($_SESSION['username'])){
     $user = getUser($_SESSION['username']);
     if($user)
-        $profile_img = '<li><p tabindex=-1 id="profile-link" class="profile-img nav-active-link"><span aria-hidden="true" class="material-icons md-36">person</span><span><img src="images/user_profiles/'. ($user['profile_img']?$user['profile_img']:'default.png') .'" alt="Profile"></span></p></li>';
+        $profile_img = '<li><p tabindex="-1" id="profile-link" class="profile-img nav-active-link"><span aria-hidden="true" class="material-icons md-36">person</span><span><img src="images/user_profiles/'. ($user['profile_img']?$user['profile_img']:'default.png') .'" alt="Profile"></span></p></li>';
 }
 
 if($userData){

@@ -22,7 +22,7 @@ if($connection){
                 '<a class="card-article-link" href="article.php?id='.$art['id'].'">
                 <article>
                     <div class="card-article-image">
-                        <img src="images/article_covers/'.$art['cover_img'].'"/>
+                        <img src="images/article_covers/'.$art['cover_img'].'" alt="' . $art['alt_cover_img'] . '"/>
                     </div>
                     <div class="card-article-info">
                         <h3>'.$art['title'].'</h3>
