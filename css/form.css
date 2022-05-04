@@ -464,7 +464,7 @@ p.error{
    
    *.action-button.red{
        color: white;
-       background-color: #ff3860;
+       background-color: #A10021;
    }
    
    *.action-button.purple{
@@ -490,7 +490,7 @@ p.error{
    }
    
    *.action-button.sh-red{
-       box-shadow: 2px 2px 2px 0px#ff3860;
+       box-shadow: 2px 2px 2px 0px #ff3860;
    }
    
    
